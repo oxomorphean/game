@@ -1,0 +1,191 @@
+{
+  "transport": "stdio",
+  "calls": [
+    {
+      "tool": "run_lua_script",
+      "result": "OK: 64x64, 10 frames, 5 editable layers, idle 1-4, walk 5-10, ground y52\n"
+    },
+    {
+      "tool": "set_palette",
+      "result": "Palette set with 33 colors in /Users/nguyenhoangdacdat/dev/nguthu-unity-demo/ArtDirection/Handmade/SpiritTurtle/spirit-turtle.aseprite"
+    },
+    {
+      "tool": "export_frame",
+      "result": "Frame 1 exported to /Users/nguyenhoangdacdat/dev/nguthu-unity-demo/Assets/ArtSample/Sprites/turtle.png at 1x"
+    },
+    {
+      "tool": "export_spritesheet",
+      "result": "Sprite sheet exported to /Users/nguyenhoangdacdat/dev/nguthu-unity-demo/Assets/ArtSample/Sprites/turtle-idle.png (horizontal) with data file /Users/nguyenhoangdacdat/dev/nguthu-unity-demo/ArtDirection/Handmade/SpiritTurtle/turtle-idle.json"
+    },
+    {
+      "tool": "export_spritesheet",
+      "result": "Sprite sheet exported to /Users/nguyenhoangdacdat/dev/nguthu-unity-demo/ArtDirection/Handmade/SpiritTurtle/turtle-idle-preview-5x.png (horizontal)"
+    },
+    {
+      "tool": "export_tag",
+      "result": "Tag 'idle' exported to /Users/nguyenhoangdacdat/dev/nguthu-unity-demo/ArtDirection/Handmade/SpiritTurtle/turtle-idle.gif"
+    },
+    {
+      "tool": "export_spritesheet",
+      "result": "Sprite sheet exported to /Users/nguyenhoangdacdat/dev/nguthu-unity-demo/Assets/ArtSample/Sprites/turtle-walk.png (horizontal) with data file /Users/nguyenhoangdacdat/dev/nguthu-unity-demo/ArtDirection/Handmade/SpiritTurtle/turtle-walk.json"
+    },
+    {
+      "tool": "export_spritesheet",
+      "result": "Sprite sheet exported to /Users/nguyenhoangdacdat/dev/nguthu-unity-demo/ArtDirection/Handmade/SpiritTurtle/turtle-walk-preview-5x.png (horizontal)"
+    },
+    {
+      "tool": "export_tag",
+      "result": "Tag 'walk' exported to /Users/nguyenhoangdacdat/dev/nguthu-unity-demo/ArtDirection/Handmade/SpiritTurtle/turtle-walk.gif"
+    },
+    {
+      "tool": "export_frame",
+      "result": "Frame 1 exported to /Users/nguyenhoangdacdat/dev/nguthu-unity-demo/ArtDirection/Handmade/SpiritTurtle/turtle-preview-8x.png at 8x"
+    },
+    {
+      "tool": "get_sprite_info",
+      "result": "{\"width\":64,\"height\":64,\"color_mode\":\"rgb\",\"frames\":10,\"durations_ms\":[380,380,130,380,140,140,140,140,140,140],\"layers\":[{\"name\":\"Far feet and tail\",\"visible\":true,\"opacity\":255,\"is_group\":false,\"parent\":null},{\"name\":\"Body and shell\",\"visible\":true,\"opacity\":255,\"is_group\":false,\"parent\":null},{\"name\":\"Near feet\",\"visible\":true,\"opacity\":255,\"is_group\":false,\"parent\":null},{\"name\":\"Head\",\"visible\":true,\"opacity\":255,\"is_group\":false,\"parent\":null},{\"name\":\"Golden spirit seal\",\"visible\":true,\"opacity\":255,\"is_group\":false,\"parent\":null}],\"tags\":[{\"name\":\"idle\",\"from\":1,\"to\":4,\"direction\":\"forward\"},{\"name\":\"walk\",\"from\":5,\"to\":10,\"direction\":\"forward\"}]}\n"
+    }
+  ],
+  "server": {
+    "name": "aseprite",
+    "title": null,
+    "version": "1.30.0",
+    "websiteUrl": null,
+    "icons": null
+  },
+  "tools_available": 116,
+  "verified": {
+    "status": "PASS",
+    "canvas": [
+      64,
+      64
+    ],
+    "ppu": 16,
+    "pivot": [
+      0.5,
+      0.18
+    ],
+    "frame_counts": {
+      "idle": 4,
+      "walk": 6
+    },
+    "all_frames_distinct": true,
+    "alpha": [
+      0,
+      255
+    ],
+    "palette": "linhthu-v1.hex",
+    "frames": [
+      {
+        "tag": "idle",
+        "frame": 0,
+        "colors": 13,
+        "bbox": [
+          9,
+          22,
+          57,
+          53
+        ]
+      },
+      {
+        "tag": "idle",
+        "frame": 1,
+        "colors": 13,
+        "bbox": [
+          9,
+          21,
+          57,
+          53
+        ]
+      },
+      {
+        "tag": "idle",
+        "frame": 2,
+        "colors": 11,
+        "bbox": [
+          9,
+          22,
+          57,
+          53
+        ]
+      },
+      {
+        "tag": "idle",
+        "frame": 3,
+        "colors": 13,
+        "bbox": [
+          9,
+          22,
+          57,
+          53
+        ]
+      },
+      {
+        "tag": "walk",
+        "frame": 0,
+        "colors": 13,
+        "bbox": [
+          9,
+          22,
+          57,
+          53
+        ]
+      },
+      {
+        "tag": "walk",
+        "frame": 1,
+        "colors": 13,
+        "bbox": [
+          9,
+          21,
+          57,
+          53
+        ]
+      },
+      {
+        "tag": "walk",
+        "frame": 2,
+        "colors": 13,
+        "bbox": [
+          9,
+          21,
+          57,
+          53
+        ]
+      },
+      {
+        "tag": "walk",
+        "frame": 3,
+        "colors": 13,
+        "bbox": [
+          9,
+          22,
+          57,
+          53
+        ]
+      },
+      {
+        "tag": "walk",
+        "frame": 4,
+        "colors": 13,
+        "bbox": [
+          9,
+          21,
+          57,
+          53
+        ]
+      },
+      {
+        "tag": "walk",
+        "frame": 5,
+        "colors": 13,
+        "bbox": [
+          9,
+          21,
+          57,
+          53
+        ]
+      }
+    ]
+  }
+}

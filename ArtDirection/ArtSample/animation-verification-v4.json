@@ -1,0 +1,20 @@
+{
+    "result": "PASS",
+    "idleFrames": [
+        "turtle-idle-0",
+        "turtle-idle-1",
+        "turtle-idle-2",
+        "turtle-idle-3"
+    ],
+    "walkFrames": [
+        "turtle-walk-0",
+        "turtle-walk-1",
+        "turtle-walk-2",
+        "turtle-walk-3",
+        "turtle-walk-4",
+        "turtle-walk-5"
+    ],
+    "moved": true,
+    "resetToSpawn": true,
+    "error": ""
+}
