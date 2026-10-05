@@ -1,0 +1,14 @@
+[
+  {
+    "file": "/private/tmp/nguthu-garden-detail-v7/water-ripple.png",
+    "kind": "sprite",
+    "size": [
+      64,
+      16
+    ],
+    "colors": 4,
+    "frames": 4,
+    "status": "PASS",
+    "issues": []
+  }
+]

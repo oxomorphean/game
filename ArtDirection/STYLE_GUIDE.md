@@ -33,7 +33,7 @@ Không thể xác định chắc chắn kích thước pixel gốc, palette th�
 
 Các mã màu dưới đây là đề xuất v1, không phải palette trích chính xác từ screenshot. Các màu được chọn thêm phải cùng hệ màu và cùng cách chia bậc sáng tối.
 
-**Palette khóa:** [Palette/linhthu-v1.gpl](Palette/linhthu-v1.gpl) (33 màu, có bản `.hex` và swatch PNG). File này giữ nguyên 12 màu dưới đây và thêm bậc sáng/tối cho từng chất liệu. Sprite sản xuất chỉ dùng màu trong file này; cần màu mới thì tạo phiên bản palette mới, không sửa tại chỗ.
+**Palette hiện hành:** [Palette/linhthu-v2.gpl](Palette/linhthu-v2.gpl) (34 màu, có bản `.hex` và swatch PNG). V2 giữ nguyên 33 màu v1 và thêm đúng `#79AA5E` để làm mảng cỏ đậm nhẹ; không sửa palette v1 tại chỗ. File này giữ nguyên 12 màu dưới đây và thêm bậc sáng/tối cho từng chất liệu. Sprite sản xuất chỉ dùng màu trong file này; cần màu mới thì tạo phiên bản palette mới, không sửa tại chỗ.
 
 | Vai trò | Màu nền tảng đề xuất | Cách dùng |
 | --- | --- | --- |
@@ -120,3 +120,12 @@ Dùng hướng chibi pixel art sáng màu đã chọn, với môi trường cổ
 Nhánh `codex/huyen-giap-quy` bắt đầu từ môi trường v4 (`4247dcf`). Chỉ thay bộ PNG/animation của linh thú và tên hiển thị. Nguồn editable của Huyền Giáp Quy nằm trong `ArtDirection/Handmade/HuyenGiapQuy/`; nguồn rùa xanh cũ được giữ để đối chiếu. Bản môi trường đơn giản hóa v5 được giữ riêng trên nhánh `codex/art-style-sample`.
 
 Khi duyệt, xem linh thú ở 1x cạnh cổng và tán hoa v4: mai vẫn đọc rõ là đen, đường vàng nhận ra nhưng không thành nhiễu, kích thước và góc nhìn khớp sân. Mai, hoa văn, mắt và giải phẫu ổn định qua idle và walk. V6 là mẫu cần người dùng duyệt, chưa tự coi thiết kế linh thú là bản cuối cùng.
+
+
+## Nền cỏ — điều chỉnh theo ảnh 2 ngày 05/10/2026
+
+![Tham chiếu mật độ cỏ](References/preferred-grass-reference-02.png)
+
+Cỏ đọc thành một mặt xanh mướt, gần như phẳng; khoảng 90% trở lên vùng cỏ lộ ra giữ màu nền `#83B865`. Không rải chấm sáng, nét L, tick, sọc, pixel vụn hoặc nhịp lưới để mô tả từng ngọn cỏ. Chỉ dùng một hoặc hai mảng tối nhẹ `#79AA5E`, có silhouette rộng và tự nhiên, không viền hoặc dither; đặt lệch ở mép hoặc gần gốc cây. Bóng cây vẫn giữ riêng, không nhân bản mảng tối khắp sân. Hoa nhỏ chỉ đặt thưa sát mép; nền phải nhường độ tương phản cho cổng, tán cây và linh thú.
+
+Mẫu map cần reviewer thẩm mỹ độc lập xem screenshot Unity ở kích thước chơi và thumbnail. Pixel validator chứng minh palette/alpha/kích thước, không chứng minh cảnh đẹp. Bản grass-a/b/c/d có các nét nhỏ rải đều trong thử nghiệm v7 đã bị người dùng loại; chúng không phải chuẩn để tạo nền sau này. Mẫu v7 đã sửa dùng `ArtDirection/Handmade/GardenV7/CleanGrass/`.

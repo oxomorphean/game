@@ -2,7 +2,7 @@
 
 Dự án Unity: `/Users/nguyenhoangdacdat/dev/nguthu-unity-demo`.
 
-Scene hiện hành: `Assets/ArtSample/SpiritTurtleGarden.unity`. Môi trường dùng lại bản v4: cổng nhiều chi tiết, hai cây anh đào và bóng cây, sân gạch/cỏ, đá và hồ. Huyền Giáp Quy có mai đen và hoa văn vàng kim thay linh quy xanh ngọc; đây là mẫu mỹ thuật và di chuyển, chưa có chiến đấu hoặc nuôi thú.
+Scene hiện hành: `Assets/ArtSample/SpiritTurtleGarden.unity`. Môi trường v7 giữ cổng nhiều chi tiết, hai cây anh đào và bóng cây, đá và hồ của v4; thêm sân tile, cỏ phẳng xanh mướt với một mảng đậm nhẹ gần hồ, hoa thưa, hai đèn đá, cánh hoa rơi và gợn nước. Huyền Giáp Quy có mai đen và hoa văn vàng kim thay linh quy xanh ngọc; đây là mẫu mỹ thuật và di chuyển, chưa có chiến đấu hoặc nuôi thú.
 
 ## Chơi thử
 
@@ -20,7 +20,7 @@ Huyền Giáp Quy được tự vẽ qua Aseprite MCP. Nguồn có layer, animat
 
 Các frame dùng palette khóa, alpha 0/255, cùng canvas và pivot `(32,12)`, PPU 16, Point, không mipmap/nén, scale 1. Pixel Perfect Camera Built-in tham chiếu 384×256. Trái lật từ phải; lên/xuống hiện dùng cùng bộ bước chân, chưa có hình riêng cho bốn hướng.
 
-Nguồn linh quy xanh cũ vẫn ở `ArtDirection/Handmade/SpiritTurtle/`. Môi trường v4 giữ nguồn ImageGen thử nghiệm trước đây trong `ArtDirection/Sources/`, không sinh lại thiết kế mới ở task này. [Quy tắc mỹ thuật](ArtDirection/STYLE_GUIDE.md) giữ mức chi tiết v4 và yêu cầu mai đen/vàng mới. [Kế hoạch gameplay](game_architecture_plan.md) giữ nguyên.
+Nguồn linh quy xanh cũ vẫn ở `ArtDirection/Handmade/SpiritTurtle/`. Cổng, cây, đá và hồ giữ nguồn ImageGen thử nghiệm trước đây trong `ArtDirection/Sources/`. Tile, chi tiết và hiệu ứng mới được tự vẽ qua Aseprite MCP; nguồn editable ở `ArtDirection/Handmade/GardenV7/`. Cỏ có nét vụn rải đều đã bị loại và chỉ giữ ngoài Assets làm lịch sử. Palette hiện hành v2 thêm một bậc cỏ tối nhẹ, giữ toàn bộ màu v1. [Quy tắc mỹ thuật](ArtDirection/STYLE_GUIDE.md) giữ mức chi tiết v4 và yêu cầu mai đen/vàng mới. [Kế hoạch gameplay](game_architecture_plan.md) giữ nguyên.
 
 ## Dựng lại bằng Unity Pipeline/CLI
 
@@ -31,8 +31,8 @@ unity command run_script --project-path /Users/nguyenhoangdacdat/dev/nguthu-unit
 unity command run_script --project-path /Users/nguyenhoangdacdat/dev/nguthu-unity-demo --caller plugin --skill unity-cli --file AgentScripts/ArtSampleBuilder.cs --entry ArtSampleBuilder.BuildWeb --timeout_ms 180000 --timeout 240 --format json
 ```
 
-Controller là `Assets/ArtSample/Scripts/SpiritTurtleController.cs`, không thay logic di chuyển. Scene và metadata được lưu bằng Unity API. Bằng chứng kiểm chứng v6 nằm trong `ArtDirection/ArtSample/verification-v6.md`.
+Controller là `Assets/ArtSample/Scripts/SpiritTurtleController.cs`, không thay logic di chuyển. Scene và metadata được lưu bằng Unity API. Bằng chứng v6 giữ trong `ArtDirection/ArtSample/verification-v6.md`; cỏ v7 đã qua reviewer độc lập, xem `ArtDirection/ArtSample/verification-v7.md`, `aesthetic-review-v7.md` và ảnh Unity cuối.
 
 ## Phiên bản
 
-V4: `main`, tag `art-v4-before-unify`. V5: `codex/art-style-sample`, tag `art-v5-candidate`. V6: `codex/huyen-giap-quy`. Chỉ lưu Git cục bộ. Xem [ROLLBACK.md](ROLLBACK.md) để đổi bản và dựng lại WebGL; `WebBuild/` là đầu ra build, không nằm trong Git.
+V4: `main`, tag `art-v4-before-unify`. V5: `codex/art-style-sample`, tag `art-v5-candidate`. V6: `codex/huyen-giap-quy`, tag `art-v6-huyen-giap-quy`. V7: `codex/living-garden-v7`, tag `art-v7-living-garden`. Chỉ lưu Git cục bộ. Xem [ROLLBACK.md](ROLLBACK.md) để đổi bản và dựng lại WebGL; `WebBuild/` là đầu ra build, không nằm trong Git.

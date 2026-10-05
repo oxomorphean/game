@@ -1,0 +1,110 @@
+[
+  {
+    "file": "/private/tmp/nguthu-garden-ground-v7/grass-a.png",
+    "kind": "tile",
+    "size": [
+      16,
+      16
+    ],
+    "colors": 3,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "/private/tmp/nguthu-garden-ground-v7/grass-b.png",
+    "kind": "tile",
+    "size": [
+      16,
+      16
+    ],
+    "colors": 3,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "/private/tmp/nguthu-garden-ground-v7/grass-c.png",
+    "kind": "tile",
+    "size": [
+      16,
+      16
+    ],
+    "colors": 3,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "/private/tmp/nguthu-garden-ground-v7/grass-d.png",
+    "kind": "tile",
+    "size": [
+      16,
+      16
+    ],
+    "colors": 3,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "/private/tmp/nguthu-garden-ground-v7/paving-a.png",
+    "kind": "tile",
+    "size": [
+      16,
+      16
+    ],
+    "colors": 3,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "/private/tmp/nguthu-garden-ground-v7/paving-b.png",
+    "kind": "tile",
+    "size": [
+      16,
+      16
+    ],
+    "colors": 3,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "/private/tmp/nguthu-garden-ground-v7/paving-edge.png",
+    "kind": "tile",
+    "size": [
+      16,
+      16
+    ],
+    "colors": 6,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "/private/tmp/nguthu-garden-ground-v7/paving-moss.png",
+    "kind": "tile",
+    "size": [
+      16,
+      16
+    ],
+    "colors": 6,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "/private/tmp/nguthu-garden-ground-v7/earth-path.png",
+    "kind": "tile",
+    "size": [
+      16,
+      16
+    ],
+    "colors": 2,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  }
+]

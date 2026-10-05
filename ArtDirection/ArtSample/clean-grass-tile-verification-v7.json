@@ -1,0 +1,14 @@
+[
+  {
+    "file": "Assets/ArtSample/Sprites/grass-clean.png",
+    "kind": "tile",
+    "size": [
+      16,
+      16
+    ],
+    "colors": 1,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  }
+]

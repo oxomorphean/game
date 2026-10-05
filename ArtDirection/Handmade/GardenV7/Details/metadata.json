@@ -1,0 +1,9 @@
+{"ppu":16,"alpha":[0,255],"pixel_origin":"top-left","unity_pivot_origin":"bottom-left","water_frames":4,"water_cell":[16,16],"sprites":[
+{"file":"grass-tuft-a.png","source":"grass-tuft-a.aseprite","size":[16,16],"colors":3,"max_colors":16,"foot_anchor_px":[8,14],"unity_pivot":[0.500000,0.125000],"footprint_px":[4,11,8,3],"opaque_bbox_px":[3,3,14,14]},
+{"file":"grass-tuft-b.png","source":"grass-tuft-b.aseprite","size":[16,16],"colors":3,"max_colors":16,"foot_anchor_px":[8,14],"unity_pivot":[0.500000,0.125000],"footprint_px":[3,11,10,3],"opaque_bbox_px":[2,5,14,14]},
+{"file":"flower-cluster.png","source":"flower-cluster.aseprite","size":[16,16],"colors":8,"max_colors":16,"foot_anchor_px":[8,14],"unity_pivot":[0.500000,0.125000],"footprint_px":[3,11,10,3],"opaque_bbox_px":[3,3,14,14]},
+{"file":"fern.png","source":"fern.aseprite","size":[32,32],"colors":4,"max_colors":16,"foot_anchor_px":[16,30],"unity_pivot":[0.500000,0.062500],"footprint_px":[10,25,13,5],"opaque_bbox_px":[4,5,30,30]},
+{"file":"lantern.png","source":"lantern.aseprite","size":[32,48],"colors":9,"max_colors":20,"foot_anchor_px":[16,45],"unity_pivot":[0.500000,0.062500],"footprint_px":[7,38,18,7],"opaque_bbox_px":[5,2,27,45]},
+{"file":"petal.png","source":"petal.aseprite","size":[8,8],"colors":3,"max_colors":16,"foot_anchor_px":[4,4],"unity_pivot":[0.500000,0.500000],"footprint_px":[2,2,3,4],"opaque_bbox_px":[2,2,5,6]},
+{"file":"water-ripple.png","source":"water-ripple.aseprite","size":[64,16],"colors":4,"max_colors":6,"foot_anchor_px":[8,8],"unity_pivot":[0.500000,0.500000],"footprint_px":[2,6,12,6],"opaque_bbox_px":[2,6,62,12]}
+]}

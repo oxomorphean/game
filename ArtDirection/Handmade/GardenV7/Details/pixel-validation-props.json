@@ -1,0 +1,74 @@
+[
+  {
+    "file": "/private/tmp/nguthu-garden-detail-v7/grass-tuft-a.png",
+    "kind": "sprite",
+    "size": [
+      16,
+      16
+    ],
+    "colors": 3,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "/private/tmp/nguthu-garden-detail-v7/grass-tuft-b.png",
+    "kind": "sprite",
+    "size": [
+      16,
+      16
+    ],
+    "colors": 3,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "/private/tmp/nguthu-garden-detail-v7/flower-cluster.png",
+    "kind": "sprite",
+    "size": [
+      16,
+      16
+    ],
+    "colors": 8,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "/private/tmp/nguthu-garden-detail-v7/fern.png",
+    "kind": "sprite",
+    "size": [
+      32,
+      32
+    ],
+    "colors": 4,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "/private/tmp/nguthu-garden-detail-v7/lantern.png",
+    "kind": "sprite",
+    "size": [
+      32,
+      48
+    ],
+    "colors": 9,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "/private/tmp/nguthu-garden-detail-v7/petal.png",
+    "kind": "sprite",
+    "size": [
+      8,
+      8
+    ],
+    "colors": 3,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  }
+]

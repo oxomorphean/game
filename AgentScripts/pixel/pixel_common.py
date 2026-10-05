@@ -10,7 +10,7 @@ import numpy as np
 from PIL import Image
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_PALETTE = PROJECT_ROOT / "ArtDirection" / "Palette" / "linhthu-v1.gpl"
+DEFAULT_PALETTE = PROJECT_ROOT / "ArtDirection" / "Palette" / "linhthu-v2.gpl"
 OUTLINE_HEX = "#263046"
 
 

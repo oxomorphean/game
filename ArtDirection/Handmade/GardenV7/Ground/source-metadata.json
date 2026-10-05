@@ -1,0 +1,227 @@
+{
+  "sprite": {
+    "width": 48,
+    "height": 48,
+    "color_mode": "rgb",
+    "frames": 1,
+    "durations_ms": [
+      100
+    ],
+    "layers": [
+      {
+        "name": "01 Ground base",
+        "visible": true,
+        "opacity": 255,
+        "is_group": false,
+        "parent": null
+      },
+      {
+        "name": "02 Stone bevels",
+        "visible": true,
+        "opacity": 255,
+        "is_group": false,
+        "parent": null
+      },
+      {
+        "name": "03 Short cracks",
+        "visible": true,
+        "opacity": 255,
+        "is_group": false,
+        "parent": null
+      },
+      {
+        "name": "04 Grass clusters",
+        "visible": true,
+        "opacity": 255,
+        "is_group": false,
+        "parent": null
+      },
+      {
+        "name": "05 Moss and edge",
+        "visible": true,
+        "opacity": 255,
+        "is_group": false,
+        "parent": null
+      },
+      {
+        "name": "06 Earth planes",
+        "visible": true,
+        "opacity": 255,
+        "is_group": false,
+        "parent": null
+      }
+    ],
+    "tags": []
+  },
+  "slices": [
+    {
+      "name": "grass-a",
+      "x": 0,
+      "y": 0,
+      "width": 16,
+      "height": 16,
+      "pivot": {
+        "x": 8,
+        "y": 8
+      }
+    },
+    {
+      "name": "grass-b",
+      "x": 16,
+      "y": 0,
+      "width": 16,
+      "height": 16,
+      "pivot": {
+        "x": 8,
+        "y": 8
+      }
+    },
+    {
+      "name": "grass-c",
+      "x": 32,
+      "y": 0,
+      "width": 16,
+      "height": 16,
+      "pivot": {
+        "x": 8,
+        "y": 8
+      }
+    },
+    {
+      "name": "grass-d",
+      "x": 0,
+      "y": 16,
+      "width": 16,
+      "height": 16,
+      "pivot": {
+        "x": 8,
+        "y": 8
+      }
+    },
+    {
+      "name": "paving-a",
+      "x": 16,
+      "y": 16,
+      "width": 16,
+      "height": 16,
+      "pivot": {
+        "x": 8,
+        "y": 8
+      }
+    },
+    {
+      "name": "paving-b",
+      "x": 32,
+      "y": 16,
+      "width": 16,
+      "height": 16,
+      "pivot": {
+        "x": 8,
+        "y": 8
+      }
+    },
+    {
+      "name": "paving-moss",
+      "x": 0,
+      "y": 32,
+      "width": 16,
+      "height": 16,
+      "pivot": {
+        "x": 8,
+        "y": 8
+      }
+    },
+    {
+      "name": "paving-edge",
+      "x": 16,
+      "y": 32,
+      "width": 16,
+      "height": 16,
+      "pivot": {
+        "x": 8,
+        "y": 8
+      }
+    },
+    {
+      "name": "earth-path",
+      "x": 32,
+      "y": 32,
+      "width": 16,
+      "height": 16,
+      "pivot": {
+        "x": 8,
+        "y": 8
+      }
+    }
+  ],
+  "palette": [
+    "#1B1F2E",
+    "#263046",
+    "#41405D",
+    "#5E5A7E",
+    "#3F4D70",
+    "#55678F",
+    "#899CBD",
+    "#8E8A6E",
+    "#B1AD87",
+    "#E8DDB6",
+    "#F7F0D8",
+    "#FDFBF2",
+    "#2F5A4B",
+    "#4C8063",
+    "#83B865",
+    "#B4D67E",
+    "#B86A86",
+    "#E6A0B3",
+    "#F6CED6",
+    "#8A3A52",
+    "#C45E72",
+    "#C98B4A",
+    "#F1C86D",
+    "#FBE7A1",
+    "#5A3A3A",
+    "#8A5A44",
+    "#B8805C",
+    "#F2C9A8",
+    "#3E7FA6",
+    "#8FCBE0",
+    "#CFEFF5",
+    "#3FA88B",
+    "#E8774A"
+  ],
+  "atlas_colour_stats": {
+    "frame": 1,
+    "unique_colors": 7,
+    "opaque_pixels": 2304,
+    "top_colors": [
+      {
+        "color": "#83B865",
+        "count": 1044
+      },
+      {
+        "color": "#E8DDB6",
+        "count": 889
+      },
+      {
+        "color": "#F2C9A8",
+        "count": 246
+      },
+      {
+        "color": "#B1AD87",
+        "count": 37
+      },
+      {
+        "color": "#B4D67E",
+        "count": 32
+      },
+      {
+        "color": "#F7F0D8",
+        "count": 31
+      },
+      {
+        "color": "#4C8063",
+        "count": 25
+      }
+    ]
+  }
+}

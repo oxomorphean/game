@@ -4,7 +4,8 @@
 2. Chọn nhánh cần xem:
    - `git switch main` — v4, baseline `4247dcf` (`art-v4-before-unify`).
    - `git switch codex/art-style-sample` — v5, `d59a13e` (`art-v5-candidate`).
-   - `git switch codex/huyen-giap-quy` — v6, nhánh tạo từ baseline v4.
+   - `git switch codex/huyen-giap-quy` — v6, tag `art-v6-huyen-giap-quy`, trước khi thêm chi tiết khu vườn.
+   - `git switch codex/living-garden-v7` — v7, tag `art-v7-living-garden`, cỏ phẳng đã sửa theo ảnh 2.
 3. Chờ Unity import xong, rồi mở lại scene `Assets/ArtSample/SpiritTurtleGarden.unity`. Nếu cần dựng lại scene và sprite từ nguồn, chạy `CreateScene` trước; sau đó build WebGL bằng Unity CLI như README:
 
 ```sh

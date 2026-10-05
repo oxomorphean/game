@@ -4,7 +4,7 @@ Script Python chạy ngoài Unity, nằm ngoài `Assets/` nên Unity không impo
 
 | File | Vai trò |
 | --- | --- |
-| `../../ArtDirection/Palette/linhthu-v1.gpl` | Palette khóa 33 màu (bản `.hex` và swatch PNG nằm cùng thư mục, dùng cho Aseprite/Lospec/PixelLab). |
+| `../../ArtDirection/Palette/linhthu-v2.gpl` | Palette hiện hành 34 màu (v2 giữ 33 màu v1, thêm một bậc cỏ tối nhẹ) (bản `.hex` và swatch PNG nằm cùng thư mục, dùng cho Aseprite/Lospec/PixelLab). |
 | `pixelize.py` | Chuẩn hóa ảnh AI hoặc sprite PixelLab về palette, alpha 0/255, ô cố định, điểm tiếp đất chung. Tự chạy validator ở cuối. |
 | `pixel_validate.py` | Kiểm tra sprite. Mã thoát 1 nếu có FAIL. |
 | `pixel_common.py` | Hàm dùng chung (đọc palette, map màu OKLab, tiện ích alpha). |

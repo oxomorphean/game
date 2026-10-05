@@ -34,10 +34,13 @@ public static class ArtSampleBuilder
         ImportGenerated("rock", 32, 32, 0.5f);
         Sprite[] idleFrames = ImportTurtleFrames("idle", 4);
         Sprite[] runFrames = ImportTurtleFrames("walk", 6);
-        CreateFloorSprite("grass", false);
-        CreateFloorSprite("stone", true);
-        CreateFloorSprite("stone-moss", true, 1);
-        CreateFloorSprite("stone-grass", true, 2);
+        foreach (string name in new[] { "grass-clean", "paving-a", "paving-b",
+            "paving-moss", "paving-edge" }) ImportSprite(Root + "/Sprites/" + name + ".png", Vector2.zero);
+        ImportSprite(Root + "/Sprites/flower-cluster.png", new Vector2(0.5f, 0.125f));
+        ImportSprite(Root + "/Sprites/lantern.png", new Vector2(0.5f, 0.0625f));
+        ImportSprite(Root + "/Sprites/petal.png", new Vector2(0.5f, 0.5f));
+        ImportSprite(Root + "/Sprites/grass-shade-b.png", new Vector2(0.5f, 0.5f));
+        Sprite[] rippleFrames = ImportFrames("water-ripple", 16, 4, new Vector2(0.5f, 0.5f));
         CreateShadow();
 
         var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
@@ -66,24 +69,31 @@ public static class ArtSampleBuilder
         pixels.cropFrameY = true;
         pixels.stretchFill = false;
 
-        var gridObject = new GameObject("Small sample floor");
+        var gridObject = new GameObject("Linh vien garden floor");
         gridObject.AddComponent<Grid>();
         var floorObject = new GameObject("Editable grass and stone tiles");
         floorObject.transform.SetParent(gridObject.transform, false);
         var floor = floorObject.AddComponent<Tilemap>();
         floor.tileAnchor = Vector3.zero;
         floorObject.AddComponent<TilemapRenderer>().sortingOrder = -100;
-        Tile grass = LoadTile("grass");
-        Tile stone = LoadTile("stone");
-        Tile moss = LoadTile("stone-moss");
-        Tile grassStone = LoadTile("stone-grass");
-        for (int y = -7; y < 7; y++)
-            for (int x = -11; x < 11; x++)
+        Tile grass = LoadTile("grass-clean");
+        Tile[] paving = new[] { "paving-a", "paving-b", "paving-moss", "paving-edge" }.Select(LoadTile).ToArray();
+        for (int y = -8; y < 8; y++)
+            for (int x = -12; x < 12; x++)
             {
-                bool paving = x >= -5 && x < 5 && y >= -6 && y < 3;
-                int variation = Math.Abs(x * 13 + y * 7) % 11;
-                Tile pavingTile = variation < 2 ? moss : variation < 4 ? grassStone : stone;
-                floor.SetTile(new Vector3Int(x, y, 0), paving ? pavingTile : grass);
+                int variation = GardenHash(x, y) % 19;
+                bool rim = IsPaving(x, y) && (!IsPaving(x - 1, y) || !IsPaving(x + 1, y)
+                    || !IsPaving(x, y - 1) || !IsPaving(x, y + 1));
+                int stoneIndex = rim ? 3 : variation < 2 ? 2 : variation < 7 ? 1 : 0;
+                var cell = new Vector3Int(x, y, 0);
+                floor.SetTile(cell, IsPaving(x, y) ? paving[stoneIndex] : grass);
+                if (rim)
+                {
+                    float angle = !IsPaving(x - 1, y) ? 0 : !IsPaving(x + 1, y) ? 180 : !IsPaving(x, y - 1) ? 90 : -90;
+                    floor.SetTileFlags(cell, TileFlags.None);
+                    floor.SetTransformMatrix(cell, Matrix4x4.Translate(new Vector3(0.5f, 0.5f, 0))
+                        * Matrix4x4.Rotate(Quaternion.Euler(0, 0, angle)) * Matrix4x4.Translate(new Vector3(-0.5f, -0.5f, 0)));
+                }
             }
         var props = new GameObject("Gate – rock – flowering tree sample");
         PlaceSprite("Sect gate", "gate", new Vector2(0, 1.25f), props.transform);
@@ -95,6 +105,24 @@ public static class ArtSampleBuilder
         pond.sortingOrder = -90;
         PlaceSprite("Moss rock", "rock", new Vector2(6.5f, 0), props.transform);
         PlaceSprite("Moss rock small", "rock", new Vector2(-6, -2.5f), props.transform);
+        PlaceGardenDetails(props.transform);
+
+        var ambient = new GameObject("Living garden petals and water").AddComponent<LivingGarden>();
+        var ambientSettings = new SerializedObject(ambient);
+        ambientSettings.FindProperty("petalSprite").objectReferenceValue = AssetDatabase.LoadAssetAtPath<Sprite>(Root + "/Sprites/petal.png");
+        var rippleProperty = ambientSettings.FindProperty("rippleFrames");
+        rippleProperty.arraySize = rippleFrames.Length;
+        for (int i = 0; i < rippleFrames.Length; i++) rippleProperty.GetArrayElementAtIndex(i).objectReferenceValue = rippleFrames[i];
+        var origins = ambientSettings.FindProperty("blossomOrigins");
+        origins.arraySize = 2;
+        origins.GetArrayElementAtIndex(0).vector2Value = new Vector2(-7, 0.75f);
+        origins.GetArrayElementAtIndex(1).vector2Value = new Vector2(7, 1.25f);
+        var centers = ambientSettings.FindProperty("rippleCenters");
+        centers.arraySize = 3;
+        centers.GetArrayElementAtIndex(0).vector2Value = new Vector2(6.25f, -4.25f);
+        centers.GetArrayElementAtIndex(1).vector2Value = new Vector2(7.75f, -4.625f);
+        centers.GetArrayElementAtIndex(2).vector2Value = new Vector2(8.75f, -4.25f);
+        ambientSettings.ApplyModifiedPropertiesWithoutUndo();
 
         var turtle = new GameObject("Pet");
         turtle.transform.position = new Vector3(0, -3, 0);
@@ -124,6 +152,33 @@ public static class ArtSampleBuilder
         view.Focus();
         Debug.Log("[ArtSample] Native sprites at PPU 16, separate props and editable floor saved.");
         return ScenePath;
+    }
+
+    private static int GardenHash(int x, int y) => Math.Abs((x + 37) * 7381 ^ (y + 23) * 1933);
+
+    private static bool IsPaving(int x, int y)
+    {
+        bool courtyard = x >= -5 && x < 5 && y >= -6 && y < 4;
+        if ((y == -6 || y == 3) && (x == -5 || x == 4)) courtyard = false;
+        bool pondPath = x >= 5 && x <= 6 && y >= -4 && y <= -3;
+        bool westPath = x >= -8 && x < -5 && y >= -2 && y <= -1;
+        return courtyard || pondPath || westPath;
+    }
+
+    private static void PlaceGardenDetails(Transform parent)
+    {
+        var greenery = new GameObject("Garden groundcover and flowers");
+        greenery.transform.SetParent(parent, false);
+        PlaceSprite("Quiet grass shade near pond", "grass-shade-b", new Vector2(8.75f, -6.5f), greenery.transform).sortingOrder = -98;
+        var flowers = new[] { new Vector2(-9.5f, -0.5f), new Vector2(-6.25f, -5.75f), new Vector2(9.5f, -6) };
+        for (int i = 0; i < flowers.Length; i++)
+            PlaceSprite("Flower bed " + i, "flower-cluster", flowers[i], greenery.transform).sortingOrder = -93;
+        foreach (float x in new[] { -5.75f, 5.75f })
+        {
+            var contact = PlaceSprite("Stone lantern shadow", "shadow", new Vector2(x + 0.25f, -0.625f), parent);
+            contact.sortingOrder = -75;
+            PlaceSprite("Cultivation stone lantern", "lantern", new Vector2(x, -0.5f), parent);
+        }
     }
 
     private static void ImportGenerated(string name, int width, int height, float pivotX, string sourceName = null, bool centerPivot = false)
@@ -160,12 +215,15 @@ public static class ArtSampleBuilder
         ImportSprite(path, new Vector2(Mathf.Round(pivotX * width) / width, centerPivot ? 0.5f : (float)foot / height));
     }
 
-    private static Sprite[] ImportTurtleFrames(string animation, int count)
+    private static Sprite[] ImportTurtleFrames(string animation, int count) =>
+        ImportFrames("turtle-" + animation, 64, count, new Vector2(0.5f, 12f / 64f));
+
+    private static Sprite[] ImportFrames(string name, int size, int count, Vector2 pivot)
     {
-        string path = Root + "/Sprites/turtle-" + animation + ".png";
+        string path = Root + "/Sprites/" + name + ".png";
         var image = new Texture2D(2, 2, TextureFormat.RGBA32, false);
-        if (!image.LoadImage(File.ReadAllBytes(path)) || image.width != count * 64 || image.height != 64)
-            throw new InvalidOperationException("Expected " + count + " turtle frames of 64x64: " + path);
+        if (!image.LoadImage(File.ReadAllBytes(path)) || image.width != count * size || image.height != size)
+            throw new InvalidOperationException("Expected " + count + " frames of " + size + " pixels: " + path);
         UnityEngine.Object.DestroyImmediate(image);
         AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
         var importer = (TextureImporter)AssetImporter.GetAtPath(path);
@@ -194,11 +252,10 @@ public static class ArtSampleBuilder
         var rects = new SpriteRect[count];
         for (int i = 0; i < count; i++)
         {
-            string name = "turtle-" + animation + "-" + i;
-            var previous = existing.FirstOrDefault(rect => rect.name == name);
-            rects[i] = new SpriteRect { name = name, spriteID = previous == null ? GUID.Generate() : previous.spriteID,
-                rect = new Rect(i * 64, 0, 64, 64), alignment = SpriteAlignment.Custom,
-                pivot = new Vector2(0.5f, 12f / 64f) };
+            string frameName = name + "-" + i;
+            var previous = existing.FirstOrDefault(rect => rect.name == frameName);
+            rects[i] = new SpriteRect { name = frameName, spriteID = previous == null ? GUID.Generate() : previous.spriteID,
+                rect = new Rect(i * size, 0, size, size), alignment = SpriteAlignment.Custom, pivot = pivot };
         }
         var ids = provider.GetDataProvider<ISpriteNameFileIdDataProvider>();
         if (ids == null) throw new InvalidOperationException("Turtle-sheet name/file ID provider unavailable.");
@@ -390,7 +447,7 @@ public static class ArtSampleBuilder
             .Replace("__FRAMEWORK__", FindFile(files, ".framework.js"))
             .Replace("__WASM__", FindFile(files, ".wasm"));
         File.WriteAllText(Path.Combine(output, "index.html"), html);
-        File.WriteAllText("ArtDirection/ArtSample/build-result-v6.json", JsonUtility.ToJson(new Evidence {
+        File.WriteAllText("ArtDirection/ArtSample/build-result-v7.json", JsonUtility.ToJson(new Evidence {
             result = report.summary.result.ToString(), bytes = report.summary.totalSize,
             seconds = report.summary.totalTime.TotalSeconds, errors = report.summary.totalErrors }, true));
         Debug.Log("[ArtSample] Web build ready: " + output);
