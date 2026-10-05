@@ -1,0 +1,38 @@
+[
+  {
+    "file": "/private/tmp/huyen-giap-quy-v6/turtle.png",
+    "kind": "sprite",
+    "size": [
+      64,
+      64
+    ],
+    "colors": 13,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "/private/tmp/huyen-giap-quy-v6/turtle-idle.png",
+    "kind": "sprite",
+    "size": [
+      256,
+      64
+    ],
+    "colors": 13,
+    "frames": 4,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "/private/tmp/huyen-giap-quy-v6/turtle-walk.png",
+    "kind": "sprite",
+    "size": [
+      384,
+      64
+    ],
+    "colors": 13,
+    "frames": 6,
+    "status": "PASS",
+    "issues": []
+  }
+]

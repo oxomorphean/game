@@ -16,3 +16,7 @@
 *.key
 __pycache__/
 *.pyc
+
+# Unity crash recovery stays local and is preserved.
+/Assets/_Recovery/
+/Assets/_Recovery.meta

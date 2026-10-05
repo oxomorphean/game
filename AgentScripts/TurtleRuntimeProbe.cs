@@ -23,7 +23,7 @@ public static class TurtleRuntimeProbe
     {
         if (!EditorApplication.isPlaying) throw new InvalidOperationException("Play Mode required.");
         var pet = GameObject.Find("Pet").GetComponent<SpiritTurtleController>();
-        var visual = pet.GetComponentsInChildren<SpriteRenderer>().Single(r => r.name == "Jade spirit turtle");
+        var visual = pet.GetComponentsInChildren<SpriteRenderer>().Single(r => r.name == "Huyen Giap Quy");
         pet.ResetPet();
         Application.runInBackground = true;
         Vector3 spawn = pet.transform.position;
@@ -57,17 +57,17 @@ public static class TurtleRuntimeProbe
                 var evidence = new Evidence { result = idle.Count == 4 && walk.Count == 6 && moved && reset ? "PASS" : "FAIL",
                     idleFrames = idle.OrderBy(n => n).ToArray(), walkFrames = walk.OrderBy(n => n).ToArray(),
                     moved = moved, resetToSpawn = reset };
-                File.WriteAllText("ArtDirection/ArtSample/animation-verification-v4.json", JsonUtility.ToJson(evidence, true));
+                File.WriteAllText("ArtDirection/ArtSample/animation-verification-v6.json", JsonUtility.ToJson(evidence, true));
                 EditorApplication.update -= tick;
             }
             catch (Exception error)
             {
                 EditorApplication.update -= tick;
-                File.WriteAllText("ArtDirection/ArtSample/animation-verification-v4.json",
+                File.WriteAllText("ArtDirection/ArtSample/animation-verification-v6.json",
                     JsonUtility.ToJson(new Evidence { result = "FAIL", error = error.ToString() }, true));
             }
         };
         EditorApplication.update += tick;
-        return "Runtime probe started; evidence in animation-verification-v4.json.";
+        return "Runtime probe started; evidence in animation-verification-v6.json.";
     }
 }

@@ -18,7 +18,7 @@ Không thể xác định chắc chắn kích thước pixel gốc, palette th�
 
 1. **Ngôn ngữ hình ảnh:** 2D chibi pixel art có hình khối rõ và nét gọn. Cụm pixel phải có chủ ý, cạnh chéo bậc thang dễ nhìn, hình vẫn đọc được ở kích thước chơi. Tranh lớn thu nhỏ hoặc bật Point filter chưa đủ để thành pixel art.
 2. **Tỷ lệ nhân vật:** người chơi/NPC cao khoảng 2–2,5 đầu; đầu chiếm khoảng 40–50% chiều cao hình hữu dụng. Thân và chi ngắn, tóc thành các khối lớn, mắt có biểu cảm. “Figure” ở đây là thiết kế dễ nhận ra qua dáng, tóc và trang phục, với shading 2D gọn.
-3. **Linh thú:** silhouette đặc trưng phải đọc được trước chi tiết. Với linh quy: mai lớn có vài mảng rõ, đầu tròn biểu cảm, bốn chân ngắn và một dấu trán vàng nhỏ; màu xanh ngọc là điểm chính. Với linh hồ: tai nhọn lớn, mõm ngắn nhưng vẫn nhận ra hồ, đầu hơi lớn, thân gọn, chân ngắn, một đuôi nổi bật. Điểm tu tiên chỉ cần một dấu trán hoặc đầu đuôi mang màu hệ; tránh phủ kín bằng trang sức.
+3. **Linh thú:** silhouette đặc trưng phải đọc được trước chi tiết. Huyền Giáp Quy có mai đen lớn chia thành mảng giáp, đường hoa văn vàng kim bám theo mai, đầu biểu cảm và bốn chân ngắn. Giữ khoảng trống giữa các đường vàng; phù ấn chính phải nhận ra ở kích thước chơi. Điểm tu tiên cần được thiết kế vào dáng và chất liệu, không phủ kín bằng trang sức. Thiết kế, dấu hiệu nhận diện và màu giữ ổn định qua animation.
 4. **Viền:** dùng xanh đen hoặc tím than; nhân vật và vật tương tác có viền ngoài khoảng 1–2 pixel gốc. Viền trong nhẹ hơn viền ngoài. Nền xa giảm tương phản. Không dùng cùng một nét đen dày cho mọi viên đá và lá cây.
 5. **Màu:** không khí sáng, màu sạch, có xanh lá, đá kem, mái xanh tím và điểm nhấn hồng/đỏ/vàng. Nền ít bão hòa hơn nhân vật. Mỗi chất liệu có 2–3 bậc màu rõ; toàn bộ bộ asset dùng khoảng 24–40 màu nền tảng, có thể bổ sung màu hệ khi cần.
 6. **Ánh sáng:** ánh sáng ngày, hướng sáng mặc định từ trên trái. Tô theo mảng, bóng xanh tím tiết chế, bóng dưới chân nhỏ và mềm về hình khối. Hạn chế gradient, phản xạ bóng, lông vẽ từng sợi, sương sáng và bloom che hình.
@@ -50,7 +50,7 @@ Các mã màu dưới đây là đề xuất v1, không phải palette trích ch
 | Đỏ điểm nhấn | `#C45E72` | Dây buộc, đèn lồng, trang phục |
 | Xanh trời | `#8FCBE0` | Nền xa hoặc nước sáng |
 
-Linh quy hiện hành: mai xanh ngọc, đầu và chân xanh sáng, bụng kem, viền xanh đen và một dấu trán vàng. Linh hồ trước đây là mẫu đã được thay khỏi scene. Chọn một màu hệ chính cho mỗi linh thú; giữ màu này qua tất cả frame và cấp tiến hóa.
+Linh thú hiện hành theo yêu cầu ngày 05/10/2026: Huyền Giáp Quy, mai đen với hoa văn vàng kim. Mai dùng các bậc xanh đen/tím than đã có trong palette; vàng dùng tối–chính–sáng để gợi kim loại, không thêm gradient hoặc bloom. Màu đầu và chân hỗ trợ tương phản với mai. Linh quy xanh ngọc và linh hồ là các bản thử trước, không dùng làm thiết kế mặc định.
 
 ## 4. Chuẩn asset và Unity
 
@@ -113,4 +113,10 @@ No photorealism, glossy 3D toy rendering, painterly fur, airbrushed gradients, n
 
 ## 8. Áp dụng cho dự án hiện tại
 
-Từ task tạo asset kế tiếp, dùng hướng chibi sáng màu này. Bộ sân và hồ trước đây là thử nghiệm lịch sử. Mẫu hiện hành là linh quy chibi với idle/bước chân trong sân cổng–đá–hai cây anh đào và hồ nước; linh hồ đã được thay theo yêu cầu. Giữ mẫu nhỏ này trước khi mở rộng map. Các thay đổi gameplay và kiến trúc tiếp tục theo `game_architecture_plan.md`; tài liệu này chỉ sở hữu quyết định mỹ thuật.
+Dùng hướng chibi pixel art sáng màu đã chọn, với môi trường cổng–đá–hai cây anh đào–sân gạch/cỏ–hồ của bản v4. Người dùng chọn lại mức chi tiết của cổng và tán hoa v4; không tự đơn giản hóa chúng thành các mảng quá thô. Mật độ chi tiết tập trung ở tán cây, mái và vật thể, giữ vùng di chuyển thoáng. Huyền Giáp Quy thay linh quy xanh ngọc theo yêu cầu mới. Giữ cảnh mẫu nhỏ này trước khi mở rộng map. Gameplay và kiến trúc tiếp tục theo `game_architecture_plan.md`.
+
+## Mẫu Huyền Giáp Quy v6 đang chờ duyệt
+
+Nhánh `codex/huyen-giap-quy` bắt đầu từ môi trường v4 (`4247dcf`). Chỉ thay bộ PNG/animation của linh thú và tên hiển thị. Nguồn editable của Huyền Giáp Quy nằm trong `ArtDirection/Handmade/HuyenGiapQuy/`; nguồn rùa xanh cũ được giữ để đối chiếu. Bản môi trường đơn giản hóa v5 được giữ riêng trên nhánh `codex/art-style-sample`.
+
+Khi duyệt, xem linh thú ở 1x cạnh cổng và tán hoa v4: mai vẫn đọc rõ là đen, đường vàng nhận ra nhưng không thành nhiễu, kích thước và góc nhìn khớp sân. Mai, hoa văn, mắt và giải phẫu ổn định qua idle và walk. V6 là mẫu cần người dùng duyệt, chưa tự coi thiết kế linh thú là bản cuối cùng.

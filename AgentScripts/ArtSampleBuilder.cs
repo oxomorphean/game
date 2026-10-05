@@ -99,7 +99,7 @@ public static class ArtSampleBuilder
         var turtle = new GameObject("Pet");
         turtle.transform.position = new Vector3(0, -3, 0);
         var shadow = PlaceSprite("Contact shadow", "shadow", Vector2.zero, turtle.transform);
-        var visual = PlaceSprite("Jade spirit turtle", "turtle", Vector2.zero, turtle.transform);
+        var visual = PlaceSprite("Huyen Giap Quy", "turtle", Vector2.zero, turtle.transform);
         var controller = turtle.AddComponent<SpiritTurtleController>();
         var settings = new SerializedObject(controller);
         settings.FindProperty("visual").objectReferenceValue = visual;
@@ -390,7 +390,7 @@ public static class ArtSampleBuilder
             .Replace("__FRAMEWORK__", FindFile(files, ".framework.js"))
             .Replace("__WASM__", FindFile(files, ".wasm"));
         File.WriteAllText(Path.Combine(output, "index.html"), html);
-        File.WriteAllText("ArtDirection/ArtSample/build-result.json", JsonUtility.ToJson(new Evidence {
+        File.WriteAllText("ArtDirection/ArtSample/build-result-v6.json", JsonUtility.ToJson(new Evidence {
             result = report.summary.result.ToString(), bytes = report.summary.totalSize,
             seconds = report.summary.totalTime.TotalSeconds, errors = report.summary.totalErrors }, true));
         Debug.Log("[ArtSample] Web build ready: " + output);

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Linh Quy · sân mẫu mới</title>
+  <title>Huyền Giáp Quy · linh viên</title>
   <style>
     * { box-sizing: border-box; }
     body { margin: 0; background: #f0e6cf; color: #35354b; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
@@ -25,11 +25,11 @@
 <body>
 <main>
   <header>
-    <div><div class="eyebrow">Linh Thú Ký · mẫu mỹ thuật</div><h1>Linh quy dưới cổng sơn môn</h1></div>
+    <div><div class="eyebrow">Linh Thú Ký · mẫu mỹ thuật</div><h1>Huyền Giáp Quy dưới cổng sơn môn</h1></div>
     <button id="reset" disabled>Về điểm xuất phát</button>
   </header>
   <div class="viewport">
-    <canvas id="game" tabindex="0" aria-label="Sân mẫu linh quy. Dùng WASD, phím mũi tên hoặc bấm xuống sân để di chuyển."></canvas>
+    <canvas id="game" tabindex="0" aria-label="Sân mẫu Huyền Giáp Quy. Dùng WASD, phím mũi tên hoặc bấm xuống sân để di chuyển."></canvas>
     <div id="loading"><span id="loading-text">Đang mở sân mẫu…</span><progress id="progress" value="0" max="1"></progress></div>
   </div>
   <div class="controls">
@@ -47,7 +47,7 @@
   loader.src = 'Build/__LOADER__';
   loader.onload = () => createUnityInstance(canvas, {
     dataUrl: 'Build/__DATA__', frameworkUrl: 'Build/__FRAMEWORK__', codeUrl: 'Build/__WASM__',
-    streamingAssetsUrl: 'StreamingAssets', companyName: 'Linh Thu Ky', productName: 'SpiritTurtleGarden', productVersion: '0.4',
+    streamingAssetsUrl: 'StreamingAssets', companyName: 'Linh Thu Ky', productName: 'SpiritTurtleGarden', productVersion: '0.6',
     devicePixelRatio: 1
   }, value => { progress.value = value; }).then(instance => {
     game = instance;
