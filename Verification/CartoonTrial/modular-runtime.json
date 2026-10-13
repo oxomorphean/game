@@ -1,0 +1,24 @@
+{
+  "method": "Unity runtime API: virtual movement and preview control commands",
+  "before": {
+    "heroStartX": 0.55,
+    "petStartX": -0.75,
+    "heroBones": 6,
+    "petBones": 6
+  },
+  "after": {
+    "heroX": 9.35,
+    "petX": 8.058096,
+    "swapWorks": true,
+    "resetWorks": true,
+    "props": 21
+  },
+  "checks": {
+    "humanRig": true,
+    "turtleRig": true,
+    "heroMoves": true,
+    "followerMoves": true,
+    "swapWorks": true,
+    "resetWorks": true
+  }
+}

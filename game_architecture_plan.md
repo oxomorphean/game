@@ -1,6 +1,10 @@
 # 🐉 Linh Thú Ký — Kế hoạch Kiến trúc & Logic Lõi (v2)
 
-> Tài liệu nguồn sự thật về kiến trúc và logic. Mọi AI khác khi code **phải đọc mục 0, 5 và mục liên quan** trước khi làm task.
+> **Hướng mới 07/10/2026:** người chơi trực tiếp chiến đấu; tinh hạch/dung hợp/thiên phú là hướng tiếp theo. [GAME_DESIGN.md](GAME_DESIGN.md) sở hữu quyết định mới; giới hạn, chi phí và tẩy luyện chưa chốt. Mốc triển khai hiện hành: [Combat 01](Architecture/COMBAT_M1.md). Nội dung v2 bên dưới là lịch sử khi xung đột với hướng mới.
+
+> **Yêu cầu online mới (05/10/2026):** xem [kiến trúc online theo vùng](Architecture/ONLINE_ARCHITECTURE.md) cho mục tiêu 100–300 người trên 20–30 phòng. Các phần kỹ thuật v2 dưới đây thiên về chơi đơn; JSON save, EventBus toàn cục và service locator không phải kiến trúc online đã chốt. Luật gameplay v2 tiếp tục là đầu vào thiết kế; lựa chọn thư viện và capacity trong tài liệu mới còn phải qua prototype/benchmark.
+
+> **Gameplay mới (05/10/2026):** đọc [đặc tả gameplay và các quyết định còn mở](Architecture/GAMEPLAY_SPEC.md) trước khi code. Quyết định mới về Thần Đình, liên kết linh thú, bồi dưỡng và chuyển điều khiển thay thế các phần xung đột của v2. Các luật và thông số v2 còn lại là bản nháp tham khảo, không mặc nhiên đã được duyệt.
 > Thể loại: 2D Top-down (kiểu Soul Knight) — **Nuôi dưỡng linh thú là chủ đạo**, khám phá & thu thập là phương tiện, chiến đấu đầy đủ nhưng đóng vai hỗ trợ.
 
 **Thay đổi so với v1:** Unity 6000.6.4f1 · Nội Giới thay balo · ngất chỉ hồi ở vùng an toàn · 10 hệ · 3 linh thú cùng ra trận · người chơi chủ động kích kỹ năng · cho ăn là nguồn EXP chính · tài nguyên khóa theo hệ.

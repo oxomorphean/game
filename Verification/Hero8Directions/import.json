@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "command": "command run_script",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "AgentScripts/HeroDirectionBuilder.cs",
+      "entry": "HeroDirectionBuilder.Run",
+      "timeout_ms": "120000"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 100,
+      "executeMs": 986,
+      "assemblyName": "PipelineRunScript_HeroDirectionBuilder_b50603f66b754d6581ee5e828d57727e",
+      "success": true,
+      "result": "Imported 416 hero frames; wired CultivationV1 and PlayerCombatTrial. Map, collider and gameplay bindings preserved."
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "/Users/nguyenhoangdacdat/dev/nguthu-unity-demo"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

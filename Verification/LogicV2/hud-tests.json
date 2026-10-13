@@ -1,0 +1,25 @@
+{
+    "passed": 19,
+    "failed": 0,
+    "cases": [
+        "PASS Real runtime frames advance the temporary session",
+        "PASS Controlled actor shows attack/defense/root/speed",
+        "PASS Party card displays current and maximum HP",
+        "PASS Party name and HP both fit the visible card without ellipsis",
+        "PASS Player and summoned beast show world health values",
+        "PASS Realm button enters the realm and opens its grid",
+        "PASS Close exits the realm to the unchanged physical body",
+        "PASS Drop button opens the realm without a nearby beast",
+        "PASS Storage selection shows drop controls instead of farming controls",
+        "PASS Quantity control selects two items from the chosen stack",
+        "PASS Drop binding removes exactly the selected quantity",
+        "PASS Closing shows dropped items and the primary pickup action",
+        "PASS Primary button picks up the drop exactly once",
+        "PASS Walk Realm hides the grid while retaining soul movement",
+        "PASS Shared Escape/Close handler exits even after hiding the realm grid",
+        "PASS G handler enters and exits consistently",
+        "PASS Rejected realm entry during combat retains the current panel",
+        "PASS Owner dashboard pauses the new AI and drop simulation",
+        "PASS HUD actions leave a valid persistent state"
+    ]
+}

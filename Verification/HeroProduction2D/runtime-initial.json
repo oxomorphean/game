@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "var h=UnityEngine.Object.FindAnyObjectByType<LinhThu.Prototype.Characters.AuthoredHeroView>(); var p=UnityEngine.Object.FindAnyObjectByType<LinhThu.Prototype.Characters.AuthoredHeroPreview>(); p.Zoom(); return Newtonsoft.Json.JsonConvert.SerializeObject(new {state=h.animator.GetCurrentAnimatorStateInfo(0).shortNameHash, skins=h.GetComponentsInChildren<UnityEngine.U2D.Animation.SpriteSkin>().Select(s=>new {name=s.name, deformed=s.HasCurrentDeformedVertices(),bones=s.boneTransforms.Length}).ToArray()});"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": "{\"state\":2081823275,\"skins\":[{\"name\":\"Hair_Front\",\"deformed\":true,\"bones\":20},{\"name\":\"Eyes_Mouth\",\"deformed\":true,\"bones\":20},{\"name\":\"Head\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Coat_R\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Coat_L\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Body_Torso\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Sleeve_Front\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Sleeve_Back\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Foot_R\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Foot_L\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Leg_L\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Leg_R\",\"deformed\":true,\"bones\":20},{\"name\":\"Body_Torso\",\"deformed\":true,\"bones\":20},{\"name\":\"Arm_Front\",\"deformed\":true,\"bones\":20},{\"name\":\"Arm_Back\",\"deformed\":true,\"bones\":20},{\"name\":\"Leg_L\",\"deformed\":true,\"bones\":20},{\"name\":\"Leg_R\",\"deformed\":true,\"bones\":20},{\"name\":\"Hair_Front\",\"deformed\":true,\"bones\":20},{\"name\":\"Head\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Coat_R\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Coat_L\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Body_Torso\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Sleeve_Front\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Sleeve_Back\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Foot_R\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Foot_L\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Leg_L\",\"deformed\":true,\"bones\":20},{\"name\":\"Ivory__Leg_R\",\"deformed\":true,\"bones\":20},{\"name\":\"Body_Torso\",\"deformed\":true,\"bones\":20},{\"name\":\"Arm_Front\",\"deformed\":true,\"bones\":20},{\"name\":\"Arm_Back\",\"deformed\":true,\"bones\":20},{\"name\":\"Leg_L\",\"deformed\":true,\"bones\":20},{\"name\":\"Leg_R\",\"deformed\":true,\"bones\":20}]}"
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "/Users/nguyenhoangdacdat/dev/nguthu-unity-demo"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

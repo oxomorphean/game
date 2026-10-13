@@ -1,0 +1,22 @@
+{
+    "passed": 16,
+    "failed": 0,
+    "cases": [
+        "PASS Raw v1 JSON has no v2 fields and gains explicit movement/drop defaults",
+        "PASS Migration retains every v1 gameplay field, edited rule, content entry and saved timestamp",
+        "PASS Migrated saves encode schema/state v2 and can be decoded again",
+        "PASS V2 round trip retains ground drops, mixed trip amounts, IDs and custom movement rules",
+        "PASS Unsupported, missing and mismatched schema/state versions are rejected",
+        "PASS Schema v2 cannot silently recreate missing drop fields from a legacy payload",
+        "PASS V1 and v2 reject negative captured meal rewards before applying growth",
+        "PASS V2 rejects malformed active meal timing",
+        "PASS V1 and v2 preserve the serialized inactive-meal representation",
+        "PASS V2 rejects a drop with zero quantity",
+        "PASS V2 rejects a drop with more trip items than total items",
+        "PASS V2 rejects a drop with an unknown item",
+        "PASS V2 rejects a drop outside a supported room or map",
+        "PASS V2 rejects a drop with a negative lifetime",
+        "PASS V2 rejects duplicate drop IDs and a colliding next ID",
+        "PASS Migration and codec round trips do not replay offline growth or move the saved time"
+    ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "LinhThu.Prototype",
+  "rootNamespace": "LinhThu.Prototype",
+  "references": [
+    "LinhThu.Domain",
+    "Unity.InputSystem",
+    "UnityEngine.UI",
+    "Unity.TextMeshPro",
+    "Unity.2D.Animation.Runtime",
+    "Unity.Collections"
+  ],
+  "autoReferenced": true
+}

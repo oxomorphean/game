@@ -1,0 +1,48 @@
+{
+  "method": "Actual browser keyboard, pointer and wheel through CUA; screenshot observation. No engine JS, storage inspection or game-state injection.",
+  "build": "6260690eda8d4334b6c7f16ef9be5eb7",
+  "cases": [
+    {
+      "name": "Continue after reload restores picked-up inventory and 28 coins",
+      "observed": true,
+      "image": "v1-web-after-reload.png"
+    },
+    {
+      "name": "Pointer learning consumes loot and equips foundation and movement",
+      "observed": true,
+      "image": "v1-web-techniques-960.png"
+    },
+    {
+      "name": "Market list responds to real wheel scrolling at 960x720",
+      "observed": true,
+      "image": "v1-web-scroll-960.png"
+    },
+    {
+      "name": "F5 saves and stays in gameplay instead of reloading the document",
+      "observed": true,
+      "image": "v1-web-f5-save.png"
+    },
+    {
+      "name": "Final build retains learned and selected techniques after reload",
+      "observed": true,
+      "image": "v1-web-final-techniques.png"
+    },
+    {
+      "name": "Rank-zero player enters Loi Coc; wolf charges damage nearby player and death/respawn occurs",
+      "observed": true,
+      "image": "v1-web-charge-fixed.png"
+    },
+    {
+      "name": "Movement, Hoanh Tao spirit cost and cooldown displayed in combat",
+      "observed": true,
+      "image": "v1-web-final-combat.png"
+    },
+    {
+      "name": "Return to camp restores resources and leaves a playable session",
+      "observed": true,
+      "image": "v1-web-final-camp.png"
+    }
+  ],
+  "coverage": "Complete progression route was verified in Unity Editor; browser exercises integration and persistence, not a second complete boss route.",
+  "console": "No browser error observed; one Unity persistentDataPath synchronization deprecation warning in final build. Earlier build warnings retained in raw log."
+}

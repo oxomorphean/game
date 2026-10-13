@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "var names = new[] { \"paving-slab\", \"paving-split\", \"paving-petal\", \"grass-meadow-a\", \"grass-meadow-b\", \"bamboo\", \"spirit-herb\", \"jade-ore\", \"spirit-egg\", \"player-cultivator-sheet\" }; var results = new System.Collections.Generic.List<string>(); foreach (var name in names) { var path = \"Assets/_Project/Art/GardenV8/\" + name + \".png\"; var importer = UnityEditor.AssetImporter.GetAtPath(path) as UnityEditor.TextureImporter; if (importer == null || importer.filterMode != UnityEngine.FilterMode.Point || importer.spritePixelsPerUnit != 16 || importer.mipmapEnabled || importer.textureCompression != UnityEditor.TextureImporterCompression.Uncompressed) throw new System.Exception(\"Invalid import: \" + name); int count = 0; foreach (var item in UnityEditor.AssetDatabase.LoadAllAssetsAtPath(path)) { if (item is UnityEngine.Sprite sprite) { count++; if (name == \"player-cultivator-sheet\" && (sprite.rect.width != 32 || sprite.rect.height != 48 || UnityEngine.Vector2.Distance(sprite.pivot, new UnityEngine.Vector2(16,4)) > .01f)) throw new System.Exception(\"Invalid human frame/pivot\"); } } if (count != (name == \"player-cultivator-sheet\" ? 30 : 1)) throw new System.Exception(\"Invalid frame count: \" + name); results.Add(name + \": \" + count + \" sprites, Point, PPU16, no mipmaps/compression\"); } return string.Join(\"\\n\", results);"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": "paving-slab: 1 sprites, Point, PPU16, no mipmaps/compression\npaving-split: 1 sprites, Point, PPU16, no mipmaps/compression\npaving-petal: 1 sprites, Point, PPU16, no mipmaps/compression\ngrass-meadow-a: 1 sprites, Point, PPU16, no mipmaps/compression\ngrass-meadow-b: 1 sprites, Point, PPU16, no mipmaps/compression\nbamboo: 1 sprites, Point, PPU16, no mipmaps/compression\nspirit-herb: 1 sprites, Point, PPU16, no mipmaps/compression\njade-ore: 1 sprites, Point, PPU16, no mipmaps/compression\nspirit-egg: 1 sprites, Point, PPU16, no mipmaps/compression\nplayer-cultivator-sheet: 30 sprites, Point, PPU16, no mipmaps/compression"
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "/Users/nguyenhoangdacdat/dev/nguthu-unity-demo"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -1,0 +1,31 @@
+[
+  {
+    "path": "index.html",
+    "status": 200,
+    "matchesBuild": true
+  },
+  {
+    "path": "WebBuildCombat.loader.js?v=8e467e4358754a34a86a38bdec78e5a7",
+    "status": 200,
+    "bytes": 20263,
+    "matchesBuild": true
+  },
+  {
+    "path": "WebBuildCombat.data?v=8e467e4358754a34a86a38bdec78e5a7",
+    "status": 200,
+    "bytes": 19425177,
+    "matchesBuild": true
+  },
+  {
+    "path": "WebBuildCombat.framework.js?v=8e467e4358754a34a86a38bdec78e5a7",
+    "status": 200,
+    "bytes": 342018,
+    "matchesBuild": true
+  },
+  {
+    "path": "WebBuildCombat.wasm?v=8e467e4358754a34a86a38bdec78e5a7",
+    "status": 200,
+    "bytes": 39379732,
+    "matchesBuild": true
+  }
+]

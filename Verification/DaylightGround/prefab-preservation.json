@@ -1,0 +1,30 @@
+{
+  "cherry-tree.prefab": {
+    "obstacleAuthoringUnchanged": true,
+    "fileUnchanged": true
+  },
+  "rock.prefab": {
+    "obstacleAuthoringUnchanged": true,
+    "fileUnchanged": false
+  },
+  "bush.prefab": {
+    "obstacleAuthoringUnchanged": true,
+    "fileUnchanged": true
+  },
+  "pond-cluster.prefab": {
+    "obstacleAuthoringUnchanged": true,
+    "fileUnchanged": true
+  },
+  "white-flowers.prefab": {
+    "obstacleAuthoringUnchanged": true,
+    "fileUnchanged": true
+  },
+  "MeadowMap.prefab": {
+    "obstacleAuthoringUnchanged": true,
+    "fileUnchanged": true
+  },
+  "grass-tuft.prefab": {
+    "obstacleAuthoringUnchanged": true,
+    "fileUnchanged": true
+  }
+}

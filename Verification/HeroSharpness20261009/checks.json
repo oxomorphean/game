@@ -1,0 +1,194 @@
+{
+  "passed": 47,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "Walk direction 0 ignores opposite mouse aim",
+      "passed": true
+    },
+    {
+      "name": "Idle retains direction 0",
+      "passed": true
+    },
+    {
+      "name": "Walk direction 1 ignores opposite mouse aim",
+      "passed": true
+    },
+    {
+      "name": "Idle retains direction 1",
+      "passed": true
+    },
+    {
+      "name": "Walk direction 2 ignores opposite mouse aim",
+      "passed": true
+    },
+    {
+      "name": "Idle retains direction 2",
+      "passed": true
+    },
+    {
+      "name": "Walk direction 3 ignores opposite mouse aim",
+      "passed": true
+    },
+    {
+      "name": "Idle retains direction 3",
+      "passed": true
+    },
+    {
+      "name": "Walk direction 4 ignores opposite mouse aim",
+      "passed": true
+    },
+    {
+      "name": "Idle retains direction 4",
+      "passed": true
+    },
+    {
+      "name": "Walk direction 5 ignores opposite mouse aim",
+      "passed": true
+    },
+    {
+      "name": "Idle retains direction 5",
+      "passed": true
+    },
+    {
+      "name": "Walk direction 6 ignores opposite mouse aim",
+      "passed": true
+    },
+    {
+      "name": "Idle retains direction 6",
+      "passed": true
+    },
+    {
+      "name": "Walk direction 7 ignores opposite mouse aim",
+      "passed": true
+    },
+    {
+      "name": "Idle retains direction 7",
+      "passed": true
+    },
+    {
+      "name": "Real windup owns facing",
+      "passed": true
+    },
+    {
+      "name": "Attack advances and aim remains locked",
+      "passed": true
+    },
+    {
+      "name": "Recovery ends in real idle",
+      "passed": true
+    },
+    {
+      "name": "Hoanh Tao uses separate authored clip",
+      "passed": true
+    },
+    {
+      "name": "Dash uses Domain dash direction",
+      "passed": true
+    },
+    {
+      "name": "Resolved damage displays hurt",
+      "passed": true
+    },
+    {
+      "name": "Hurt is finite",
+      "passed": true
+    },
+    {
+      "name": "Death selects down and hides cast shadow",
+      "passed": true
+    },
+    {
+      "name": "Dead actor retains orientation",
+      "passed": true
+    },
+    {
+      "name": "Respawn clears death and hurt pose",
+      "passed": true
+    },
+    {
+      "name": "Animation and shadow share the same frame",
+      "passed": true
+    },
+    {
+      "name": "Stable foot pivot on every frame",
+      "passed": true
+    },
+    {
+      "name": "Idle has 8 complete directions",
+      "passed": true
+    },
+    {
+      "name": "Idle has different front and back frames",
+      "passed": true
+    },
+    {
+      "name": "Run has 8 complete directions",
+      "passed": true
+    },
+    {
+      "name": "Run has different front and back frames",
+      "passed": true
+    },
+    {
+      "name": "Attack has 8 complete directions",
+      "passed": true
+    },
+    {
+      "name": "Attack has different front and back frames",
+      "passed": true
+    },
+    {
+      "name": "Sweep has 8 complete directions",
+      "passed": true
+    },
+    {
+      "name": "Sweep has different front and back frames",
+      "passed": true
+    },
+    {
+      "name": "Dash has 8 complete directions",
+      "passed": true
+    },
+    {
+      "name": "Dash has different front and back frames",
+      "passed": true
+    },
+    {
+      "name": "Hurt has 8 complete directions",
+      "passed": true
+    },
+    {
+      "name": "Hurt has different front and back frames",
+      "passed": true
+    },
+    {
+      "name": "Down has 8 complete directions",
+      "passed": true
+    },
+    {
+      "name": "Down has different front and back frames",
+      "passed": true
+    },
+    {
+      "name": "Run advances frames",
+      "passed": true
+    },
+    {
+      "name": "Loop wraps",
+      "passed": true
+    },
+    {
+      "name": "Death holds last frame",
+      "passed": true
+    },
+    {
+      "name": "Sorting is grounded at actor root",
+      "passed": true
+    },
+    {
+      "name": "Playback never changes Domain position",
+      "passed": true
+    }
+  ]
+}

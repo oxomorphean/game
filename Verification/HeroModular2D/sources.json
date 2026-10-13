@@ -1,0 +1,86 @@
+[
+  {
+    "path": "Assets/_Project/Art/HeroModular2D/body-basic-front.png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "sha256": "d02482c210936ce74f4965bc8643098eddb300d917dfd51e6e87490aa94a4709",
+    "active": true
+  },
+  {
+    "path": "Assets/_Project/Art/HeroModular2D/body-front.png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "sha256": "c968cdba6671994b3ef8d2e6e75a3162241f19cdefa933d76426f7b918c7912a",
+    "active": false
+  },
+  {
+    "path": "Assets/_Project/Art/HeroModular2D/clothes-extra-front.png",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "sha256": "54d6585e04ddb145ca83685eccbb6e03ff9c606dcf5f61c05ad0f4bb1e63982f",
+    "active": true
+  },
+  {
+    "path": "Assets/_Project/Art/HeroModular2D/clothes-front.png",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "sha256": "a23acefe730c127f31b46ba4eb683876984ce2e072e6f119879c9767e6112fe9",
+    "active": true
+  },
+  {
+    "path": "Assets/_Project/Art/HeroModular2D/hair-front.png",
+    "width": 1981,
+    "height": 793,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "sha256": "24196239bda5d0b7038ff445d0125bc69b0705bfb0414240e42666715ac20381",
+    "active": true
+  },
+  {
+    "path": "Assets/_Project/Art/HeroModular2D/parts-front.png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "sha256": "75f472c5d07d157778f9388f37dd83410a427afab33250789bbaa31c078539fd",
+    "active": true
+  },
+  {
+    "path": "Assets/_Project/Art/HeroModular2D/weapons-front.png",
+    "width": 1024,
+    "height": 1024,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "sha256": "a5db8f4bdb7e13b3a6adbe245424a2d3e94f91907d60fe6320d970adef58bed0",
+    "active": true
+  }
+]

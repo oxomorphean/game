@@ -1,0 +1,379 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="0 0 1024 1024" width="1024" height="1024" stroke-linecap="round" stroke-linejoin="round">
+<title>Ngự Thú — mẫu C, nhân vật vector</title><desc>Vector drawn from reference A using authored Bezier paths. No embedded raster. Static study, not a rigged character.</desc>
+
+
+<g id="Hair_Back" inkscape:groupmode="layer" inkscape:label="Hair_Back">
+<path id="ribbon-far-fill" d="M 379 273 C 355 300 333 332 324 356 L 309 344 C 333 302 349 279 370 263 Z" fill="#285c66" stroke="none"/>
+<path id="ribbon-far-light-fill" d="M 368 280 Q 342 318 322 347 L 318 343 Q 339 302 365 278 Z" fill="#589e98" stroke="none"/>
+<path id="ribbon-near-fill" d="M 369 267 C 343 301 296 313 264 326 L 278 338 C 269 359 282 377 303 385 C 316 348 342 309 377 283 Z" fill="#438e87" stroke="none"/>
+<path id="ribbon-near-shadow-fill" d="M 275 339 Q 308 327 344 302 Q 318 332 303 378 Q 281 366 275 339 Z" fill="#285c66" stroke="none"/>
+<path id="ribbon-fold-light-fill" d="M 272 328 Q 330 309 357 282 Q 337 315 286 339 Z" fill="#65a59b" stroke="none"/>
+<path id="bun-fill" d="M 376 283 C 359 263 370 238 393 222 C 370 221 357 231 347 241 C 347 204 376 176 405 162 C 397 144 395 128 404 114 C 421 140 456 112 491 117 L 482 101 C 518 112 543 139 550 169 C 570 181 574 196 560 216 C 550 244 526 259 501 267 C 464 282 416 287 393 290 L 401 273 C 388 278 383 285 376 291 Z" fill="#eef0ef" stroke="none"/>
+<path id="bun-cool-shadow-fill" d="M 352 229 C 382 201 426 209 452 219 C 413 216 399 248 385 277 L 377 284 C 366 265 374 241 397 222 Q 376 217 352 229 Z" fill="#aeb8cb" stroke="none"/>
+<path id="bun-upper-shadow-fill" d="M 406 127 Q 439 146 480 155 Q 455 130 438 127 Q 472 113 499 129 Q 491 116 487 110 C 517 125 537 146 542 173 L 527 186 C 497 150 450 162 422 153 Z" fill="#c3c8d4" stroke="none"/>
+<path id="bun-white-ridge-fill" d="M 405 120 C 419 142 465 137 484 171 C 451 149 424 165 402 169 C 418 158 428 155 439 154 Q 404 145 405 120 Z" fill="#fffcf2" stroke="none"/>
+<path id="bun-sweep-fill" d="M 358 218 C 383 183 425 171 462 194 C 431 186 413 191 401 201 Q 428 198 446 213 C 408 203 379 216 358 218 Z" fill="#fffcf2" stroke="none"/>
+<path id="bun-tip-light-fill" d="M 496 114 Q 531 141 543 167 Q 548 194 523 206 Q 520 153 496 114 Z" fill="#fffcf2" stroke="none"/>
+<path id="ribbon-knot-fill" d="M 356 273 C 356 266.372583 360.92486775 261 367 261 C 373.07513225 261 378 266.372583 378 273 C 378 279.627417 373.07513225 285 367 285 C 360.92486775 285 356 279.627417 356 273 Z" fill="#cba45f" stroke="none"/>
+<path id="ribbon-knot-ink-000" d="M356.00 273.00 L356.10 271.37 L356.39 269.81 L356.86 268.33 L357.50 266.94 L358.29 265.67 L359.22 264.51 L359.97 263.79" fill="none" stroke="#222c40" stroke-width="3"/>
+<path id="ribbon-knot-ink-001" d="M359.97 263.79 L360.28 263.50 L361.45 262.64 L362.72 261.94 L364.08 261.43 L365.51 261.11 L367.00 261.00 L368.49 261.11 L369.55 261.35" fill="none" stroke="#222c40" stroke-width="3"/>
+<path id="ribbon-knot-ink-002" d="M369.55 261.35 L369.92 261.43 L371.28 261.94 L372.55 262.64 L373.72 263.50 L374.78 264.51 L375.71 265.67 L376.50 266.94 L376.97 267.98" fill="none" stroke="#222c40" stroke-width="3"/>
+<path id="ribbon-knot-ink-003" d="M376.97 267.98 L377.14 268.33 L377.61 269.81 L377.90 271.37 L378.00 273.00 L377.90 274.63 L377.61 276.19 L377.14 277.67 L376.97 278.02" fill="none" stroke="#222c40" stroke-width="3"/>
+<path id="ribbon-knot-ink-004" d="M376.97 278.02 L376.50 279.06 L375.71 280.33 L374.78 281.49 L373.72 282.50 L372.55 283.36 L371.28 284.06 L369.92 284.57 L369.55 284.65" fill="none" stroke="#222c40" stroke-width="3"/>
+<path id="ribbon-knot-ink-005" d="M369.55 284.65 L368.49 284.89 L367.00 285.00 L365.51 284.89 L364.08 284.57 L362.72 284.06 L361.45 283.36 L360.28 282.50 L359.97 282.21" fill="none" stroke="#222c40" stroke-width="3"/>
+<path id="ribbon-knot-ink-006" d="M359.97 282.21 L359.22 281.49 L358.29 280.33 L357.50 279.06 L356.86 277.67 L356.39 276.19 L356.10 274.63 L356.00 273.00" fill="none" stroke="#222c40" stroke-width="3"/>
+<path id="ribbon-knot-light-fill" d="M 360 269 C 360 266.790861 361.790861 265 364 265 C 366.209139 265 368 266.790861 368 269 C 368 271.209139 366.209139 273 364 273 C 361.790861 273 360 271.209139 360 269 Z" fill="#f4dda0" stroke="none"/>
+<path id="neck-hair-fill" d="M 428 438 C 400 450 393 480 398 508 L 415 496 Q 411 515 437 519 L 431 528 Q 451 536 465 523 L 486 533 L 496 503 Z" fill="#eef0ef" stroke="none"/>
+<path id="neck-hair-shadow-fill" d="M 433 459 Q 407 494 430 511 L 443 505 L 438 519 Q 458 520 471 508 L 480 519 L 484 497 Z" fill="#aeb8cb" stroke="none"/>
+</g>
+<g id="Boot_Back" inkscape:groupmode="layer" inkscape:label="Boot_Back">
+<path id="back-boot-fill" d="M 577 795 C 590 791 609 795 621 799 L 622 820 C 638 824 662 833 673 846 Q 678 856 666 861 Q 620 880 575 858 C 568 846 574 829 576 818 Z" fill="#334561" stroke="none"/>
+<path id="back-boot-shadow-fill" d="M 578 807 L 617 811 L 615 826 Q 594 831 592 853 L 575 849 Z" fill="#222e47" stroke="none"/>
+<path id="back-boot-toe-fill" d="M 622 828 Q 650 834 665 847 Q 629 862 596 850 Q 604 831 622 828 Z" fill="#45566f" stroke="none"/>
+<path id="back-sole-ink-000" d="M575.00 850.00 L576.73 850.75 L578.47 851.48 L580.21 852.18 L581.95 852.85 L583.70 853.49 L585.09 853.97" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="back-sole-ink-001" d="M585.09 853.97 L585.45 854.10 L587.21 854.68 L588.96 855.23 L590.73 855.75 L592.49 856.25 L594.26 856.72 L595.49 857.02" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="back-sole-ink-002" d="M595.49 857.02 L596.04 857.15 L597.81 857.56 L599.59 857.94 L601.38 858.29 L603.17 858.62 L604.96 858.91 L606.14 859.08" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="back-sole-ink-003" d="M606.14 859.08 L606.75 859.17 L608.55 859.41 L610.36 859.62 L612.16 859.79 L613.97 859.94 L615.79 860.06 L616.93 860.12" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="back-sole-ink-004" d="M616.93 860.12 L617.60 860.15 L619.42 860.22 L621.25 860.25 L623.08 860.25 L624.91 860.23 L626.75 860.18 L627.77 860.13" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="back-sole-ink-005" d="M627.77 860.13 L628.59 860.10 L630.43 859.99 L632.28 859.85 L634.13 859.68 L635.98 859.48 L637.84 859.25 L638.57 859.15" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="back-sole-ink-006" d="M638.57 859.15 L639.70 859.00 L641.57 858.72 L643.44 858.40 L645.31 858.06 L647.19 857.69 L649.07 857.29 L649.25 857.25" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="back-sole-ink-007" d="M649.25 857.25 L650.95 856.87 L652.84 856.41 L654.73 855.92 L656.63 855.41 L658.53 854.87 L659.74 854.50" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="back-sole-ink-008" d="M659.74 854.50 L660.43 854.29 L662.34 853.69 L664.25 853.06 L666.16 852.40 L668.08 851.72 L670.00 851.00" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="back-cuff-ink-000" d="M578.00 810.00 L579.83 810.67 L581.66 811.27 L583.50 811.81 L585.33 812.30 L587.18 812.72 L588.56 812.99" fill="none" stroke="#cba45f" stroke-width="7"/>
+<path id="back-cuff-ink-001" d="M588.56 812.99 L589.02 813.09 L590.88 813.39 L592.73 813.63 L594.59 813.81 L596.45 813.93 L598.32 813.99 L599.49 813.99" fill="none" stroke="#cba45f" stroke-width="7"/>
+<path id="back-cuff-ink-002" d="M599.49 813.99 L600.19 813.99 L602.06 813.93 L603.94 813.81 L605.82 813.63 L607.70 813.39 L609.59 813.09 L610.42 812.93" fill="none" stroke="#cba45f" stroke-width="7"/>
+<path id="back-cuff-ink-003" d="M610.42 812.93 L611.48 812.72 L613.38 812.30 L615.28 811.81 L617.18 811.27 L619.09 810.67 L621.00 810.00" fill="none" stroke="#cba45f" stroke-width="7"/>
+</g>
+<g id="Boot_Front" inkscape:groupmode="layer" inkscape:label="Boot_Front">
+<path id="front-boot-fill" d="M 436 810 Q 461 806 492 816 L 488 838 C 489 855 496 873 491 889 Q 460 907 418 889 C 414 880 426 855 430 843 Z" fill="#334561" stroke="none"/>
+<path id="front-boot-shadow-fill" d="M 439 824 Q 455 831 481 826 L 475 850 Q 457 850 443 873 L 423 879 Q 433 846 439 824 Z" fill="#222e47" stroke="none"/>
+<path id="front-boot-toe-fill" d="M 445 869 Q 459 855 482 859 L 486 882 Q 456 893 426 884 Z" fill="#435673" stroke="none"/>
+<path id="front-sole-ink-000" d="M419.00 883.00 L420.65 883.83 L422.31 884.62 L423.98 885.36 L425.66 886.07 L427.34 886.73 L428.74 887.25" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="front-sole-ink-001" d="M428.74 887.25 L429.03 887.36 L430.73 887.94 L432.44 888.48 L434.15 888.98 L435.88 889.44 L437.60 889.85 L438.97 890.15" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="front-sole-ink-002" d="M438.97 890.15 L439.34 890.23 L441.08 890.56 L442.83 890.86 L444.59 891.11 L446.36 891.32 L448.13 891.49 L449.50 891.59" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="front-sole-ink-003" d="M449.50 891.59 L449.92 891.62 L451.70 891.70 L453.50 891.75 L455.30 891.75 L457.12 891.72 L458.93 891.64 L460.13 891.56" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="front-sole-ink-004" d="M460.13 891.56 L460.76 891.52 L462.59 891.36 L464.43 891.16 L466.28 890.91 L468.14 890.63 L470.00 890.30 L470.67 890.17" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="front-sole-ink-005" d="M470.67 890.17 L471.88 889.94 L473.75 889.53 L475.64 889.08 L477.53 888.59 L479.43 888.06 L480.99 887.59" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="front-sole-ink-006" d="M480.99 887.59 L481.34 887.48 L483.26 886.87 L485.18 886.21 L487.12 885.52 L489.05 884.78 L491.00 884.00" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="front-boot-cuff-ink-000" d="M435.00 825.00 L436.61 825.84 L438.23 826.63 L439.86 827.36 L441.51 828.04 L443.17 828.67 L444.84 829.24 L445.25 829.37" fill="none" stroke="#cba45f" stroke-width="7"/>
+<path id="front-boot-cuff-ink-001" d="M445.25 829.37 L446.53 829.76 L448.23 830.23 L449.94 830.64 L451.67 831.00 L453.41 831.31 L455.16 831.56 L456.15 831.67" fill="none" stroke="#cba45f" stroke-width="7"/>
+<path id="front-boot-cuff-ink-002" d="M456.15 831.67 L456.93 831.76 L458.71 831.91 L460.50 832.00 L462.31 832.04 L464.13 832.03 L465.96 831.96 L467.29 831.87" fill="none" stroke="#cba45f" stroke-width="7"/>
+<path id="front-boot-cuff-ink-003" d="M467.29 831.87 L467.81 831.84 L469.67 831.67 L471.54 831.44 L473.43 831.16 L475.33 830.83 L477.24 830.44 L478.31 830.19" fill="none" stroke="#cba45f" stroke-width="7"/>
+<path id="front-boot-cuff-ink-004" d="M478.31 830.19 L479.17 830.00 L481.11 829.51 L483.06 828.96 L485.03 828.36 L487.01 827.71 L489.00 827.00" fill="none" stroke="#cba45f" stroke-width="7"/>
+</g>
+<g id="Leg_Back" inkscape:groupmode="layer" inkscape:label="Leg_Back">
+<path id="back-trouser-fill" d="M 548 681 Q 580 667 614 687 C 622 723 640 750 645 776 L 637 793 Q 610 819 571 806 L 558 790 Q 572 761 549 741 L 536 715 Z" fill="#334561" stroke="none"/>
+<path id="back-trouser-shadow-fill" d="M 565 695 L 592 712 C 602 746 621 754 631 778 L 621 791 Q 600 807 578 799 L 570 791 Q 587 762 569 741 Z" fill="#222e47" stroke="none"/>
+<path id="back-trouser-light-fill" d="M 579 694 Q 603 701 609 721 L 624 756 Q 600 744 591 724 Z" fill="#4e5f7a" stroke="none"/>
+<path id="back-knee-plane-fill" d="M 599 756 L 620 774 L 599 792 Q 583 786 584 777 Z" fill="#2b3852" stroke="none"/>
+</g>
+<g id="Leg_Front" inkscape:groupmode="layer" inkscape:label="Leg_Front">
+<path id="front-trouser-fill" d="M 514 676 Q 544 674 571 695 C 562 729 550 754 539 781 L 532 805 Q 494 836 440 822 L 427 802 Q 444 768 460 746 C 483 723 496 698 514 676 Z" fill="#334561" stroke="none"/>
+<path id="front-trouser-shadow-fill" d="M 549 692 L 562 704 Q 543 754 527 795 Q 488 824 447 814 L 436 802 L 457 782 Q 469 794 480 803 C 511 774 523 731 549 692 Z" fill="#222e47" stroke="none"/>
+<path id="front-thigh-light-fill" d="M 510 697 L 531 698 Q 511 740 486 771 L 453 798 C 464 759 489 732 510 697 Z" fill="#4c5d79" stroke="none"/>
+<path id="front-knee-plane-fill" d="M 503 760 L 486 801 L 465 812 L 481 784 Z" fill="#40516d" stroke="none"/>
+</g>
+<g id="Arm_Back" inkscape:groupmode="layer" inkscape:label="Arm_Back">
+<path id="back-hand-fill" d="M 680 673 C 693 676 704 691 707 704 Q 711 719 704 722 Q 697 720 695 709 L 692 700 Q 690 698 688 702 L 691 716 Q 685 726 679 716 L 674 700 L 664 691 Z" fill="#f5c8a5" stroke="none"/>
+<path id="back-hand-shadow-fill" d="M 686 683 Q 695 689 699 702 L 702 717 Q 698 716 697 706 L 691 696 Q 685 693 681 698 L 675 692 Z" fill="#da9b85" stroke="none"/>
+</g>
+<g id="Torso" inkscape:groupmode="layer" inkscape:label="Torso">
+<path id="neck-fill" d="M 524 509 L 577 508 L 585 554 L 564 583 L 526 555 Z" fill="#f5c8a5" stroke="none"/>
+<path id="neck-shadow-fill" d="M 527 518 Q 552 530 577 521 L 579 541 L 555 554 L 529 542 Z" fill="#da9b85" stroke="none"/>
+<path id="tunic-body-fill" d="M 479 541 C 506 529 523 535 543 546 L 571 559 L 584 537 C 604 537 619 544 625 568 L 625 638 Q 624 659 607 665 L 488 660 C 476 630 463 579 479 541 Z" fill="#334561" stroke="none"/>
+<path id="torso-shadow-fill" d="M 571 560 L 585 547 L 600 566 Q 609 603 613 635 Q 583 654 537 644 L 554 623 Z" fill="#222e47" stroke="none"/>
+<path id="torso-chest-plane-fill" d="M 521 550 L 554 573 L 544 610 Q 528 603 516 581 Z" fill="#455670" stroke="none"/>
+<path id="inner-collar-gold-ink-000" d="M520.00 540.00 L529.00 546.23" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="inner-collar-gold-ink-001" d="M529.00 546.23 L537.99 552.46" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="inner-collar-gold-ink-002" d="M537.99 552.46 L546.99 558.68" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="inner-collar-gold-ink-003" d="M546.99 558.68 L555.98 564.91" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="inner-collar-gold-ink-004" d="M555.98 564.91 L559.00 567.00 L562.74 560.76" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="inner-collar-gold-ink-005" d="M562.74 560.76 L568.37 551.38" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="inner-collar-gold-ink-006" d="M568.37 551.38 L574.00 542.00" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="ivory-left-lapel-fill" d="M 480 541 Q 499 537 510 548 C 519 563 530 596 535 630 L 542 647 L 505 643 Q 488 623 484 602 Z" fill="#f5ebd1" stroke="none"/>
+<path id="left-lapel-shadow-fill" d="M 490 551 Q 507 574 510 605 Q 511 630 528 641 L 508 639 Q 496 622 493 603 Z" fill="#b7b8ae" stroke="none"/>
+<path id="left-lapel-light-fill" d="M 481 544 Q 491 543 499 551 Q 501 577 505 591 Q 491 574 481 568 Z" fill="#fffcf2" stroke="none"/>
+<path id="cross-lapel-fill" d="M 587 540 L 601 549 C 594 580 575 611 552 636 L 531 635 Q 564 606 582 562 Z" fill="#f5ebd1" stroke="none"/>
+<path id="cross-lapel-shadow-fill" d="M 594 548 L 599 551 C 592 580 573 610 551 633 L 542 632 Q 576 599 594 548 Z" fill="#d0cbbb" stroke="none"/>
+</g>
+<g id="Sleeve_Back" inkscape:groupmode="layer" inkscape:label="Sleeve_Back">
+<path id="back-sleeve-fill" d="M 605 546 Q 622 541 629 558 L 637 582 L 646 598 L 635 609 Q 639 629 657 644 L 698 670 L 683 686 C 659 686 636 674 617 665 Q 619 642 616 617 L 611 591 Z" fill="#f5ebd1" stroke="none"/>
+<path id="back-sleeve-shadow-fill" d="M 626 564 L 633 586 L 639 598 L 630 607 L 638 632 L 627 648 L 622 625 L 622 598 Z" fill="#b7b8ae" stroke="none"/>
+<path id="back-sleeve-fold-fill" d="M 641 636 L 658 646 L 650 660 L 682 678 Q 652 677 632 664 Z" fill="#d5cebd" stroke="none"/>
+<path id="back-sleeve-light-fill" d="M 646 642 L 657 649 L 680 665 L 655 661 Z" fill="#fffcf2" stroke="none"/>
+<path id="back-sleeve-trim-ink-000" d="M637.00 584.00 L636.93 585.95 L636.72 587.81 L636.36 589.57 L635.86 591.24 L635.22 592.82 L634.44 594.30 L634.33 594.47" fill="none" stroke="#cba45f" stroke-width="5"/>
+<path id="back-sleeve-trim-ink-001" d="M634.33 594.47 L633.52 595.68 L632.46 596.97 L631.25 598.17 L629.90 599.27 L628.41 600.27 L626.78 601.18 L626.14 601.48" fill="none" stroke="#cba45f" stroke-width="5"/>
+<path id="back-sleeve-trim-ink-002" d="M626.14 601.48 L625.00 602.00 M627.00 664.00 L628.77 665.17 L630.54 666.30 L632.31 667.37 L634.07 668.40 L635.26 669.05" fill="none" stroke="#cba45f" stroke-width="5"/>
+<path id="back-sleeve-trim-ink-003" d="M635.26 669.05 L635.84 669.37 L637.60 670.29 L639.36 671.16 L641.12 671.98 L642.88 672.75 L644.63 673.47 L645.17 673.67" fill="none" stroke="#cba45f" stroke-width="5"/>
+<path id="back-sleeve-trim-ink-004" d="M645.17 673.67 L646.39 674.14 L648.14 674.76 L649.89 675.32 L651.64 675.84 L653.39 676.31 L655.13 676.72 L655.63 676.83" fill="none" stroke="#cba45f" stroke-width="5"/>
+<path id="back-sleeve-trim-ink-005" d="M655.63 676.83 L656.88 677.09 L658.62 677.40 L660.36 677.66 L662.10 677.88 L663.84 678.04 L665.58 678.15 L666.47 678.18" fill="none" stroke="#cba45f" stroke-width="5"/>
+<path id="back-sleeve-trim-ink-006" d="M666.47 678.18 L667.31 678.21 L669.04 678.22 L670.78 678.18 L672.51 678.09 L674.23 677.95 L675.96 677.76 L677.38 677.56" fill="none" stroke="#cba45f" stroke-width="5"/>
+<path id="back-sleeve-trim-ink-007" d="M677.38 677.56 L677.68 677.52 L679.41 677.22 L681.13 676.88 L682.85 676.49 L684.57 676.04 L686.28 675.55 L688.00 675.00" fill="none" stroke="#cba45f" stroke-width="5"/>
+</g>
+<g id="Coat" inkscape:groupmode="layer" inkscape:label="Coat">
+<path id="coat-back-panel-fill" d="M 598 663 L 617 666 Q 638 704 676 735 L 647 765 L 627 777 Q 608 732 598 696 Z" fill="#f5ebd1" stroke="none"/>
+<path id="coat-back-shadow-fill" d="M 608 677 L 620 689 L 640 722 L 666 740 L 647 758 Q 628 723 608 707 Z" fill="#b7b8ae" stroke="none"/>
+<path id="coat-back-light-fill" d="M 617 680 Q 640 716 667 736 L 650 747 Q 637 714 617 680 Z" fill="#fffcf2" stroke="none"/>
+<path id="coat-back-gold-ink-000" d="M610.00 694.00 L611.19 695.88 L612.40 697.72 L613.61 699.54 L614.83 701.32 L615.85 702.78" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-back-gold-ink-001" d="M615.85 702.78 L616.06 703.08 L617.29 704.80 L618.54 706.49 L619.79 708.15 L621.06 709.78 L622.19 711.21" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-back-gold-ink-002" d="M622.19 711.21 L622.33 711.38 L623.61 712.95 L624.90 714.49 L626.20 716.00 L627.51 717.48 L628.82 718.93 L629.08 719.20" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-back-gold-ink-003" d="M629.08 719.20 L630.15 720.34 L631.48 721.73 L632.83 723.08 L634.18 724.41 L635.54 725.70 L636.56 726.64" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-back-gold-ink-004" d="M636.56 726.64 L636.91 726.96 L638.28 728.20 L639.67 729.40 L641.07 730.57 L642.47 731.71 L643.88 732.82 L644.65 733.41" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-back-gold-ink-005" d="M644.65 733.41 L645.30 733.90 L646.73 734.95 L648.17 735.96 L649.62 736.95 L651.08 737.91 L652.54 738.83 L653.37 739.34" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-back-gold-ink-006" d="M653.37 739.34 L654.02 739.73 L655.50 740.59 L656.99 741.43 L658.49 742.23 L660.00 743.00 L657.77 744.98" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-back-gold-ink-007" d="M657.77 744.98 L649.89 751.99" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-back-gold-ink-008" d="M649.89 751.99 L642.00 759.00" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-front-panel-fill" d="M 488 655 L 551 670 Q 545 692 532 711 Q 499 731 478 778 C 456 768 439 752 430 736 Q 455 690 488 655 Z" fill="#f5ebd1" stroke="none"/>
+<path id="coat-front-shadow-fill" d="M 488 663 L 512 670 Q 482 692 459 725 L 438 737 Q 457 703 488 663 Z" fill="#b7b8ae" stroke="none"/>
+<path id="coat-front-fold-fill" d="M 513 680 L 540 676 L 528 704 Q 499 725 478 766 L 466 751 Q 480 714 513 680 Z" fill="#e0d7c2" stroke="none"/>
+<path id="coat-front-light-fill" d="M 492 676 L 513 676 Q 484 704 463 735 L 442 737 Q 462 699 492 676 Z" fill="#fffcf2" stroke="none"/>
+<path id="coat-front-gold-ink-000" d="M442.00 742.00 L443.21 743.58 L444.45 745.12 L445.71 746.62 L447.00 748.08 L448.31 749.50 L448.86 750.07" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-front-gold-ink-001" d="M448.86 750.07 L449.65 750.88 L451.01 752.22 L452.40 753.52 L453.81 754.78 L455.25 756.00 L456.71 757.18" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-front-gold-ink-002" d="M456.71 757.18 L456.71 757.18 L458.20 758.32 L459.71 759.42 L461.25 760.48 L462.81 761.50 L464.40 762.48 L465.48 763.11" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-front-gold-ink-003" d="M465.48 763.11 L466.01 763.42 L467.65 764.32 L469.31 765.18 L471.00 766.00 L472.14 763.95 L473.14 762.19" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-front-gold-ink-004" d="M473.14 762.19 L473.28 761.95 L474.42 759.98 L475.57 758.05 L476.72 756.17 L477.88 754.32 L478.64 753.14" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-front-gold-ink-005" d="M478.64 753.14 L479.04 752.51 L480.21 750.75 L481.38 749.02 L482.56 747.33 L483.74 745.69 L484.67 744.42" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-front-gold-ink-006" d="M484.67 744.42 L484.92 744.08 L486.11 742.51 L487.30 740.99 L488.50 739.50 L489.70 738.05 L490.91 736.65 L491.32 736.18" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-front-gold-ink-007" d="M491.32 736.18 L492.12 735.28 L493.34 733.95 L494.56 732.67 L495.78 731.42 L497.01 730.21 L498.24 729.05 L498.73 728.61" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-front-gold-ink-008" d="M498.73 728.61 L499.48 727.92 L500.72 726.83 L501.97 725.79 L503.22 724.78 L504.48 723.81 L505.74 722.89 L507.00 722.00" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="navy-sash-fill" d="M 552 674 L 579 673 Q 591 714 628 737 L 584 750 L 561 710 Z" fill="#222e47" stroke="none"/>
+<path id="sash-light-fill" d="M 561 681 L 575 680 Q 588 714 615 734 L 587 741 Q 575 718 561 697 Z" fill="#334561" stroke="none"/>
+</g>
+<g id="Sleeve_Front" inkscape:groupmode="layer" inkscape:label="Sleeve_Front">
+<path id="front-shoulder-fill" d="M 481 544 C 459 530 441 537 426 554 L 405 584 L 415 595 Q 436 591 456 600 L 478 620 Q 491 600 487 578 Z" fill="#f5ebd1" stroke="none"/>
+<path id="shoulder-shadow-fill" d="M 478 551 Q 478 578 486 594 L 478 610 Q 467 596 451 591 Q 467 573 466 555 Z" fill="#b7b8ae" stroke="none"/>
+<path id="shoulder-light-fill" d="M 440 548 Q 457 537 471 549 Q 462 561 459 576 Q 442 566 424 582 Q 431 558 440 548 Z" fill="#fffcf2" stroke="none"/>
+<path id="shoulder-gold-ink-000" d="M411.00 581.00 L412.69 580.91 L414.37 580.87 L416.07 580.86 L417.76 580.89 L419.46 580.96 L421.16 581.07 L421.25 581.07" fill="none" stroke="#cba45f" stroke-width="5"/>
+<path id="shoulder-gold-ink-001" d="M421.25 581.07 L422.86 581.21 L424.56 581.40 L426.27 581.62 L427.98 581.89 L429.69 582.19 L431.39 582.53" fill="none" stroke="#cba45f" stroke-width="5"/>
+<path id="shoulder-gold-ink-002" d="M431.39 582.53 L431.41 582.53 L433.13 582.91 L434.85 583.33 L436.57 583.78 L438.30 584.28 L440.03 584.81 L441.28 585.23" fill="none" stroke="#cba45f" stroke-width="5"/>
+<path id="shoulder-gold-ink-003" d="M441.28 585.23 L441.76 585.39 L443.50 586.00 L445.24 586.65 L446.98 587.34 L448.72 588.07 L450.47 588.84 L450.81 588.99" fill="none" stroke="#cba45f" stroke-width="5"/>
+<path id="shoulder-gold-ink-004" d="M450.81 588.99 L452.22 589.64 L453.97 590.49 L455.73 591.37 L457.48 592.29 L459.24 593.25 L459.94 593.65" fill="none" stroke="#cba45f" stroke-width="5"/>
+<path id="shoulder-gold-ink-005" d="M459.94 593.65 L461.01 594.25 L462.77 595.29 L464.54 596.37 L466.31 597.49 L468.09 598.64 L468.66 599.03" fill="none" stroke="#cba45f" stroke-width="5"/>
+<path id="shoulder-gold-ink-006" d="M468.66 599.03 L469.86 599.84 L471.64 601.07 L473.43 602.34 L475.21 603.65 L477.00 605.00" fill="none" stroke="#cba45f" stroke-width="5"/>
+<path id="front-sleeve-fill" d="M 414 596 Q 440 588 463 609 L 450 628 Q 452 644 463 670 L 467 680 Q 454 697 438 704 L 408 718 Q 381 726 359 719 C 347 708 333 690 327 677 Q 344 660 369 642 Q 390 624 398 611 Z" fill="#f5ebd1" stroke="none"/>
+<path id="front-sleeve-shadow-fill" d="M 446 610 L 452 616 L 443 630 Q 451 656 459 676 L 440 689 Q 420 684 399 692 L 385 715 L 365 715 Q 358 696 363 683 L 397 663 Q 427 643 446 610 Z" fill="#b7b8ae" stroke="none"/>
+<path id="front-sleeve-fold-fill" d="M 394 628 Q 411 616 436 616 Q 416 633 405 650 L 366 666 Z" fill="#d5d0c0" stroke="none"/>
+<path id="front-sleeve-light-fill" d="M 397 617 Q 413 602 437 609 Q 415 616 405 629 L 386 651 L 350 674 L 338 674 Q 365 648 387 635 Z" fill="#fffcf2" stroke="none"/>
+<path id="sleeve-rim-light-fill" d="M 337 684 L 357 708 L 359 681 Q 386 668 410 662 L 405 667 Q 377 676 362 689 L 361 716 Q 349 709 337 684 Z" fill="#fffcf2" stroke="none"/>
+<path id="front-sleeve-gold-ink-000" d="M332.00 674.00 L333.79 674.70 L335.58 675.32 L337.37 675.86 L339.16 676.33 L340.95 676.71 L342.19 676.93" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-sleeve-gold-ink-001" d="M342.19 676.93 L342.74 677.02 L344.53 677.26 L346.32 677.41 L348.11 677.49 L349.89 677.49 L351.68 677.41 L352.78 677.32" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-sleeve-gold-ink-002" d="M352.78 677.32 L353.47 677.26 L355.26 677.02 L357.05 676.71 L358.84 676.33 L360.63 675.86 L362.42 675.32 L363.13 675.07" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-sleeve-gold-ink-003" d="M363.13 675.07 L364.21 674.70 L366.00 674.00 L368.20 672.60 L370.36 671.24 L372.42 669.99" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-sleeve-gold-ink-004" d="M372.42 669.99 L372.49 669.94 L374.59 668.69 L376.66 667.49 L378.69 666.35 L380.69 665.25 L381.65 664.74" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-sleeve-gold-ink-005" d="M381.65 664.74 L382.65 664.20 L384.59 663.21 L386.48 662.27 L388.35 661.37 L390.18 660.53 L391.20 660.08" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-sleeve-gold-ink-006" d="M391.20 660.08 L391.98 659.74 L393.75 659.00 L395.48 658.31 L397.18 657.67 L398.85 657.09 L400.48 656.55 L401.14 656.35" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-sleeve-gold-ink-007" d="M401.14 656.35 L402.09 656.07 L403.65 655.63 L405.19 655.25 L406.69 654.92 L408.16 654.64 L409.59 654.41 L410.99 654.23 L411.52 654.18" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-sleeve-gold-ink-008" d="M411.52 654.18 L412.36 654.10 L413.70 654.03 L415.00 654.00 L416.55 654.25 L418.11 654.54 L419.68 654.88 L421.27 655.25 L421.99 655.44" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-sleeve-gold-ink-009" d="M421.99 655.44 L422.88 655.67 L424.50 656.13 L426.13 656.63 L427.78 657.17 L429.45 657.75 L431.12 658.38 L432.08 658.75" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-sleeve-gold-ink-010" d="M432.08 658.75 L432.82 659.04 L434.53 659.75 L436.25 660.50 L437.99 661.29 L439.74 662.12 L441.51 662.99 L441.76 663.12" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-sleeve-gold-ink-011" d="M441.76 663.12 L443.29 663.91 L445.09 664.86 L446.90 665.86 L448.73 666.90 L450.57 667.98 L451.05 668.27" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-sleeve-gold-ink-012" d="M451.05 668.27 L452.43 669.10 L454.30 670.26 L456.18 671.47 L458.08 672.71 L460.00 674.00" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-cuff-fill" d="M 394 677 Q 416 661 439 681 L 445 707 L 432 724 L 388 714 Z" fill="#334561" stroke="none"/>
+<path id="front-cuff-shadow-fill" d="M 417 675 Q 431 675 437 685 L 441 704 L 429 711 L 414 688 Z" fill="#222e47" stroke="none"/>
+<path id="front-cuff-gold-ink-000" d="M390.00 707.00 L391.49 705.75 L392.98 704.57 L394.48 703.47 L395.99 702.44 L397.50 701.48 L398.66 700.82" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-cuff-gold-ink-001" d="M398.66 700.82 L399.02 700.61 L400.54 699.80 L402.07 699.07 L403.61 698.42 L405.15 697.84 L406.70 697.34 L408.26 696.91 L408.51 696.85" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-cuff-gold-ink-002" d="M408.51 696.85 L409.82 696.56 L411.39 696.28 L412.96 696.07 L414.54 695.94 L416.13 695.89 L417.72 695.91 L419.09 695.99" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-cuff-gold-ink-003" d="M419.09 695.99 L419.32 696.01 L420.93 696.18 L422.54 696.42 L424.16 696.74 L425.78 697.14 L427.41 697.61 L429.05 698.16 L429.45 698.31" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-cuff-gold-ink-004" d="M429.45 698.31 L430.69 698.78 L432.34 699.47 L434.00 700.24 L435.66 701.09 L437.33 702.01 L439.00 703.00" fill="none" stroke="#cba45f" stroke-width="6"/>
+</g>
+<g id="Belt" inkscape:groupmode="layer" inkscape:label="Belt">
+<path id="belt-fill" d="M 493 640 Q 550 650 610 638 L 619 654 L 608 674 Q 550 685 488 664 Z" fill="#438e87" stroke="none"/>
+<path id="belt-shadow-fill" d="M 492 654 Q 548 667 608 651 L 611 665 Q 550 680 491 663 Z" fill="#285c66" stroke="none"/>
+<path id="belt-light-fill" d="M 499 645 Q 552 655 596 645 L 596 650 Q 543 662 496 652 Z" fill="#80b6a1" stroke="none"/>
+<path id="belt-tail-fill" d="M 615 661 Q 644 685 676 708 L 669 723 Q 639 691 610 674 Z" fill="#438e87" stroke="none"/>
+<path id="belt-tail-shadow-fill" d="M 620 674 Q 644 691 670 714 L 669 719 Q 641 692 620 680 Z" fill="#285c66" stroke="none"/>
+<path id="buckle-fill" d="M 597 654 C 597 644.61115925 604.61115925 637 614 637 C 623.38884075 637 631 644.61115925 631 654 C 631 663.38884075 623.38884075 671 614 671 C 604.61115925 671 597 663.38884075 597 654 Z" fill="#285c66" stroke="none"/>
+<path id="buckle-ink-000" d="M597.00 654.00 L597.10 652.15 L597.39 650.35 L597.87 648.63 L598.51 646.98 L599.32 645.42 L600.25 644.01" fill="none" stroke="#222c40" stroke-width="4"/>
+<path id="buckle-ink-001" d="M600.25 644.01 L600.28 643.96 L601.38 642.61 L602.61 641.38 L603.96 640.28 L605.42 639.32 L606.98 638.51 L608.63 637.87 L608.75 637.83" fill="none" stroke="#222c40" stroke-width="4"/>
+<path id="buckle-ink-002" d="M608.75 637.83 L610.35 637.39 L612.15 637.10 L614.00 637.00 L615.85 637.10 L617.65 637.39 L619.25 637.83" fill="none" stroke="#222c40" stroke-width="4"/>
+<path id="buckle-ink-003" d="M619.25 637.83 L619.37 637.87 L621.02 638.51 L622.58 639.32 L624.04 640.28 L625.39 641.38 L626.62 642.61 L627.72 643.96 L627.75 644.01" fill="none" stroke="#222c40" stroke-width="4"/>
+<path id="buckle-ink-004" d="M627.75 644.01 L628.68 645.42 L629.49 646.98 L630.13 648.63 L630.61 650.35 L630.90 652.15 L631.00 654.00" fill="none" stroke="#222c40" stroke-width="4"/>
+<path id="buckle-ink-005" d="M631.00 654.00 L630.90 655.85 L630.61 657.65 L630.13 659.37 L629.49 661.02 L628.68 662.58 L627.75 663.99" fill="none" stroke="#222c40" stroke-width="4"/>
+<path id="buckle-ink-006" d="M627.75 663.99 L627.72 664.04 L626.62 665.39 L625.39 666.62 L624.04 667.72 L622.58 668.68 L621.02 669.49 L619.37 670.13 L619.25 670.17" fill="none" stroke="#222c40" stroke-width="4"/>
+<path id="buckle-ink-007" d="M619.25 670.17 L617.65 670.61 L615.85 670.90 L614.00 671.00 L612.15 670.90 L610.35 670.61 L608.75 670.17" fill="none" stroke="#222c40" stroke-width="4"/>
+<path id="buckle-ink-008" d="M608.75 670.17 L608.63 670.13 L606.98 669.49 L605.42 668.68 L603.96 667.72 L602.61 666.62 L601.38 665.39 L600.28 664.04 L600.25 663.99" fill="none" stroke="#222c40" stroke-width="4"/>
+<path id="buckle-ink-009" d="M600.25 663.99 L599.32 662.58 L598.51 661.02 L597.87 659.37 L597.39 657.65 L597.10 655.85 L597.00 654.00" fill="none" stroke="#222c40" stroke-width="4"/>
+<path id="buckle-rim-fill" d="M 600 652 C 600 645.372583 605.372583 640 612 640 C 618.627417 640 624 645.372583 624 652 C 624 658.627417 618.627417 664 612 664 C 605.372583 664 600 658.627417 600 652 Z" fill="#7ebcaa" stroke="none"/>
+<path id="buckle-inset-fill" d="M 608 654 C 608 649.581722 611.13400675 646 615 646 C 618.86599325 646 622 649.581722 622 654 C 622 658.418278 618.86599325 662 615 662 C 611.13400675 662 608 658.418278 608 654 Z" fill="#438e87" stroke="none"/>
+<path id="buckle-glint-ink-000" d="M605.00 653.00 L604.90 651.56 L604.94 650.25 L605.12 649.06 L605.44 648.00 L605.90 647.06 L606.50 646.25 L607.24 645.56 L608.11 645.00 L609.12 644.56 L610.28 644.25 L611.57 644.06 L613.00 644.00" fill="none" stroke="#d1ead5" stroke-width="3.5"/>
+</g>
+<g id="Arm_Front" inkscape:groupmode="layer" inkscape:label="Arm_Front">
+<path id="front-hand-fill" d="M 405 701 C 420 695 431 701 437 712 Q 451 731 441 736 Q 432 738 428 724 C 428 740 427 748 417 750 C 400 749 388 739 389 725 Q 389 708 405 701 Z" fill="#f5c8a5" stroke="none"/>
+<path id="front-hand-shadow-fill" d="M 400 707 Q 390 722 397 737 Q 404 745 416 748 Q 398 751 391 735 Q 387 717 400 707 Z" fill="#da9b85" stroke="none"/>
+<path id="front-hand-light-fill" d="M 406 707 Q 419 703 427 712 Q 413 708 405 718 Z" fill="#ffe1bb" stroke="none"/>
+</g>
+<g id="Head" inkscape:groupmode="layer" inkscape:label="Head">
+<path id="head-fill" d="M 455 332 C 483 299 545 296 591 311 C 638 324 668 357 668 403 L 660 465 C 655 503 622 529 580 534 C 540 540 493 531 467 512 L 447 489 C 425 488 414 477 414 462 Q 412 443 433 438 L 441 399 Z" fill="#f5c8a5" stroke="none"/>
+<path id="face-side-shadow-fill" d="M 627 351 C 651 373 662 403 661 429 L 654 466 Q 650 497 623 515 Q 646 484 643 447 Q 642 404 615 378 Z" fill="#da9b85" stroke="none"/>
+<path id="face-upper-shadow-fill" d="M 451 391 Q 501 354 563 366 Q 619 371 642 413 L 633 432 Q 611 410 598 410 Q 560 426 528 454 L 483 469 L 447 467 Z" fill="#eeb38d" stroke="none"/>
+<path id="jaw-warmth-fill" d="M 462 501 Q 509 533 571 528 Q 607 528 631 511 Q 609 531 578 535 Q 510 539 474 518 Z" fill="#e6aa8a" stroke="none"/>
+<path id="face-light-fill" d="M 522 461 Q 563 433 600 423 Q 621 432 625 451 Q 603 474 597 498 Q 565 524 525 510 Z" fill="#fbd1ab" stroke="none"/>
+<path id="ear-inner-fill" d="M 425 468 C 425 459.163444 430.372583 452 437 452 C 443.627417 452 449 459.163444 449 468 C 449 476.836556 443.627417 484 437 484 C 430.372583 484 425 476.836556 425 468 Z" fill="#da9b85" stroke="none"/>
+<path id="ear-light-fill" d="M 427 457 Q 441 447 450 457 L 441 463 Q 430 459 431 475 Q 424 467 427 457 Z" fill="#ffddba" stroke="none"/>
+</g>
+<g id="Eyes" inkscape:groupmode="layer" inkscape:label="Eyes">
+<path id="far-eye-white-fill" d="M 610 454 C 626 438 640 433 653 433 C 649 451 642 474 629 485 C 618 490 610 478 610 454 Z" fill="#fcf6e6" stroke="none"/>
+<path id="far-eye-white-ink-000" d="M610.00 454.00 L611.84 452.20 L613.66 450.50 L615.46 448.89 L617.25 447.37 L617.97 446.79" fill="none" stroke="#222c40" stroke-width="3.6"/>
+<path id="far-eye-white-ink-001" d="M617.97 446.79 L619.02 445.95 L620.77 444.61 L622.51 443.35 L624.23 442.18 L625.94 441.09 L626.75 440.60" fill="none" stroke="#222c40" stroke-width="3.6"/>
+<path id="far-eye-white-ink-002" d="M626.75 440.60 L627.63 440.08 L629.31 439.14 L630.97 438.29 L632.62 437.50 L634.26 436.79 L635.89 436.14 L636.43 435.94" fill="none" stroke="#222c40" stroke-width="3.6"/>
+<path id="far-eye-white-ink-003" d="M636.43 435.94 L637.50 435.56 L639.10 435.05 L640.69 434.59 L642.26 434.20 L643.83 433.87 L645.38 433.60 L646.85 433.39" fill="none" stroke="#222c40" stroke-width="3.6"/>
+<path id="far-eye-white-ink-004" d="M646.85 433.39 L646.93 433.38 L648.46 433.21 L649.98 433.09 L651.50 433.02 L653.00 433.00 L652.59 434.82 L652.16 436.66 L651.96 437.47" fill="none" stroke="#222c40" stroke-width="3.6"/>
+<path id="far-eye-white-ink-005" d="M651.96 437.47 L651.71 438.53 L651.23 440.43 L650.74 442.34 L650.22 444.26 L649.67 446.20 L649.19 447.86" fill="none" stroke="#222c40" stroke-width="3.6"/>
+<path id="far-eye-white-ink-006" d="M649.19 447.86 L649.10 448.14 L648.51 450.09 L647.89 452.04 L647.24 453.98 L646.57 455.91 L645.87 457.83 L645.78 458.05" fill="none" stroke="#222c40" stroke-width="3.6"/>
+<path id="far-eye-white-ink-007" d="M645.78 458.05 L645.14 459.74 L644.38 461.62 L643.58 463.49 L642.76 465.32 L641.91 467.13 L641.52 467.92" fill="none" stroke="#222c40" stroke-width="3.6"/>
+<path id="far-eye-white-ink-008" d="M641.52 467.92 L641.03 468.90 L640.11 470.63 L639.16 472.32 L638.18 473.96 L637.16 475.56 L636.10 477.10 L636.05 477.17" fill="none" stroke="#222c40" stroke-width="3.6"/>
+<path id="far-eye-white-ink-009" d="M636.05 477.17 L635.01 478.58 L633.89 480.00 L632.72 481.36 L631.52 482.65 L630.28 483.86 L629.00 485.00 L628.83 485.07" fill="none" stroke="#222c40" stroke-width="3.6"/>
+<path id="far-eye-white-ink-010" d="M628.83 485.07 L627.74 485.50 L626.52 485.85 L625.32 486.06 L624.15 486.12 L623.02 486.03 L621.93 485.81 L620.87 485.44 L619.84 484.93 L618.86 484.29 L618.68 484.14" fill="none" stroke="#222c40" stroke-width="3.6"/>
+<path id="far-eye-white-ink-011" d="M618.68 484.14 L617.92 483.51 L617.03 482.60 L616.18 481.55 L615.38 480.38 L614.62 479.07 L613.92 477.64 L613.27 476.08 L612.95 475.20" fill="none" stroke="#222c40" stroke-width="3.6"/>
+<path id="far-eye-white-ink-012" d="M612.95 475.20 L612.67 474.40 L612.13 472.60 L611.64 470.68 L611.22 468.64 L610.85 466.48 L610.62 464.73" fill="none" stroke="#222c40" stroke-width="3.6"/>
+<path id="far-eye-white-ink-013" d="M610.62 464.73 L610.55 464.21 L610.31 461.82 L610.14 459.32 L610.04 456.72 L610.00 454.00" fill="none" stroke="#222c40" stroke-width="3.6"/>
+<path id="far-eye-upper-shade-fill" d="M 612 455 Q 634 439 650 437 L 644 447 Q 628 446 612 463 Z" fill="#b6c0bc" stroke="none"/>
+<path id="far-iris-fill" d="M 624 452 Q 635 442 641 448 C 644 462 636 478 628 482 C 618 482 617 467 624 452 Z" fill="#438e87" stroke="none"/>
+<path id="far-iris-ink-000" d="M624.00 452.00 L625.80 450.44 L627.53 449.11 L629.19 448.00 L630.78 447.11 L632.30 446.44 L632.60 446.35" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="far-iris-ink-001" d="M632.60 446.35 L633.75 446.00 L635.13 445.78 L636.44 445.78 L637.69 446.00 L638.86 446.44 L639.97 447.11 L641.00 448.00 L641.22 449.25" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="far-iris-ink-002" d="M641.22 449.25 L641.35 450.01 L641.57 452.04 L641.64 454.08 L641.59 456.12 L641.42 458.15 L641.22 459.56" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="far-iris-ink-003" d="M641.22 459.56 L641.13 460.16 L640.74 462.15 L640.25 464.10 L639.66 466.00 L638.99 467.85 L638.31 469.47" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="far-iris-ink-004" d="M638.31 469.47 L638.24 469.63 L637.42 471.35 L636.53 472.98 L635.59 474.52 L634.60 475.96 L633.57 477.29 L632.79 478.18" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="far-iris-ink-005" d="M632.79 478.18 L632.50 478.50 L631.40 479.59 L630.28 480.54 L629.14 481.35 L628.00 482.00 L626.63 481.90 L625.39 481.60 L624.26 481.13 L623.99 480.95" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="far-iris-ink-006" d="M623.99 480.95 L623.26 480.47 L622.37 479.65 L621.61 478.68 L620.96 477.56 L620.43 476.30 L620.02 474.92 L619.73 473.42 L619.57 472.02" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="far-iris-ink-007" d="M619.57 472.02 L619.55 471.81 L619.49 470.10 L619.54 468.31 L619.70 466.44 L619.98 464.51 L620.37 462.51 L620.56 461.75" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="far-iris-ink-008" d="M620.56 461.75 L620.88 460.47 L621.49 458.38 L622.22 456.27 L623.05 454.14 L624.00 452.00" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="far-iris-dark-fill" d="M 623 454 Q 633 445 641 449 L 638 462 Q 628 460 621 469 Z" fill="#285c66" stroke="none"/>
+<path id="far-iris-glow-fill" d="M 623 471 Q 630 472 635 463 Q 635 476 627 479 Z" fill="#85c8b0" stroke="none"/>
+<path id="far-pupil-fill" d="M 627 458 C 627 453.02943725 628.790861 449 631 449 C 633.209139 449 635 453.02943725 635 458 C 635 462.97056275 633.209139 467 631 467 C 628.790861 467 627 462.97056275 627 458 Z" fill="#182c37" stroke="none"/>
+<path id="far-eye-glint-fill" d="M 632 451 C 632 448.790861 633.34314575 447 635 447 C 636.65685425 447 638 448.790861 638 451 C 638 453.209139 636.65685425 455 635 455 C 633.34314575 455 632 453.209139 632 451 Z" fill="#fffdef" stroke="none"/>
+<path id="far-lid-ink-000" d="M609.00 453.00 L610.40 451.78 L611.82 450.60 L613.26 449.44 L614.73 448.31 L616.22 447.22 L616.78 446.82" fill="none" stroke="#222c40" stroke-width="7.2"/>
+<path id="far-lid-ink-001" d="M616.78 446.82 L617.73 446.15 L619.27 445.11 L620.83 444.10 L622.42 443.12 L624.03 442.17 L625.19 441.52" fill="none" stroke="#222c40" stroke-width="7.2"/>
+<path id="far-lid-ink-002" d="M625.19 441.52 L625.66 441.25 L627.32 440.36 L629.00 439.50 L630.70 438.67 L632.43 437.87 L634.11 437.13" fill="none" stroke="#222c40" stroke-width="7.2"/>
+<path id="far-lid-ink-003" d="M634.11 437.13 L634.18 437.09 L635.96 436.35 L637.76 435.64 L639.58 434.96 L641.43 434.30 L643.30 433.68 L643.42 433.64" fill="none" stroke="#222c40" stroke-width="7.2"/>
+<path id="far-lid-ink-004" d="M643.42 433.64 L645.19 433.08 L647.11 432.52 L649.05 431.98 L651.01 431.48 L653.00 431.00" fill="none" stroke="#222c40" stroke-width="7.2"/>
+<path id="far-lash-ink-000" d="M650.00 434.00 L657.00 426.00" fill="none" stroke="#222c40" stroke-width="4"/>
+<path id="far-brow-ink-000" d="M616.00 435.00 L617.67 433.80 L619.35 432.64 L621.03 431.53 L622.72 430.46 L624.41 429.43 L625.67 428.70" fill="none" stroke="#654f4a" stroke-width="3.5"/>
+<path id="far-brow-ink-001" d="M625.67 428.70 L626.11 428.44 L627.82 427.50 L629.53 426.60 L631.25 425.75 L632.98 424.94 L634.71 424.17 L636.04 423.61" fill="none" stroke="#654f4a" stroke-width="3.5"/>
+<path id="far-brow-ink-002" d="M636.04 423.61 L636.44 423.44 L638.19 422.76 L639.94 422.12 L641.69 421.53 L643.46 420.98 L645.23 420.47 L647.00 420.00" fill="none" stroke="#654f4a" stroke-width="3.5"/>
+<path id="near-eye-white-fill" d="M 489 479 Q 524 466 559 477 Q 551 505 531 510 C 511 514 497 500 489 479 Z" fill="#fffae9" stroke="none"/>
+<path id="near-eye-white-ink-000" d="M489.00 479.00 L490.84 478.33 L492.68 477.70 L494.53 477.10 L496.37 476.53 L498.21 475.99 L498.74 475.85" fill="none" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-white-ink-001" d="M498.74 475.85 L500.05 475.49 L501.89 475.02 L503.74 474.59 L505.58 474.19 L507.42 473.82 L508.73 473.58" fill="none" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-white-ink-002" d="M508.73 473.58 L509.26 473.48 L511.11 473.18 L512.95 472.91 L514.79 472.68 L516.63 472.48 L518.47 472.31 L518.89 472.28" fill="none" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-white-ink-003" d="M518.89 472.28 L520.32 472.17 L522.16 472.07 L524.00 472.00 L525.84 471.96 L527.68 471.96 L529.12 471.99" fill="none" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-white-ink-004" d="M529.12 471.99 L529.53 471.99 L531.37 472.06 L533.21 472.15 L535.05 472.28 L536.89 472.45 L538.74 472.64 L539.34 472.72" fill="none" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-white-ink-005" d="M539.34 472.72 L540.58 472.87 L542.42 473.14 L544.26 473.43 L546.11 473.76 L547.95 474.12 L549.43 474.44" fill="none" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-white-ink-006" d="M549.43 474.44 L549.79 474.52 L551.63 474.95 L553.47 475.41 L555.32 475.91 L557.16 476.44 L559.00 477.00 L558.90 477.33" fill="none" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-white-ink-007" d="M558.90 477.33 L558.34 479.20 L557.64 481.33 L556.91 483.39 L556.13 485.37 L555.45 486.96" fill="none" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-white-ink-008" d="M555.45 486.96 L555.32 487.28 L554.47 489.12 L553.58 490.88 L552.65 492.56 L551.68 494.18 L550.68 495.72 L550.53 495.93" fill="none" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-white-ink-009" d="M550.53 495.93 L549.64 497.19 L548.56 498.58 L547.44 499.90 L546.28 501.15 L545.08 502.32 L543.84 503.42 L543.71 503.53" fill="none" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-white-ink-010" d="M543.71 503.53 L542.57 504.44 L541.26 505.40 L539.91 506.28 L538.52 507.08 L537.09 507.81 L535.63 508.47 L534.94 508.74" fill="none" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-white-ink-011" d="M534.94 508.74 L534.12 509.05 L532.58 509.56 L531.00 510.00 L529.14 510.32 L527.32 510.54 L525.53 510.66 L524.94 510.67" fill="none" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-white-ink-012" d="M524.94 510.67 L523.78 510.68 L522.06 510.60 L520.38 510.42 L518.74 510.16 L517.12 509.80 L515.55 509.35 L514.87 509.11" fill="none" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-white-ink-013" d="M514.87 509.11 L514.01 508.81 L512.50 508.19 L511.03 507.49 L509.60 506.70 L508.20 505.84 L506.83 504.89 L505.93 504.20" fill="none" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-white-ink-014" d="M505.93 504.20 L505.50 503.88 L504.21 502.78 L502.95 501.62 L501.72 500.39 L500.53 499.09 L499.38 497.73 L498.75 496.93" fill="none" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-white-ink-015" d="M498.75 496.93 L498.26 496.30 L497.17 494.81 L496.12 493.27 L495.11 491.66 L494.13 490.00 L493.21 488.33" fill="none" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-white-ink-016" d="M493.21 488.33 L493.19 488.29 L492.28 486.53 L491.41 484.71 L490.57 482.85 L489.77 480.95 L489.00 479.00" fill="none" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-upper-shade-fill" d="M 493 480 Q 525 470 555 479 L 552 486 Q 519 480 499 489 Z" fill="#bdc5bd" stroke="none"/>
+<path id="near-iris-fill" d="M 519 477 Q 535 472 547 480 C 551 493 542 506 531 508 Q 514 510 516 489 Z" fill="#438e87" stroke="none"/>
+<path id="near-iris-ink-000" d="M519.00 477.00 L520.98 476.43 L522.94 475.95 L524.86 475.58 L526.75 475.31 L528.61 475.14 L529.50 475.11" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="near-iris-ink-001" d="M529.50 475.11 L530.44 475.08 L532.23 475.11 L534.00 475.25 L535.73 475.49 L537.44 475.83 L539.11 476.27 L540.03 476.57" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="near-iris-ink-002" d="M540.03 476.57 L540.75 476.81 L542.36 477.46 L543.94 478.20 L545.48 479.05 L547.00 480.00 L547.48 481.86 L547.65 482.83" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="near-iris-ink-003" d="M547.65 482.83 L547.80 483.70 L547.95 485.54 L547.95 487.35 L547.79 489.14 L547.50 490.89 L547.07 492.59 L546.81 493.39" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="near-iris-ink-004" d="M546.81 493.39 L546.52 494.25 L545.85 495.85 L545.06 497.38 L544.17 498.85 L543.17 500.23 L542.09 501.53 L541.25 502.41" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="near-iris-ink-005" d="M541.25 502.41 L540.93 502.74 L539.68 503.85 L538.37 504.85 L536.99 505.74 L535.56 506.50 L534.08 507.14 L532.56 507.64 L532.13 507.74" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="near-iris-ink-006" d="M532.13 507.74 L531.00 508.00 L529.35 508.14 L527.79 508.17 L526.33 508.08 L524.96 507.88 L523.69 507.56 L522.51 507.13 L521.70 506.72" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="near-iris-ink-007" d="M521.70 506.72 L521.43 506.58 L520.44 505.92 L519.55 505.14 L518.75 504.25 L518.05 503.24 L517.44 502.12 L516.93 500.88 L516.51 499.53 L516.19 498.06 L516.18 498.00" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="near-iris-ink-008" d="M516.18 498.00 L515.96 496.48 L515.83 494.78 L515.79 492.97 L515.85 491.04 L516.00 489.00 L516.41 487.38" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="near-iris-ink-009" d="M516.41 487.38 L519.00 477.00" fill="none" stroke="#222c40" stroke-width="2"/>
+<path id="near-iris-dark-fill" d="M 519 479 Q 533 473 546 481 L 546 489 Q 533 485 516 493 Z" fill="#285c66" stroke="none"/>
+<path id="near-iris-glow-fill" d="M 521 497 Q 534 503 544 491 Q 541 505 531 505 Q 524 506 521 497 Z" fill="#90cbb3" stroke="none"/>
+<path id="near-pupil-fill" d="M 527 486 C 527 479.92486775 529.23857625 475 532 475 C 534.76142375 475 537 479.92486775 537 486 C 537 492.07513225 534.76142375 497 532 497 C 529.23857625 497 527 492.07513225 527 486 Z" fill="#182c38" stroke="none"/>
+<path id="near-glint-fill" d="M 534 480 C 534 477.514718625 535.790861 475.5 538 475.5 C 540.209139 475.5 542 477.514718625 542 480 C 542 482.485281375 540.209139 484.5 538 484.5 C 535.790861 484.5 534 482.485281375 534 480 Z" fill="#fffef3" stroke="none"/>
+<path id="near-lower-glint-fill" d="M 521 498 C 521 496.8954305 521.8954305 496 523 496 C 524.1045695 496 525 496.8954305 525 498 C 525 499.1045695 524.1045695 500 523 500 C 521.8954305 500 521 499.1045695 521 498 Z" fill="#b9dfbf" stroke="none"/>
+<path id="near-lid-ink-000" d="M486.00 478.00 L487.71 477.25 L489.45 476.55 L491.21 475.89 L493.00 475.27 L494.82 474.69 L496.04 474.33" fill="none" stroke="#222c40" stroke-width="8"/>
+<path id="near-lid-ink-001" d="M496.04 474.33 L496.66 474.15 L498.52 473.66 L500.40 473.21 L502.30 472.80 L504.21 472.43 L506.14 472.10 L506.49 472.04" fill="none" stroke="#222c40" stroke-width="8"/>
+<path id="near-lid-ink-002" d="M506.49 472.04 L508.08 471.81 L510.04 471.56 L512.00 471.34 L513.97 471.17 L515.94 471.04 L517.13 470.98" fill="none" stroke="#222c40" stroke-width="8"/>
+<path id="near-lid-ink-003" d="M517.13 470.98 L517.92 470.94 L519.90 470.89 L521.88 470.87 L523.87 470.89 L525.84 470.95 L527.82 471.04 L527.82 471.04" fill="none" stroke="#222c40" stroke-width="8"/>
+<path id="near-lid-ink-004" d="M527.82 471.04 L529.78 471.17 L531.74 471.34 L533.69 471.54 L535.63 471.78 L537.55 472.05 L538.46 472.20" fill="none" stroke="#222c40" stroke-width="8"/>
+<path id="near-lid-ink-005" d="M538.46 472.20 L539.46 472.36 L541.36 472.71 L543.23 473.08 L545.09 473.50 L546.92 473.94 L548.73 474.43 L548.91 474.48" fill="none" stroke="#222c40" stroke-width="8"/>
+<path id="near-lid-ink-006" d="M548.91 474.48 L550.52 474.94 L552.27 475.49 L554.00 476.07 L555.70 476.68 L557.37 477.32 L559.00 478.00" fill="none" stroke="#222c40" stroke-width="8"/>
+<path id="near-lash-ink-000" d="M492.00 480.00 L483.00 470.00" fill="none" stroke="#222c40" stroke-width="4"/>
+<path id="near-brow-ink-000" d="M493.00 462.00 L494.81 461.25 L496.61 460.55 L498.41 459.90 L500.21 459.30 L502.01 458.75 L503.70 458.28" fill="none" stroke="#72584c" stroke-width="3.5"/>
+<path id="near-brow-ink-001" d="M503.70 458.28 L503.80 458.25 L505.59 457.80 L507.39 457.40 L509.17 457.06 L510.96 456.76 L512.75 456.51 L514.53 456.31 L514.85 456.28" fill="none" stroke="#72584c" stroke-width="3.5"/>
+<path id="near-brow-ink-002" d="M514.85 456.28 L516.31 456.16 L518.09 456.06 L519.86 456.01 L521.64 456.01 L523.41 456.06 L525.18 456.16 L526.17 456.24" fill="none" stroke="#72584c" stroke-width="3.5"/>
+<path id="near-brow-ink-003" d="M526.17 456.24 L526.95 456.31 L528.71 456.51 L530.48 456.76 L532.24 457.06 L534.00 457.40 L535.76 457.80 L537.33 458.21" fill="none" stroke="#72584c" stroke-width="3.5"/>
+<path id="near-brow-ink-004" d="M537.33 458.21 L537.51 458.25 L539.26 458.75 L541.02 459.30 L542.76 459.90 L544.51 460.55 L546.26 461.25 L548.00 462.00" fill="none" stroke="#72584c" stroke-width="3.5"/>
+</g>
+<g id="Mouth" inkscape:groupmode="layer" inkscape:label="Mouth">
+<path id="nose-ink-000" d="M601.00 493.00 L603.00 498.00 L600.00 499.00" fill="none" stroke="#cc9478" stroke-width="2"/>
+<path id="smile-ink-000" d="M579.00 516.00 L580.63 516.69 L582.28 517.27 L583.95 517.72 L585.62 518.06 L587.32 518.29 L588.45 518.35" fill="none" stroke="#745647" stroke-width="2.5"/>
+<path id="smile-ink-001" d="M588.45 518.35 L589.03 518.39 L590.76 518.38 L592.50 518.25 L594.26 518.00 L596.03 517.64 L597.82 517.16 L598.11 517.06" fill="none" stroke="#745647" stroke-width="2.5"/>
+<path id="smile-ink-002" d="M598.11 517.06 L599.62 516.56 L601.45 515.85 L603.28 515.02 L605.13 514.07 L607.00 513.00" fill="none" stroke="#745647" stroke-width="2.5"/>
+<path id="smile-corner-ink-000" d="M606.00 513.00 L609.00 510.00" fill="none" stroke="#ad7c65" stroke-width="1.7"/>
+<path id="near-cheek-ink-000" d="M496.00 504.00 L501.00 506.00 M504.00 508.00 L508.00 509.00" fill="none" stroke="#e8a78e" stroke-width="2.3"/>
+<path id="far-cheek-ink-000" d="M637.00 487.00 L640.00 485.00" fill="none" stroke="#e8a78e" stroke-width="2"/>
+</g>
+<g id="Hair_Front" inkscape:groupmode="layer" inkscape:label="Hair_Front">
+<path id="hair-mass-fill" d="M 415 273 C 440 235 491 217 539 222 C 578 216 605 223 623 235 Q 627 215 613 205 C 644 211 660 231 665 247 Q 698 249 714 279 L 692 273 Q 706 288 710 302 C 732 332 750 326 762 314 C 758 340 743 352 720 356 Q 734 382 756 390 Q 738 400 717 390 Q 732 420 718 458 L 705 438 Q 701 466 680 481 L 683 453 L 663 479 L 663 445 C 661 414 645 389 632 378 Q 618 385 612 403 Q 607 449 579 471 L 575 448 L 563 479 Q 538 460 538 432 C 511 463 480 485 443 493 Q 453 477 454 463 Q 432 480 412 479 L 426 465 Q 388 486 358 472 L 377 459 Q 341 451 328 417 Q 349 427 368 418 C 335 415 337 383 348 356 L 354 336 Q 377 299 415 273 Z" fill="#eef0ef" stroke="none"/>
+<path id="hair-left-underplane-fill" d="M 415 281 Q 379 322 395 353 C 403 374 418 380 443 378 Q 410 397 387 386 Q 385 407 408 418 Q 382 431 350 423 L 339 421 Q 351 440 375 446 L 400 435 Q 385 454 372 467 Q 403 471 426 449 L 438 424 Q 437 400 460 373 Q 430 350 433 316 Z" fill="#aeb8cb" stroke="none"/>
+<path id="hair-left-middle-plane-fill" d="M 368 336 Q 351 384 370 405 Q 363 371 383 344 Q 377 373 392 386 L 399 379 Q 380 363 395 322 Z" fill="#cbd0da" stroke="none"/>
+<path id="hair-top-plane-fill" d="M 418 284 Q 440 245 486 234 Q 470 252 477 271 Q 495 295 522 296 Q 482 300 458 276 Q 467 312 505 318 Q 463 329 433 302 Q 438 337 470 351 Q 432 345 417 321 Z" fill="#c0c6d2" stroke="none"/>
+<path id="hair-top-light-fill" d="M 427 275 Q 450 242 491 232 Q 476 248 480 260 Q 489 277 507 284 Q 474 272 463 259 Q 445 261 427 275 Z" fill="#fffcf2" stroke="none"/>
+<path id="hair-side-light-fill" d="M 397 298 Q 384 327 397 350 Q 410 369 438 373 Q 417 378 402 368 Q 375 349 380 322 Z" fill="#fffcf2" stroke="none"/>
+<path id="hair-left-tip-light-fill" d="M 340 427 Q 370 436 397 424 Q 385 443 367 447 Q 350 439 340 427 Z" fill="#fffcf2" stroke="none"/>
+<path id="hair-temple-shadow-fill" d="M 442 436 Q 431 462 444 484 L 426 494 L 410 479 L 423 470 Q 420 452 442 436 Z" fill="#929fb7" stroke="none"/>
+<path id="hair-right-shadow-fill" d="M 656 266 Q 687 278 696 310 Q 709 331 739 337 Q 723 349 704 340 L 689 328 Q 697 360 731 382 Q 709 380 693 364 Q 711 400 706 435 L 694 419 Q 692 452 681 469 L 683 443 Q 678 412 663 394 L 649 381 L 635 392 Q 632 366 646 350 Q 669 324 656 266 Z" fill="#aeb8cb" stroke="none"/>
+<path id="hair-right-light-fill" d="M 665 260 Q 691 270 700 291 Q 678 279 673 282 Q 697 301 698 318 Q 680 297 664 293 Z" fill="#fffcf2" stroke="none"/>
+<path id="hair-side-bright-fill" d="M 670 308 Q 681 321 687 341 Q 691 361 707 372 Q 690 367 678 351 L 685 379 Q 668 368 661 350 Z" fill="#fffcf2" stroke="none"/>
+<path id="hair-right-flip-fill" d="M 714 320 Q 734 340 754 327 Q 742 344 722 341 Z" fill="#fffcf2" stroke="none"/>
+<path id="crown-lock-fill" d="M 478 285 C 494 301 519 294 543 282 Q 579 264 602 273 Q 615 279 619 298 C 615 321 600 338 576 347 L 548 339 C 522 331 493 328 478 285 Z" fill="#eef0ef" stroke="none"/>
+<path id="crown-lock-shadow-fill" d="M 486 300 Q 515 320 550 304 Q 590 281 609 291 L 614 303 Q 580 310 559 332 Q 518 332 496 316 Z" fill="#bcc4d4" stroke="none"/>
+<path id="crown-lock-light-fill" d="M 490 297 Q 515 304 546 287 Q 578 271 598 279 Q 573 280 550 295 Q 516 317 490 297 Z" fill="#fffcf2" stroke="none"/>
+<path id="upturned-lock-fill" d="M 605 284 Q 626 239 615 207 Q 646 216 654 247 C 661 268 644 287 616 296 Z" fill="#eef0ef" stroke="none"/>
+<path id="upturned-shadow-fill" d="M 632 219 Q 658 256 624 285 L 615 291 L 629 268 Q 642 244 632 219 Z" fill="#c1c8d6" stroke="none"/>
+<path id="upturned-light-fill" d="M 623 219 Q 639 234 637 248 Q 635 266 619 282 Q 635 246 623 219 Z" fill="#fffcf2" stroke="none"/>
+<path id="center-fringe-fill" d="M 604 304 C 578 305 552 321 522 346 C 495 373 476 406 452 439 L 431 473 Q 468 462 497 435 C 477 459 462 481 444 492 C 484 487 515 461 541 430 C 545 454 556 471 578 481 Q 565 460 573 440 C 594 411 611 382 616 354 C 620 331 618 315 604 304 Z" fill="#eef0ef" stroke="none"/>
+<path id="fringe-left-shadow-fill" d="M 540 337 C 516 362 501 395 474 423 L 442 468 Q 476 449 495 429 Q 488 449 473 465 Q 518 432 541 397 Q 562 366 580 351 C 562 355 553 362 540 374 Q 543 353 557 334 Z" fill="#c2c9d7" stroke="none"/>
+<path id="fringe-front-light-fill" d="M 595 313 C 561 325 537 348 519 375 L 505 404 C 530 385 543 365 564 361 Q 575 360 583 353 Q 594 340 609 335 Q 613 321 603 314 Z" fill="#fffcf2" stroke="none"/>
+<path id="fringe-lower-light-fill" d="M 529 401 Q 502 444 467 473 Q 511 450 543 410 L 551 392 Z" fill="#fffcf2" stroke="none"/>
+<path id="fringe-right-shadow-fill" d="M 607 339 Q 606 380 579 421 Q 557 449 570 470 Q 550 455 547 431 Q 574 399 588 368 Z" fill="#aeb8cb" stroke="none"/>
+<path id="right-fringe-fill" d="M 618 327 Q 641 323 657 345 Q 682 378 674 427 L 662 449 Q 665 405 632 374 Q 619 380 611 400 Q 620 365 618 327 Z" fill="#eef0ef" stroke="none"/>
+<path id="right-fringe-shadow-fill" d="M 632 340 Q 658 362 664 393 L 670 422 L 665 434 Q 658 397 632 374 Q 623 376 616 388 L 620 374 Q 623 355 632 340 Z" fill="#aeb8cb" stroke="none"/>
+<path id="right-fringe-light-fill" d="M 625 332 Q 652 337 662 369 Q 646 347 633 352 L 625 365 Z" fill="#fffcf2" stroke="none"/>
+</g>
+<g id="Hair_Accessory" inkscape:groupmode="layer" inkscape:label="Hair_Accessory">
+<path id="hair-band-fill" d="M 415 269 C 437 236 468 216 492 207 L 511 221 C 474 229 440 249 420 280 Z" fill="#285c66" stroke="none"/>
+<path id="band-lit-face-fill" d="M 428 263 C 450 237 473 224 498 217 L 493 211 Q 454 225 428 252 Z" fill="#438e87" stroke="none"/>
+<path id="band-gold-ink-000" d="M435.00 248.00 L436.40 246.68 L437.82 245.38 L439.25 244.10 L440.69 242.84 L442.15 241.61 L442.89 241.00" fill="none" stroke="#cba45f" stroke-width="4.5"/>
+<path id="band-gold-ink-001" d="M442.89 241.00 L443.63 240.40 L445.12 239.21 L446.62 238.04 L448.14 236.89 L449.67 235.77 L451.22 234.67 L451.29 234.62" fill="none" stroke="#cba45f" stroke-width="4.5"/>
+<path id="band-gold-ink-002" d="M451.29 234.62 L452.79 233.59 L454.36 232.53 L455.96 231.49 L457.56 230.48 L459.18 229.49 L460.16 228.91" fill="none" stroke="#cba45f" stroke-width="4.5"/>
+<path id="band-gold-ink-003" d="M460.16 228.91 L460.82 228.52 L462.47 227.57 L464.14 226.64 L465.82 225.74 L467.51 224.86 L469.22 224.00 L469.45 223.89" fill="none" stroke="#cba45f" stroke-width="4.5"/>
+<path id="band-gold-ink-004" d="M469.45 223.89 L470.95 223.16 L472.69 222.35 L474.44 221.55 L476.21 220.78 L477.99 220.03 L479.08 219.59" fill="none" stroke="#cba45f" stroke-width="4.5"/>
+<path id="band-gold-ink-005" d="M479.08 219.59 L479.79 219.31 L481.60 218.60 L483.43 217.92 L485.27 217.26 L487.13 216.62 L489.00 216.00" fill="none" stroke="#cba45f" stroke-width="4.5"/>
+<path id="jade-ornament-fill" d="M 504 178 C 526 174 542 191 539 211 Q 557 220 546 235 C 532 246 516 237 513 226 C 494 228 479 215 486 197 Q 491 181 504 178 Z" fill="#438e87" stroke="none"/>
+<path id="jade-ornament-ink-000" d="M504.00 178.00 L505.98 177.69 L507.93 177.50 L509.84 177.42 L511.71 177.44 L513.54 177.57 L514.66 177.71" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-001" d="M514.66 177.71 L515.33 177.79 L517.07 178.12 L518.76 178.54 L520.40 179.05 L521.99 179.65 L523.52 180.33 L524.78 180.99" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-002" d="M524.78 180.99 L524.99 181.10 L526.41 181.95 L527.77 182.87 L529.06 183.87 L530.29 184.94 L531.45 186.08 L532.53 187.28 L532.96 187.80" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-003" d="M532.96 187.80 L533.55 188.54 L534.49 189.86 L535.36 191.24 L536.15 192.67 L536.85 194.15 L537.48 195.67 L537.99 197.17" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-004" d="M537.99 197.17 L538.02 197.24 L538.47 198.85 L538.83 200.50 L539.10 202.18 L539.28 203.89 L539.36 205.63 L539.34 207.40 L539.32 207.74" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-005" d="M539.32 207.74 L539.22 209.19 L539.00 211.00 L540.73 211.91 L542.31 212.86 L543.75 213.83 L545.04 214.84 L545.23 215.01" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-006" d="M545.23 215.01 L546.19 215.88 L547.19 216.94 L548.05 218.03 L548.76 219.16 L549.33 220.32 L549.75 221.50 L550.03 222.72 L550.16 223.96 L550.16 224.15" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-007" d="M550.16 224.15 L550.15 225.24 L549.99 226.54 L549.69 227.88 L549.24 229.24 L548.65 230.63 L547.91 232.06 L547.03 233.52 L546.64 234.08" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-008" d="M546.64 234.08 L546.00 235.00 L544.24 236.27 L542.47 237.34 L540.69 238.22 L538.90 238.92 L537.52 239.32" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-009" d="M537.52 239.32 L537.13 239.43 L535.36 239.78 L533.61 239.97 L531.89 240.00 L530.20 239.89 L528.54 239.64 L526.94 239.26" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-010" d="M526.94 239.26 L526.93 239.25 L525.38 238.75 L523.87 238.13 L522.44 237.41 L521.07 236.58 L519.78 235.67 L518.57 234.67 L517.79 233.92" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-011" d="M517.79 233.92 L517.45 233.59 L516.43 232.45 L515.51 231.25 L514.71 230.00 L514.01 228.70 L513.44 227.36 L513.00 226.00 L511.66 226.11" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-012" d="M511.66 226.11 L511.11 226.15 L509.26 226.20 L507.44 226.16 L505.66 226.02 L503.92 225.80 L502.22 225.48 L501.04 225.19" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-013" d="M501.04 225.19 L500.58 225.08 L498.99 224.59 L497.47 224.02 L496.00 223.37 L494.60 222.64 L493.27 221.84 L492.02 220.96 L491.49 220.54" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-014" d="M491.49 220.54 L490.84 220.02 L489.75 219.00 L488.74 217.92 L487.83 216.77 L487.01 215.56 L486.29 214.29 L485.67 212.96 L485.30 211.98" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-015" d="M485.30 211.98 L485.15 211.58 L484.75 210.14 L484.46 208.66 L484.30 207.12 L484.25 205.54 L484.33 203.91 L484.54 202.24 L484.71 201.42" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-016" d="M484.71 201.42 L484.89 200.53 L485.37 198.78 L486.00 197.00 L486.66 195.05 L487.38 193.20 L488.16 191.46 L488.22 191.33" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-017" d="M488.22 191.33 L489.00 189.81 L489.91 188.27 L490.88 186.83 L491.91 185.49 L493.00 184.25 L494.16 183.11 L494.54 182.78" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-ornament-ink-018" d="M494.54 182.78 L495.38 182.08 L496.66 181.14 L498.00 180.31 L499.41 179.58 L500.88 178.95 L502.41 178.43 L504.00 178.00" fill="none" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-shadow-fill" d="M 524 183 C 541 196 526 211 515 208 Q 527 218 516 228 Q 518 238 534 238 Q 549 235 547 225 L 534 215 Q 540 198 524 183 Z" fill="#285c66" stroke="none"/>
+<path id="jade-lit-face-fill" d="M 503 184 Q 519 178 526 191 C 511 185 499 194 498 207 Q 499 217 508 220 Q 489 218 490 204 Q 490 191 503 184 Z" fill="#85bfaa" stroke="none"/>
+<path id="jade-spiral-ink-000" d="M521.00 197.00 L519.32 196.31 L517.74 195.84 L516.26 195.59 L514.88 195.52 L513.61 195.64 L512.45 195.91 L511.39 196.34 L511.28 196.41" fill="none" stroke="#b6dec6" stroke-width="4"/>
+<path id="jade-spiral-ink-001" d="M511.28 196.41 L510.45 196.90 L509.63 197.57 L508.92 198.35 L508.32 199.21 L507.85 200.14 L507.50 201.12 L507.27 202.15 L507.17 203.20 L507.20 204.26 L507.31 204.96" fill="none" stroke="#b6dec6" stroke-width="4"/>
+<path id="jade-spiral-ink-002" d="M507.31 204.96 L507.36 205.32 L507.65 206.35 L508.08 207.35 L508.64 208.29 L509.34 209.17 L510.19 209.96 L511.17 210.66 L512.30 211.24 L513.58 211.69 L513.93 211.77" fill="none" stroke="#b6dec6" stroke-width="4"/>
+<path id="jade-spiral-ink-003" d="M513.93 211.77 L515.00 212.00 L516.99 212.35 L518.84 212.47 L520.55 212.37 L522.12 212.07 L523.55 211.58 L523.81 211.44" fill="none" stroke="#b6dec6" stroke-width="4"/>
+<path id="jade-spiral-ink-004" d="M523.81 211.44 L524.83 210.92 L525.96 210.11 L526.94 209.16 L527.77 208.08 L528.44 206.90 L528.95 205.62 L529.30 204.27 L529.39 203.58" fill="none" stroke="#b6dec6" stroke-width="4"/>
+<path id="jade-spiral-ink-005" d="M529.39 203.58 L529.49 202.86 L529.51 201.40 L529.35 199.92 L529.03 198.42 L528.53 196.92 L527.86 195.44 L527.00 194.00" fill="none" stroke="#b6dec6" stroke-width="4"/>
+<path id="jade-pin-light-fill" d="M 497 190 C 497 188.34314575 498.34314575 187 500 187 C 501.65685425 187 503 188.34314575 503 190 C 503 191.65685425 501.65685425 193 500 193 C 498.34314575 193 497 191.65685425 497 190 Z" fill="#e9f2cf" stroke="none"/>
+</g>
+</svg>

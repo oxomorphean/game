@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-09",
+  "repository": "https://github.com/ahujasid/mcp-for-blender",
+  "commit": "7a0373ec9199183cb460068c4f96aed9c579fb4f",
+  "packageVersion": "2.1.9",
+  "mcpSdkVersion": "1.29.0",
+  "blenderVersion": "4.5.9 LTS",
+  "host": "127.0.0.1",
+  "port": 9876,
+  "safeMode": true,
+  "telemetryDisabled": true,
+  "persistentCodexRegistration": false,
+  "paidServicesUsed": false,
+  "testedTools": [
+    "get_scene_info",
+    "execute_blender_code",
+    "look"
+  ],
+  "sourceSha256": "b5bb227c35188dcaeac5f1d7252f8fcd7d0de74e98ed3fa117d01937ae20259b",
+  "trialInitialCopySha256": "b5bb227c35188dcaeac5f1d7252f8fcd7d0de74e98ed3fa117d01937ae20259b"
+}

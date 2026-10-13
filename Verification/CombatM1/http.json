@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "matchesDisk": true
+    },
+    {
+      "path": "Build/WebBuildCombat.loader.js?v=00af110d4a1b47089bbf5702aecb79a9",
+      "status": 200,
+      "mime": "text/javascript",
+      "bytes": 20263,
+      "matchesDisk": true
+    },
+    {
+      "path": "Build/WebBuildCombat.data?v=00af110d4a1b47089bbf5702aecb79a9",
+      "status": 200,
+      "mime": "application/octet-stream",
+      "bytes": 19366428,
+      "matchesDisk": true
+    },
+    {
+      "path": "Build/WebBuildCombat.framework.js?v=00af110d4a1b47089bbf5702aecb79a9",
+      "status": 200,
+      "mime": "text/javascript",
+      "bytes": 342018,
+      "matchesDisk": true
+    },
+    {
+      "path": "Build/WebBuildCombat.wasm?v=00af110d4a1b47089bbf5702aecb79a9",
+      "status": 200,
+      "mime": "application/wasm",
+      "bytes": 39226708,
+      "matchesDisk": true
+    }
+  ],
+  "browserExecution": "Not asserted by HTTP checks"
+}

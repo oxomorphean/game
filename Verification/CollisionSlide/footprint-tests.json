@@ -1,0 +1,568 @@
+{
+  "passed": 38,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "Six solid props; no duplicate inherited/instance blockers",
+      "passed": true
+    },
+    {
+      "name": "Hồ nước trọn cụm: authored contour",
+      "passed": true
+    },
+    {
+      "name": "Hồ nước trọn cụm: blocks interior",
+      "passed": true
+    },
+    {
+      "name": "Hồ nước trọn cụm: held 0,-1 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Hồ nước trọn cụm: held 0,1 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Hồ nước trọn cụm: held 1,0 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Hồ nước trọn cụm: held -1,0 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Anh đào trái: authored contour",
+      "passed": true
+    },
+    {
+      "name": "Anh đào trái: blocks interior",
+      "passed": true
+    },
+    {
+      "name": "Anh đào trái: held 0,-1 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Anh đào trái: held 0,1 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Anh đào trái: held 1,0 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Anh đào trái: held -1,0 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Anh đào phải: authored contour",
+      "passed": true
+    },
+    {
+      "name": "Anh đào phải: blocks interior",
+      "passed": true
+    },
+    {
+      "name": "Anh đào phải: held 0,-1 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Anh đào phải: held 0,1 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Anh đào phải: held 1,0 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Anh đào phải: held -1,0 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Đá trái: authored contour",
+      "passed": true
+    },
+    {
+      "name": "Đá trái: blocks interior",
+      "passed": true
+    },
+    {
+      "name": "Đá trái: held 0,-1 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Đá trái: held 0,1 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Đá trái: held 1,0 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Đá trái: held -1,0 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Đá phía trên: authored contour",
+      "passed": true
+    },
+    {
+      "name": "Đá phía trên: blocks interior",
+      "passed": true
+    },
+    {
+      "name": "Đá phía trên: held 0,-1 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Đá phía trên: held 0,1 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Đá phía trên: held 1,0 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Đá phía trên: held -1,0 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Đá góc dưới: authored contour",
+      "passed": true
+    },
+    {
+      "name": "Đá góc dưới: blocks interior",
+      "passed": true
+    },
+    {
+      "name": "Đá góc dưới: held 0,-1 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Đá góc dưới: held 0,1 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Đá góc dưới: held 1,0 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Đá góc dưới: held -1,0 slides clear",
+      "passed": true
+    },
+    {
+      "name": "Holding down passes the portal rock without overlap",
+      "passed": true
+    }
+  ],
+  "footprints": [
+    {
+      "name": "Hồ nước trọn cụm",
+      "vertices": [
+        {
+          "x": 5.646091,
+          "y": -1.70448613
+        },
+        {
+          "x": 6.02051163,
+          "y": -2.0650394
+        },
+        {
+          "x": 6.810955,
+          "y": -2.38399029
+        },
+        {
+          "x": 7.72620535,
+          "y": -2.4671948
+        },
+        {
+          "x": 8.475046,
+          "y": -2.314653
+        },
+        {
+          "x": 8.891069,
+          "y": -1.732221
+        },
+        {
+          "x": 8.558251,
+          "y": -1.09431922
+        },
+        {
+          "x": 7.89261436,
+          "y": -0.706031263
+        },
+        {
+          "x": 6.810955,
+          "y": -0.45641762
+        },
+        {
+          "x": 5.770898,
+          "y": -0.816970766
+        },
+        {
+          "x": 5.500483,
+          "y": -1.37166786
+        }
+      ]
+    },
+    {
+      "name": "Anh đào trái",
+      "vertices": [
+        {
+          "x": -7.139812,
+          "y": 1.35305607
+        },
+        {
+          "x": -6.815865,
+          "y": 1.35305607
+        },
+        {
+          "x": -6.491919,
+          "y": 1.58362222
+        },
+        {
+          "x": -6.54591036,
+          "y": 1.7450186
+        },
+        {
+          "x": -6.869857,
+          "y": 1.952528
+        },
+        {
+          "x": -7.193803,
+          "y": 1.86030161
+        },
+        {
+          "x": -7.355776,
+          "y": 1.60667884
+        }
+      ]
+    },
+    {
+      "name": "Anh đào phải",
+      "vertices": [
+        {
+          "x": 6.868577,
+          "y": 1.59987271
+        },
+        {
+          "x": 7.17308664,
+          "y": 1.59987271
+        },
+        {
+          "x": 7.47759628,
+          "y": 1.81660485
+        },
+        {
+          "x": 7.4268446,
+          "y": 1.96831751
+        },
+        {
+          "x": 7.122335,
+          "y": 2.16337633
+        },
+        {
+          "x": 6.81782532,
+          "y": 2.07668352
+        },
+        {
+          "x": 6.66557026,
+          "y": 1.838278
+        }
+      ]
+    },
+    {
+      "name": "Đá trái",
+      "vertices": [
+        {
+          "x": -8.140397,
+          "y": -0.628537
+        },
+        {
+          "x": -7.781974,
+          "y": -0.695741355
+        },
+        {
+          "x": -7.40114927,
+          "y": -0.628537
+        },
+        {
+          "x": -7.21073675,
+          "y": -0.479193926
+        },
+        {
+          "x": -7.378748,
+          "y": -0.344785124
+        },
+        {
+          "x": -7.80437565,
+          "y": -0.2701136
+        },
+        {
+          "x": -8.230003,
+          "y": -0.329850852
+        },
+        {
+          "x": -8.386813,
+          "y": -0.464259565
+        }
+      ]
+    },
+    {
+      "name": "Đá phía trên",
+      "vertices": [
+        {
+          "x": -4.172318,
+          "y": 3.00717044
+        },
+        {
+          "x": -3.885579,
+          "y": 2.953407
+        },
+        {
+          "x": -3.58091927,
+          "y": 3.00717044
+        },
+        {
+          "x": -3.42858934,
+          "y": 3.12664485
+        },
+        {
+          "x": -3.562998,
+          "y": 3.23417187
+        },
+        {
+          "x": -3.90350032,
+          "y": 3.293909
+        },
+        {
+          "x": -4.24400234,
+          "y": 3.24611926
+        },
+        {
+          "x": -4.36945057,
+          "y": 3.13859248
+        }
+      ]
+    },
+    {
+      "name": "Đá góc dưới",
+      "vertices": [
+        {
+          "x": 6.3425827,
+          "y": -3.474964
+        },
+        {
+          "x": 6.71892738,
+          "y": -3.54552841
+        },
+        {
+          "x": 7.11879349,
+          "y": -3.474964
+        },
+        {
+          "x": 7.31872654,
+          "y": -3.31815362
+        },
+        {
+          "x": 7.142315,
+          "y": -3.17702436
+        },
+        {
+          "x": 6.695406,
+          "y": -3.09861922
+        },
+        {
+          "x": 6.24849653,
+          "y": -3.16134334
+        },
+        {
+          "x": 6.083846,
+          "y": -3.30247259
+        }
+      ]
+    }
+  ],
+  "trajectory": [
+    {
+      "tick": 0,
+      "x": -7.98,
+      "y": 0.363886416
+    },
+    {
+      "tick": 5,
+      "x": -7.98,
+      "y": 0.0338864326
+    },
+    {
+      "tick": 10,
+      "x": -8.10660648,
+      "y": -0.0297737867
+    },
+    {
+      "tick": 15,
+      "x": -8.253663,
+      "y": -0.0504134819
+    },
+    {
+      "tick": 20,
+      "x": -8.393771,
+      "y": -0.100577369
+    },
+    {
+      "tick": 25,
+      "x": -8.553112,
+      "y": -0.238013566
+    },
+    {
+      "tick": 30,
+      "x": -8.669112,
+      "y": -0.470594674
+    },
+    {
+      "tick": 35,
+      "x": -8.669112,
+      "y": -0.8005946
+    },
+    {
+      "tick": 40,
+      "x": -8.669112,
+      "y": -1.13059461
+    },
+    {
+      "tick": 45,
+      "x": -8.669112,
+      "y": -1.46059453
+    },
+    {
+      "tick": 50,
+      "x": -8.669112,
+      "y": -1.79059446
+    },
+    {
+      "tick": 55,
+      "x": -8.669112,
+      "y": -2.1205945
+    },
+    {
+      "tick": 60,
+      "x": -8.669112,
+      "y": -2.45059443
+    },
+    {
+      "tick": 65,
+      "x": -8.669112,
+      "y": -2.78059435
+    },
+    {
+      "tick": 70,
+      "x": -8.669112,
+      "y": -3.11059427
+    },
+    {
+      "tick": 75,
+      "x": -8.669112,
+      "y": -3.4405942
+    },
+    {
+      "tick": 80,
+      "x": -8.669112,
+      "y": -3.77059412
+    },
+    {
+      "tick": 85,
+      "x": -8.669112,
+      "y": -4.100594
+    },
+    {
+      "tick": 90,
+      "x": -8.669112,
+      "y": -4.430594
+    },
+    {
+      "tick": 95,
+      "x": -8.669112,
+      "y": -4.760594
+    },
+    {
+      "tick": 100,
+      "x": -8.669112,
+      "y": -5.090594
+    },
+    {
+      "tick": 105,
+      "x": -8.669112,
+      "y": -5.347987
+    },
+    {
+      "tick": 110,
+      "x": -8.669112,
+      "y": -5.347987
+    },
+    {
+      "tick": 115,
+      "x": -8.669112,
+      "y": -5.347987
+    },
+    {
+      "tick": 120,
+      "x": -8.669112,
+      "y": -5.347987
+    },
+    {
+      "tick": 125,
+      "x": -8.669112,
+      "y": -5.347987
+    },
+    {
+      "tick": 130,
+      "x": -8.669112,
+      "y": -5.347987
+    },
+    {
+      "tick": 135,
+      "x": -8.669112,
+      "y": -5.347987
+    },
+    {
+      "tick": 140,
+      "x": -8.669112,
+      "y": -5.347987
+    },
+    {
+      "tick": 145,
+      "x": -8.669112,
+      "y": -5.347987
+    },
+    {
+      "tick": 150,
+      "x": -8.669112,
+      "y": -5.347987
+    },
+    {
+      "tick": 155,
+      "x": -8.669112,
+      "y": -5.347987
+    },
+    {
+      "tick": 160,
+      "x": -8.669112,
+      "y": -5.347987
+    },
+    {
+      "tick": 165,
+      "x": -8.669112,
+      "y": -5.347987
+    },
+    {
+      "tick": 170,
+      "x": -8.669112,
+      "y": -5.347987
+    },
+    {
+      "tick": 175,
+      "x": -8.669112,
+      "y": -5.347987
+    }
+  ]
+}

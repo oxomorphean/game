@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-13",
+  "url": "http://127.0.0.1:8796/",
+  "canvas": {
+    "bufferHeight": 720,
+    "bufferWidth": 1280,
+    "cssHeight": 720,
+    "cssWidth": 1280
+  },
+  "console": [],
+  "checkedVisually": [
+    "Final build loads",
+    "Movement D changes world position; stops after release",
+    "Horizontal mirroring with A tested before final rebuild",
+    "Ivory/Navy swaps while Run continues",
+    "Pause and resume",
+    "Reset R tested before final rebuild",
+    "Far and close zoom"
+  ],
+  "scope": "Desktop viewport 1280x720; animation phase preservation and reactivation separately asserted in Unity runtime checks",
+  "limitations": [
+    "One three-quarter view plus mirror",
+    "Art remains a prototype; body has less finish than head",
+    "No new outfit silhouette or mobile performance verification"
+  ]
+}

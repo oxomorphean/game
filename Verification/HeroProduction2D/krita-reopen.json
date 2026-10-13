@@ -1,0 +1,174 @@
+{
+  "source": "/Users/nguyenhoangdacdat/dev/nguthu-unity-demo/ArtDirection/HeroProduction2D/hero-three-quarter.kra",
+  "sha256": "45c5b35e0fb3fde177c2d01e0ca2f46e7bde031a6400d7141972310676e38b5c",
+  "copiedBytesEqual": true,
+  "width": 1024,
+  "height": 1024,
+  "layers": [
+    {
+      "name": "root",
+      "type": "grouplayer",
+      "visible": true
+    },
+    {
+      "name": "Body",
+      "type": "grouplayer",
+      "visible": true
+    },
+    {
+      "name": "Leg_R",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Leg_L",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Arm_Back",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Arm_Front",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Body_Torso",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Ivory",
+      "type": "grouplayer",
+      "visible": true
+    },
+    {
+      "name": "Ivory__Leg_R",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Ivory__Leg_L",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Ivory__Foot_L",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Ivory__Foot_R",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Ivory__Sleeve_Back",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Ivory__Sleeve_Front",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Ivory__Body_Torso",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Ivory__Coat_L",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Ivory__Coat_R",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Navy",
+      "type": "grouplayer",
+      "visible": false
+    },
+    {
+      "name": "Navy__Leg_R",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Navy__Leg_L",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Navy__Foot_L",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Navy__Foot_R",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Navy__Sleeve_Back",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Navy__Sleeve_Front",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Navy__Body_Torso",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Navy__Coat_L",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Navy__Coat_R",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Identity",
+      "type": "grouplayer",
+      "visible": true
+    },
+    {
+      "name": "Head",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Eyes_Mouth",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "Hair_Front",
+      "type": "paintlayer",
+      "visible": true
+    },
+    {
+      "name": "References",
+      "type": "grouplayer",
+      "visible": false
+    },
+    {
+      "name": "Reference_approved_hero",
+      "type": "paintlayer",
+      "visible": false
+    }
+  ]
+}

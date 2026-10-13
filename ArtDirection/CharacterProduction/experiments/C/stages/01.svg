@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="0 0 1024 1024" width="1024" height="1024" stroke-linecap="round" stroke-linejoin="round">
+<title>Ngự Thú — mẫu C, nhân vật vector</title><desc>Vector drawn from reference A using authored Bezier paths. No embedded raster. Static study, not a rigged character.</desc>
+
+<g fill="none" stroke="#618da0" stroke-width="2.6" opacity="0.75"><path d="M 408 108 Q 538 79 564 236 M 344 236 Q 458 167 637 234 Q 748 285 739 421 Q 696 522 583 540 Q 448 557 373 449 Q 326 345 407 267"/><path d="M 442 389 C 427 325 465 285 538 286 C 619 276 674 325 674 405 C 674 481 628 536 554 541 C 484 541 435 488 438 433"/><path d="M 594 310 Q 611 415 575 530 M 441 461 Q 553 497 665 425"/><path d="M 471 542 Q 539 522 613 543 L 625 654 Q 560 686 484 657 Z"/><path d="M 476 556 Q 434 579 412 621 L 370 675 L 414 718 M 612 559 L 637 625 L 691 701"/><path d="M 540 674 Q 490 725 458 811 L 452 883 M 572 678 Q 593 738 599 802 L 625 848"/><path d="M 261 900 L 771 900 M 536 102 L 536 900"/><path d="M 488 481 Q 521 463 561 479 M 608 453 Q 630 437 653 433 M 581 516 Q 597 522 608 511"/><path d="M 423 874 Q 452 856 491 878 M 575 844 Q 619 824 673 850"/><path d="M 357 695 Q 359 673 412 656 L 462 676 M 432 740 L 472 773 L 530 710 M 626 769 L 674 737 L 614 666"/></g>
+<g id="Hair_Back" inkscape:groupmode="layer" inkscape:label="Hair_Back">
+</g>
+<g id="Boot_Back" inkscape:groupmode="layer" inkscape:label="Boot_Back">
+</g>
+<g id="Boot_Front" inkscape:groupmode="layer" inkscape:label="Boot_Front">
+</g>
+<g id="Leg_Back" inkscape:groupmode="layer" inkscape:label="Leg_Back">
+</g>
+<g id="Leg_Front" inkscape:groupmode="layer" inkscape:label="Leg_Front">
+</g>
+<g id="Arm_Back" inkscape:groupmode="layer" inkscape:label="Arm_Back">
+</g>
+<g id="Torso" inkscape:groupmode="layer" inkscape:label="Torso">
+</g>
+<g id="Sleeve_Back" inkscape:groupmode="layer" inkscape:label="Sleeve_Back">
+</g>
+<g id="Coat" inkscape:groupmode="layer" inkscape:label="Coat">
+</g>
+<g id="Sleeve_Front" inkscape:groupmode="layer" inkscape:label="Sleeve_Front">
+</g>
+<g id="Belt" inkscape:groupmode="layer" inkscape:label="Belt">
+</g>
+<g id="Arm_Front" inkscape:groupmode="layer" inkscape:label="Arm_Front">
+</g>
+<g id="Head" inkscape:groupmode="layer" inkscape:label="Head">
+</g>
+<g id="Eyes" inkscape:groupmode="layer" inkscape:label="Eyes">
+</g>
+<g id="Mouth" inkscape:groupmode="layer" inkscape:label="Mouth">
+</g>
+<g id="Hair_Front" inkscape:groupmode="layer" inkscape:label="Hair_Front">
+</g>
+<g id="Hair_Accessory" inkscape:groupmode="layer" inkscape:label="Hair_Accessory">
+</g>
+</svg>

@@ -1,0 +1,13 @@
+{
+  "method": "Native Krita Bezier, brush, color picker and fill; controlled through desktop UI",
+  "source_design": "A normalized reference used as underlay, hidden in export",
+  "scripts": "Document/layer setup, palette, organizing GUI-authored pixels and exporting only; no B path synthesis",
+  "brush": "b) Basic-5 Size Opacity; outer 8 px, inner 4 px, gold trim 7 px; opacity 100%",
+  "limits": [
+    "Ink and fill fused in most Paint layers",
+    "Cloth_Details spans several slots",
+    "No complete hidden torso/arms",
+    "No rig or animation proof",
+    "Visual quality below A"
+  ]
+}

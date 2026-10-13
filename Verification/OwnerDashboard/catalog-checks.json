@@ -1,0 +1,14 @@
+{
+  "passed": 7,
+  "assets": 136,
+  "maps": 2,
+  "checks": [
+    "Each asset has a unique path and GUID",
+    "Every catalogue item resolves to its file and GUID",
+    "All source PNG files appear once in the image group",
+    "Catalogue includes C2 trial without marking it as the main player",
+    "Search accepts whitespace and case-insensitive paths",
+    "An absent search returns an empty collection",
+    "Map metadata matches the saved prefabs"
+  ]
+}

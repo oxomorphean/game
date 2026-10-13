@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="0 0 1024 1024" width="1024" height="1024" stroke-linecap="round" stroke-linejoin="round">
+<title>Ngự Thú — mẫu C, nhân vật vector</title><desc>Vector drawn from reference A using authored Bezier paths. No embedded raster. Static study, not a rigged character.</desc>
+
+
+<g id="Hair_Back" inkscape:groupmode="layer" inkscape:label="Hair_Back">
+<path id="ribbon-far-fill" d="M 379 273 C 355 300 333 332 324 356 L 309 344 C 333 302 349 279 370 263 Z" fill="#285c66" stroke="none"/>
+<path id="ribbon-near-fill" d="M 369 267 C 343 301 296 313 264 326 L 278 338 C 269 359 282 377 303 385 C 316 348 342 309 377 283 Z" fill="#438e87" stroke="none"/>
+<path id="bun-fill" d="M 376 283 C 359 263 370 238 393 222 C 370 221 357 231 347 241 C 347 204 376 176 405 162 C 397 144 395 128 404 114 C 421 140 456 112 491 117 L 482 101 C 518 112 543 139 550 169 C 570 181 574 196 560 216 C 550 244 526 259 501 267 C 464 282 416 287 393 290 L 401 273 C 388 278 383 285 376 291 Z" fill="#eef0ef" stroke="none"/>
+<path id="neck-hair-fill" d="M 428 438 C 400 450 393 480 398 508 L 415 496 Q 411 515 437 519 L 431 528 Q 451 536 465 523 L 486 533 L 496 503 Z" fill="#eef0ef" stroke="none"/>
+</g>
+<g id="Boot_Back" inkscape:groupmode="layer" inkscape:label="Boot_Back">
+<path id="back-boot-fill" d="M 577 795 C 590 791 609 795 621 799 L 622 820 C 638 824 662 833 673 846 Q 678 856 666 861 Q 620 880 575 858 C 568 846 574 829 576 818 Z" fill="#334561" stroke="none"/>
+</g>
+<g id="Boot_Front" inkscape:groupmode="layer" inkscape:label="Boot_Front">
+<path id="front-boot-fill" d="M 436 810 Q 461 806 492 816 L 488 838 C 489 855 496 873 491 889 Q 460 907 418 889 C 414 880 426 855 430 843 Z" fill="#334561" stroke="none"/>
+</g>
+<g id="Leg_Back" inkscape:groupmode="layer" inkscape:label="Leg_Back">
+<path id="back-trouser-fill" d="M 548 681 Q 580 667 614 687 C 622 723 640 750 645 776 L 637 793 Q 610 819 571 806 L 558 790 Q 572 761 549 741 L 536 715 Z" fill="#334561" stroke="none"/>
+</g>
+<g id="Leg_Front" inkscape:groupmode="layer" inkscape:label="Leg_Front">
+<path id="front-trouser-fill" d="M 514 676 Q 544 674 571 695 C 562 729 550 754 539 781 L 532 805 Q 494 836 440 822 L 427 802 Q 444 768 460 746 C 483 723 496 698 514 676 Z" fill="#334561" stroke="none"/>
+</g>
+<g id="Arm_Back" inkscape:groupmode="layer" inkscape:label="Arm_Back">
+<path id="back-hand-fill" d="M 680 673 C 693 676 704 691 707 704 Q 711 719 704 722 Q 697 720 695 709 L 692 700 Q 690 698 688 702 L 691 716 Q 685 726 679 716 L 674 700 L 664 691 Z" fill="#f5c8a5" stroke="none"/>
+</g>
+<g id="Torso" inkscape:groupmode="layer" inkscape:label="Torso">
+<path id="neck-fill" d="M 524 509 L 577 508 L 585 554 L 564 583 L 526 555 Z" fill="#f5c8a5" stroke="none"/>
+<path id="tunic-body-fill" d="M 479 541 C 506 529 523 535 543 546 L 571 559 L 584 537 C 604 537 619 544 625 568 L 625 638 Q 624 659 607 665 L 488 660 C 476 630 463 579 479 541 Z" fill="#334561" stroke="none"/>
+<path id="ivory-left-lapel-fill" d="M 480 541 Q 499 537 510 548 C 519 563 530 596 535 630 L 542 647 L 505 643 Q 488 623 484 602 Z" fill="#f5ebd1" stroke="none"/>
+<path id="cross-lapel-fill" d="M 587 540 L 601 549 C 594 580 575 611 552 636 L 531 635 Q 564 606 582 562 Z" fill="#f5ebd1" stroke="none"/>
+</g>
+<g id="Sleeve_Back" inkscape:groupmode="layer" inkscape:label="Sleeve_Back">
+<path id="back-sleeve-fill" d="M 605 546 Q 622 541 629 558 L 637 582 L 646 598 L 635 609 Q 639 629 657 644 L 698 670 L 683 686 C 659 686 636 674 617 665 Q 619 642 616 617 L 611 591 Z" fill="#f5ebd1" stroke="none"/>
+</g>
+<g id="Coat" inkscape:groupmode="layer" inkscape:label="Coat">
+<path id="coat-back-panel-fill" d="M 598 663 L 617 666 Q 638 704 676 735 L 647 765 L 627 777 Q 608 732 598 696 Z" fill="#f5ebd1" stroke="none"/>
+<path id="coat-front-panel-fill" d="M 488 655 L 551 670 Q 545 692 532 711 Q 499 731 478 778 C 456 768 439 752 430 736 Q 455 690 488 655 Z" fill="#f5ebd1" stroke="none"/>
+<path id="navy-sash-fill" d="M 552 674 L 579 673 Q 591 714 628 737 L 584 750 L 561 710 Z" fill="#222e47" stroke="none"/>
+</g>
+<g id="Sleeve_Front" inkscape:groupmode="layer" inkscape:label="Sleeve_Front">
+<path id="front-shoulder-fill" d="M 481 544 C 459 530 441 537 426 554 L 405 584 L 415 595 Q 436 591 456 600 L 478 620 Q 491 600 487 578 Z" fill="#f5ebd1" stroke="none"/>
+<path id="front-sleeve-fill" d="M 414 596 Q 440 588 463 609 L 450 628 Q 452 644 463 670 L 467 680 Q 454 697 438 704 L 408 718 Q 381 726 359 719 C 347 708 333 690 327 677 Q 344 660 369 642 Q 390 624 398 611 Z" fill="#f5ebd1" stroke="none"/>
+<path id="front-cuff-fill" d="M 394 677 Q 416 661 439 681 L 445 707 L 432 724 L 388 714 Z" fill="#334561" stroke="none"/>
+</g>
+<g id="Belt" inkscape:groupmode="layer" inkscape:label="Belt">
+<path id="belt-fill" d="M 493 640 Q 550 650 610 638 L 619 654 L 608 674 Q 550 685 488 664 Z" fill="#438e87" stroke="none"/>
+<path id="belt-tail-fill" d="M 615 661 Q 644 685 676 708 L 669 723 Q 639 691 610 674 Z" fill="#438e87" stroke="none"/>
+</g>
+<g id="Arm_Front" inkscape:groupmode="layer" inkscape:label="Arm_Front">
+<path id="front-hand-fill" d="M 405 701 C 420 695 431 701 437 712 Q 451 731 441 736 Q 432 738 428 724 C 428 740 427 748 417 750 C 400 749 388 739 389 725 Q 389 708 405 701 Z" fill="#f5c8a5" stroke="none"/>
+</g>
+<g id="Head" inkscape:groupmode="layer" inkscape:label="Head">
+<path id="head-fill" d="M 455 332 C 483 299 545 296 591 311 C 638 324 668 357 668 403 L 660 465 C 655 503 622 529 580 534 C 540 540 493 531 467 512 L 447 489 C 425 488 414 477 414 462 Q 412 443 433 438 L 441 399 Z" fill="#f5c8a5" stroke="none"/>
+</g>
+<g id="Eyes" inkscape:groupmode="layer" inkscape:label="Eyes">
+</g>
+<g id="Mouth" inkscape:groupmode="layer" inkscape:label="Mouth">
+</g>
+<g id="Hair_Front" inkscape:groupmode="layer" inkscape:label="Hair_Front">
+<path id="hair-mass-fill" d="M 415 273 C 440 235 491 217 539 222 C 578 216 605 223 623 235 Q 627 215 613 205 C 644 211 660 231 665 247 Q 698 249 714 279 L 692 273 Q 706 288 710 302 C 732 332 750 326 762 314 C 758 340 743 352 720 356 Q 734 382 756 390 Q 738 400 717 390 Q 732 420 718 458 L 705 438 Q 701 466 680 481 L 683 453 L 663 479 L 663 445 C 661 414 645 389 632 378 Q 618 385 612 403 Q 607 449 579 471 L 575 448 L 563 479 Q 538 460 538 432 C 511 463 480 485 443 493 Q 453 477 454 463 Q 432 480 412 479 L 426 465 Q 388 486 358 472 L 377 459 Q 341 451 328 417 Q 349 427 368 418 C 335 415 337 383 348 356 L 354 336 Q 377 299 415 273 Z" fill="#eef0ef" stroke="none"/>
+<path id="crown-lock-fill" d="M 478 285 C 494 301 519 294 543 282 Q 579 264 602 273 Q 615 279 619 298 C 615 321 600 338 576 347 L 548 339 C 522 331 493 328 478 285 Z" fill="#eef0ef" stroke="none"/>
+<path id="upturned-lock-fill" d="M 605 284 Q 626 239 615 207 Q 646 216 654 247 C 661 268 644 287 616 296 Z" fill="#eef0ef" stroke="none"/>
+<path id="center-fringe-fill" d="M 604 304 C 578 305 552 321 522 346 C 495 373 476 406 452 439 L 431 473 Q 468 462 497 435 C 477 459 462 481 444 492 C 484 487 515 461 541 430 C 545 454 556 471 578 481 Q 565 460 573 440 C 594 411 611 382 616 354 C 620 331 618 315 604 304 Z" fill="#eef0ef" stroke="none"/>
+<path id="right-fringe-fill" d="M 618 327 Q 641 323 657 345 Q 682 378 674 427 L 662 449 Q 665 405 632 374 Q 619 380 611 400 Q 620 365 618 327 Z" fill="#eef0ef" stroke="none"/>
+</g>
+<g id="Hair_Accessory" inkscape:groupmode="layer" inkscape:label="Hair_Accessory">
+<path id="hair-band-fill" d="M 415 269 C 437 236 468 216 492 207 L 511 221 C 474 229 440 249 420 280 Z" fill="#285c66" stroke="none"/>
+</g>
+</svg>

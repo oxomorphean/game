@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" stroke-linecap="round" stroke-linejoin="round"><g id="Eyes__amber" data-bone="head"><g transform="translate(-3 -4) rotate(-8 529 486)"><path id="Eyes__amber__near-eye-white" d="M 489 479 Q 524 466 559 477 Q 551 505 531 510 C 511 514 497 500 489 479 Z" fill="#fffae9" stroke="#222c40" stroke-width="3.8" />
+<path id="Eyes__amber__near-eye-upper-shade" d="M 493 480 Q 525 470 555 479 L 552 486 Q 519 480 499 489 Z" fill="#bdc5bd" stroke="none" />
+<path id="Eyes__amber__near-iris" d="M 519 477 Q 535 472 547 480 C 551 493 542 506 531 508 Q 514 510 516 489 Z" fill="#ae783d" stroke="#222c40" stroke-width="2" />
+<path id="Eyes__amber__near-iris-dark" d="M 519 479 Q 533 473 546 481 L 546 489 Q 533 485 516 493 Z" fill="#71492e" stroke="none" />
+<path id="Eyes__amber__near-iris-glow" d="M 521 497 Q 534 503 544 491 Q 541 505 531 505 Q 524 506 521 497 Z" fill="#ebc879" stroke="none" />
+<path id="Eyes__amber__near-pupil" d="M 527 486 C 527 479.92486775 529.23857625 475 532 475 C 534.76142375 475 537 479.92486775 537 486 C 537 492.07513225 534.76142375 497 532 497 C 529.23857625 497 527 492.07513225 527 486 Z" fill="#182c38" stroke="none" />
+<path id="Eyes__amber__near-glint" d="M 534 480 C 534 477.514718625 535.790861 475.5 538 475.5 C 540.209139 475.5 542 477.514718625 542 480 C 542 482.485281375 540.209139 484.5 538 484.5 C 535.790861 484.5 534 482.485281375 534 480 Z" fill="#fffef3" stroke="none" />
+<path id="Eyes__amber__near-lid" d="M 486 478 C 508 468 538 469 559 478" fill="none" stroke="#222c40" stroke-width="6.2" />
+<path id="Eyes__amber__near-brow" d="M 493 462 Q 521 450 548 462" fill="none" stroke="#72584c" stroke-width="3.5" />
+</g><g transform="translate(-3 -4) translate(632 456) scale(1 .91) translate(-632 -456)"><path id="Eyes__amber__far-eye-white" d="M 610 454 C 626 438 640 433 653 433 C 649 451 642 474 629 485 C 618 490 610 478 610 454 Z" fill="#fcf6e6" stroke="#222c40" stroke-width="3.6" />
+<path id="Eyes__amber__far-eye-upper-shade" d="M 612 455 Q 634 439 650 437 L 644 447 Q 628 446 612 463 Z" fill="#b6c0bc" stroke="none" />
+<path id="Eyes__amber__far-iris" d="M 624 452 Q 635 442 641 448 C 644 462 636 478 628 482 C 618 482 617 467 624 452 Z" fill="#ae783d" stroke="#222c40" stroke-width="2" />
+<path id="Eyes__amber__far-iris-dark" d="M 623 454 Q 633 445 641 449 L 638 462 Q 628 460 621 469 Z" fill="#71492e" stroke="none" />
+<path id="Eyes__amber__far-iris-glow" d="M 623 471 Q 630 472 635 463 Q 635 476 627 479 Z" fill="#e4bc6b" stroke="none" />
+<path id="Eyes__amber__far-pupil" d="M 627 458 C 627 453.02943725 628.790861 449 631 449 C 633.209139 449 635 453.02943725 635 458 C 635 462.97056275 633.209139 467 631 467 C 628.790861 467 627 462.97056275 627 458 Z" fill="#182c37" stroke="none" />
+<path id="Eyes__amber__far-eye-glint" d="M 632 451 C 632 448.790861 633.34314575 447 635 447 C 636.65685425 447 638 448.790861 638 451 C 638 453.209139 636.65685425 455 635 455 C 633.34314575 455 632 453.209139 632 451 Z" fill="#fffdef" stroke="none" />
+<path id="Eyes__amber__far-lid" d="M 609 453 Q 627 437 653 431" fill="none" stroke="#222c40" stroke-width="5.6" />
+<path id="Eyes__amber__far-brow" d="M 616 435 Q 631 424 647 420" fill="none" stroke="#654f4a" stroke-width="3.5" />
+</g></g></svg>

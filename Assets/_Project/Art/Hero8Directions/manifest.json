@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "frameSize": 128,
+  "pixelsPerUnit": 58,
+  "pivot": [
+    0.5,
+    0.3258686885237694
+  ],
+  "directions": [
+    "east",
+    "north-east",
+    "north",
+    "north-west",
+    "west",
+    "south-west",
+    "south",
+    "south-east"
+  ],
+  "clips": [
+    {
+      "id": "idle",
+      "frames": 8,
+      "fps": 8,
+      "loop": true,
+      "impactPhase": 0
+    },
+    {
+      "id": "run",
+      "frames": 12,
+      "fps": 18,
+      "loop": true,
+      "impactPhase": 0
+    },
+    {
+      "id": "attack",
+      "frames": 8,
+      "fps": 20,
+      "loop": false,
+      "impactPhase": 0.5714285714285714
+    },
+    {
+      "id": "sweep",
+      "frames": 10,
+      "fps": 20,
+      "loop": false,
+      "impactPhase": 0.5555555555555556
+    },
+    {
+      "id": "dash",
+      "frames": 4,
+      "fps": 16,
+      "loop": true,
+      "impactPhase": 0
+    },
+    {
+      "id": "hurt",
+      "frames": 4,
+      "fps": 16,
+      "loop": false,
+      "impactPhase": 0
+    },
+    {
+      "id": "down",
+      "frames": 6,
+      "fps": 12,
+      "loop": false,
+      "impactPhase": 0
+    }
+  ],
+  "source": "hero.blend",
+  "cameraElevationDegrees": 49.98807537692866,
+  "renderFrameSize": 192
+}

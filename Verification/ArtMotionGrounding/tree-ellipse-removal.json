@@ -1,0 +1,14 @@
+[
+  {
+    "path": "Assets/_Project/Content/Prefabs/Environment/cherry-tree.prefab",
+    "trees": 1,
+    "removed": 1,
+    "remainingEllipses": 0
+  },
+  {
+    "path": "Assets/_Project/Content/Prefabs/Environment/MeadowMap.prefab",
+    "trees": 2,
+    "removed": 0,
+    "remainingEllipses": 0
+  }
+]

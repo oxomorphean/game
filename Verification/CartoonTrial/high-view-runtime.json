@@ -1,0 +1,57 @@
+{
+  "checks": {
+    "two_distinct_actor_sprites": true,
+    "two_six_bone_skins": true,
+    "two_deformed_meshes": true,
+    "animation_advances": true,
+    "pet_moves_to_click": true,
+    "other_actor_follows": true,
+    "tab_switches_to_pet": true,
+    "r_restores_hero_and_spawns": true
+  },
+  "passed": 8,
+  "failed": 0,
+  "before": {
+    "controlled": "hero",
+    "heroX": -4.41181755,
+    "heroY": 2.50199318,
+    "petX": -3.07174373,
+    "petY": 1.9506973,
+    "heroBones": 6,
+    "petBones": 6,
+    "heroVertices": 475,
+    "petVertices": 475,
+    "heroTime": 66.0863647,
+    "heroSprite": "Assets/_Project/Art/CartoonV2/hero.png",
+    "petSprite": "Assets/_Project/Art/CartoonV2/huyen-quy.png"
+  },
+  "after": {
+    "controlled": "pet",
+    "heroX": 2.681842,
+    "heroY": -2.60906339,
+    "petX": 3.96564651,
+    "petY": -2.0537715,
+    "heroBones": 6,
+    "petBones": 6,
+    "heroVertices": 475,
+    "petVertices": 475,
+    "heroTime": 183.949432,
+    "heroSprite": "Assets/_Project/Art/CartoonV2/hero.png",
+    "petSprite": "Assets/_Project/Art/CartoonV2/huyen-quy.png"
+  },
+  "reset": {
+    "controlled": "hero",
+    "heroX": 0.55,
+    "heroY": -0.55,
+    "petX": -0.75,
+    "petY": -1.1,
+    "heroBones": 6,
+    "petBones": 6,
+    "heroVertices": 475,
+    "petVertices": 475,
+    "heroTime": 241.570175,
+    "heroSprite": "Assets/_Project/Art/CartoonV2/hero.png",
+    "petSprite": "Assets/_Project/Art/CartoonV2/huyen-quy.png"
+  },
+  "mode": "Unity Editor actual Tab/R and pointer input"
+}

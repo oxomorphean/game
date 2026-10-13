@@ -1,0 +1,86 @@
+[
+  {
+    "file": "Assets/_Project/Art/GardenV8/paving-petal.png",
+    "kind": "tile",
+    "size": [
+      32,
+      32
+    ],
+    "colors": 7,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "Assets/_Project/Art/GardenV8/paving-slab.png",
+    "kind": "tile",
+    "size": [
+      32,
+      32
+    ],
+    "colors": 4,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "Assets/_Project/Art/GardenV8/paving-split.png",
+    "kind": "tile",
+    "size": [
+      32,
+      32
+    ],
+    "colors": 4,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "Assets/_Project/Art/GardenV8/bamboo.png",
+    "kind": "sprite",
+    "size": [
+      48,
+      80
+    ],
+    "colors": 5,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "Assets/_Project/Art/GardenV8/spirit-egg.png",
+    "kind": "sprite",
+    "size": [
+      24,
+      32
+    ],
+    "colors": 10,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "Assets/_Project/Art/GardenV8/spirit-herb.png",
+    "kind": "sprite",
+    "size": [
+      24,
+      32
+    ],
+    "colors": 10,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "file": "Assets/_Project/Art/GardenV8/jade-ore.png",
+    "kind": "sprite",
+    "size": [
+      32,
+      32
+    ],
+    "colors": 10,
+    "frames": 1,
+    "status": "PASS",
+    "issues": []
+  }
+]

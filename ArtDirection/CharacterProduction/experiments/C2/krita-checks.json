@@ -1,0 +1,274 @@
+{
+  "canvas": [
+    1024,
+    1024
+  ],
+  "reopened_vector_layers": 52,
+  "source_sha256": "f19da3e2e6ee1d5bea74681e7ce26862fe5f6ceedac61093974d27248c1f0ea7",
+  "method": "Authored Bezier paths in native Krita vector layers; raster-per-part PSD handoff",
+  "layers": {
+    "Hair_Back__Silver": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Hair_Back__Ink": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Body_Thigh_back": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Body_Shin_back": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Body_Thigh_front": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Body_Shin_front": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Body_Pelvis": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Body_Torso": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Body_Upper_back": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Body_Fore_back": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Body_Upper_front": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Body_Fore_front": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Trouser_Upper_back__classic": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Trouser_Lower_back__classic": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Trouser_Upper_front__classic": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Trouser_Lower_front__classic": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Trouser_Upper_back__jade": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Trouser_Lower_back__jade": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Trouser_Upper_front__jade": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Trouser_Lower_front__jade": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Boot_back": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Boot_front": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Basic_Shorts": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Body_Neck": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Basic_Top": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Classic_Torso": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Classic_Upper_back": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Classic_Fore_back": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Classic_Upper_front": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Classic_Fore_front": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Classic_Coat_back": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Classic_Coat_front": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Classic_Sash": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Classic_Belt": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Jade_Torso": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Jade_Upper_back": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Jade_Fore_back": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Jade_Upper_front": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Jade_Fore_front": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Jade_Coat_back": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Jade_Coat_front": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Jade_Belt": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Hand_back": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Hand_front": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Head": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Eyes__jade": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Eyes__amber": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Mouth": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Hair_Front__silver": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Hair_Front__ink": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Hair_Ornament__Silver": {
+      "type": "vectorlayer",
+      "shapes": 1
+    },
+    "Hair_Ornament__Ink": {
+      "type": "vectorlayer",
+      "shapes": 1
+    }
+  },
+  "reopened_psd_layers": 52,
+  "exports": {
+    "Basic_Shorts.png": "341ef6b77b87e267fb22d9c79b9ec50edb03efdca8b35539dc1a1806df169011",
+    "Basic_Top.png": "b28c59d82c0ed7b8909709868dfb69ec173d963ae4c6543b92bd67375144023c",
+    "Body_Fore_back.png": "64e8592ee7eed8ba29ea393f7c9a41b0844314bf9117ae3c924427646d4808bb",
+    "Body_Fore_front.png": "75e9b539c2af8e5ba29db6cf2fdf3d25af6cd21b2215640d5098281209bac5ed",
+    "Body_Neck.png": "787e031bae4b2f2529dd5cb31e174e61378a282f722d3f65d2fdd322f2a48085",
+    "Body_Pelvis.png": "174cf253ca88d747bd923b2c879c412b018b67c8f353c456eccc663fe22bcbec",
+    "Body_Shin_back.png": "5817d3266ee81be1b1c81313ce377fc77aaadcd869be615585245cadad59b2fc",
+    "Body_Shin_front.png": "59827b4a55d74898dcb0af687e2e9a5f0da0e0990b24cdc906b6cb3b030ea66d",
+    "Body_Thigh_back.png": "dea2a8e92fa820368ce87ae2869fe50daf0e6252611f35b4d9e58f83ab7c950b",
+    "Body_Thigh_front.png": "4184f848e9b6d63205b5c1def5b503ed4d10319e335e67a4c731dccca3bdfb40",
+    "Body_Torso.png": "556110aec8ccae8ff721ed0f6cb59920c2b6c8c0d2dfc608d65136b072fb149e",
+    "Body_Upper_back.png": "1c7e406ce3a21de2b877382bfa73e64bab1b941518873fb19aca10d302993bdf",
+    "Body_Upper_front.png": "57f16276e6f1907d5b21cb65c8b846907ed0d34faebb74f96763d963596aa375",
+    "Boot_back.png": "14dffb33676c2d2431c6af4cf0c1dd80977ee2e814b6c7f1f79ed89ae0d796f2",
+    "Boot_front.png": "5ba5d0d044dfe7d3961c8580210fb72c14221722f6357d5b48f7f2e4feba7745",
+    "Classic_Belt.png": "ee3f406cc8cc767b16dea6808b23bed935199562605aa2b38ed1bd4cb1b44049",
+    "Classic_Coat_back.png": "b49262a296de555c72e1d6c49b057e1a3da55258b24375dffabb98f80aeffda7",
+    "Classic_Coat_front.png": "c1cb2625b0d80acba3335b0e7e1b013d3f919bb79e096e26a4f65398215d8f3f",
+    "Classic_Fore_back.png": "5161475b3904e9f60496af847e764d947586af250ac2d7311bdd8906fffb4d16",
+    "Classic_Fore_front.png": "440bdda8b3dcf82ced4dc0947a68e3dd862d170d1422723b5e046e691016f993",
+    "Classic_Sash.png": "d4b502f6557b6b2353b75e4bb198fa22af5d5370fd1d4a2ab48986a2bdeb18e9",
+    "Classic_Torso.png": "d498b39e50f46d49965ad27d0a23ee28138fa69647c54e1968626ba487d241fd",
+    "Classic_Upper_back.png": "876593343cac005fe2a86c7def63a56e468ab22ced4d5505835458523fe4dc02",
+    "Classic_Upper_front.png": "0838e2f0de12ffc067c8f9d8d1df9d2b3a9e6436b33a159209f565509a9c16c0",
+    "Eyes__amber.png": "97179a1057402f59a6108b0927c5236e7ec731c99870908821c481644c635072",
+    "Eyes__jade.png": "12cf26ca010d4ca48ea4186db02bb9791f3b0aa45077dfefc2f1802cb2a96087",
+    "Hair_Back__Ink.png": "a4f02aeb5f2f74e76628e0dd104e77522b0091803a50d15dc5dead324e23a080",
+    "Hair_Back__Silver.png": "d2f0c9dc87075248aa81002cc2c574e9753bbdacdfdad9035631f10f543395fb",
+    "Hair_Front__ink.png": "0a5680942742ed5b7968a48cbdbea5bcb1f81f2c6c5677f3ceb0e64e932b92fe",
+    "Hair_Front__silver.png": "3b1e3db4de74897207dbcde9a459485e34a6c86cecd44c0aefdc0b9147c7af2e",
+    "Hair_Ornament__Ink.png": "44e4faed3219fb23e39f19793e6a802d7d4f286ca0ed2e947f37ca8210414fee",
+    "Hair_Ornament__Silver.png": "d153b3c7342da6c89ad35e51638d2051d182e5d8694a06da2413ff0132673c36",
+    "Hand_back.png": "a60d46554efa55c5d36063d744c43644376dfb5039386186deddd1f0990e1ed5",
+    "Hand_front.png": "fcea10c8e266f3bc4fcde362a25d6c7eca073d57d0b6ef5cbe76c75f9759c1c9",
+    "Head.png": "a42d6905688a428abce95e1847c5b135385e51d5400250e7cbd76963fc9a4e83",
+    "Jade_Belt.png": "fb6d7c83a8474a5d25640bc46864267153f1156d7e267a8782635204fbcc5e53",
+    "Jade_Coat_back.png": "ce46c4bab8f6003d0b1a0c09930302e309f35beb304413e728a7b1da1b0530fa",
+    "Jade_Coat_front.png": "d4adf1afe5c8c3f134a262987e0aa8a964c6d498bec2d23735e1cb6c919c1d66",
+    "Jade_Fore_back.png": "a252f5d9344a09c5be360859b6c86f48bcbcd7f003a01494988c454e01cad7a6",
+    "Jade_Fore_front.png": "bb7b23def5ffec6e75cce31eef539c852ea025b685f4120edb994ae12cc6e2f9",
+    "Jade_Torso.png": "301f7905b278d9f97a983dc16e9315cc14dbf0ee18956f991b76649c349e2f18",
+    "Jade_Upper_back.png": "16fc1440bcf7e7abaca6fd349c1c9b7b5f32665edcbd5bc2dcbf467bef956fd4",
+    "Jade_Upper_front.png": "b81a7dde6038135e8901a28171cafa21e153b9b3fc0e62383782116530464eca",
+    "Mouth.png": "4432f34c353e398e3acd0799beb6f80a659c66f6a558ba4c8a5ca88a04236966",
+    "Trouser_Lower_back__classic.png": "35eefe7c65e6a22abd196d0705c997ecf6870742ac049b4819eb056c583bc3e3",
+    "Trouser_Lower_back__jade.png": "8a55ce12a3dfae30f561fde2bf4849eb30f51afb65a09f3139564bcc1292df6f",
+    "Trouser_Lower_front__classic.png": "ecb4530140a5ceb128d588136c6a6fc5acbf5fdaa6e042cbb5d9fa741a11ca59",
+    "Trouser_Lower_front__jade.png": "9c9c5444a7cdd6c12653a305db706085fa00a4ba550b5c048f44eb54f57f2dac",
+    "Trouser_Upper_back__classic.png": "5a16e488c13df751c824b1722fd4b78dfef41fc6e7b0013488d0b0cc53c9a1c1",
+    "Trouser_Upper_back__jade.png": "5a16e488c13df751c824b1722fd4b78dfef41fc6e7b0013488d0b0cc53c9a1c1",
+    "Trouser_Upper_front__classic.png": "f0276a1715fdd7928df3bd5f7be16c23dd79b20d340d286908d329d7ad8d9c9a",
+    "Trouser_Upper_front__jade.png": "f0276a1715fdd7928df3bd5f7be16c23dd79b20d340d286908d329d7ad8d9c9a"
+  }
+}

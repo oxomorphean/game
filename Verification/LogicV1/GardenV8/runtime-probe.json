@@ -1,0 +1,28 @@
+{
+    "passed": 7,
+    "failed": 0,
+    "cases": [
+        "PASS 14 reused petals and 3 pond glints initialized",
+        "PASS Player moves through unchanged command/input loop",
+        "PASS Player and ambient visual clocks advance across frames",
+        "PASS Cherry petals fall/drift instead of static decoration",
+        "PASS All four existing pond glint frames render in the loop",
+        "PASS Human directional walk advances through multiple frames",
+        "PASS Stopping movement returns human to side idle"
+    ],
+    "glintFrames": [
+        "water-ripple-0",
+        "water-ripple-1",
+        "water-ripple-2",
+        "water-ripple-3"
+    ],
+    "humanWalkFrames": [
+        "cultivator-24",
+        "cultivator-25",
+        "cultivator-26",
+        "cultivator-27",
+        "cultivator-28",
+        "cultivator-29"
+    ],
+    "elapsed": 1.722320556640625
+}

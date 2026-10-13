@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" stroke-linecap="round" stroke-linejoin="round"><g id="Classic_Coat_back" data-bone="coat_back"><path id="Classic_Coat_back__coat-back-panel" d="M 598 663 L 617 666 Q 638 704 676 735 L 647 765 L 627 777 Q 608 732 598 696 Z" fill="#f5ebd1" stroke="#222c40" stroke-width="6" />
+<path id="Classic_Coat_back__coat-back-shadow" d="M 608 677 L 620 689 L 640 722 L 666 740 L 647 758 Q 628 723 608 707 Z" fill="#b7b8ae" stroke="none" />
+<path id="Classic_Coat_back__coat-back-light" d="M 617 680 Q 640 716 667 736 L 650 747 Q 637 714 617 680 Z" fill="#fffcf2" stroke="none" />
+<path id="Classic_Coat_back__coat-back-gold" d="M 610 694 Q 632 729 660 743 L 642 759" fill="none" stroke="#cba45f" stroke-width="5.5" />
+</g></svg>

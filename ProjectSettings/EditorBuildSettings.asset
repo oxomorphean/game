@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ArtSample/SpiritTurtleGarden.unity
-    guid: 2198a6930121f4b469aa4e11b8b2e7e6
+    path: Assets/_Project/Content/Scenes/ArtPreview.unity
+    guid: bda5626575d0245c88fb71f47de3e4d0
   m_configObjects: {}

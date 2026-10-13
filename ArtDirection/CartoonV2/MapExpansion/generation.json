@@ -1,0 +1,16 @@
+{
+  "status": "Art sample for user review; not imported or placed in the Unity gameplay scene",
+  "date": "2026-10-08",
+  "mode": "built-in ImageGen",
+  "scope": "One northern meadow background; seven remaining new maps deferred pending review",
+  "reference": "Assets/_Project/Art/CartoonV2/Environment/ground-road.png",
+  "referenceSha256": "db5c283bea2d7f7eb1286cbd85f86e91f31fd09e738f673d59651268dc7e06bd",
+  "output": "meadow-north-01.png",
+  "pixels": [
+    1672,
+    941
+  ],
+  "source": "/Users/nguyenhoangdacdat/.codex/generated_images/01a11476-d929-71c1-8f8d-293d521c936b/exec-0ff0b864-a92c-4ae6-8a06-44988b369ce1.png",
+  "preview": "index.html",
+  "prompt": "Use case: precise-object-edit.\nAsset type: ONE opaque landscape 16:9 meadow GROUND map tile for the same 2D game.\nImage 1 is the current southern map and provides exact palette, scale, grass style and edge to connect to.\nRepaint its terrain layout as ONE NEW NORTHERN neighbor map, output only the new landscape tile, NOT two maps and NOT a comparison.\nThe bottom of this new tile will touch the TOP edge of Image 1. Therefore the dirt road ENTERS the new map through its BOTTOM edge at x=82% of image width, spanning roughly x=77% to x=87%, matching the tan trail visible across the TOP edge of Image 1. The grass along the bottom edge must match the TOP-edge meadow palette of Image 1: olive lime greens, medium olive base, understated pale swaths, no dark seam or lighting fade.\nRoad layout: begin at the bottom edge on the RIGHT at x=82%; wind through the right quarter in the lower half, then bend toward center-left in the upper half and exit the TOP edge around x=30%. This is a different bend and open field layout from Image 1. Keep original irregular varying trail width, patchy earth islands, ragged grass margins, and a modest number of small flat inset gray stepping stones belonging to the fixed ground. Match stone/grass scale to Image 1, don't enlarge them.\nMost of the tile is calm empty meadow with subtle broad flat lighter/darker green swaths and a small open grass clearing toward left center. The differences are in road curvature and grass patch placement, not new colors or a different biome. A handful of tiny sparse low grass blades is permitted. Exact original clean commercial painted cel shaded overhead 2D RPG style, flat orthographic ground from high above, antialiased artwork, not pixel art.\nNO trees, cherry trees, flowers, bushes, ponds, water, buildings, gates, large rocks, freestanding props, cast shadows, characters, UI, text, border, watermark, horizon, mountains or dense gritty texture. No shadow/vignette or halo along any edge. Fill whole image with opaque terrain. Create only a single 16:9 northern meadow tile, ideally 2048x1152, ready to be placed above Image 1. The road touching bottom at x=82% and matching source top edge is essential."
+}

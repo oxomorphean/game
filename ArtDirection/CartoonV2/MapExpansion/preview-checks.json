@@ -1,0 +1,20 @@
+{
+  "url": "http://127.0.0.1:8793/",
+  "images": [
+    {
+      "alt": "Một nền đồng cỏ mới nối từ phía bắc, đường mòn uốn sang trái",
+      "height": 941,
+      "loaded": true,
+      "width": 1672
+    },
+    {
+      "alt": "Nền đồng cỏ hiện tại với đường mòn đi lên góc phải",
+      "height": 941,
+      "loaded": true,
+      "width": 1672
+    }
+  ],
+  "logs": [],
+  "inspection": "Two source images; northern trail continues into the unchanged southern source; a narrow presentation blend covers the grass seam",
+  "unityImported": false
+}

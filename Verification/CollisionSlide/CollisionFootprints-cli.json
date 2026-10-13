@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "command": "command run_script",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "AgentScripts/CollisionFootprints.cs",
+      "entry": "CollisionFootprints.Check",
+      "timeout_ms": "120000"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 83,
+      "executeMs": 188,
+      "assemblyName": "PipelineRunScript_CollisionFootprints_f029be4df04b4f6182e85c624396bb49",
+      "success": true,
+      "result": "Footprint checks passed: 38"
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "/Users/nguyenhoangdacdat/dev/nguthu-unity-demo"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

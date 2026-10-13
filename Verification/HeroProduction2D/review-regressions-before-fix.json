@@ -1,0 +1,6 @@
+{
+  "expectedFailure": "NullReferenceException",
+  "restored": true,
+  "animatorParameterAfterEnable": false,
+  "runAfterEnable": false
+}

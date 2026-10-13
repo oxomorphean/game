@@ -1,0 +1,214 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="0 0 1024 1024" width="1024" height="1024" stroke-linecap="round" stroke-linejoin="round">
+<title>Ngự Thú — mẫu C, nhân vật vector</title><desc>Vector drawn from reference A using authored Bezier paths. No embedded raster. Static study, not a rigged character.</desc>
+<g id="Hair_Back" inkscape:groupmode="layer" inkscape:label="Hair_Back">
+<path id="ribbon-far" d="M 379 273 C 355 300 333 332 324 356 L 309 344 C 333 302 349 279 370 263 Z" fill="#285c66" stroke="#222c40" stroke-width="6"/>
+<path id="ribbon-far-light" d="M 368 280 Q 342 318 322 347 L 318 343 Q 339 302 365 278 Z" fill="#589e98" stroke="none"/>
+<path id="ribbon-near" d="M 369 267 C 343 301 296 313 264 326 L 278 338 C 269 359 282 377 303 385 C 316 348 342 309 377 283 Z" fill="#438e87" stroke="#222c40" stroke-width="6"/>
+<path id="ribbon-near-shadow" d="M 275 339 Q 308 327 344 302 Q 318 332 303 378 Q 281 366 275 339 Z" fill="#285c66" stroke="none"/>
+<path id="ribbon-fold-light" d="M 272 328 Q 330 309 357 282 Q 337 315 286 339 Z" fill="#65a59b" stroke="none"/>
+<path id="ribbon-fold" d="M 279 339 Q 324 323 354 294" fill="none" stroke="#285c66" stroke-width="3.4"/>
+<path id="bun" d="M 376 283 C 359 263 370 238 393 222 C 370 221 357 231 347 241 C 347 204 376 176 405 162 C 397 144 395 128 404 114 C 421 140 456 112 491 117 L 482 101 C 518 112 543 139 550 169 C 570 181 574 196 560 216 C 550 244 526 259 501 267 C 464 282 416 287 393 290 L 401 273 C 388 278 383 285 376 291 Z" fill="#eef0ef" stroke="#222c40" stroke-width="6"/>
+<path id="bun-cool-shadow" d="M 352 229 C 382 201 426 209 452 219 C 413 216 399 248 385 277 L 377 284 C 366 265 374 241 397 222 Q 376 217 352 229 Z" fill="#aeb8cb" stroke="none"/>
+<path id="bun-upper-shadow" d="M 406 127 Q 439 146 480 155 Q 455 130 438 127 Q 472 113 499 129 Q 491 116 487 110 C 517 125 537 146 542 173 L 527 186 C 497 150 450 162 422 153 Z" fill="#c3c8d4" stroke="none"/>
+<path id="bun-white-ridge" d="M 405 120 C 419 142 465 137 484 171 C 451 149 424 165 402 169 C 418 158 428 155 439 154 Q 404 145 405 120 Z" fill="#fffcf2" stroke="none"/>
+<path id="bun-sweep" d="M 358 218 C 383 183 425 171 462 194 C 431 186 413 191 401 201 Q 428 198 446 213 C 408 203 379 216 358 218 Z" fill="#fffcf2" stroke="none"/>
+<path id="bun-tip-light" d="M 496 114 Q 531 141 543 167 Q 548 194 523 206 Q 520 153 496 114 Z" fill="#fffcf2" stroke="none"/>
+<path id="bun-flow-1" d="M 398 166 C 430 157 461 176 484 203" fill="none" stroke="#7f8da6" stroke-width="2.5"/>
+<path id="bun-flow-2" d="M 384 268 C 390 241 414 224 438 221" fill="none" stroke="#8390a9" stroke-width="2.5"/>
+<path id="bun-flow-3" d="M 449 133 Q 489 133 510 173" fill="none" stroke="#8c97ab" stroke-width="2.5"/>
+<path id="ribbon-knot" d="M 356 273 C 356 266.372583 360.92486775 261 367 261 C 373.07513225 261 378 266.372583 378 273 C 378 279.627417 373.07513225 285 367 285 C 360.92486775 285 356 279.627417 356 273 Z" fill="#cba45f" stroke="#222c40" stroke-width="3"/>
+<path id="ribbon-knot-light" d="M 360 269 C 360 266.790861 361.790861 265 364 265 C 366.209139 265 368 266.790861 368 269 C 368 271.209139 366.209139 273 364 273 C 361.790861 273 360 271.209139 360 269 Z" fill="#f4dda0" stroke="none"/>
+<path id="neck-hair" d="M 428 438 C 400 450 393 480 398 508 L 415 496 Q 411 515 437 519 L 431 528 Q 451 536 465 523 L 486 533 L 496 503 Z" fill="#eef0ef" stroke="#222c40" stroke-width="6"/>
+<path id="neck-hair-shadow" d="M 433 459 Q 407 494 430 511 L 443 505 L 438 519 Q 458 520 471 508 L 480 519 L 484 497 Z" fill="#aeb8cb" stroke="none"/>
+<path id="neck-hair-tuft" d="M 420 490 Q 426 501 442 500 M 440 517 L 457 508" fill="none" stroke="#77849c" stroke-width="2.8"/>
+</g>
+<g id="Boot_Back" inkscape:groupmode="layer" inkscape:label="Boot_Back">
+<path id="back-boot" d="M 577 795 C 590 791 609 795 621 799 L 622 820 C 638 824 662 833 673 846 Q 678 856 666 861 Q 620 880 575 858 C 568 846 574 829 576 818 Z" fill="#334561" stroke="#222c40" stroke-width="6"/>
+<path id="back-boot-shadow" d="M 578 807 L 617 811 L 615 826 Q 594 831 592 853 L 575 849 Z" fill="#222e47" stroke="none"/>
+<path id="back-boot-toe" d="M 622 828 Q 650 834 665 847 Q 629 862 596 850 Q 604 831 622 828 Z" fill="#45566f" stroke="none"/>
+<path id="back-sole" d="M 575 850 Q 620 870 670 851" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="back-cuff" d="M 578 810 Q 599 818 621 810" fill="none" stroke="#cba45f" stroke-width="7"/>
+<path id="back-boot-fold" d="M 582 826 Q 600 823 611 826" fill="none" stroke="#5b6b7e" stroke-width="3"/>
+</g>
+<g id="Boot_Front" inkscape:groupmode="layer" inkscape:label="Boot_Front">
+<path id="front-boot" d="M 436 810 Q 461 806 492 816 L 488 838 C 489 855 496 873 491 889 Q 460 907 418 889 C 414 880 426 855 430 843 Z" fill="#334561" stroke="#222c40" stroke-width="6"/>
+<path id="front-boot-shadow" d="M 439 824 Q 455 831 481 826 L 475 850 Q 457 850 443 873 L 423 879 Q 433 846 439 824 Z" fill="#222e47" stroke="none"/>
+<path id="front-boot-toe" d="M 445 869 Q 459 855 482 859 L 486 882 Q 456 893 426 884 Z" fill="#435673" stroke="none"/>
+<path id="front-sole" d="M 419 883 Q 452 900 491 884" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="front-boot-cuff" d="M 435 825 Q 459 838 489 827" fill="none" stroke="#cba45f" stroke-width="7"/>
+<path id="front-boot-crease" d="M 438 849 Q 456 842 480 848" fill="none" stroke="#5a6a80" stroke-width="3"/>
+</g>
+<g id="Leg_Back" inkscape:groupmode="layer" inkscape:label="Leg_Back">
+<path id="back-trouser" d="M 548 681 Q 580 667 614 687 C 622 723 640 750 645 776 L 637 793 Q 610 819 571 806 L 558 790 Q 572 761 549 741 L 536 715 Z" fill="#334561" stroke="#222c40" stroke-width="6"/>
+<path id="back-trouser-shadow" d="M 565 695 L 592 712 C 602 746 621 754 631 778 L 621 791 Q 600 807 578 799 L 570 791 Q 587 762 569 741 Z" fill="#222e47" stroke="none"/>
+<path id="back-trouser-light" d="M 579 694 Q 603 701 609 721 L 624 756 Q 600 744 591 724 Z" fill="#4e5f7a" stroke="none"/>
+<path id="back-knee-plane" d="M 599 756 L 620 774 L 599 792 Q 583 786 584 777 Z" fill="#2b3852" stroke="none"/>
+<path id="back-knee-fold" d="M 624 766 Q 615 785 594 792" fill="none" stroke="#222e47" stroke-width="3"/>
+<path id="back-crotch-fold" d="M 557 717 Q 573 728 577 749" fill="none" stroke="#222e47" stroke-width="3.2"/>
+</g>
+<g id="Leg_Front" inkscape:groupmode="layer" inkscape:label="Leg_Front">
+<path id="front-trouser" d="M 514 676 Q 544 674 571 695 C 562 729 550 754 539 781 L 532 805 Q 494 836 440 822 L 427 802 Q 444 768 460 746 C 483 723 496 698 514 676 Z" fill="#334561" stroke="#222c40" stroke-width="6"/>
+<path id="front-trouser-shadow" d="M 549 692 L 562 704 Q 543 754 527 795 Q 488 824 447 814 L 436 802 L 457 782 Q 469 794 480 803 C 511 774 523 731 549 692 Z" fill="#222e47" stroke="none"/>
+<path id="front-thigh-light" d="M 510 697 L 531 698 Q 511 740 486 771 L 453 798 C 464 759 489 732 510 697 Z" fill="#4c5d79" stroke="none"/>
+<path id="front-knee-plane" d="M 503 760 L 486 801 L 465 812 L 481 784 Z" fill="#40516d" stroke="none"/>
+<path id="front-thigh-fold" d="M 536 711 Q 520 741 500 757" fill="none" stroke="#1e2d45" stroke-width="3"/>
+<path id="front-trouser-crease" d="M 443 799 L 457 807 M 476 817 Q 501 811 515 802" fill="none" stroke="#607089" stroke-width="2.5"/>
+</g>
+<g id="Arm_Back" inkscape:groupmode="layer" inkscape:label="Arm_Back">
+<path id="back-hand" d="M 680 673 C 693 676 704 691 707 704 Q 711 719 704 722 Q 697 720 695 709 L 692 700 Q 690 698 688 702 L 691 716 Q 685 726 679 716 L 674 700 L 664 691 Z" fill="#f5c8a5" stroke="#222c40" stroke-width="5"/>
+<path id="back-hand-shadow" d="M 686 683 Q 695 689 699 702 L 702 717 Q 698 716 697 706 L 691 696 Q 685 693 681 698 L 675 692 Z" fill="#da9b85" stroke="none"/>
+<path id="back-hand-thumb" d="M 687 700 L 682 693" fill="none" stroke="#af746b" stroke-width="2.2"/>
+</g>
+<g id="Torso" inkscape:groupmode="layer" inkscape:label="Torso">
+<path id="neck" d="M 524 509 L 577 508 L 585 554 L 564 583 L 526 555 Z" fill="#f5c8a5" stroke="#222c40" stroke-width="6"/>
+<path id="neck-shadow" d="M 527 518 Q 552 530 577 521 L 579 541 L 555 554 L 529 542 Z" fill="#da9b85" stroke="none"/>
+<path id="tunic-body" d="M 479 541 C 506 529 523 535 543 546 L 571 559 L 584 537 C 604 537 619 544 625 568 L 625 638 Q 624 659 607 665 L 488 660 C 476 630 463 579 479 541 Z" fill="#334561" stroke="#222c40" stroke-width="6"/>
+<path id="torso-shadow" d="M 571 560 L 585 547 L 600 566 Q 609 603 613 635 Q 583 654 537 644 L 554 623 Z" fill="#222e47" stroke="none"/>
+<path id="torso-chest-plane" d="M 521 550 L 554 573 L 544 610 Q 528 603 516 581 Z" fill="#455670" stroke="none"/>
+<path id="inner-collar-gold" d="M 520 540 L 559 567 L 574 542" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="ivory-left-lapel" d="M 480 541 Q 499 537 510 548 C 519 563 530 596 535 630 L 542 647 L 505 643 Q 488 623 484 602 Z" fill="#f5ebd1" stroke="#222c40" stroke-width="4.5"/>
+<path id="left-lapel-shadow" d="M 490 551 Q 507 574 510 605 Q 511 630 528 641 L 508 639 Q 496 622 493 603 Z" fill="#b7b8ae" stroke="none"/>
+<path id="left-lapel-light" d="M 481 544 Q 491 543 499 551 Q 501 577 505 591 Q 491 574 481 568 Z" fill="#fffcf2" stroke="none"/>
+<path id="cross-lapel" d="M 587 540 L 601 549 C 594 580 575 611 552 636 L 531 635 Q 564 606 582 562 Z" fill="#f5ebd1" stroke="#222c40" stroke-width="3.5"/>
+<path id="cross-lapel-shadow" d="M 594 548 L 599 551 C 592 580 573 610 551 633 L 542 632 Q 576 599 594 548 Z" fill="#d0cbbb" stroke="none"/>
+<path id="chest-fold" d="M 587 611 Q 580 627 567 633 M 598 627 L 607 620" fill="none" stroke="#51617a" stroke-width="2.5"/>
+</g>
+<g id="Sleeve_Back" inkscape:groupmode="layer" inkscape:label="Sleeve_Back">
+<path id="back-sleeve" d="M 605 546 Q 622 541 629 558 L 637 582 L 646 598 L 635 609 Q 639 629 657 644 L 698 670 L 683 686 C 659 686 636 674 617 665 Q 619 642 616 617 L 611 591 Z" fill="#f5ebd1" stroke="#222c40" stroke-width="6"/>
+<path id="back-sleeve-shadow" d="M 626 564 L 633 586 L 639 598 L 630 607 L 638 632 L 627 648 L 622 625 L 622 598 Z" fill="#b7b8ae" stroke="none"/>
+<path id="back-sleeve-fold" d="M 641 636 L 658 646 L 650 660 L 682 678 Q 652 677 632 664 Z" fill="#d5cebd" stroke="none"/>
+<path id="back-sleeve-light" d="M 646 642 L 657 649 L 680 665 L 655 661 Z" fill="#fffcf2" stroke="none"/>
+<path id="back-sleeve-trim" d="M 637 584 Q 637 597 625 602 M 627 664 Q 658 685 688 675" fill="none" stroke="#cba45f" stroke-width="5"/>
+<path id="back-sleeve-crease" d="M 635 610 L 635 621 L 645 627 M 653 647 L 649 656" fill="none" stroke="#9b9da1" stroke-width="2.5"/>
+</g>
+<g id="Coat" inkscape:groupmode="layer" inkscape:label="Coat">
+<path id="coat-back-panel" d="M 598 663 L 617 666 Q 638 704 676 735 L 647 765 L 627 777 Q 608 732 598 696 Z" fill="#f5ebd1" stroke="#222c40" stroke-width="6"/>
+<path id="coat-back-shadow" d="M 608 677 L 620 689 L 640 722 L 666 740 L 647 758 Q 628 723 608 707 Z" fill="#b7b8ae" stroke="none"/>
+<path id="coat-back-light" d="M 617 680 Q 640 716 667 736 L 650 747 Q 637 714 617 680 Z" fill="#fffcf2" stroke="none"/>
+<path id="coat-back-gold" d="M 610 694 Q 632 729 660 743 L 642 759" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="coat-front-panel" d="M 488 655 L 551 670 Q 545 692 532 711 Q 499 731 478 778 C 456 768 439 752 430 736 Q 455 690 488 655 Z" fill="#f5ebd1" stroke="#222c40" stroke-width="6"/>
+<path id="coat-front-shadow" d="M 488 663 L 512 670 Q 482 692 459 725 L 438 737 Q 457 703 488 663 Z" fill="#b7b8ae" stroke="none"/>
+<path id="coat-front-fold" d="M 513 680 L 540 676 L 528 704 Q 499 725 478 766 L 466 751 Q 480 714 513 680 Z" fill="#e0d7c2" stroke="none"/>
+<path id="coat-front-light" d="M 492 676 L 513 676 Q 484 704 463 735 L 442 737 Q 462 699 492 676 Z" fill="#fffcf2" stroke="none"/>
+<path id="coat-front-gold" d="M 442 742 Q 454 758 471 766 Q 488 735 507 722" fill="none" stroke="#cba45f" stroke-width="5.5"/>
+<path id="navy-sash" d="M 552 674 L 579 673 Q 591 714 628 737 L 584 750 L 561 710 Z" fill="#222e47" stroke="#222c40" stroke-width="4"/>
+<path id="sash-light" d="M 561 681 L 575 680 Q 588 714 615 734 L 587 741 Q 575 718 561 697 Z" fill="#334561" stroke="none"/>
+<path id="sash-fold" d="M 569 695 Q 582 710 601 720" fill="none" stroke="#52627c" stroke-width="2.7"/>
+</g>
+<g id="Sleeve_Front" inkscape:groupmode="layer" inkscape:label="Sleeve_Front">
+<path id="front-shoulder" d="M 481 544 C 459 530 441 537 426 554 L 405 584 L 415 595 Q 436 591 456 600 L 478 620 Q 491 600 487 578 Z" fill="#f5ebd1" stroke="#222c40" stroke-width="6"/>
+<path id="shoulder-shadow" d="M 478 551 Q 478 578 486 594 L 478 610 Q 467 596 451 591 Q 467 573 466 555 Z" fill="#b7b8ae" stroke="none"/>
+<path id="shoulder-light" d="M 440 548 Q 457 537 471 549 Q 462 561 459 576 Q 442 566 424 582 Q 431 558 440 548 Z" fill="#fffcf2" stroke="none"/>
+<path id="shoulder-gold" d="M 411 581 Q 443 579 477 605" fill="none" stroke="#cba45f" stroke-width="5"/>
+<path id="front-sleeve" d="M 414 596 Q 440 588 463 609 L 450 628 Q 452 644 463 670 L 467 680 Q 454 697 438 704 L 408 718 Q 381 726 359 719 C 347 708 333 690 327 677 Q 344 660 369 642 Q 390 624 398 611 Z" fill="#f5ebd1" stroke="#222c40" stroke-width="6"/>
+<path id="front-sleeve-shadow" d="M 446 610 L 452 616 L 443 630 Q 451 656 459 676 L 440 689 Q 420 684 399 692 L 385 715 L 365 715 Q 358 696 363 683 L 397 663 Q 427 643 446 610 Z" fill="#b7b8ae" stroke="none"/>
+<path id="front-sleeve-fold" d="M 394 628 Q 411 616 436 616 Q 416 633 405 650 L 366 666 Z" fill="#d5d0c0" stroke="none"/>
+<path id="front-sleeve-light" d="M 397 617 Q 413 602 437 609 Q 415 616 405 629 L 386 651 L 350 674 L 338 674 Q 365 648 387 635 Z" fill="#fffcf2" stroke="none"/>
+<path id="sleeve-rim-light" d="M 337 684 L 357 708 L 359 681 Q 386 668 410 662 L 405 667 Q 377 676 362 689 L 361 716 Q 349 709 337 684 Z" fill="#fffcf2" stroke="none"/>
+<path id="front-sleeve-gold" d="M 332 674 Q 349 681 366 674 Q 397 654 415 654 Q 435 657 460 674" fill="none" stroke="#cba45f" stroke-width="6"/>
+<path id="front-sleeve-crease" d="M 403 607 Q 413 609 419 615 M 435 623 Q 420 641 414 646 M 362 689 L 362 706" fill="none" stroke="#95989d" stroke-width="2.8"/>
+<path id="front-cuff" d="M 394 677 Q 416 661 439 681 L 445 707 L 432 724 L 388 714 Z" fill="#334561" stroke="#222c40" stroke-width="4.5"/>
+<path id="front-cuff-shadow" d="M 417 675 Q 431 675 437 685 L 441 704 L 429 711 L 414 688 Z" fill="#222e47" stroke="none"/>
+<path id="front-cuff-gold" d="M 390 707 Q 413 687 439 703" fill="none" stroke="#cba45f" stroke-width="6"/>
+</g>
+<g id="Belt" inkscape:groupmode="layer" inkscape:label="Belt">
+<path id="belt" d="M 493 640 Q 550 650 610 638 L 619 654 L 608 674 Q 550 685 488 664 Z" fill="#438e87" stroke="#222c40" stroke-width="5"/>
+<path id="belt-shadow" d="M 492 654 Q 548 667 608 651 L 611 665 Q 550 680 491 663 Z" fill="#285c66" stroke="none"/>
+<path id="belt-light" d="M 499 645 Q 552 655 596 645 L 596 650 Q 543 662 496 652 Z" fill="#80b6a1" stroke="none"/>
+<path id="belt-tail" d="M 615 661 Q 644 685 676 708 L 669 723 Q 639 691 610 674 Z" fill="#438e87" stroke="#222c40" stroke-width="4"/>
+<path id="belt-tail-shadow" d="M 620 674 Q 644 691 670 714 L 669 719 Q 641 692 620 680 Z" fill="#285c66" stroke="none"/>
+<path id="buckle" d="M 597 654 C 597 644.61115925 604.61115925 637 614 637 C 623.38884075 637 631 644.61115925 631 654 C 631 663.38884075 623.38884075 671 614 671 C 604.61115925 671 597 663.38884075 597 654 Z" fill="#285c66" stroke="#222c40" stroke-width="4"/>
+<path id="buckle-rim" d="M 600 652 C 600 645.372583 605.372583 640 612 640 C 618.627417 640 624 645.372583 624 652 C 624 658.627417 618.627417 664 612 664 C 605.372583 664 600 658.627417 600 652 Z" fill="#7ebcaa" stroke="none"/>
+<path id="buckle-inset" d="M 608 654 C 608 649.581722 611.13400675 646 615 646 C 618.86599325 646 622 649.581722 622 654 C 622 658.418278 618.86599325 662 615 662 C 611.13400675 662 608 658.418278 608 654 Z" fill="#438e87" stroke="none"/>
+<path id="buckle-glint" d="M 605 653 Q 604 644 613 644" fill="none" stroke="#d1ead5" stroke-width="3.5"/>
+</g>
+<g id="Arm_Front" inkscape:groupmode="layer" inkscape:label="Arm_Front">
+<path id="front-hand" d="M 405 701 C 420 695 431 701 437 712 Q 451 731 441 736 Q 432 738 428 724 C 428 740 427 748 417 750 C 400 749 388 739 389 725 Q 389 708 405 701 Z" fill="#f5c8a5" stroke="#222c40" stroke-width="5"/>
+<path id="front-hand-shadow" d="M 400 707 Q 390 722 397 737 Q 404 745 416 748 Q 398 751 391 735 Q 387 717 400 707 Z" fill="#da9b85" stroke="none"/>
+<path id="front-hand-light" d="M 406 707 Q 419 703 427 712 Q 413 708 405 718 Z" fill="#ffe1bb" stroke="none"/>
+<path id="thumb-joint" d="M 428 724 Q 426 716 422 714" fill="none" stroke="#b87565" stroke-width="2.4"/>
+<path id="front-finger-fold" d="M 396 734 Q 396 739 400 741" fill="none" stroke="#c18672" stroke-width="2"/>
+</g>
+<g id="Head" inkscape:groupmode="layer" inkscape:label="Head">
+<path id="head" d="M 455 332 C 483 299 545 296 591 311 C 638 324 668 357 668 403 L 660 465 C 655 503 622 529 580 534 C 540 540 493 531 467 512 L 447 489 C 425 488 414 477 414 462 Q 412 443 433 438 L 441 399 Z" fill="#f5c8a5" stroke="#222c40" stroke-width="5.5"/>
+<path id="face-side-shadow" d="M 627 351 C 651 373 662 403 661 429 L 654 466 Q 650 497 623 515 Q 646 484 643 447 Q 642 404 615 378 Z" fill="#da9b85" stroke="none"/>
+<path id="face-upper-shadow" d="M 451 391 Q 501 354 563 366 Q 619 371 642 413 L 633 432 Q 611 410 598 410 Q 560 426 528 454 L 483 469 L 447 467 Z" fill="#eeb38d" stroke="none"/>
+<path id="jaw-warmth" d="M 462 501 Q 509 533 571 528 Q 607 528 631 511 Q 609 531 578 535 Q 510 539 474 518 Z" fill="#e6aa8a" stroke="none"/>
+<path id="face-light" d="M 522 461 Q 563 433 600 423 Q 621 432 625 451 Q 603 474 597 498 Q 565 524 525 510 Z" fill="#fbd1ab" stroke="none"/>
+<path id="ear-inner" d="M 425 468 C 425 459.163444 430.372583 452 437 452 C 443.627417 452 449 459.163444 449 468 C 449 476.836556 443.627417 484 437 484 C 430.372583 484 425 476.836556 425 468 Z" fill="#da9b85" stroke="none"/>
+<path id="ear-light" d="M 427 457 Q 441 447 450 457 L 441 463 Q 430 459 431 475 Q 424 467 427 457 Z" fill="#ffddba" stroke="none"/>
+<path id="ear-fold" d="M 429 471 Q 430 459 440 461 Q 446 464 439 471" fill="none" stroke="#bb806e" stroke-width="2.5"/>
+</g>
+<g id="Eyes" inkscape:groupmode="layer" inkscape:label="Eyes">
+<path id="far-eye-white" d="M 610 454 C 626 438 640 433 653 433 C 649 451 642 474 629 485 C 618 490 610 478 610 454 Z" fill="#fcf6e6" stroke="#222c40" stroke-width="3.6"/>
+<path id="far-eye-upper-shade" d="M 612 455 Q 634 439 650 437 L 644 447 Q 628 446 612 463 Z" fill="#b6c0bc" stroke="none"/>
+<path id="far-iris" d="M 624 452 Q 635 442 641 448 C 644 462 636 478 628 482 C 618 482 617 467 624 452 Z" fill="#438e87" stroke="#222c40" stroke-width="2"/>
+<path id="far-iris-dark" d="M 623 454 Q 633 445 641 449 L 638 462 Q 628 460 621 469 Z" fill="#285c66" stroke="none"/>
+<path id="far-iris-glow" d="M 623 471 Q 630 472 635 463 Q 635 476 627 479 Z" fill="#85c8b0" stroke="none"/>
+<path id="far-pupil" d="M 627 458 C 627 453.02943725 628.790861 449 631 449 C 633.209139 449 635 453.02943725 635 458 C 635 462.97056275 633.209139 467 631 467 C 628.790861 467 627 462.97056275 627 458 Z" fill="#182c37" stroke="none"/>
+<path id="far-eye-glint" d="M 632 451 C 632 448.790861 633.34314575 447 635 447 C 636.65685425 447 638 448.790861 638 451 C 638 453.209139 636.65685425 455 635 455 C 633.34314575 455 632 453.209139 632 451 Z" fill="#fffdef" stroke="none"/>
+<path id="far-lid" d="M 609 453 Q 627 437 653 431" fill="none" stroke="#222c40" stroke-width="7.2"/>
+<path id="far-lash" d="M 650 434 L 657 426" fill="none" stroke="#222c40" stroke-width="4"/>
+<path id="far-brow" d="M 616 435 Q 631 424 647 420" fill="none" stroke="#654f4a" stroke-width="3.5"/>
+<path id="near-eye-white" d="M 489 479 Q 524 466 559 477 Q 551 505 531 510 C 511 514 497 500 489 479 Z" fill="#fffae9" stroke="#222c40" stroke-width="3.8"/>
+<path id="near-eye-upper-shade" d="M 493 480 Q 525 470 555 479 L 552 486 Q 519 480 499 489 Z" fill="#bdc5bd" stroke="none"/>
+<path id="near-iris" d="M 519 477 Q 535 472 547 480 C 551 493 542 506 531 508 Q 514 510 516 489 Z" fill="#438e87" stroke="#222c40" stroke-width="2"/>
+<path id="near-iris-dark" d="M 519 479 Q 533 473 546 481 L 546 489 Q 533 485 516 493 Z" fill="#285c66" stroke="none"/>
+<path id="near-iris-glow" d="M 521 497 Q 534 503 544 491 Q 541 505 531 505 Q 524 506 521 497 Z" fill="#90cbb3" stroke="none"/>
+<path id="near-pupil" d="M 527 486 C 527 479.92486775 529.23857625 475 532 475 C 534.76142375 475 537 479.92486775 537 486 C 537 492.07513225 534.76142375 497 532 497 C 529.23857625 497 527 492.07513225 527 486 Z" fill="#182c38" stroke="none"/>
+<path id="near-glint" d="M 534 480 C 534 477.514718625 535.790861 475.5 538 475.5 C 540.209139 475.5 542 477.514718625 542 480 C 542 482.485281375 540.209139 484.5 538 484.5 C 535.790861 484.5 534 482.485281375 534 480 Z" fill="#fffef3" stroke="none"/>
+<path id="near-lower-glint" d="M 521 498 C 521 496.8954305 521.8954305 496 523 496 C 524.1045695 496 525 496.8954305 525 498 C 525 499.1045695 524.1045695 500 523 500 C 521.8954305 500 521 499.1045695 521 498 Z" fill="#b9dfbf" stroke="none"/>
+<path id="near-lid" d="M 486 478 C 508 468 538 469 559 478" fill="none" stroke="#222c40" stroke-width="8"/>
+<path id="near-lash" d="M 492 480 L 483 470" fill="none" stroke="#222c40" stroke-width="4"/>
+<path id="near-brow" d="M 493 462 Q 521 450 548 462" fill="none" stroke="#72584c" stroke-width="3.5"/>
+</g>
+<g id="Mouth" inkscape:groupmode="layer" inkscape:label="Mouth">
+<path id="nose" d="M 601 493 L 603 498 L 600 499" fill="none" stroke="#cc9478" stroke-width="2"/>
+<path id="smile" d="M 579 516 Q 592 522 607 513" fill="none" stroke="#745647" stroke-width="2.5"/>
+<path id="smile-corner" d="M 606 513 L 609 510" fill="none" stroke="#ad7c65" stroke-width="1.7"/>
+<path id="near-cheek" d="M 496 504 L 501 506 M 504 508 L 508 509" fill="none" stroke="#e8a78e" stroke-width="2.3"/>
+<path id="far-cheek" d="M 637 487 L 640 485" fill="none" stroke="#e8a78e" stroke-width="2"/>
+</g>
+<g id="Hair_Front" inkscape:groupmode="layer" inkscape:label="Hair_Front">
+<path id="hair-mass" d="M 415 273 C 440 235 491 217 539 222 C 578 216 605 223 623 235 Q 627 215 613 205 C 644 211 660 231 665 247 Q 698 249 714 279 L 692 273 Q 706 288 710 302 C 732 332 750 326 762 314 C 758 340 743 352 720 356 Q 734 382 756 390 Q 738 400 717 390 Q 732 420 718 458 L 705 438 Q 701 466 680 481 L 683 453 L 663 479 L 663 445 C 661 414 645 389 632 378 Q 618 385 612 403 Q 607 449 579 471 L 575 448 L 563 479 Q 538 460 538 432 C 511 463 480 485 443 493 Q 453 477 454 463 Q 432 480 412 479 L 426 465 Q 388 486 358 472 L 377 459 Q 341 451 328 417 Q 349 427 368 418 C 335 415 337 383 348 356 L 354 336 Q 377 299 415 273 Z" fill="#eef0ef" stroke="#222c40" stroke-width="6"/>
+<path id="hair-left-underplane" d="M 415 281 Q 379 322 395 353 C 403 374 418 380 443 378 Q 410 397 387 386 Q 385 407 408 418 Q 382 431 350 423 L 339 421 Q 351 440 375 446 L 400 435 Q 385 454 372 467 Q 403 471 426 449 L 438 424 Q 437 400 460 373 Q 430 350 433 316 Z" fill="#aeb8cb" stroke="none"/>
+<path id="hair-left-middle-plane" d="M 368 336 Q 351 384 370 405 Q 363 371 383 344 Q 377 373 392 386 L 399 379 Q 380 363 395 322 Z" fill="#cbd0da" stroke="none"/>
+<path id="hair-top-plane" d="M 418 284 Q 440 245 486 234 Q 470 252 477 271 Q 495 295 522 296 Q 482 300 458 276 Q 467 312 505 318 Q 463 329 433 302 Q 438 337 470 351 Q 432 345 417 321 Z" fill="#c0c6d2" stroke="none"/>
+<path id="hair-top-light" d="M 427 275 Q 450 242 491 232 Q 476 248 480 260 Q 489 277 507 284 Q 474 272 463 259 Q 445 261 427 275 Z" fill="#fffcf2" stroke="none"/>
+<path id="hair-side-light" d="M 397 298 Q 384 327 397 350 Q 410 369 438 373 Q 417 378 402 368 Q 375 349 380 322 Z" fill="#fffcf2" stroke="none"/>
+<path id="hair-left-tip-light" d="M 340 427 Q 370 436 397 424 Q 385 443 367 447 Q 350 439 340 427 Z" fill="#fffcf2" stroke="none"/>
+<path id="hair-temple-shadow" d="M 442 436 Q 431 462 444 484 L 426 494 L 410 479 L 423 470 Q 420 452 442 436 Z" fill="#929fb7" stroke="none"/>
+<path id="hair-right-shadow" d="M 656 266 Q 687 278 696 310 Q 709 331 739 337 Q 723 349 704 340 L 689 328 Q 697 360 731 382 Q 709 380 693 364 Q 711 400 706 435 L 694 419 Q 692 452 681 469 L 683 443 Q 678 412 663 394 L 649 381 L 635 392 Q 632 366 646 350 Q 669 324 656 266 Z" fill="#aeb8cb" stroke="none"/>
+<path id="hair-right-light" d="M 665 260 Q 691 270 700 291 Q 678 279 673 282 Q 697 301 698 318 Q 680 297 664 293 Z" fill="#fffcf2" stroke="none"/>
+<path id="hair-side-bright" d="M 670 308 Q 681 321 687 341 Q 691 361 707 372 Q 690 367 678 351 L 685 379 Q 668 368 661 350 Z" fill="#fffcf2" stroke="none"/>
+<path id="hair-right-flip" d="M 714 320 Q 734 340 754 327 Q 742 344 722 341 Z" fill="#fffcf2" stroke="none"/>
+<path id="crown-lock" d="M 478 285 C 494 301 519 294 543 282 Q 579 264 602 273 Q 615 279 619 298 C 615 321 600 338 576 347 L 548 339 C 522 331 493 328 478 285 Z" fill="#eef0ef" stroke="#222c40" stroke-width="3"/>
+<path id="crown-lock-shadow" d="M 486 300 Q 515 320 550 304 Q 590 281 609 291 L 614 303 Q 580 310 559 332 Q 518 332 496 316 Z" fill="#bcc4d4" stroke="none"/>
+<path id="crown-lock-light" d="M 490 297 Q 515 304 546 287 Q 578 271 598 279 Q 573 280 550 295 Q 516 317 490 297 Z" fill="#fffcf2" stroke="none"/>
+<path id="upturned-lock" d="M 605 284 Q 626 239 615 207 Q 646 216 654 247 C 661 268 644 287 616 296 Z" fill="#eef0ef" stroke="#222c40" stroke-width="4.5"/>
+<path id="upturned-shadow" d="M 632 219 Q 658 256 624 285 L 615 291 L 629 268 Q 642 244 632 219 Z" fill="#c1c8d6" stroke="none"/>
+<path id="upturned-light" d="M 623 219 Q 639 234 637 248 Q 635 266 619 282 Q 635 246 623 219 Z" fill="#fffcf2" stroke="none"/>
+<path id="center-fringe" d="M 604 304 C 578 305 552 321 522 346 C 495 373 476 406 452 439 L 431 473 Q 468 462 497 435 C 477 459 462 481 444 492 C 484 487 515 461 541 430 C 545 454 556 471 578 481 Q 565 460 573 440 C 594 411 611 382 616 354 C 620 331 618 315 604 304 Z" fill="#eef0ef" stroke="#222c40" stroke-width="4"/>
+<path id="fringe-left-shadow" d="M 540 337 C 516 362 501 395 474 423 L 442 468 Q 476 449 495 429 Q 488 449 473 465 Q 518 432 541 397 Q 562 366 580 351 C 562 355 553 362 540 374 Q 543 353 557 334 Z" fill="#c2c9d7" stroke="none"/>
+<path id="fringe-front-light" d="M 595 313 C 561 325 537 348 519 375 L 505 404 C 530 385 543 365 564 361 Q 575 360 583 353 Q 594 340 609 335 Q 613 321 603 314 Z" fill="#fffcf2" stroke="none"/>
+<path id="fringe-lower-light" d="M 529 401 Q 502 444 467 473 Q 511 450 543 410 L 551 392 Z" fill="#fffcf2" stroke="none"/>
+<path id="fringe-right-shadow" d="M 607 339 Q 606 380 579 421 Q 557 449 570 470 Q 550 455 547 431 Q 574 399 588 368 Z" fill="#aeb8cb" stroke="none"/>
+<path id="right-fringe" d="M 618 327 Q 641 323 657 345 Q 682 378 674 427 L 662 449 Q 665 405 632 374 Q 619 380 611 400 Q 620 365 618 327 Z" fill="#eef0ef" stroke="#222c40" stroke-width="3.5"/>
+<path id="right-fringe-shadow" d="M 632 340 Q 658 362 664 393 L 670 422 L 665 434 Q 658 397 632 374 Q 623 376 616 388 L 620 374 Q 623 355 632 340 Z" fill="#aeb8cb" stroke="none"/>
+<path id="right-fringe-light" d="M 625 332 Q 652 337 662 369 Q 646 347 633 352 L 625 365 Z" fill="#fffcf2" stroke="none"/>
+<path id="hair-flow-top" d="M 491 233 Q 514 238 529 253 M 546 227 Q 575 237 588 256" fill="none" stroke="#8895ad" stroke-width="2.4"/>
+<path id="hair-flow-left" d="M 407 294 Q 397 318 409 337 M 377 373 Q 379 396 396 405" fill="none" stroke="#8794ad" stroke-width="2.3"/>
+<path id="hair-flow-fringe" d="M 578 317 Q 551 330 536 347 M 512 395 Q 496 421 479 438" fill="none" stroke="#8b98ad" stroke-width="2.1"/>
+<path id="hair-flow-right" d="M 678 287 Q 687 292 695 300 M 691 390 Q 697 410 690 429" fill="none" stroke="#8996ae" stroke-width="2.1"/>
+</g>
+<g id="Hair_Accessory" inkscape:groupmode="layer" inkscape:label="Hair_Accessory">
+<path id="hair-band" d="M 415 269 C 437 236 468 216 492 207 L 511 221 C 474 229 440 249 420 280 Z" fill="#285c66" stroke="#222c40" stroke-width="4.5"/>
+<path id="band-lit-face" d="M 428 263 C 450 237 473 224 498 217 L 493 211 Q 454 225 428 252 Z" fill="#438e87" stroke="none"/>
+<path id="band-gold" d="M 435 248 Q 458 226 489 216" fill="none" stroke="#cba45f" stroke-width="4.5"/>
+<path id="jade-ornament" d="M 504 178 C 526 174 542 191 539 211 Q 557 220 546 235 C 532 246 516 237 513 226 C 494 228 479 215 486 197 Q 491 181 504 178 Z" fill="#438e87" stroke="#222c40" stroke-width="4.5"/>
+<path id="jade-shadow" d="M 524 183 C 541 196 526 211 515 208 Q 527 218 516 228 Q 518 238 534 238 Q 549 235 547 225 L 534 215 Q 540 198 524 183 Z" fill="#285c66" stroke="none"/>
+<path id="jade-lit-face" d="M 503 184 Q 519 178 526 191 C 511 185 499 194 498 207 Q 499 217 508 220 Q 489 218 490 204 Q 490 191 503 184 Z" fill="#85bfaa" stroke="none"/>
+<path id="jade-spiral" d="M 521 197 C 506 190 502 210 515 212 C 528 215 533 203 527 194" fill="none" stroke="#b6dec6" stroke-width="4"/>
+<path id="jade-pin-light" d="M 497 190 C 497 188.34314575 498.34314575 187 500 187 C 501.65685425 187 503 188.34314575 503 190 C 503 191.65685425 501.65685425 193 500 193 C 498.34314575 193 497 191.65685425 497 190 Z" fill="#e9f2cf" stroke="none"/>
+</g>
+</svg>

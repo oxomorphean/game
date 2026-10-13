@@ -1,0 +1,563 @@
+{
+  "method": "Actual Unity Input System key and pointer events; readonly inspection",
+  "menuClockAdvanced": true,
+  "directValleyAtRank0": true,
+  "snapshot": {
+    "title": false,
+    "area": 2,
+    "rank": 0,
+    "kills": 0,
+    "thunderKills": 0,
+    "completed": false,
+    "coins": 20,
+    "cultivation": 0,
+    "fusion": "",
+    "save": "Đã tải V1.",
+    "feedback": "Đến Lôi Cốc.",
+    "panels": false,
+    "frame": 3978,
+    "time": 302.4923,
+    "x": -6.2,
+    "y": 0,
+    "hp": 100,
+    "maxHp": 100,
+    "qi": 60,
+    "maxQi": 60,
+    "atk": 22,
+    "def": 2,
+    "speed": 3.3,
+    "phase": "Ready",
+    "basicCd": 0,
+    "skillCd": 0,
+    "movementCd": 0,
+    "movement": "",
+    "foundation": "",
+    "activeMovement": "",
+    "generation": 0,
+    "attackId": 0,
+    "aimX": 0.998010635,
+    "aimY": -0.06304637,
+    "rows": {
+      "InGame": true,
+      "CanContinue": false,
+      "Alive": true,
+      "Completed": false,
+      "Safe": false,
+      "CanPrimary": true,
+      "CanSkill": true,
+      "CanMovement": false,
+      "Health": 100,
+      "MaxHealth": 100,
+      "Spirit": 60,
+      "MaxSpirit": 60,
+      "SkillCooldown": 0,
+      "MovementCooldown": 0,
+      "RespawnSeconds": 0,
+      "Location": "Lôi Cốc",
+      "Realm": "Nhập môn",
+      "Stats": "Công 22 · Thủ 2 · Tốc 3.3 · Hồi LL 3.0/s",
+      "Objective": "Khám phá Lôi Cốc · tìm tài nguyên, luyện chiến đấu; có thể quay về trại bất cứ lúc nào.",
+      "Feedback": "Đến Lôi Cốc.",
+      "SaveStatus": "",
+      "PrimaryLabel": "Đánh thường",
+      "SkillLabel": "Hoành Tảo",
+      "MovementLabel": "Chọn bộ pháp",
+      "Talent": "Chưa dung hợp · 1 ô tinh hạch",
+      "PrimaryReason": "",
+      "SkillReason": "",
+      "MovementReason": "Công pháp chưa học.",
+      "Cultivation": "Tu vi 0/30 · 1 linh thảo = 10",
+      "Interaction": "F · Đi Thanh Vân trại",
+      "InventorySummary": "Kho 1/20 ô · J/E nhặt đồ gần",
+      "Equipment": "Kiếm: Kiếm nhập môn · Giáp: trống",
+      "Coins": 20,
+      "Inventory": [
+        {
+          "Id": "healing-pill",
+          "Title": "Hồi xuân đan ×2",
+          "Detail": "Hồi sinh lực",
+          "Buttons": [
+            {
+              "Label": "Dùng",
+              "Reason": "Sinh lực đang đầy.",
+              "Command": {
+                "Action": 19,
+                "Id": "healing-pill",
+                "Quantity": 1
+              },
+              "Enabled": false
+            },
+            {
+              "Label": "Bán 1 · 3 tệ",
+              "Reason": "Đến Đạo sư ở trại, rời giao tranh 5 giây.",
+              "Command": {
+                "Action": 16,
+                "Id": "healing-pill",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        },
+        {
+          "Id": "gear",
+          "Title": "Trang bị đang dùng",
+          "Detail": "Kiếm: Kiếm nhập môn · Giáp: trống",
+          "Buttons": [
+            {
+              "Label": "Tháo kiếm",
+              "Reason": "",
+              "Command": {
+                "Action": 11,
+                "Id": "",
+                "Quantity": 1
+              },
+              "Enabled": true
+            },
+            {
+              "Label": "Tháo giáp",
+              "Reason": "Ô giáp trống.",
+              "Command": {
+                "Action": 12,
+                "Id": "",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        }
+      ],
+      "Techniques": [
+        {
+          "Id": "duong-nguyen",
+          "Title": "Dưỡng Nguyên Quyết · chưa học",
+          "Detail": "Nền · tăng giới hạn và hồi linh lực · học: 1 Linh thảo",
+          "Buttons": [
+            {
+              "Label": "Học",
+              "Reason": "Đến gần Đạo sư ở Thanh Vân trại [F].",
+              "Command": {
+                "Action": 5,
+                "Id": "duong-nguyen",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        },
+        {
+          "Id": "sweeping-sword",
+          "Title": "Hoành Tảo · đã học",
+          "Detail": "Công kích · quét kiếm quanh người · 20 LL · hồi 4s",
+          "Buttons": []
+        },
+        {
+          "Id": "khinh-van",
+          "Title": "Khinh Vân Bộ · chưa học",
+          "Detail": "Bật/tắt tăng tốc · hết linh lực tự dừng · 5 LL · hồi 1s · học: 2 Linh thảo",
+          "Buttons": [
+            {
+              "Label": "Học",
+              "Reason": "Đến gần Đạo sư ở Thanh Vân trại [F].",
+              "Command": {
+                "Action": 5,
+                "Id": "khinh-van",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        },
+        {
+          "Id": "loi-anh",
+          "Title": "Lôi Ảnh Bộ · chưa học",
+          "Detail": "Lướt theo hướng đi/ngắm · không bất tử · 20 LL · hồi 3s · học: 2 Lôi sa",
+          "Buttons": [
+            {
+              "Label": "Học",
+              "Reason": "Đến gần Đạo sư ở Thanh Vân trại [F].",
+              "Command": {
+                "Action": 5,
+                "Id": "loi-anh",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        }
+      ],
+      "Progression": [
+        {
+          "Id": "cultivation",
+          "Title": "Nhập môn",
+          "Detail": "Tu vi 0/30 · 1 linh thảo = 10",
+          "Buttons": [
+            {
+              "Label": "Hấp thu 1 linh thảo",
+              "Reason": "Về trại an toàn để tu luyện.",
+              "Command": {
+                "Action": 8,
+                "Id": "",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        },
+        {
+          "Id": "breakthrough",
+          "Title": "Đột phá Luyện Khí",
+          "Detail": "Hạ quái 0/3 · 2 linh thảo · tu vi 30",
+          "Buttons": [
+            {
+              "Label": "Đột phá",
+              "Reason": "Về trại để đột phá.",
+              "Command": {
+                "Action": 9,
+                "Id": "",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        }
+      ],
+      "Workshop": [
+        {
+          "Id": "forge-sword",
+          "Title": "Rèn Linh thiết kiếm",
+          "Detail": "3 Linh thiết · 8s, tiếp tục chạy khi mở bảng",
+          "Buttons": [
+            {
+              "Label": "Bắt đầu rèn",
+              "Reason": "Đến Đạo sư trong trại để rèn.",
+              "Command": {
+                "Action": 13,
+                "Id": "forge-sword",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        },
+        {
+          "Id": "forge-armor",
+          "Title": "Rèn Giáp Quy",
+          "Detail": "3 Linh thiết + 1 Tinh hạch Quy · 8s, tiếp tục chạy khi mở bảng",
+          "Buttons": [
+            {
+              "Label": "Bắt đầu rèn",
+              "Reason": "Đến Đạo sư trong trại để rèn.",
+              "Command": {
+                "Action": 13,
+                "Id": "forge-armor",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        }
+      ],
+      "Market": [
+        {
+          "Id": "herb",
+          "Title": "Linh thảo",
+          "Detail": "Đang có 0 · Tu luyện / học pháp",
+          "Buttons": [
+            {
+              "Label": "Mua · 8 tệ",
+              "Reason": "Đến Đạo sư ở trại, rời giao tranh 5 giây.",
+              "Command": {
+                "Action": 15,
+                "Id": "herb",
+                "Quantity": 1
+              },
+              "Enabled": false
+            },
+            {
+              "Label": "Bán · 3 tệ",
+              "Reason": "Đến Đạo sư ở trại, rời giao tranh 5 giây.",
+              "Command": {
+                "Action": 16,
+                "Id": "herb",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        },
+        {
+          "Id": "ore",
+          "Title": "Linh thiết",
+          "Detail": "Đang có 0 · Rèn đồ",
+          "Buttons": [
+            {
+              "Label": "Mua · 10 tệ",
+              "Reason": "Đến Đạo sư ở trại, rời giao tranh 5 giây.",
+              "Command": {
+                "Action": 15,
+                "Id": "ore",
+                "Quantity": 1
+              },
+              "Enabled": false
+            },
+            {
+              "Label": "Bán · 4 tệ",
+              "Reason": "Đến Đạo sư ở trại, rời giao tranh 5 giây.",
+              "Command": {
+                "Action": 16,
+                "Id": "ore",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        },
+        {
+          "Id": "thunder-sand",
+          "Title": "Lôi sa",
+          "Detail": "Đang có 0 · Đột phá / bộ pháp",
+          "Buttons": [
+            {
+              "Label": "Bán · 5 tệ",
+              "Reason": "Đến Đạo sư ở trại, rời giao tranh 5 giây.",
+              "Command": {
+                "Action": 16,
+                "Id": "thunder-sand",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        },
+        {
+          "Id": "core-turtle",
+          "Title": "Tinh hạch Quy",
+          "Detail": "Đang có 0 · Dung hợp Quy giáp",
+          "Buttons": [
+            {
+              "Label": "Bán · 12 tệ",
+              "Reason": "Đến Đạo sư ở trại, rời giao tranh 5 giây.",
+              "Command": {
+                "Action": 16,
+                "Id": "core-turtle",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        },
+        {
+          "Id": "core-thunder",
+          "Title": "Tinh hạch Lôi",
+          "Detail": "Đang có 0 · Dung hợp Lôi tức",
+          "Buttons": [
+            {
+              "Label": "Bán · 12 tệ",
+              "Reason": "Đến Đạo sư ở trại, rời giao tranh 5 giây.",
+              "Command": {
+                "Action": 16,
+                "Id": "core-thunder",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        },
+        {
+          "Id": "healing-pill",
+          "Title": "Hồi xuân đan",
+          "Detail": "Đang có 2 · Hồi sinh lực",
+          "Buttons": [
+            {
+              "Label": "Mua · 10 tệ",
+              "Reason": "Đến Đạo sư ở trại, rời giao tranh 5 giây.",
+              "Command": {
+                "Action": 15,
+                "Id": "healing-pill",
+                "Quantity": 1
+              },
+              "Enabled": false
+            },
+            {
+              "Label": "Bán · 3 tệ",
+              "Reason": "Đến Đạo sư ở trại, rời giao tranh 5 giây.",
+              "Command": {
+                "Action": 16,
+                "Id": "healing-pill",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        },
+        {
+          "Id": "steel-sword",
+          "Title": "Linh thiết kiếm",
+          "Detail": "Đang có 0 · Binh khí",
+          "Buttons": [
+            {
+              "Label": "Bán · 18 tệ",
+              "Reason": "Đến Đạo sư ở trại, rời giao tranh 5 giây.",
+              "Command": {
+                "Action": 16,
+                "Id": "steel-sword",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        },
+        {
+          "Id": "turtle-armor",
+          "Title": "Giáp Quy",
+          "Detail": "Đang có 0 · Giáp",
+          "Buttons": [
+            {
+              "Label": "Bán · 20 tệ",
+              "Reason": "Đến Đạo sư ở trại, rời giao tranh 5 giây.",
+              "Command": {
+                "Action": 16,
+                "Id": "turtle-armor",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        }
+      ],
+      "Fusion": [
+        {
+          "Id": "core-turtle",
+          "Title": "Quy giáp",
+          "Detail": "Giảm 50% sát thương trong lúc ra đòn; tốc -0.3 · 1 tinh hạch; đổi/tháo 20 tệ, không hoàn core",
+          "Buttons": [
+            {
+              "Label": "Dung hợp",
+              "Reason": "Về trại để dung hợp.",
+              "Command": {
+                "Action": 17,
+                "Id": "core-turtle",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        },
+        {
+          "Id": "core-thunder",
+          "Title": "Lôi tức",
+          "Detail": "Lướt xong phát xung quanh người: 1.3× công · hồi 5s · 1 tinh hạch; đổi/tháo 20 tệ, không hoàn core",
+          "Buttons": [
+            {
+              "Label": "Dung hợp",
+              "Reason": "Về trại để dung hợp.",
+              "Command": {
+                "Action": 17,
+                "Id": "core-thunder",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        }
+      ],
+      "Travel": [
+        {
+          "Id": "0",
+          "Title": "Thanh Vân trại",
+          "Detail": "An toàn · Đạo sư, lò rèn và hai lối khám phá",
+          "Buttons": [
+            {
+              "Label": "Qua cổng",
+              "Reason": "",
+              "Command": {
+                "Action": 20,
+                "Id": "0",
+                "Quantity": 1
+              },
+              "Enabled": true
+            }
+          ]
+        },
+        {
+          "Id": "1",
+          "Title": "Trúc Lâm",
+          "Detail": "Yêu Quy / Mộc Linh · linh thảo, quặng, Quy hạch",
+          "Buttons": [
+            {
+              "Label": "Qua cổng",
+              "Reason": "Đến gần cổng nối với vùng muốn khám phá rồi nhấn F.",
+              "Command": {
+                "Action": 20,
+                "Id": "1",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        },
+        {
+          "Id": "2",
+          "Title": "Lôi Cốc",
+          "Detail": "Vùng nguy hiểm · Lôi Lang và Cổ Giáp Vương; được tự do vào khám phá",
+          "Buttons": [
+            {
+              "Label": "Đang ở đây",
+              "Reason": "Đến gần cổng nối với vùng muốn khám phá rồi nhấn F.",
+              "Command": {
+                "Action": 20,
+                "Id": "2",
+                "Quantity": 1
+              },
+              "Enabled": false
+            }
+          ]
+        }
+      ]
+    },
+    "enemies": [
+      {
+        "id": 2,
+        "kind": "storm-wolf",
+        "x": -3,
+        "y": -0.7,
+        "hp": 100,
+        "phase": "Windup",
+        "distance": 3.27566767,
+        "generation": 0
+      },
+      {
+        "id": 3,
+        "kind": "storm-wolf",
+        "x": 0.5,
+        "y": -2.4,
+        "hp": 100,
+        "phase": "Ready",
+        "distance": 7.11688137,
+        "generation": 0
+      },
+      {
+        "id": 4,
+        "kind": "storm-wolf",
+        "x": 3,
+        "y": 0.2,
+        "hp": 100,
+        "phase": "Ready",
+        "distance": 9.202173,
+        "generation": 0
+      },
+      {
+        "id": 5,
+        "kind": "ancient-guardian",
+        "x": 5,
+        "y": 2,
+        "hp": 460,
+        "phase": "Ready",
+        "distance": 11.3771706,
+        "generation": 0
+      }
+    ],
+    "drops": []
+  }
+}
