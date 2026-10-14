@@ -17,6 +17,8 @@ namespace LinhThu.Client.UI
         public UnityEngine.UI.Button[] hotbar = Array.Empty<UnityEngine.UI.Button>();
         public TMP_Text[] hotbarLabels = Array.Empty<TMP_Text>();
         public UnityEngine.UI.Button interactButton, beastButton, outfitButton, saveButton, loadButton;
+        public TMP_Text interactButtonLabel;
+        public InteractionPromptPresenter interactionPrompt;
         private GameBootstrapper game;
         private float messageUntil;
         public void Bind(GameBootstrapper bootstrapper)
@@ -32,7 +34,7 @@ namespace LinhThu.Client.UI
                 hotbar[i].onClick.AddListener(() => game.CastFromHud(slot));
             }
 
-            interactButton.onClick.AddListener(() => game.InteractNearest());
+            interactButton.onClick.AddListener(() => game.InteractFocused());
             beastButton.onClick.AddListener(() => game.ToggleBeast());
             outfitButton.onClick.AddListener(() => game.CycleOutfit());
             saveButton.onClick.AddListener(game.SaveGame);
@@ -56,9 +58,15 @@ namespace LinhThu.Client.UI
             inventory.text = $"TÚI ĐỒ  {world.Player.Inventory.Slots.Count}/{world.Player.Inventory.Capacity}\n" + string.Join("\n", world.Player.Inventory.Slots.GroupBy(i => i.DefinitionId).Select(g => game.registry.Item(g.Key).displayName + "  ×" + g.Sum(i => i.Count)));
             var beast = world.Player.Beasts.All.FirstOrDefault();
             beastState.text = beast == null ? "Chưa có linh thú" : game.registry.beasts.First(b => b.Id == beast.DefinitionId).displayName + (beast.State == BeastState.SummonedActive ? " · Đồng hành" : " · Đang nghỉ");
-            var node = game.NearestNode();
-            interaction.text = node == null ? "Không có tài nguyên" : game.registry.nodes.First(n => n.Id == node.DefinitionId).displayName + (node.GrowthTimer > 0 ? $" · {node.GrowthTimer:0.0}s" : node.Spec.Kind == WorldNodeKind.SpiritFieldPlot && node.CropDefinitionId == null ? " · Gieo hạt" : "");
-            interactButton.interactable = actor.CanAct && node != null && (node.Position - actor.Transform.Position).Length <= node.Spec.InteractionRadius + actor.Stats.Get(StatId.PickupRadius);
+            var node = world.FocusedNode;
+            string nodeName = node == null ? "" : game.registry.nodes.First(n => n.Id == node.DefinitionId).displayName;
+            interaction.text = nodeName;
+            interactButtonLabel.text = "E · Tương tác" + (node == null ? "" : "\n" + nodeName);
+            interactButton.interactable = node != null;
+            LinhThu.Client.World.WorldNodeView nodeView = null;
+            if (node != null)
+                game.TryGetNodeView(node.Id, out nodeView);
+            interactionPrompt.SetTarget(nodeView, game.gameCamera, node == null ? "" : "[E] " + nodeName);
             beastButton.interactable = actor.CanAct && beast != null;
             outfitButton.interactable = actor.CanAct;
             for (int i = 0; i < hotbar.Length; i++)

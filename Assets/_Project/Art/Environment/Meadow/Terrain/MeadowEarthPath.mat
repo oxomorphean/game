@@ -34,10 +34,18 @@ Material:
     m_Ints: []
     m_Floats:
     - _EarthScale: 4.8
-    - _GrassScale: 8.5
+    - _GrassContrast: 0.7
+    - _GrassMipBias: 0.35
+    - _GrassPatchScale: 4.8
+    - _GrassScale: 5.6
+    - _GrassVariation: 0.24
     - _Path: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _CoolPatch: {r: 7.25, g: -0.4, b: 3, a: 2}
+    - _GrassBaseColor: {r: 0.41, g: 0.62, b: 0.115, a: 1}
+    - _GrassCoolTint: {r: 0.7, g: 0.88, b: 0.9, a: 1}
+    - _GrassWarmTint: {r: 1.12, g: 1.06, b: 0.79, a: 1}
     - _MapHalfSize: {r: 10, g: 5.625, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

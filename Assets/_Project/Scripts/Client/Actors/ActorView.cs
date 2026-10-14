@@ -14,7 +14,28 @@ namespace LinhThu.Client.Actors
         public ActorAnimator actorAnimator;
         public ModularEquipmentRenderer equipment;
         public Transform singleSpriteVisual;
+        public UI.ActorOverheadPresenter overhead;
         public ActorEntity Entity { get; private set; }
+
+        public Vector3 OverheadPosition
+        {
+            get
+            {
+                float top = transform.position.y;
+                if (equipment != null)
+                {
+                    foreach (var slot in equipment.slots)
+                        if (slot.renderer != null && slot.renderer.sprite != null && slot.renderer.enabled)
+                            top = Mathf.Max(top, slot.renderer.bounds.max.y);
+                }
+                else if (singleSpriteVisual != null)
+                {
+                    foreach (var renderer in singleSpriteVisual.GetComponentsInChildren<Renderer>())
+                        top = Mathf.Max(top, renderer.bounds.max.y);
+                }
+                return new Vector3(transform.position.x, top + .14f, transform.position.z);
+            }
+        }
 
         public void Bind(ActorEntity entity)
         {
@@ -40,6 +61,7 @@ namespace LinhThu.Client.Actors
             }
 
             actorAnimator?.Present(Entity);
+            overhead?.Refresh();
         }
     }
 }

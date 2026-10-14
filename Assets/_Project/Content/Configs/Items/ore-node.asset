@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ore-node
   m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Configs.WorldNodeConfigSO
   definitionId: ore-node
-  displayName: "Linh kho\xE1ng"
+  displayName: "Huy\u1EC1n Thi\u1EBFt Kho\xE1ng"
   description: 
   kind: 1
   interactionRadius: 1.4

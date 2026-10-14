@@ -21,6 +21,7 @@ namespace LinhThu.Domain.World
                 return DomainResult.Ok();
             });
             Register<CastCommand>(c => world.Combat.TryCast(world, c.ActorId, c.TechniqueId, c.Aim));
+            Register<InteractCommand>(c => world.Interactions.TryInteractFocused(world, c.ActorId, c.CropId));
             Register<HarvestCommand>(c => world.Interactions.TryHarvest(world, c.ActorId, c.NodeId));
             Register<PlantCommand>(c => world.Interactions.TryPlant(world, c.ActorId, c.FieldId, c.CropId));
             Register<PortalCommand>(c => world.Interactions.TryUsePortal(world, c.ActorId, c.PortalId));

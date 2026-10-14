@@ -52,9 +52,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCultivator
       objectReference: {fileID: 0}
+    - target: {fileID: 4696333098839386113, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: referenceHeight
+      value: 1.625
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830038531208792276, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.625
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830038531208792276, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.625
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830038531208792276, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.625
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 527852258564501167, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6563817003399643579}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3262857420319839003, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
       insertIndex: -1
@@ -84,6 +103,7 @@ MonoBehaviour:
   actorAnimator: {fileID: 6787424821407146993}
   equipment: {fileID: 2654926717544195617}
   singleSpriteVisual: {fileID: 0}
+  overhead: {fileID: 4234296602486731817}
 --- !u!114 &2654926717544195617 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1096311095848540756, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
@@ -95,6 +115,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075a0c6830daa4918bee1368e21c182c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: LinhThu.Prototype::NguThu.Client.Preview.HeroC2Preview
+--- !u!4 &3223906903652995802 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 527852258564501167, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+  m_PrefabInstance: {fileID: 3165697293285686389}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6787424821407146993 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8493531626583695236, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
@@ -106,3 +131,116 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18348bf7e9794d9681189c6f126f01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Actors.ActorAnimator
+--- !u!1001 &6590393681800109759
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3223906903652995802}
+    m_Modifications:
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1254974758163629681, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+      propertyPath: m_Name
+      value: ActorOverhead
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+--- !u!114 &4234296602486731817 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7041086035810445974, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+  m_PrefabInstance: {fileID: 6590393681800109759}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42c79387d87a4d429996ae1d5d77009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.UI.ActorOverheadPresenter
+--- !u!224 &6563817003399643579 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 27748286498774788, guid: b743c222f1fe343949cf0cb6bf00fbd6, type: 3}
+  m_PrefabInstance: {fileID: 6590393681800109759}
+  m_PrefabAsset: {fileID: 0}

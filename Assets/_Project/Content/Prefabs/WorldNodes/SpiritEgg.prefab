@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 6036732625267883201}
   - component: {fileID: 3541966810555512073}
   - component: {fileID: 2919318319265287470}
+  - component: {fileID: 247944134791714462}
   m_Layer: 0
   m_Name: SpiritEgg
   m_TagString: Untagged
@@ -188,3 +189,19 @@ MonoBehaviour:
   initiallyReady: 1
   readyColor: {r: 1, g: 1, b: 1, a: 1}
   growingColor: {r: 0.65, g: 0.72, b: 0.65, a: 0.7}
+--- !u!114 &247944134791714462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8198106160790363243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4325d72dd0433489a9a6b2fc7190b1bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.ObstacleAuthoring
+  box: 0
+  offset: {x: 0, y: 0.18}
+  halfSize: {x: 0.16, y: 0.16}
+  polygon: []

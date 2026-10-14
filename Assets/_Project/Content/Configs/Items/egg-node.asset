@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: egg-node
   m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Configs.WorldNodeConfigSO
   definitionId: egg-node
-  displayName: "Tr\u1EE9ng linh th\xFA"
+  displayName: "Tr\u1EE9ng Huy\u1EC1n Quy"
   description: 
   kind: 2
   interactionRadius: 1.4

@@ -57,6 +57,12 @@ namespace LinhThu.Domain.World
 
         public WorldInteractionService Interactions { get; }
 
+        public InteractionTargetSelector InteractionTargets { get; } = new InteractionTargetSelector();
+
+        public WorldNodeEntity FocusedNode => InteractionTargets.Select(this);
+
+        public EntityId? FocusedNodeId => FocusedNode?.Id;
+
         public ItemUseService Items { get; }
 
         private readonly WorldCommandProcessor commands;

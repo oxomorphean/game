@@ -1,12 +1,12 @@
-> Lịch sử trước 12/10/2026. Bản hiện hành chỉ thử mỹ thuật; gameplay đã được chuyển ra khỏi source đang dùng. Xem [kiến trúc hiện hành](CODE_ARCHITECTURE.md).
+> Cập nhật tham chiếu 14/10/2026: gameplay hiện hành chạy trong MainGame theo [kiến trúc Core Foundation](CODE_ARCHITECTURE.md) và [kết quả Phase 1–4](CORE_FOUNDATION_PROGRESS.md). Các mô tả prototype dưới đây chỉ áp dụng khi không xung đột với chỉ thị mới trong [GAME_DESIGN.md](../GAME_DESIGN.md).
 
-> Bản logic 03 ngày 06/10/2026 mở rộng nghề, trang bị, vật phẩm và hành trình theo quyền tự quyết đã giao. [LOGIC_V3.md](LOGIC_V3.md) sở hữu các luật mới; [CODE_ARCHITECTURE.md](CODE_ARCHITECTURE.md) mô tả code hiện hành. Luật cũ về chế tạo tức thời/ba công thức được thay bằng mẻ có thời gian và nhận sản phẩm.
+> Các mốc logic 01–03 đã được thay thế; tài liệu triển khai cũ chỉ còn trong lịch sử Git. Thiết kế Domain hiện hành nằm trong [Core Foundation Phase 1–2](CORE_FOUNDATION_PHASES_1_2.md); không suy ra nghề/chế tạo của prototype cũ đã được triển khai lại.
 
 > Hướng combat mới ngày 07/10/2026 được ghi tại [GAME_DESIGN.md](../GAME_DESIGN.md). Tài liệu này mô tả prototype ngự thú cũ; không dùng các phần xung đột để suy ra luật cho mốc combat người chơi.
 
 # Linh Thú Ký — đặc tả gameplay
 
-Cập nhật 06/10/2026 sau các quyết định về đồng hành, tự bảo vệ và thả đồ. Các yêu cầu đã xác nhận nằm ở mục 2–6; mục 7 ghi những lựa chọn tạm do chủ sản phẩm giao tự quyết. Hướng dẫn bản hiện tại nằm trong [logic 02](LOGIC_V2.md); [logic 01](LOGIC_V1.md) giữ phần nền tảng.
+Cập nhật nội dung 06/10/2026 sau các quyết định về đồng hành, tự bảo vệ và thả đồ. Các yêu cầu đã xác nhận tại thời điểm đó nằm ở mục 2–6; mục 7 ghi những lựa chọn tạm do chủ sản phẩm giao tự quyết. Hướng dẫn chạy và điều khiển bản hiện tại nằm trong [README](../README.md).
 
 ## 1. Thứ tự tham chiếu
 

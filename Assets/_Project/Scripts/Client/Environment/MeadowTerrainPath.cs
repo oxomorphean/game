@@ -26,6 +26,7 @@ namespace LinhThu.Client.Environment
         [Range(8, 64)]
         public int samplesPerSegment = 32;
         public Vector2 mapSize = new Vector2(20, 11.25f);
+        public MeadowGroundSurface groundSurface;
         private Mesh ownedMesh;
         private bool dirty;
         private void OnEnable() => Rebuild();
@@ -98,6 +99,8 @@ namespace LinhThu.Client.Environment
             ownedMesh.RecalculateBounds();
             var block = new MaterialPropertyBlock();
             block.SetVector("_MapHalfSize", new Vector4(mapSize.x * .5f, mapSize.y * .5f, 0, 0));
+            if (groundSurface != null)
+                groundSurface.ApplySurfaceProperties(block);
             view.SetPropertyBlock(block);
         }
 

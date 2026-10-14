@@ -4,12 +4,15 @@ Shader "LinhThu/Meadow Terrain"
     {
         _GrassTex ("Grass", 2D) = "white" {}
         _EarthTex ("Earth", 2D) = "white" {}
-        _GrassScale ("Grass tile metres", Float) = 8.5
+        _GrassScale ("Grass tile metres", Float) = 5.6
         _GrassBaseColor ("Grass base colour", Color) = (.41,.62,.115,1)
-        _GrassContrast ("Grass texture contrast", Range(0,1)) = .24
-        _GrassMipBias ("Grass texture softness", Range(0,5)) = 3
-        _GrassVariation ("Grass broad colour variation", Range(0,.3)) = .065
+        _GrassContrast ("Grass texture contrast", Range(0,1)) = .7
+        _GrassMipBias ("Grass texture softness", Range(0,5)) = .35
+        _GrassVariation ("Grass broad colour variation", Range(0,.5)) = .24
         _GrassPatchScale ("Grass patch metres", Float) = 4.8
+        _GrassWarmTint ("Sunlit grass tint", Color) = (1.12,1.06,.79,1)
+        _GrassCoolTint ("Cool grass tint", Color) = (.70,.88,.90,1)
+        _CoolPatch ("Cool shore patch: centre XY / radius XY", Vector) = (7.25,-.4,3,2)
         _EarthScale ("Earth tile metres", Float) = 4.8
         _Path ("Earth path", Float) = 0
         _Color ("Tint", Color) = (1,1,1,1)
@@ -28,7 +31,7 @@ Shader "LinhThu/Meadow Terrain"
             sampler2D _GrassTex, _EarthTex;
             float _GrassScale, _EarthScale, _Path;
             float _GrassContrast, _GrassMipBias, _GrassVariation, _GrassPatchScale;
-            float4 _GrassBaseColor;
+            float4 _GrassBaseColor, _GrassWarmTint, _GrassCoolTint, _CoolPatch;
             float4 _Color, _DaylightTint, _MapHalfSize;
             struct appdata { float4 vertex : POSITION; float2 edge : TEXCOORD1; };
             struct v2f { float4 vertex : SV_POSITION; float2 world : TEXCOORD0; float2 edge : TEXCOORD1; float2 local : TEXCOORD2; };
@@ -60,9 +63,12 @@ Shader "LinhThu/Meadow Terrain"
                 float2 second = float2(uv.x*.6381+uv.y*.7699,-uv.x*.7699+uv.y*.6381)*1.27+float2(.637,.291);
                 float3 textureA = tex2Dbias(_GrassTex,float4(first,0,_GrassMipBias)).rgb;
                 float3 textureB = tex2Dbias(_GrassTex,float4(second,0,_GrassMipBias)).rgb;
-                float3 painted = lerp(textureA,textureB,.35+broad*.3);
+                float3 painted = lerp(textureA,textureB,.18+broad*.24);
                 float3 grass = lerp(_GrassBaseColor.rgb,painted,_GrassContrast);
-                return grass*(1+(tone-.5)*_GrassVariation*2);
+                float shore = 1-smoothstep(.3,1.35,length((world-_CoolPatch.xy)/max(_CoolPatch.zw,float2(.1,.1))));
+                float sunlight = saturate(smoothstep(.15,.85,tone)-shore*.4);
+                float3 tint = lerp(_GrassCoolTint.rgb,_GrassWarmTint.rgb,sunlight);
+                return grass*lerp(float3(1,1,1),tint,saturate(_GrassVariation*2.5))*(1+(tone-.5)*_GrassVariation);
             }
             fixed4 frag(v2f i) : SV_Target
             {

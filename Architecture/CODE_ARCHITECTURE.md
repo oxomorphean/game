@@ -18,7 +18,7 @@ StatSheet giữ đúng 22 ID, dirty cache và nguồn modifier riêng cho realm/
 
 `GameSaveMapper.Capture` yêu cầu boundary đã flush. `SaveSerializer` dùng schema `linhthu.foundation`/1, JSON DTO, giới hạn size/depth/count, không type metadata. Restore nhận RNG/event bus **mới**, dựng graph riêng, kiểm ID/definition/vị trí/nguồn modifier rồi mới trả world; caller chỉ thay world khi thành công. Realm, equipment, status và bond được tái tạo đúng một lần. Domain chỉ xử lý JSON trong RAM; `StringReader` không đọc file. Phase 4 thêm WorldSaveStore ở Client/Persistence; không có migration save người dùng.
 
-Unity Test Framework được pin bản `1.8.0` đã resolve. Tám fixture EditMode gồm năm fixture bắt buộc, cộng Core/Actor, Cultivation và WorldState; counts/XML thực tế xem [báo cáo Phase 2](CORE_FOUNDATION_PROGRESS.md).
+Unity Test Framework được pin bản `1.8.0` đã resolve. Chín fixture Domain EditMode gồm năm fixture bắt buộc, cộng Core/Actor, Cultivation, WorldState và InteractionTargetSelector; counts/XML thực tế xem [báo cáo tiến độ](CORE_FOUNDATION_PROGRESS.md).
 
 ## Asset chuẩn
 
@@ -37,6 +37,12 @@ Các nhánh nhân vật cũ, trial scenes, CartoonCharacterRig/CartoonUiRig, bui
 `GameBootstrapper.Initialize` đọc prefab scene, tạo geometry từ ObstacleAuthoring, seed player/node/roster/inventory và gắn view theo EntityId. Update nhận Input System, gửi command rồi tích lũy fixed step 1/60s cho WorldState. ActorView/ActorAnimator chỉ trình bày pose/state; BeastView nhún/nghiêng; WorldNodeView thể hiện ready/growth. CultivationHudPresenter đọc HP/Qi/shield, cảnh giới, inventory/cooldown và phản hồi Domain; button cùng đi qua command như bàn phím. TopDownCameraController theo player trong biên map.
 
 TechniqueVfxPresenter đọc projectile/event sau commit; FloatingTextPresenter chỉ hiện damage, không quyết định sát thương. OwnerDashboard không nằm trong MainGame và không được Client tham chiếu.
+
+`InteractionTargetSelector` suy ra duy nhất `WorldState.FocusedNodeId` từ vị trí/hướng hiện tại, tầm tương tác, đường nhìn và khả năng thao tác của node. Khoảng cách ưu tiên; hướng nhìn rồi EntityId giải quyết trường hợp ngang nhau. Không giữ cache mục tiêu hoặc ngưỡng di chuyển. `InteractCommand` chọn lại qua cùng selector trong WorldCommandProcessor rồi thực hiện harvest/plant/portal; HUD không tự chọn node. `InteractionPromptPresenter` duy nhất trên HUD neo vào đỉnh WorldNodeView, cập nhật vị trí sau camera; tên trên nhãn và nút E lấy cùng config.
+
+`ActorOverheadPresenter` trên prefab actor chỉ hiện với HostileMonster còn sống: tên config, tỷ lệ HP thật và tên/stack/thời hạn status. ActorView cấp điểm neo từ bounds rig sau scale/pose, không sửa dữ liệu combat. PlayerCultivator/TrainingDummy dùng visual scale 0.625, CollisionRadius 0.1375 và ActorShadow.referenceHeight 1.625; sprite swap giữ các giá trị này.
+
+MeadowGroundSurface cung cấp vùng cỏ mát quanh hồ cho cả ground và MeadowTerrainPath bằng MaterialPropertyBlock. Hai material terrain dùng cùng tham số vân cỏ và sắc ấm/mát để mép đường liền nền. Khóm grass-tuft/white-flowers nằm trên lớp sàn, không giữ bóng sprite cũ. Linh Điền nằm ngoài spline; footprint trứng/quặng giữ điểm tương tác ở mép trước, không tự chặn đường nhìn tới node.
 
 WorldSaveStore ghi JSON UTF-8 vào file pending riêng, flush rồi Move/Replace, giữ `.bak`. Load dựng world riêng, xác nhận map/node/prefab rồi mới đổi live reference; lỗi load giữ nguyên world. F5/F9 và nút HUD là thao tác tường minh, không tự động mở save cũ.
 

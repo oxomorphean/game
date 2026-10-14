@@ -1,6 +1,6 @@
 # 🐉 Linh Thú Ký — Kế hoạch Kiến trúc & Logic Lõi (v2)
 
-> **Hướng mới 07/10/2026:** người chơi trực tiếp chiến đấu; tinh hạch/dung hợp/thiên phú là hướng tiếp theo. [GAME_DESIGN.md](GAME_DESIGN.md) sở hữu quyết định mới; giới hạn, chi phí và tẩy luyện chưa chốt. Mốc triển khai hiện hành: [Combat 01](Architecture/COMBAT_M1.md). Nội dung v2 bên dưới là lịch sử khi xung đột với hướng mới.
+> **Kiến trúc hiện hành 14/10/2026:** [Core Foundation](Architecture/CODE_ARCHITECTURE.md) và [kết quả bốn Phase](Architecture/CORE_FOUNDATION_PROGRESS.md) thay các mốc prototype cũ. [GAME_DESIGN.md](GAME_DESIGN.md) sở hữu quyết định gameplay; tinh hạch/dung hợp/tẩy luyện chưa thuộc phạm vi Core Foundation. Nội dung v2 bên dưới là bản nháp lịch sử, không được dùng để thay kiến trúc hiện hành.
 
 > **Yêu cầu online mới (05/10/2026):** xem [kiến trúc online theo vùng](Architecture/ONLINE_ARCHITECTURE.md) cho mục tiêu 100–300 người trên 20–30 phòng. Các phần kỹ thuật v2 dưới đây thiên về chơi đơn; JSON save, EventBus toàn cục và service locator không phải kiến trúc online đã chốt. Luật gameplay v2 tiếp tục là đầu vào thiết kế; lựa chọn thư viện và capacity trong tài liệu mới còn phải qua prototype/benchmark.
 

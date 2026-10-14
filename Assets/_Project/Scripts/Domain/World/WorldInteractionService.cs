@@ -7,6 +7,31 @@ namespace LinhThu.Domain.World
 {
     public sealed class WorldInteractionService
     {
+        public bool CanFocus(WorldState world, EntityId actorId, EntityId nodeId)
+        {
+            if (!Check(world, actorId, nodeId, out _, out var node).Succeeded || node.IsDepleted)
+                return false;
+            // IsReady describes harvest readiness; empty plots and portals have other actions.
+            return node.IsReady || node.Spec.Kind == WorldNodeKind.TeleportPortal ||
+                (node.Spec.Kind == WorldNodeKind.SpiritFieldPlot && node.CropDefinitionId == null);
+        }
+
+        public DomainResult TryInteractFocused(WorldState world, EntityId actorId, string cropId)
+        {
+            if (actorId != world.Player.ActorId)
+                return DomainResult.Fail(DomainError.WrongOwner);
+            if (!world.PlayerActor.CanAct)
+                return DomainResult.Fail(DomainError.InvalidState);
+            var node = world.FocusedNode;
+            if (node == null)
+                return DomainResult.Fail(DomainError.NotFound);
+            if (node.Spec.Kind == WorldNodeKind.TeleportPortal)
+                return TryUsePortal(world, actorId, node.Id);
+            if (node.Spec.Kind == WorldNodeKind.SpiritFieldPlot && node.CropDefinitionId == null)
+                return string.IsNullOrWhiteSpace(cropId) ? DomainResult.Fail(DomainError.MissingDefinition) : TryPlant(world, actorId, node.Id, cropId);
+            return TryHarvest(world, actorId, node.Id);
+        }
+
         private static DomainResult Check(WorldState world, EntityId actorId, EntityId nodeId, out ActorEntity actor, out WorldNodeEntity node)
         {
             actor = null;

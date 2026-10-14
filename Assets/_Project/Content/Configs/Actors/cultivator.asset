@@ -65,5 +65,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a002f023cf0ab43b9a7bc7d6bce12a2b, type: 2}
   - {fileID: 11400000, guid: 146b38e69d09c4cf6988ba5999eb4956, type: 2}
   - {fileID: 11400000, guid: 78042881e958d460aa12b15c6d838293, type: 2}
-  collisionRadius: 0.22
+  collisionRadius: 0.1375
   prefab: {fileID: 2052687017317610830, guid: 32eb8b534c3914ab893c762863481277, type: 3}

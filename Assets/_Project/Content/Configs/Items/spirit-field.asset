@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: spirit-field
   m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Configs.WorldNodeConfigSO
   definitionId: spirit-field
-  displayName: "Linh \u0111i\u1EC1n"
+  displayName: "Linh \u0110i\u1EC1n"
   description: 
   kind: 3
   interactionRadius: 1.4

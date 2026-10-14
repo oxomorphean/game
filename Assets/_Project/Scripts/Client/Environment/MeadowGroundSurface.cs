@@ -9,6 +9,8 @@ namespace LinhThu.Client.Environment
     public sealed class MeadowGroundSurface : MonoBehaviour
     {
         public Vector2 size = new Vector2(20, 11.25f);
+        [Tooltip("Local centre and radii of the softly shaded, cooler grass by the water.")]
+        public Vector4 coolShorePatch = new Vector4(7.25f, -.4f, 3, 2);
         private Mesh ownedMesh;
         private bool dirty;
         private void OnEnable() => Rebuild();
@@ -34,6 +36,18 @@ namespace LinhThu.Client.Environment
             view.sortingOrder = -60;
             view.shadowCastingMode = ShadowCastingMode.Off;
             view.receiveShadows = false;
+            var properties = new MaterialPropertyBlock();
+            view.GetPropertyBlock(properties);
+            ApplySurfaceProperties(properties);
+            view.SetPropertyBlock(properties);
+        }
+
+        public void ApplySurfaceProperties(MaterialPropertyBlock properties)
+        {
+            var center = transform.TransformPoint(new Vector3(coolShorePatch.x, coolShorePatch.y));
+            properties.SetVector("_CoolPatch", new Vector4(center.x, center.y,
+                Mathf.Max(.1f, coolShorePatch.z * Mathf.Abs(transform.lossyScale.x)),
+                Mathf.Max(.1f, coolShorePatch.w * Mathf.Abs(transform.lossyScale.y))));
         }
 
         private void OnDestroy()

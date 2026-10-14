@@ -8,6 +8,13 @@ Chốt 22 StatId; năm Affinity dùng chung hệ số công/kháng nguyên tố.
 
 Chỉ thị này thay chế độ chỉ xem mỹ thuật ngày 12/10 và pipeline nhiều hướng. Không nhập lại gameplay cũ từ `Recovery/`; giữ nguyên save cũ, schema foundation mới không tự đọc/ghi đè chúng. Nhân vật dùng một góc 3/4 + flip và chung bộ xương; môi trường dùng nền tiling/mesh cùng prefab độc lập.
 
+### Tinh chỉnh tương tác và hiển thị — chỉ thị 14/10/2026
+
+- Chỉ một mục tiêu tương tác: ưu tiên khoảng cách, dùng hướng nhìn khi khoảng cách bằng nhau để nhích nhẹ vẫn chuyển sang vật gần hơn. Node hết hàng/đang mọc bị loại ngay; linh điền trống và cổng giữ hành động gieo/dịch chuyển. Nhãn nổi `[E]` và nút HUD cùng dùng mục tiêu Domain.
+- Tên node cụ thể: Trứng Huyền Quy, Linh Thảo Thanh Tâm, Huyền Thiết Khoáng, Linh Điền, Truyền Tống Trận. HostileMonster hiện tên, HP và các status đang có, không tự thêm hiệu ứng Thiêu đốt vào công pháp mẫu.
+- Chọn tỉ lệ hiển thị 62,5% cho tu sĩ/Mộc nhân trong khoảng 60–65% đã yêu cầu; bán kính chân và chiều cao tham chiếu bóng cùng tỉ lệ. Cỏ có vân vẽ tay và sắc ấm/mát; khóm cỏ/hoa ở rìa, lều và tài nguyên ở bãi thoáng. Trứng/quặng có footprint chân nhỏ.
+- Kiểm logic bằng EditMode tests; chủ dự án mở MainGame bấm Play nghiệm thu hình ảnh.
+
 ## Lịch sử thiết kế trước khi tạm gỡ gameplay
 
 
@@ -40,7 +47,7 @@ Giới hạn tinh hạch, chi phí và luật dung hợp, tẩy luyện, các nh
 
 ## Thông số đề xuất chỉ cho phiên thử
 
-Tất cả con số trong bảng là giá trị thử nghiệm, không phải luật sản phẩm đã duyệt. Nguồn chạy là asset `CombatTrialConfig` trong `Assets/_Project/Content/Combat/`; definition được chụp thành dữ liệu bất biến khi bắt đầu phiên, còn HP/linh lực/cooldown/trạng thái nằm riêng trên từng nhân vật. Công thức và số liệu M03 hiện hành ở [TECHNIQUES_M3.md](Architecture/TECHNIQUES_M3.md).
+Tất cả con số trong bảng là giá trị của prototype đã ngừng sử dụng, không phải luật sản phẩm đã duyệt hoặc cấu hình đang chạy. `CombatTrialConfig` và tài liệu M03 đã được loại khỏi codebase; có thể tra lịch sử Git khi cần. Chỉ số, công pháp và cấu hình hiện hành được mô tả trong [kiến trúc Core Foundation](Architecture/CODE_ARCHITECTURE.md) và [kế hoạch Phase 3–4](Architecture/CORE_FOUNDATION_PHASES_3_4.md).
 
 | Thành phần | Giá trị thử |
 | --- | --- |
@@ -71,13 +78,13 @@ WASD hoặc phím mũi tên di chuyển; chuột ngắm; J hoặc chuột trái 
 
 Đã xác nhận cho phiên thử: loại tinh hạch và tỷ lệ rơi dùng dữ liệu cấu hình; mỗi đời quái chết chỉ xét thưởng một lần; chỉ xóa đồ dưới đất sau khi kho nhận đủ; kho đầy giữ nguyên vật phẩm. Tái sử dụng module hành trang khi phù hợp. Không mở luật dung hợp/tẩy luyện trong mốc này.
 
-Đề xuất thử nghiệm: Yêu Quy rơi 1 tinh hạch với tỷ lệ 100% để dễ nghiệm thu; kho tạm 4 ô, mỗi ô gộp 3, tầm nhặt 1.2. E nhặt; J/chuột trái/nút chính ưu tiên nhặt món gần, K vẫn đánh kỹ năng. Đồ và kho chỉ tồn tại trong phiên, giữ qua gục/hồi sinh, R hoặc tải lại trang tạo lại phiên. Đây không phải giới hạn sở hữu tinh hạch chính thức. Cấu hình, interface bàn giao và cách kiểm tra nằm ở [mốc tinh hạch](Architecture/CRYSTAL_M2.md).
+Đề xuất thử nghiệm: Yêu Quy rơi 1 tinh hạch với tỷ lệ 100% để dễ nghiệm thu; kho tạm 4 ô, mỗi ô gộp 3, tầm nhặt 1.2. E nhặt; J/chuột trái/nút chính ưu tiên nhặt món gần, K vẫn đánh kỹ năng. Đồ và kho chỉ tồn tại trong phiên, giữ qua gục/hồi sinh, R hoặc tải lại trang tạo lại phiên. Đây không phải giới hạn sở hữu tinh hạch chính thức. Cấu hình và bàn giao mốc này chỉ còn trong lịch sử Git; tinh hạch chưa thuộc phạm vi Core Foundation hiện hành.
 
 ## Mốc 03 — chỉ số nhân vật và công pháp
 
 ### Phạm vi đã duyệt
 
-Làm nền chỉ số nhân vật cùng hệ công pháp trong phiên combat hiện hành. Không chỉ thêm tên kỹ năng vào nhân vật đang có. `ActorDefinition.BaseStats` giữ chỉ số gốc; `ActorState` giữ HP/linh lực/cooldown/trạng thái. `CharacterStats` tính modifier theo nguồn và `TechniqueModule` vận hành công pháp. [Tài liệu M03](Architecture/TECHNIQUES_M3.md) sở hữu cấu hình thử, công thức và interface bàn giao; con số chưa trở thành luật sản phẩm.
+Mốc M03 trước đây làm nền chỉ số nhân vật cùng hệ công pháp trong phiên combat thử. `ActorDefinition.BaseStats` giữ chỉ số gốc; `ActorState` giữ HP/linh lực/cooldown/trạng thái. `CharacterStats` tính modifier theo nguồn và `TechniqueModule` vận hành công pháp. Các interface này đã được thay bởi `ActorEntity`, `StatSheet` và hệ Combat trong [Core Foundation Phase 1–2](Architecture/CORE_FOUNDATION_PHASES_1_2.md); cấu hình thử M03 không phải luật sản phẩm.
 
 - Bộ chỉ số tối thiểu: HP tối đa, linh lực tối đa, công kích, phòng ngự, tốc độ di chuyển và hồi linh lực. HP/linh lực hiện tại là tài nguyên runtime riêng; không trộn với chỉ số tối đa.
 - Tách chỉ số gốc, modifier từ công pháp/hiệu ứng và chỉ số sau tính toán. Cùng một nguồn không cộng lại mỗi frame hoặc mỗi lần đổi trang bị; tháo/hết hiệu ứng bỏ đúng modifier của nguồn đó.
@@ -108,9 +115,9 @@ Chủ dự án yêu cầu bản local/WebGL desktop chơi được từ bắt đ
 
 Phạm vi V1: hoàn thiện M03; nguồn học công pháp trong gameplay; ba bậc tu luyện với hai đột phá; trại an toàn + hai khu chiến đấu; ba loại quái thường và một boss; một ô dung hợp với hai thiên phú khác cách chơi; kho/trang bị/rèn/NPC mua bán; UI start/continue và save V1 riêng. Multiplayer, backend, thanh toán, public release và nghề/nội dung khác để sau.
 
-Các thông số và luật cụ thể trong [V1_PLAN.md](Architecture/V1_PLAN.md#luật-thử-v1-theo-ủy-quyền) là **quyết định thử V1 theo ủy quyền**, có thể chỉnh bằng config, không tuyên bố chủ dự án đã duyệt riêng từng con số. Logic quản lý kế hoạch/tích hợp; Art và UI bàn giao phần độc lập theo quyền điều phối trực tiếp. Hoàn thành chỉ khi toàn tuyến bằng thao tác người chơi, save/load, build/console và đo hiệu năng có bằng chứng.
+Các thông số và luật V1 trước đây là **quyết định thử V1 theo ủy quyền**, không tuyên bố chủ dự án đã duyệt riêng từng con số; kế hoạch cũ chỉ còn trong lịch sử Git. Phạm vi và kiểm chứng đang áp dụng nằm trong [Core Foundation Phase 3–4](Architecture/CORE_FOUNDATION_PHASES_3_4.md) và [báo cáo tiến độ](Architecture/CORE_FOUNDATION_PROGRESS.md).
 
-Yêu cầu UI trực tiếp ngày 07/10/2026: hiện đại, gọn gàng, đẹp và thanh lịch; thay cách trình bày hoài cổ nhiều khung. Không đổi luật gameplay khi chỉnh UI. Quy tắc thị giác ở [STYLE_GUIDE.md](ArtDirection/STYLE_GUIDE.md#ui-v1--yêu-cầu-chủ-dự-án-07102026); giao diện V1 và API bàn giao ở [V1_UI_HANDOFF.md](Architecture/V1_UI_HANDOFF.md).
+Yêu cầu UI trực tiếp ngày 07/10/2026: hiện đại, gọn gàng, đẹp và thanh lịch; thay cách trình bày hoài cổ nhiều khung. Không đổi luật gameplay khi chỉnh UI. Quy tắc thị giác ở [STYLE_GUIDE.md](ArtDirection/STYLE_GUIDE.md#ui-v1--yêu-cầu-chủ-dự-án-07102026); HUD và interface Client hiện hành ở [kiến trúc code](Architecture/CODE_ARCHITECTURE.md#configs-composition-và-presentation).
 
 ## Hướng MMORPG thế giới mở — xác nhận mới nhất 07/10/2026
 

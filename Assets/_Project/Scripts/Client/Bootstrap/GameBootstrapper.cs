@@ -34,6 +34,10 @@ namespace LinhThu.Client.Bootstrap
         public TechniqueVfxPresenter effects;
         public WorldState World { get; private set; }
 
+        public EntityId? FocusedNodeId => World?.FocusedNodeId;
+
+        public bool TryGetNodeView(EntityId id, out WorldNodeView view) => nodeViews.TryGetValue(id, out view);
+
         public const float StepSeconds = 1f / 60;
         private readonly List<ActorView> actorViews = new List<ActorView>();
         private readonly Dictionary<EntityId, WorldNodeView> nodeViews = new Dictionary<EntityId, WorldNodeView>();
@@ -104,7 +108,7 @@ namespace LinhThu.Client.Bootstrap
                 if (keyboard.digit3Key.wasPressedThisFrame)
                     Cast(2, PointerDirection());
                 if (keyboard.eKey.wasPressedThisFrame)
-                    InteractNearest();
+                    InteractFocused();
                 if (keyboard.rKey.wasPressedThisFrame)
                     ToggleBeast();
                 if (keyboard.tabKey.wasPressedThisFrame)
@@ -151,14 +155,14 @@ namespace LinhThu.Client.Bootstrap
             Cast(slot, target == null ? World.PlayerActor.Transform.FacingDirection : (target.Transform.Position - World.PlayerActor.Transform.Position).Normalized);
         }
 
-        public WorldNodeEntity NearestNode() => World.Nodes.Values.OrderBy(n => (n.Position - World.PlayerActor.Transform.Position).LengthSquared).FirstOrDefault();
-        public DomainResult InteractNearest()
+        public DomainResult InteractFocused()
         {
-            var node = NearestNode();
+            var node = World.FocusedNode;
             if (node == null)
                 return DomainResult.Fail(DomainError.NotFound);
-            WorldCommand command = node.Spec.Kind == WorldNodeKind.TeleportPortal ? new PortalCommand(World.Player.ActorId, node.Id) : node.Spec.Kind == WorldNodeKind.SpiritFieldPlot && node.CropDefinitionId == null ? new PlantCommand(World.Player.ActorId, node.Id, registry.fieldCrop.Id) : new HarvestCommand(World.Player.ActorId, node.Id);
-            return Submit(command, node.Spec.Kind == WorldNodeKind.TeleportPortal ? "Đã dịch chuyển." : command is PlantCommand ? "Đã gieo linh thảo." : "Đã thu hoạch.");
+            bool planting = node.Spec.Kind == WorldNodeKind.SpiritFieldPlot && node.CropDefinitionId == null;
+            return Submit(new InteractCommand(World.Player.ActorId, registry.fieldCrop.Id),
+                node.Spec.Kind == WorldNodeKind.TeleportPortal ? "Đã dịch chuyển." : planting ? "Đã gieo linh thảo." : "Đã thu hoạch.");
         }
 
         public DomainResult ToggleBeast()
@@ -222,6 +226,7 @@ namespace LinhThu.Client.Bootstrap
                     view.Bind(actor);
                 }
 
+                view.overhead?.Bind(view, registry);
                 view.Sync();
             }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: portal
   m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Configs.WorldNodeConfigSO
   definitionId: portal
-  displayName: "Truy\u1EC1n t\u1ED1ng tr\u1EADn"
+  displayName: "Truy\u1EC1n T\u1ED1ng Tr\u1EADn"
   description: 
   kind: 4
   interactionRadius: 1.4

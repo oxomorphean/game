@@ -37,6 +37,16 @@ namespace LinhThu.Domain.World
         }
     }
 
+    public sealed class InteractCommand : WorldCommand
+    {
+        public string CropId { get; }
+
+        public InteractCommand(EntityId actor, string cropId = null) : base(actor)
+        {
+            CropId = cropId;
+        }
+    }
+
     public sealed class HarvestCommand : WorldCommand
     {
         public EntityId NodeId { get; }

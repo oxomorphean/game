@@ -181,6 +181,7 @@ MonoBehaviour:
     halfWidth: 0.58
   samplesPerSegment: 32
   mapSize: {x: 20.000002, y: 11.255981}
+  groundSurface: {fileID: 1963253630780786354}
 --- !u!1 &2375616851200319070
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,6 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.MeadowGroundSurface
   size: {x: 20.000002, y: 11.255981}
+  coolShorePatch: {x: 7.25, y: -0.4, z: 3, w: 2}
 --- !u!1001 &661333960337841449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -726,7 +728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4337705121310373939, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
       propertyPath: m_SortingOrder
-      value: 72
+      value: -42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -902,7 +904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4337705121310373939, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
       propertyPath: m_SortingOrder
-      value: 128
+      value: -42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1000,7 +1002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4337705121310373939, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
       propertyPath: m_SortingOrder
-      value: 82
+      value: -42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1866,7 +1868,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4337705121310373939, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
       propertyPath: m_SortingOrder
-      value: 130
+      value: -42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2108,7 +2110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4337705121310373939, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
       propertyPath: m_SortingOrder
-      value: 81
+      value: -42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

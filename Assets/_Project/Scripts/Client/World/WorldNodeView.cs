@@ -16,6 +16,19 @@ namespace LinhThu.Client.World
         public WorldNodeEntity Entity { get; private set; }
 
         private MaterialPropertyBlock properties;
+        public Vector3 LabelPosition
+        {
+            get
+            {
+                float top = transform.position.y;
+                if (visual != null && visual.sprite != null)
+                    top = Mathf.Max(top, visual.bounds.max.y);
+                foreach (var renderer in additionalVisuals)
+                    if (renderer != null)
+                        top = Mathf.Max(top, renderer.bounds.max.y);
+                return new Vector3(transform.position.x, top + .16f, transform.position.z);
+            }
+        }
         public void Bind(WorldNodeEntity entity)
         {
             if (entity == null || config == null || entity.DefinitionId != config.Id || (visual == null && additionalVisuals.Length == 0))

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: training-dummy
   m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Configs.ActorBaseConfigSO
   definitionId: training-dummy
-  displayName: "M\u1EE5c ti\xEAu luy\u1EC7n c\xF4ng"
+  displayName: "M\u1ED9c Nh\xE2n Luy\u1EC7n C\xF4ng"
   description: 
   primaryElement: 5
   baseStats:
@@ -62,5 +62,5 @@ MonoBehaviour:
   - stat: 22
     value: 0.1
   abilities: []
-  collisionRadius: 0.22
+  collisionRadius: 0.1375
   prefab: {fileID: 7844706464530731937, guid: c8be04dad61b54816a12c0281a23e710, type: 3}

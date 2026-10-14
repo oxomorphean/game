@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: herb-node
   m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Configs.WorldNodeConfigSO
   definitionId: herb-node
-  displayName: "Linh th\u1EA3o"
+  displayName: "Linh Th\u1EA3o Thanh T\xE2m"
   description: 
   kind: 0
   interactionRadius: 1.4
