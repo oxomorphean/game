@@ -13,6 +13,7 @@ Shader "LinhThu/Meadow Terrain"
         _GrassWarmTint ("Sunlit grass tint", Color) = (1.12,1.06,.79,1)
         _GrassCoolTint ("Cool grass tint", Color) = (.70,.88,.90,1)
         _CoolPatch ("Cool shore patch: centre XY / radius XY", Vector) = (7.25,-.4,3,2)
+        _DappledLight ("Dappled strength / metres / drift", Vector) = (.14,2.8,.025,0)
         _EarthScale ("Earth tile metres", Float) = 4.8
         _Path ("Earth path", Float) = 0
         _Color ("Tint", Color) = (1,1,1,1)
@@ -32,7 +33,7 @@ Shader "LinhThu/Meadow Terrain"
             float _GrassScale, _EarthScale, _Path;
             float _GrassContrast, _GrassMipBias, _GrassVariation, _GrassPatchScale;
             float4 _GrassBaseColor, _GrassWarmTint, _GrassCoolTint, _CoolPatch;
-            float4 _Color, _DaylightTint, _MapHalfSize;
+            float4 _Color, _DaylightTint, _MapHalfSize, _DappledLight;
             struct appdata { float4 vertex : POSITION; float2 edge : TEXCOORD1; };
             struct v2f { float4 vertex : SV_POSITION; float2 world : TEXCOORD0; float2 edge : TEXCOORD1; float2 local : TEXCOORD2; };
             v2f vert(appdata v)
@@ -85,7 +86,12 @@ Shader "LinhThu/Meadow Terrain"
                     color = lerp(grass,earth,smoothstep(.015,.17,inset));
                 }
                 float3 daylight = lerp(float3(1,1,1),_DaylightTint.rgb,step(.01,_DaylightTint.a));
-                return fixed4(color * _Color.rgb * daylight * alpha,alpha);
+                // Shared world-space light keeps the painted grass/path blend continuous.
+                float2 drift = float2(.8,.35) * _Time.y * _DappledLight.z;
+                float2 canopy = i.world / max(.1,_DappledLight.y) + drift;
+                float shade = noise(canopy) * .7 + noise(canopy*2.1+float2(17,9)) * .3;
+                float light = 1 + (smoothstep(.2,.8,shade)-.5) * _DappledLight.x;
+                return fixed4(color * _Color.rgb * daylight * light * alpha,alpha);
             }
             ENDCG
         }

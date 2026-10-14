@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd7909ea8ffab4b408765b3165175829, type: 3}
+  m_Name: fishing-meadow
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Configs.WorldNodeConfigSO
+  definitionId: fishing-meadow
+  displayName: "B\u1EDD c\xE2u Thanh Kh\xEA"
+  description: "F ho\u1EB7c E \u0111\u1EC3 th\u1EA3 c\xE2u; khi phao \u0111\u1ED9ng, nh\u1EA5n l\u1EA1i \u0111\u1EC3 thu c\xE1."
+  kind: 5
+  interactionRadius: 0.75
+  growthSeconds: 4
+  respawnSeconds: 2
+  rewards:
+  - item: {fileID: 11400000, guid: 7828d8a68ecd547178bf0d63051dd162, type: 2}
+    count: 1
+  seedItem: {fileID: 0}
+  destinationMapId: 
+  portalDestination: {x: 0, y: 0}
+  fishingBiteSeconds: 4
+  fishingWaterOffset: {x: 1.4, y: 0.8}
+  fishingShoreline:
+  - {x: 0.37089777, y: 0.61230934}
+  - {x: 0.95332956, y: 0.2517562}
+  - {x: 1.6605687, y: 0.029877186}
+  - {x: 2.4926143, y: 0.05761218}
+  - {x: 3.1166492, y: 0.39043045}
+  - {x: 3.2830577, y: 0.8619231}
+  - {x: 2.9502397, y: 1.3056809}
+  - {x: 2.40941, y: 1.5552945}
+  - {x: 1.6605687, y: 1.6384991}
+  - {x: 0.95332956, y: 1.5830293}
+  - {x: 0.32929564, y: 1.3334157}
+  - {x: 0.12128401, y: 0.9728625}
+  prefab: {fileID: 7500472720074776477, guid: 520bbee5264134348b801c474ab0ede4, type: 3}

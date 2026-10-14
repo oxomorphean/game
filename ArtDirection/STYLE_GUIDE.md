@@ -1,4 +1,8 @@
-# Quy tắc mỹ thuật v6 — chibi góc nhìn cao
+# Quy tắc mỹ thuật — Tu Tiên góc nhìn cao
+
+Chỉ thị 14/10/2026 về tỷ lệ và động tác thay chuẩn chibi đầu lớn: HeroBase giữ góc 3/4, cụm đầu bằng 78% kích thước cũ, vai thu hẹp, tay thả gần thân, thân/chân kéo dài nhẹ. Tu sĩ khởi tạo mặc đạo bào classic; basic chỉ là lựa chọn thử thay đồ. Tỷ lệ toàn rig 0.625 giữ nguyên. Thiền/câu cá dùng chính rig, pose mượt và đạo cụ neo bàn tay; nghiệm thu thị giác trong Editor.
+
+Phản hồi sau Play: chạy phải giữ dáng đứng, gối ở dưới hông; không hạ hông sâu hoặc cuộn chân vào thân để ép khớp stride. Kiểm cả silhouette của trọn chu kỳ và sai lệch chân trụ. Nhãn tương tác nằm hoàn toàn trên vật thể và giữ tên item; hồ hiện “Thả câu” phía trên cụm hồ khi người chơi tới gần từ bất kỳ phía nào. Chữ trạng thái/sát thương gắn nhân vật nằm trên đầu nhân vật tương ứng, không che thân, tay hoặc animation. HUD cố định có vùng riêng.
 
 Bổ sung 13/10/2026: tài liệu sản xuất nhân vật trong Krita cùng mẫu gốc đã được chuyển vào backup ngoài repo theo Phase 1. Quy tắc slot, nét/màu và nghiệm thu hiện hành được giữ trong file này. Artwork mới vẫn là ứng viên chờ duyệt, không tự thay nhân vật đang chạy.
 
@@ -7,7 +11,7 @@ Trạng thái 14/10/2026: chuẩn nhân vật là HeroBase với một góc 3/4 
 Yêu cầu ngày 07/10/2026: dùng Soul Strike (tham chiếu lịch sử; ảnh nguồn đã lưu trong backup ngoài repo) làm tham chiếu góc nhìn, tỷ lệ và cách phân cấp hình ảnh. Đây là mẫu để duyệt; thiết kế nhân vật và môi trường thuộc bối cảnh tu tiên của Linh Thú Ký.
 
 - Góc nhìn từ cao xuống: thấy đỉnh đầu, đỉnh mai và mặt trên vật thể; thân/chân bị rút ngắn. Camera Unity 2D vẫn nhìn thẳng mặt phẳng sprite, góc cao nằm trong thiết kế ảnh. Không coi góc ước lượng từ ảnh Soul Strike là thông số camera đã xác minh; tiêu chí duyệt là hình người và môi trường có cùng phối cảnh.
-- Nhân vật chibi khoảng 2–2.2 đầu, đầu chiếm 45–50% chiều cao, tóc thành vài khối rõ, thân ngắn và hai chân tách nhau. Ngự thú sư tóc bạc, áo xanh đen–trắng ngà, đai xanh ngọc, điểm vàng ít. Hình phải đọc được khi hiển thị cao khoảng 55–85 px. Quy tắc nhân vật bổ sung ngày 12/10 bên dưới sở hữu góc trình mẫu, nét, lớp trang phục và tỷ lệ vũ khí.
+- Nhân vật Tu Tiên thanh thoát, đầu nhỏ hơn mẫu chibi cũ, vai và tay thư thái; tóc thành vài khối rõ. Ngự thú sư tóc bạc, áo xanh đen–trắng ngà, đai xanh ngọc, điểm vàng ít. Hình phải đọc được khi hiển thị cao khoảng 55–85 px. Quy tắc nhân vật bổ sung ngày 12/10 bên dưới sở hữu góc trình mẫu, nét, lớp trang phục và tỷ lệ vũ khí.
 - Huyền Giáp Quy giữ mai than đen, ít đường hoa văn vàng, da xanh ngọc; mai thấy từ trên nhiều hơn thành bên. Không phủ nhiều trang sức hoặc chấm da vụn.
 - Viền ngoài nhân vật đậm hơn nét bên trong; độ dày thị giác nhất quán giữa các nhân vật. Tô 2–3 mảng sáng tối. Mặt trời ẩn mọc từ bên trái (đông, −X), qua đỉnh đầu rồi lặn về bên phải (tây, +X): bóng sáng ngả phải, trưa nằm quanh gốc theo hình tán, chiều ngả trái và dài hơn. Bóng lấy silhouette vật thể, nối chân cây/đá; bóng đá giữ bề rộng theo khối đá, cây và đá không dùng bóng elip phụ. Không vẽ mặt trời trên màn hình; thanh thời gian hiển thị giờ ban ngày. Hoàng hôn có ánh vàng; tạm chưa làm buổi tối. Nét nhân vật rõ hơn nền. Không pixel, không mô hình bóng nhựa, không lông/tóc tả thực.
 - Nền là mảng cỏ xanh rộng yên mắt, chỉ thỉnh thoảng có mảng xanh đậm/nhạt nhẹ; không rắc nét vụn, texture nham nhở hoặc mảng màu phản chiếu/lặp rõ. Cỏ tại mép đường phải khớp nền. Đá, cây, bụi cỏ tập trung ít cụm; phần giữa để trống cho nhân vật và chiến đấu.
@@ -43,4 +47,4 @@ Chủ dự án mở Unity Editor để xem idle/run, thay ba bộ đồ giữa c
 
 ## UI — yêu cầu chủ dự án 07/10/2026
 
-Giao diện game cần hiện đại, gọn gàng và thanh lịch. Dùng phân cấp chữ, khoảng cách và màu nhấn tiết chế; giảm khung trang trí, viền vàng và những bảng đặc che sân chơi. HUD ưu tiên HP/linh lực, kỹ năng/cooldown và mục tiêu ngắn; chỉ số chi tiết nằm trong bảng chức năng. Bảng hành trang/công pháp cần dễ đọc, đủ dấu tiếng Việt, có lý do khi lệnh bị từ chối. Dashboard phát triển dành cho chủ dự án vẫn tách khỏi UI chơi. Hướng UI này không thay đồ họa chibi, sprite và map hiện hành.
+Giao diện game cần hiện đại, gọn gàng và thanh lịch. Dùng phân cấp chữ, khoảng cách và màu nhấn tiết chế; giảm khung trang trí, viền vàng và những bảng đặc che sân chơi. HUD ưu tiên HP/linh lực, kỹ năng/cooldown và mục tiêu ngắn; chỉ số chi tiết nằm trong bảng chức năng. Bảng hành trang/công pháp cần dễ đọc, đủ dấu tiếng Việt, có lý do khi lệnh bị từ chối. Dashboard phát triển dành cho chủ dự án vẫn tách khỏi UI chơi. Sprite nhân vật và map tiếp tục theo chuẩn mỹ thuật hiện hành ở trên.

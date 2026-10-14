@@ -45,6 +45,9 @@ namespace LinhThu.Domain.Actors
         Casting,
         Channeling,
         Staggered,
-        Dead
+        Dead,
+        Dashing,
+        Meditating,
+        Fishing
     }
 }

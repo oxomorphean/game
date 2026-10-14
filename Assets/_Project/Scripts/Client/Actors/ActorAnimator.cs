@@ -1,5 +1,6 @@
 using LinhThu.Domain.Actors;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace LinhThu.Client.Actors
 {
@@ -7,12 +8,49 @@ namespace LinhThu.Client.Actors
     {
         public Animator animator;
         private static readonly int Running = Animator.StringToHash("Running");
+        public Transform visual;
+        // Run's planted foot travels .6 rig units in .4s at Visual scale .625.
+        [FormerlySerializedAs("authoredRunSpeed"), Min(.01f)] public float baseStrideSpeed = .9375f;
+        [Min(.01f)] public float highSpeedSoftCap = 6;
+        [Min(.01f)] public float softKneeWidth = 2;
+        public float runLean = 4, dashLean = 10;
+        private Quaternion restRotation;
+        private bool hasRestRotation;
         public void Present(ActorEntity actor)
         {
             if (animator == null)
                 return;
-            animator.SetBool(Running, actor.State == ActorActionState.Moving);
-            animator.speed = actor.Vitals.IsAlive ? 1 : 0;
+            float speed = actor.Transform.CurrentVelocity.Length;
+            bool moving = speed > .001f;
+            animator.SetBool(Running, moving);
+            animator.speed = !actor.Vitals.IsAlive ? 0 : moving ? PlaybackSpeed(speed) : 1;
+            if (visual == null) return;
+            if (!hasRestRotation) { restRotation = visual.localRotation; hasRestRotation = true; }
+            float horizontal = actor.Transform.CurrentVelocity.X / Mathf.Max(.01f, highSpeedSoftCap * .5f);
+            // Visual X is mirrored as a whole rig; rotation is in its parent's unmirrored space.
+            float target = -Mathf.Clamp(horizontal, -1, 1) * (actor.State == ActorActionState.Dashing ? dashLean : runLean);
+            visual.localRotation = Quaternion.Slerp(visual.localRotation, restRotation * Quaternion.Euler(0, 0, target), 1 - Mathf.Exp(-18 * Time.deltaTime));
+        }
+
+        public float PlaybackSpeed(float currentSpeed)
+        {
+            float speed = Mathf.Max(0, currentSpeed), knee = Mathf.Max(.01f, highSpeedSoftCap);
+            if (speed > knee)
+            {
+                float width = Mathf.Max(.01f, softKneeWidth);
+                speed = knee + width * Mathf.Log(1 + (speed - knee) / width);
+            }
+            return speed / Mathf.Max(.01f, baseStrideSpeed);
+        }
+
+        public bool TryGetRunCycle(out float cycle)
+        {
+            cycle = 0;
+            if (animator == null || !animator.isInitialized) return false;
+            var state = animator.IsInTransition(0) ? animator.GetNextAnimatorStateInfo(0) : animator.GetCurrentAnimatorStateInfo(0);
+            if (state.shortNameHash != Animator.StringToHash("Run")) return false;
+            cycle = state.normalizedTime;
+            return true;
         }
     }
 }

@@ -8,8 +8,9 @@ Shader "LinhThu/Modular Hero Sprite"
         [HideInInspector] _Flip ("Flip", Vector) = (1,1,1,1)
         [PerRendererData] _AlphaTex ("External Alpha", 2D) = "white" {}
         [PerRendererData] _EnableExternalAlpha ("Enable External Alpha", Float) = 0
-        [PerRendererData] _EyeTint ("Iris Color", Color) = (.25,.75,.65,1)
-        [PerRendererData] _DyeEyes ("Recolor Iris", Float) = 0
+        [PerRendererData] _AppearanceTint ("Appearance Tint", Color) = (1,1,1,1)
+        [PerRendererData] _HitFlash ("Hit Flash", Range(0,1)) = 0
+        [PerRendererData] _HitFlashColor ("Hit Flash Color", Color) = (1,.95,.8,1)
     }
     SubShader
     {
@@ -23,14 +24,15 @@ Shader "LinhThu/Modular Hero Sprite"
             #pragma multi_compile_instancing
             #pragma multi_compile _ ETC1_EXTERNAL_ALPHA
             #include "UnitySprites.cginc"
-            float4 _DaylightTint, _EyeTint;
-            float _DyeEyes;
+            float4 _DaylightTint, _AppearanceTint, _HitFlashColor;
+            float _HitFlash;
             fixed4 HeroFrag(v2f input) : SV_Target
             {
-                fixed4 color = SampleSpriteTexture(input.texcoord) * input.color;
-                float iris = smoothstep(.08, .25, max(color.g, color.b) - color.r) * _DyeEyes;
-                color.rgb = lerp(color.rgb, _EyeTint.rgb * max(color.r, max(color.g, color.b)), iris);
-                color.rgb *= _DaylightTint.rgb * color.a;
+                fixed4 color = SampleSpriteTexture(input.texcoord) * input.color * _AppearanceTint;
+                float3 daylight = lerp(float3(1,1,1), _DaylightTint.rgb, step(.001, dot(_DaylightTint.rgb, float3(1,1,1))));
+                color.rgb *= daylight;
+                color.rgb = lerp(color.rgb, _HitFlashColor.rgb, saturate(_HitFlash));
+                color.rgb *= color.a;
                 return color;
             }
             ENDCG

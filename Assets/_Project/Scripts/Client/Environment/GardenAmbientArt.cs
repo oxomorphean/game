@@ -46,11 +46,14 @@ namespace LinhThu.Client.Environment
                 var canopy = CanopyPoints[i % CanopyPoints.Length];
                 float startX = canopy.x + (Sample(seed, i, cycle + 4) - .5f) * .07f;
                 float startY = canopy.y + (Sample(seed, i, cycle + 5) - .5f) * .06f;
-                float x = startX + progress * .07f + Mathf.Sin(time * 1.2f + i * 2.3f) * .016f;
-                float y = Mathf.Lerp(startY, .035f, progress);
+                float gust = Mathf.Sin(time * .31f + seed * .017f);
+                float flutter = Mathf.Sin(time * (1.15f + Sample(seed, i, 8) * .8f) + i * 2.3f);
+                float x = startX + progress * (.08f + gust * .045f) + flutter * .018f;
+                float fall = progress + Mathf.Sin(progress * Mathf.PI * 4 + i) * .012f * Mathf.Sin(progress * Mathf.PI);
+                float y = Mathf.Lerp(startY, .035f, fall);
                 float alpha = Mathf.Clamp01(progress * 8) * (1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(.82f, 1, progress)));
                 float size = rect.width * Mathf.Lerp(.007f, .011f, Sample(seed, i, 2));
-                Petal(mesh, Point(rect, x, y), size, time * (.8f + Sample(seed, i, 3)) + i, new Color(1, .70f, .81f, alpha * .88f) * light);
+                Petal(mesh, Point(rect, x, y), size * (.8f + .2f * Mathf.Abs(flutter)), time * (.5f + Sample(seed, i, 3)) + i + gust * .4f, new Color(1, .70f, .81f, alpha * .88f) * light);
             }
         }
 

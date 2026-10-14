@@ -34,7 +34,7 @@ MonoBehaviour:
   - stat: 8
     value: 5
   - stat: 9
-    value: 3.6
+    value: 2.8
   - stat: 10
     value: 1
   - stat: 11
@@ -67,3 +67,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 78042881e958d460aa12b15c6d838293, type: 2}
   collisionRadius: 0.1375
   prefab: {fileID: 2052687017317610830, guid: 32eb8b534c3914ab893c762863481277, type: 3}
+  acceleration: 20
+  deceleration: 28
+  turnResponsiveness: 20
+  dashDuration: 0.2
+  dashSpeedMultiplier: 4
+  dashCooldown: 1
+  defaultOutfit: {fileID: 11400000, guid: 428f85ebd92ff4e7eb23efcd3a21148e, type: 2}
+  outfits:
+  - {fileID: 11400000, guid: 428f85ebd92ff4e7eb23efcd3a21148e, type: 2}
+  - {fileID: 11400000, guid: bf24f6e97650e4ee09aeafbdbabbacd0, type: 2}
+  - {fileID: 11400000, guid: c956d44a54ac24961973dde3b38683bd, type: 2}
+  supportsLifeActivities: 1
+  meditationQiMultiplier: 3
+  meditationTickSeconds: 1
+  meditationExperience: 1

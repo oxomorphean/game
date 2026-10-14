@@ -132,5 +132,54 @@ namespace LinhThu.Tests.ClientEditMode
             Assert.That(typeof(ActorView).Assembly.GetReferencedAssemblies().Any(a => a.Name == "LinhThu.DevTools"), Is.False);
             Assert.That(typeof(WorldState).Assembly.GetReferencedAssemblies().Any(a => a.Name.StartsWith("UnityEngine")), Is.False);
         }
+
+        [Test]
+        public void FullAppearancePaletteAndPropertyBlocksPreserveSharedMaterialsAndPose()
+        {
+            var scene = EditorSceneManager.NewPreviewScene();
+            try
+            {
+                var root = (GameObject)PrefabUtility.InstantiatePrefab(Registry.player.prefab.gameObject, scene);
+                var rig = root.GetComponent<ModularEquipmentRenderer>();
+                var materials = rig.slots.Select(s => s.renderer.sharedMaterial).ToArray();
+                Assert.That(materials.Distinct().Count(), Is.EqualTo(1));
+                Assert.That(materials[0].shader.name, Is.EqualTo("LinhThu/Modular Hero Sprite"));
+                rig.animator.Rebind();
+                rig.animator.Play("Run", 0, .41f);
+                rig.animator.Update(0);
+                float time = rig.animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+                var transforms = root.GetComponentsInChildren<Transform>(true);
+                var poses = transforms.Select(t => (t.localPosition, t.localRotation, t.localScale)).ToArray();
+                foreach (var outfit in Registry.outfits)
+                foreach (var hair in outfit.hairVariants)
+                foreach (var eyes in outfit.eyeVariants)
+                {
+                    rig.ApplyAppearance(new LinhThu.Domain.Actors.ActorAppearance(outfit.appearanceId, hair.id, eyes.id));
+                    foreach (var slot in rig.slots)
+                    {
+                        var expected = slot.id == "hair-front" ? hair.front : slot.id == "hair-back" ? hair.back
+                            : slot.id == "hair-ornament" ? hair.ornament : slot.id == "eyes" ? eyes.sprite
+                            : outfit.slots.Single(s => s.slotId == slot.id).sprite;
+                        Assert.That(slot.renderer.sprite == expected, Is.True, slot.id);
+                    }
+                    CollectionAssert.AreEqual(poses, transforms.Select(t => (t.localPosition, t.localRotation, t.localScale)));
+                    Assert.That(rig.animator.GetCurrentAnimatorStateInfo(0).normalizedTime, Is.EqualTo(time));
+                }
+                var tint = new Color(.8f, .6f, .9f, 1);
+                rig.SetTint("torso", tint);
+                rig.HitFlash();
+                var block = new MaterialPropertyBlock();
+                foreach (var slot in rig.slots)
+                {
+                    slot.renderer.GetPropertyBlock(block);
+                    Assert.That(block.GetFloat("_HitFlash"), Is.EqualTo(1));
+                    if (slot.id == "torso") Assert.That(block.GetColor("_AppearanceTint"), Is.EqualTo(tint));
+                }
+                rig.AdvancePresentation(1);
+                Assert.That(rig.FlashAmount, Is.Zero);
+                CollectionAssert.AreEqual(materials, rig.slots.Select(s => s.renderer.sharedMaterial));
+            }
+            finally { EditorSceneManager.ClosePreviewScene(scene); }
+        }
     }
 }

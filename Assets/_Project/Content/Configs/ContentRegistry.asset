@@ -39,12 +39,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 19cfe3862fd1a4ce2b596eef2b536a7d, type: 2}
   - {fileID: 11400000, guid: 2049e6ad8adf6424eb9220a8da827866, type: 2}
   - {fileID: 11400000, guid: 05a614d7aa6364038a46d0055c5c2403, type: 2}
+  - {fileID: 11400000, guid: 7828d8a68ecd547178bf0d63051dd162, type: 2}
   nodes:
   - {fileID: 11400000, guid: 75060e9abdc9a43daad40fcfa3906fb9, type: 2}
   - {fileID: 11400000, guid: 79b60511a62ba4a7eafe713f881d0ce3, type: 2}
   - {fileID: 11400000, guid: 421252892bade4e9194cd822733e8c95, type: 2}
   - {fileID: 11400000, guid: 5498189f8fc5b4ecda0342ff302ce397, type: 2}
   - {fileID: 11400000, guid: 81ea8a6519f7443b5b877d831ca7fb18, type: 2}
+  - {fileID: 11400000, guid: 09d5842d026ca4dc29ec0764dbd90542, type: 2}
   outfits:
   - {fileID: 11400000, guid: 428f85ebd92ff4e7eb23efcd3a21148e, type: 2}
   - {fileID: 11400000, guid: bf24f6e97650e4ee09aeafbdbabbacd0, type: 2}

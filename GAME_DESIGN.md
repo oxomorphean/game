@@ -10,6 +10,10 @@ Chỉ thị này thay chế độ chỉ xem mỹ thuật ngày 12/10 và pipelin
 
 ### Tinh chỉnh tương tác và hiển thị — chỉ thị 14/10/2026
 
+- Phản hồi nghiệm thu: bỏ dáng co chân khi chạy; giữ hông gần độ cao Idle và gối không cuộn lên thân. Nhãn tương tác giữ nguyên tên Linh dược, Trứng… và nằm trên từng vật thể. Hồ hiện “Thả câu” phía trên hồ khi người chơi ở gần; cho phép câu quanh toàn bộ bờ hồ có thể đứng được, không giới hạn một điểm. Chữ trạng thái/sát thương gắn nhân vật hiện tại/về sau nằm trên đầu để không che animation.
+
+- Bổ sung chỉ thị tỷ lệ / stride / động tác đời sống: HeroBase đầu 78%, vai/tay thư thái và mặc đạo bào mặc định. X thiền, F hoặc E tại bờ hồ để câu cá; di chuyển/chiến đấu ngắt hoạt động. Thông số mẫu: tốc độ Tu sĩ 2.8, hồi Qi khi thiền ×3, 1 Tu vi/giây; cá cắn sau 4 giây, nhận 1 Linh Ngư khi giật cần. Chưa làm đặt Linh Điền. Các giá trị này là tuning triển khai, chưa là cân bằng sản phẩm.
+
 - Chỉ một mục tiêu tương tác: ưu tiên khoảng cách, dùng hướng nhìn khi khoảng cách bằng nhau để nhích nhẹ vẫn chuyển sang vật gần hơn. Node hết hàng/đang mọc bị loại ngay; linh điền trống và cổng giữ hành động gieo/dịch chuyển. Nhãn nổi `[E]` và nút HUD cùng dùng mục tiêu Domain.
 - Tên node cụ thể: Trứng Huyền Quy, Linh Thảo Thanh Tâm, Huyền Thiết Khoáng, Linh Điền, Truyền Tống Trận. HostileMonster hiện tên, HP và các status đang có, không tự thêm hiệu ứng Thiêu đốt vào công pháp mẫu.
 - Chọn tỉ lệ hiển thị 62,5% cho tu sĩ/Mộc nhân trong khoảng 60–65% đã yêu cầu; bán kính chân và chiều cao tham chiếu bóng cùng tỉ lệ. Cỏ có vân vẽ tay và sắc ấm/mát; khóm cỏ/hoa ở rìa, lều và tài nguyên ở bãi thoáng. Trứng/quặng có footprint chân nhỏ.

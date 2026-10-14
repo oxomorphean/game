@@ -23,7 +23,7 @@ namespace LinhThu.Tests.EditMode
             w.Execute(new MoveCommand(w.Player.ActorId, new WorldPoint(1, 0)));
             Assert.That(w.PlayerActor.Transform.Position, Is.EqualTo(p));
             w.Tick(.1f);
-            Assert.That(w.PlayerActor.Transform.Position.X, Is.EqualTo(.4f).Within(.0001));
+            Assert.That(w.PlayerActor.Transform.Position.X, Is.EqualTo(.14f).Within(.0001));
             Assert.That(w.Clock.TickIndex, Is.EqualTo(1));
             w.Tick(0);
             Assert.That(w.Clock.TickIndex, Is.EqualTo(1));
@@ -179,7 +179,7 @@ namespace LinhThu.Tests.EditMode
             switch (corruption)
             {
                 case "future-schema":
-                    dto.SchemaVersion = 2;
+                    dto.SchemaVersion = GameSaveDto.CurrentVersion + 1;
                     break;
                 case "retired-schema":
                     dto.SchemaId = "retired";

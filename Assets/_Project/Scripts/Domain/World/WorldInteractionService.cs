@@ -25,6 +25,8 @@ namespace LinhThu.Domain.World
             var node = world.FocusedNode;
             if (node == null)
                 return DomainResult.Fail(DomainError.NotFound);
+            if (node.Spec.Kind == WorldNodeKind.FishingSpot)
+                return world.LifeActivities.Fish(actorId, node.Id);
             if (node.Spec.Kind == WorldNodeKind.TeleportPortal)
                 return TryUsePortal(world, actorId, node.Id);
             if (node.Spec.Kind == WorldNodeKind.SpiritFieldPlot && node.CropDefinitionId == null)
@@ -32,7 +34,7 @@ namespace LinhThu.Domain.World
             return TryHarvest(world, actorId, node.Id);
         }
 
-        private static DomainResult Check(WorldState world, EntityId actorId, EntityId nodeId, out ActorEntity actor, out WorldNodeEntity node)
+        internal DomainResult Check(WorldState world, EntityId actorId, EntityId nodeId, out ActorEntity actor, out WorldNodeEntity node)
         {
             actor = null;
             node = null;
@@ -42,9 +44,11 @@ namespace LinhThu.Domain.World
                 return DomainResult.Fail(DomainError.NotFound);
             if (!actor.CanAct)
                 return DomainResult.Fail(DomainError.InvalidState);
-            if ((actor.Transform.Position - node.Position).Length > node.Spec.InteractionRadius + Math.Max(0, actor.Stats.Get(StatId.PickupRadius)))
+            var interactionPosition = node.InteractionPosition(actor.Transform.Position);
+            if ((actor.Transform.Position - interactionPosition).Length > node.Spec.InteractionRadius + Math.Max(0, actor.Stats.Get(StatId.PickupRadius)))
                 return DomainResult.Fail(DomainError.OutOfRange);
-            if (!world.Geometry.ClearLine(actor.Transform.Position, node.Position))
+            if ((node.Spec.Kind == WorldNodeKind.FishingSpot && !world.Geometry.CanStand(actor.Transform.Position, actor.Transform.CollisionRadius)) ||
+                !world.Geometry.ClearLine(actor.Transform.Position, interactionPosition))
                 return DomainResult.Fail(DomainError.Blocked);
             return DomainResult.Ok();
         }
@@ -54,7 +58,7 @@ namespace LinhThu.Domain.World
             var result = Check(world, actorId, nodeId, out _, out var node);
             if (!result.Succeeded)
                 return result;
-            if (!node.IsReady)
+            if (!node.IsReady || node.Spec.Kind == WorldNodeKind.FishingSpot)
                 return DomainResult.Fail(DomainError.InvalidState);
             var spec = node.Spec;
             if (node.CropDefinitionId != null && !world.Content.TryGetNode(node.CropDefinitionId, out spec))
@@ -116,6 +120,9 @@ namespace LinhThu.Domain.World
             if (!world.Geometry.CanStand(portal.Spec.PortalDestination, actor.Transform.CollisionRadius))
                 return DomainResult.Fail(DomainError.Blocked);
             actor.Transform.Position = portal.Spec.PortalDestination;
+            actor.StopMotion();
+            if (actor.State == ActorActionState.Moving || actor.State == ActorActionState.Dashing)
+                actor.State = ActorActionState.Idle;
             return DomainResult.Ok();
         }
     }

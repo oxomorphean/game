@@ -64,3 +64,14 @@ MonoBehaviour:
   abilities: []
   collisionRadius: 0.1375
   prefab: {fileID: 7844706464530731937, guid: c8be04dad61b54816a12c0281a23e710, type: 3}
+  acceleration: 28
+  deceleration: 22
+  turnResponsiveness: 16
+  dashDuration: 0.2
+  dashSpeedMultiplier: 4
+  dashCooldown: 1
+  defaultOutfit: {fileID: 11400000, guid: c956d44a54ac24961973dde3b38683bd, type: 2}
+  outfits:
+  - {fileID: 11400000, guid: 428f85ebd92ff4e7eb23efcd3a21148e, type: 2}
+  - {fileID: 11400000, guid: bf24f6e97650e4ee09aeafbdbabbacd0, type: 2}
+  - {fileID: 11400000, guid: c956d44a54ac24961973dde3b38683bd, type: 2}

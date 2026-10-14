@@ -28,12 +28,12 @@ namespace LinhThu.Domain.Persistence
 
         public DomainResult<GameSaveDto> ToCurrent(GameSaveDto source)
         {
-            if (source == null || source.SchemaId != "linhthu.foundation" || source.SchemaVersion > 1)
+            if (source == null || source.SchemaId != "linhthu.foundation" || source.SchemaVersion > GameSaveDto.CurrentVersion)
                 return DomainResult<GameSaveDto>.Fail(DomainError.UnsupportedSchema);
             var current = source;
-            while (current.SchemaVersion != 1)
+            while (current.SchemaVersion != GameSaveDto.CurrentVersion)
             {
-                if (!migrations.TryGetValue(current.SchemaVersion, out var migration) || migration.ToVersion > 1)
+                if (!migrations.TryGetValue(current.SchemaVersion, out var migration) || migration.ToVersion > GameSaveDto.CurrentVersion)
                     return DomainResult<GameSaveDto>.Fail(DomainError.UnsupportedSchema);
                 var next = migration.Migrate(current);
                 if (!next.Succeeded)

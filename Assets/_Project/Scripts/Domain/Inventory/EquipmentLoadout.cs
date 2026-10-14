@@ -45,6 +45,15 @@ namespace LinhThu.Domain.Inventory
                 return DomainResult.Fail(DomainError.MissingDefinition);
             if (spec.Category != ItemCategory.Artifact || slotId != spec.EquipmentSlot)
                 return DomainResult.Fail(DomainError.InvalidInput);
+            var appearance = owner.Appearance;
+            if (spec.OutfitId != null)
+            {
+                if (owner.Spec.Appearance == null)
+                    return DomainResult.Fail(DomainError.InvalidInput);
+                appearance = appearance.WithOutfit(spec.OutfitId);
+                if (!owner.Spec.Appearance.Supports(appearance))
+                    return DomainResult.Fail(DomainError.InvalidInput);
+            }
             if (equipped.TryGetValue(slotId, out var old) && old.ItemId == itemId)
                 return DomainResult.Fail(DomainError.NoEffect);
             var next = inventory.Clone();
@@ -79,6 +88,7 @@ namespace LinhThu.Domain.Inventory
                 sources.Allocate();
             inventory.Replace(next.Slots);
             equipped[slotId] = new EquippedItem(itemId, source);
+            owner.Appearance = appearance;
             owner.Vitals.ClampToLimits();
             return DomainResult.Ok();
         }
@@ -108,6 +118,9 @@ namespace LinhThu.Domain.Inventory
 
             inventory.Replace(next.Slots);
             equipped.Remove(slotId);
+            content.TryGetItem(item.ItemId, out var removed);
+            if (removed.OutfitId != null)
+                owner.Appearance = owner.Appearance.WithOutfit(owner.Spec.Appearance.Default.OutfitId);
             owner.Vitals.ClampToLimits();
             return DomainResult.Ok();
         }
@@ -115,6 +128,8 @@ namespace LinhThu.Domain.Inventory
         internal void Restore(string slot, EquippedItem item, ActorEntity owner)
         {
             content.TryGetItem(item.ItemId, out var spec);
+            if (spec.OutfitId != null && (owner.Spec.Appearance == null || !owner.Spec.Appearance.Supports(owner.Appearance.WithOutfit(spec.OutfitId))))
+                throw new ArgumentException("Equipped outfit is incompatible with the actor wardrobe.");
             equipped.Add(slot, item);
             owner.Stats.SetModifiersFromSource(item.SourceId, spec.Modifiers.Select(m => m.FromSource(item.SourceId)).ToArray());
         }

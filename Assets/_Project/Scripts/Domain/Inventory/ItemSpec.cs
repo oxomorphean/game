@@ -15,7 +15,8 @@ namespace LinhThu.Domain.Inventory
         Pill,
         Artifact,
         BeastEgg,
-        TechniqueScroll
+        TechniqueScroll,
+        Fish
     }
 
     public sealed class ItemSpec
@@ -35,8 +36,9 @@ namespace LinhThu.Domain.Inventory
         public string TechniqueId { get; }
 
         public string BeastSpeciesId { get; }
+        public string OutfitId { get; }
 
-        public ItemSpec(string definitionId, ItemCategory category, int maxStack = 99, string equipmentSlot = null, IEnumerable<StatModifierSpec> modifiers = null, IEnumerable<AbilityEffectSpec> useEffects = null, string techniqueId = null, string beastSpeciesId = null)
+        public ItemSpec(string definitionId, ItemCategory category, int maxStack = 99, string equipmentSlot = null, IEnumerable<StatModifierSpec> modifiers = null, IEnumerable<AbilityEffectSpec> useEffects = null, string techniqueId = null, string beastSpeciesId = null, string outfitId = null)
         {
             DefinitionId = Guard.Id(definitionId);
             Category = Guard.EnumValue(category);
@@ -48,6 +50,9 @@ namespace LinhThu.Domain.Inventory
             UseEffects = Guard.Copy(useEffects ?? Array.Empty<AbilityEffectSpec>());
             TechniqueId = techniqueId == null ? null : Guard.Id(techniqueId);
             BeastSpeciesId = beastSpeciesId == null ? null : Guard.Id(beastSpeciesId);
+            OutfitId = outfitId == null ? null : Guard.Id(outfitId);
+            if (OutfitId != null && category != ItemCategory.Artifact)
+                throw new ArgumentException("Only equipment can change an outfit.");
             if (UseEffects.Any(x => x == null) || (category == ItemCategory.Artifact && EquipmentSlot == null) || (category == ItemCategory.TechniqueScroll && TechniqueId == null) || (category == ItemCategory.BeastEgg && BeastSpeciesId == null))
                 throw new ArgumentException("Incomplete item definition.");
             foreach (var modifier in Modifiers)

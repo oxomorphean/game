@@ -24,6 +24,12 @@ namespace LinhThu.Domain.Actors
         public VitalResourcePool Vitals { get; internal set; }
 
         public ActorActionState State { get; internal set; }
+        public WorldPoint DesiredMovement { get; internal set; }
+        public float MovementSpeedFactor { get; internal set; } = 1;
+        public DashState Dash { get; } = new DashState();
+        public ActorAppearance Appearance { get; internal set; }
+        public LifeActivityState LifeActivity { get; } = new LifeActivityState();
+        public bool HasLifeActivity => State == ActorActionState.Meditating || State == ActorActionState.Fishing;
 
         public StatusEffectContainer StatusEffects { get; }
 
@@ -38,6 +44,7 @@ namespace LinhThu.Domain.Actors
                 throw new ArgumentException("Invalid actor ID.");
             Id = id;
             Spec = spec ?? throw new ArgumentNullException(nameof(spec));
+            Appearance = spec.Appearance?.Default ?? default;
             Faction = Guard.EnumValue(faction);
             OwnerId = ownerId;
             Transform = new Transform2D(spawn, new WorldPoint(1, 0), spec.CollisionRadius);
@@ -53,12 +60,27 @@ namespace LinhThu.Domain.Actors
                 return DomainResult.Fail(DomainError.InvalidState);
             if (staggered)
             {
+                StopMotion();
                 Abilities.Cast = null;
                 State = ActorActionState.Staggered;
             }
             else if (State == ActorActionState.Staggered)
                 State = ActorActionState.Idle;
             return DomainResult.Ok();
+        }
+
+        internal void StopMotion()
+        {
+            CancelLifeActivity();
+            Transform.CurrentVelocity = default;
+            DesiredMovement = default;
+            Dash.Cancel();
+        }
+
+        internal void CancelLifeActivity()
+        {
+            LifeActivity.Reset();
+            if (HasLifeActivity) State = ActorActionState.Idle;
         }
     }
 }

@@ -30,7 +30,7 @@ namespace LinhThu.Domain.Persistence
                 throw new InvalidOperationException("Capture requires a committed, flushed simulation boundary.");
             var player = world.Player;
             var rng = world.Random.Capture();
-            var dto = new GameSaveDto{MapDefinitionId = world.MapDefinitionId, SimulationSeconds = world.Clock.ElapsedSeconds, TickIndex = world.Clock.TickIndex, NextEntityId = world.Ids.Next, NextSourceId = world.Sources.Next, Random = new RandomStateDto{AlgorithmId = rng.AlgorithmId, State = rng.State}, DesiredMovement = new PointDto(world.desiredMovement)};
+            var dto = new GameSaveDto{MapDefinitionId = world.MapDefinitionId, SimulationSeconds = world.Clock.ElapsedSeconds, TickIndex = world.Clock.TickIndex, NextEntityId = world.Ids.Next, NextSourceId = world.Sources.Next, Random = new RandomStateDto{AlgorithmId = rng.AlgorithmId, State = rng.State}};
             dto.Rules = new RulesSaveDto{DefenseScale = world.Rules.DefenseScale, OffenseScale = world.Rules.OffenseScale, ResistanceScale = world.Rules.ResistanceScale, CooldownReductionCap = world.Rules.CooldownReductionCap, Elements = world.Rules.Elements.Entries.OrderBy(e => e.Attack).ThenBy(e => e.Defense).Select(e => new ElementSaveDto{Attack = e.Attack, Defense = e.Defense, Factor = e.Factor}).ToList(), Hostilities = world.Relations.Entries.OrderBy(f => f.From).ThenBy(f => f.To).Select(f => new FactionSaveDto{From = f.From, To = f.To}).ToList()};
             dto.Player = new PlayerSaveDto{ActorId = player.ActorId.Value, RealmSourceId = player.RealmSourceId, RealmId = player.Cultivation.CurrentRealmId, SubStage = (int)player.Cultivation.SubStage, CultivationExp = player.Cultivation.CurrentCultivationExp, InventoryCapacity = player.Inventory.Capacity, Inventory = player.Inventory.Slots.Select(i => new ItemSaveDto{DefinitionId = i.DefinitionId, Count = i.Count}).ToList(), Equipment = player.Equipment.Slots.OrderBy(e => e.Key).Select(e => new EquipmentSaveDto{SlotId = e.Key, ItemId = e.Value.ItemId, SourceId = e.Value.SourceId}).ToList(), Beasts = player.Beasts.All.OrderBy(b => b.Id).Select(b => new BeastSaveDto{Id = b.Id.Value, OwnerId = b.OwnerId.Value, DefinitionId = b.DefinitionId, QualityId = b.QualityId, BloodlineId = b.BloodlineId, Bond = b.Bond, State = b.State, ActorId = b.ActorId?.Value, AssignedFieldId = b.AssignedFieldId?.Value, BondSourceId = b.BondSourceId, RestingHp = b.RestingHp, RestingQi = b.RestingQi}).ToList()};
             var playerSources = new HashSet<int>(player.Equipment.Slots.Values.Select(e => e.SourceId))
@@ -43,8 +43,10 @@ namespace LinhThu.Domain.Persistence
                 var derived = new HashSet<int>(actor.StatusEffects.Active.Select(s => s.SourceId));
                 if (actor.Id == player.ActorId)
                     derived.UnionWith(playerSources);
-                var a = new ActorSaveDto{Id = actor.Id.Value, DefinitionId = actor.DefinitionId, Faction = actor.Faction, OwnerId = actor.OwnerId?.Value, LastDamagerId = actor.LastDamagerId?.Value, Position = new PointDto(actor.Transform.Position), Facing = new PointDto(actor.Transform.FacingDirection), Hp = actor.Vitals.CurrentHp, Qi = actor.Vitals.CurrentQi, Shield = actor.Vitals.CurrentShield, State = actor.State, BaseStats = actor.Stats.BaseValues.ToDictionary(x => x.Key, x => x.Value), Cooldowns = actor.Abilities.Cooldowns.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value)};
+                var a = new ActorSaveDto{Id = actor.Id.Value, DefinitionId = actor.DefinitionId, Faction = actor.Faction, OwnerId = actor.OwnerId?.Value, LastDamagerId = actor.LastDamagerId?.Value, Position = new PointDto(actor.Transform.Position), Facing = new PointDto(actor.Transform.FacingDirection), Velocity = new PointDto(actor.Transform.CurrentVelocity), DesiredMovement = new PointDto(actor.DesiredMovement), MovementSpeedFactor = actor.MovementSpeedFactor, Dash = new DashSaveDto { Direction = new PointDto(actor.Dash.Direction), Duration = actor.Dash.Duration, Remaining = actor.Dash.Remaining, PeakSpeed = actor.Dash.PeakSpeed, CooldownRemaining = actor.Dash.CooldownRemaining }, Hp = actor.Vitals.CurrentHp, Qi = actor.Vitals.CurrentQi, Shield = actor.Vitals.CurrentShield, State = actor.State, BaseStats = actor.Stats.BaseValues.ToDictionary(x => x.Key, x => x.Value), Cooldowns = actor.Abilities.Cooldowns.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value)};
                 a.ManualModifiers = actor.Stats.GetModifiers().Where(m => !derived.Contains(m.SourceId)).Select(m => new ModifierSaveDto{StatId = m.StatId, Type = m.Type, Value = m.Value, SourceId = m.SourceId}).ToList();
+                a.Appearance = new AppearanceSaveDto { OutfitId = actor.Appearance.OutfitId, HairId = actor.Appearance.HairId, EyeId = actor.Appearance.EyeId };
+                a.LifeActivity = new LifeActivitySaveDto { MeditationElapsed = actor.LifeActivity.MeditationElapsed, FishingNodeId = actor.LifeActivity.FishingNodeId?.Value, FishingRemaining = actor.LifeActivity.FishingRemaining, FishingTarget = new PointDto(actor.LifeActivity.FishingTarget) };
                 a.Statuses = actor.StatusEffects.Active.Select(s => new StatusSaveDto{DefinitionId = s.DefinitionId, SourceId = s.SourceId, CasterId = s.CasterId.Value, StackCount = s.StackCount, RemainingDuration = s.RemainingDuration, UntilNextTick = s.UntilNextTick, Source = CaptureSource(s.Source)}).ToList();
                 var cast = actor.Abilities.Cast;
                 if (cast != null)
@@ -107,7 +109,6 @@ namespace LinhThu.Domain.Persistence
                 world.Ids = new EntityIdAllocator(dto.NextEntityId);
                 world.Sources = new SourceIdAllocator(dto.NextSourceId);
                 world.Clock = new SimulationClock(dto.SimulationSeconds, dto.TickIndex);
-                world.desiredMovement = dto.DesiredMovement.ToPoint();
                 foreach (var a in dto.Actors)
                 {
                     Require(content.TryGetActor(a.DefinitionId, out var spec), "Missing actor definition.");
@@ -121,10 +122,27 @@ namespace LinhThu.Domain.Persistence
                         Guard.Number(cd.Value, "cooldown", 0, ability.Cooldown);
                     }
 
-                    var runtimeSpec = new ActorSpec(spec.DefinitionId, spec.PrimaryElement, a.BaseStats, a.Cooldowns.Keys, spec.CollisionRadius);
+                    var runtimeSpec = new ActorSpec(spec.DefinitionId, spec.PrimaryElement, a.BaseStats, a.Cooldowns.Keys, spec.CollisionRadius, spec.Movement, spec.Appearance, spec.LifeActivities);
                     var actor = new ActorEntity(new EntityId(a.Id), runtimeSpec, a.Faction, a.Position.ToPoint(), a.OwnerId.HasValue ? new EntityId(a.OwnerId.Value) : (EntityId? )null, world.Sources);
+                    var appearance = a.Appearance.ToAppearance();
+                    Require(spec.Appearance == null ? appearance.IsEmpty : spec.Appearance.Supports(appearance), "Unknown actor appearance.");
+                    actor.Appearance = appearance;
                     var transform = new Transform2D(a.Position.ToPoint(), a.Facing.ToPoint(), spec.CollisionRadius);
                     actor.Transform.FacingDirection = transform.FacingDirection;
+                    Require(a.Velocity.ToPoint().Finite && a.Velocity.ToPoint().Length <= 100.001f, "Invalid velocity.");
+                    Require(a.DesiredMovement.ToPoint().Finite && a.DesiredMovement.ToPoint().Length <= 1.00001f, "Invalid movement intent.");
+                    actor.Transform.CurrentVelocity = a.Velocity.ToPoint();
+                    actor.DesiredMovement = a.DesiredMovement.ToPoint();
+                    actor.MovementSpeedFactor = Guard.Number(a.MovementSpeedFactor, "movement factor", 0, 10);
+                    actor.Dash.Direction = a.Dash.Direction.ToPoint();
+                    actor.Dash.Duration = a.Dash.Duration;
+                    actor.Dash.Remaining = a.Dash.Remaining;
+                    actor.Dash.PeakSpeed = a.Dash.PeakSpeed;
+                    actor.Dash.CooldownRemaining = a.Dash.CooldownRemaining;
+                    actor.Dash.Validate(spec.Movement);
+                    Require(actor.Dash.Active == (a.State == ActorActionState.Dashing), "Dash state mismatch.");
+                    Require(!actor.Dash.Active || a.Cast == null, "Dash conflicts with cast.");
+                    Require((a.State != ActorActionState.Dead && a.State != ActorActionState.Staggered && a.Cast == null) || a.Velocity.ToPoint().LengthSquared == 0, "Locked actor retains velocity.");
                     actor.State = a.State;
                     actor.LastDamagerId = a.LastDamagerId.HasValue ? new EntityId(a.LastDamagerId.Value) : (EntityId? )null;
                     foreach (var group in a.ManualModifiers.GroupBy(m => m.SourceId))
@@ -193,6 +211,31 @@ namespace LinhThu.Domain.Persistence
                     foreach (var reward in spec.Rewards)
                         Require(content.TryGetItem(reward.DefinitionId, out _), "Missing node reward.");
                     world.nodes.Add(node.Id, node);
+                }
+
+                foreach (var a in dto.Actors)
+                {
+                    var actor = world.actors[new EntityId(a.Id)];
+                    var state = a.LifeActivity;
+                    Require(state != null && state.FishingTarget.ToPoint().Finite, "Invalid life activity.");
+                    bool meditating = actor.State == ActorActionState.Meditating, fishing = actor.State == ActorActionState.Fishing;
+                    if (meditating || fishing)
+                        Require(actor.Id == world.Player.ActorId && actor.Spec.LifeActivities != null && a.Hp > 0 && a.Cast == null && !actor.Dash.Active && actor.Transform.CurrentVelocity.LengthSquared == 0 && actor.DesiredMovement.LengthSquared == 0, "Activity conflicts with motion or combat.");
+                    Guard.Number(state.MeditationElapsed, "meditation time", 0, meditating ? actor.Spec.LifeActivities.MeditationTickSeconds : 0);
+                    if (meditating) Require(state.MeditationElapsed < actor.Spec.LifeActivities.MeditationTickSeconds, "Uncommitted meditation tick.");
+                    Require(fishing == state.FishingNodeId.HasValue, "Fishing state mismatch.");
+                    if (fishing)
+                    {
+                        Require(world.nodes.TryGetValue(new EntityId(state.FishingNodeId.Value), out var spot) && spot.Spec.Kind == WorldNodeKind.FishingSpot && spot.IsReady, "Fishing spot unavailable.");
+                        Require(world.Interactions.Check(world, actor.Id, spot.Id, out _, out _).Succeeded, "Fishing actor is not at shore.");
+                        Require((state.FishingTarget.ToPoint() - spot.Position - spot.Spec.FishingWaterOffset).Length < .0001f, "Fishing target mismatch.");
+                        Guard.Number(state.FishingRemaining, "fishing time", 0, spot.Spec.FishingBiteSeconds);
+                        actor.LifeActivity.FishingNodeId = spot.Id;
+                        actor.LifeActivity.FishingTarget = state.FishingTarget.ToPoint();
+                    }
+                    else Require(state.FishingRemaining == 0 && state.FishingTarget.ToPoint().LengthSquared == 0, "Inactive fishing retains state.");
+                    actor.LifeActivity.MeditationElapsed = state.MeditationElapsed;
+                    actor.LifeActivity.FishingRemaining = state.FishingRemaining;
                 }
 
                 foreach (var b in dto.Player.Beasts)

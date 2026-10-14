@@ -35,7 +35,7 @@ namespace LinhThu.Domain.Combat
         {
             if (!world.TryGetActor(casterId, out var caster))
                 return DomainResult.Fail(DomainError.NotFound);
-            if (!caster.CanAct || caster.Abilities.Cast != null)
+            if (!caster.CanAct || caster.Abilities.Cast != null || caster.Dash.Active)
                 return DomainResult.Fail(DomainError.InvalidState);
             if (!caster.Abilities.Knows(techniqueId) || !content.TryGetTechnique(techniqueId, out var spec))
                 return DomainResult.Fail(DomainError.MissingDefinition);
@@ -70,9 +70,11 @@ namespace LinhThu.Domain.Combat
                     return result;
             }
 
+            caster.CancelLifeActivity();
             caster.Vitals.TrySpend(VitalType.Qi, spec.QiCost);
             caster.Abilities.StartCooldown(techniqueId, spec.Cooldown * (1 - Math.Max(0, Math.Min(rules.CooldownReductionCap, caster.Stats.Get(StatId.CooldownReduction)))));
             caster.Abilities.Cast = new CastState(spec, aim);
+            caster.Transform.CurrentVelocity = default;
             caster.State = ActorActionState.Casting;
             if (spec.CastDuration == 0)
                 AdvanceCast(world, caster, 0);

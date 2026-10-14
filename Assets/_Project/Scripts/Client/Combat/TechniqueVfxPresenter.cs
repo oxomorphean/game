@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using LinhThu.Client.Actors;
 using LinhThu.Client.Bootstrap;
 using LinhThu.Domain.Combat;
 using LinhThu.Domain.Core;
@@ -17,11 +18,12 @@ namespace LinhThu.Client.Combat
         public FloatingTextPresenter floatingTextPrefab;
         private WorldState world;
         private ContentRegistrySO registry;
+        private IReadOnlyList<ActorView> actorViews;
         private IDisposable damageSubscription, abilitySubscription;
         private readonly Dictionary<EntityId, LineRenderer> projectiles = new Dictionary<EntityId, LineRenderer>();
         private readonly List<FloatingTextPresenter> texts = new List<FloatingTextPresenter>();
         private readonly List<(LineRenderer line, float until)> pulses = new List<(LineRenderer, float)>();
-        public void Bind(WorldState value, ContentRegistrySO content)
+        public void Bind(WorldState value, ContentRegistrySO content, IReadOnlyList<ActorView> views)
         {
             if (lineMaterial == null || floatingTextPrefab == null)
                 throw new InvalidOperationException("Combat presentation references are missing.");
@@ -36,6 +38,7 @@ namespace LinhThu.Client.Combat
             pulses.Clear();
             world = value;
             registry = content;
+            actorViews = views ?? throw new ArgumentNullException(nameof(views));
             damageSubscription = world.Events.Subscribe<ActorDamagedEvent>(OnDamage);
             abilitySubscription = world.Events.Subscribe<AbilityExecutedEvent>(OnAbility);
         }
@@ -58,7 +61,8 @@ namespace LinhThu.Client.Combat
 
         private void OnDamage(ActorDamagedEvent e)
         {
-            if (!world.TryGetActor(e.TargetId, out var actor))
+            var view = actorViews.FirstOrDefault(v => v.Entity?.Id == e.TargetId);
+            if (view == null)
                 return;
             var label = texts.FirstOrDefault(t => !t.gameObject.activeSelf);
             if (label == null)
@@ -72,8 +76,7 @@ namespace LinhThu.Client.Combat
                 }
             }
 
-            var p = actor.Transform.Position;
-            label.Show("−" + (e.HpLost + e.ShieldLost).ToString("0"), new Vector3(p.X, p.Y + 1.4f, 0), new Color(1, .88f, .45f));
+            label.Show("−" + (e.HpLost + e.ShieldLost).ToString("0"), view, new Color(1, .88f, .45f));
         }
 
         private void OnAbility(AbilityExecutedEvent e)

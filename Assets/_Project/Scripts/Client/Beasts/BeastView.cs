@@ -10,6 +10,7 @@ namespace LinhThu.Client.Beasts
         public Transform motionRoot;
         public float bounce = .035f, tilt = 2;
         private Vector3 origin;
+        private float phase;
         private void Awake()
         {
             if (motionRoot != null)
@@ -20,8 +21,9 @@ namespace LinhThu.Client.Beasts
         {
             if (actor == null || actor.Entity == null || motionRoot == null)
                 return;
-            bool moving = actor.Entity.State == ActorActionState.Moving;
-            float phase = Time.time * (moving ? 12 : 3);
+            float speed = actor.Entity.Transform.CurrentVelocity.Length;
+            bool moving = speed > .03f;
+            phase = Mathf.Repeat(phase + Time.deltaTime * (moving ? Mathf.Clamp(speed * 4, 4, 24) : 3), Mathf.PI * 2);
             motionRoot.localPosition = origin + Vector3.up * (moving ? Mathf.Abs(Mathf.Sin(phase)) * bounce : 0);
             motionRoot.localRotation = Quaternion.Euler(0, 0, moving ? Mathf.Sin(phase) * tilt : 0);
         }

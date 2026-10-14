@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76aa9f9b6daf64f27a5bff37a4ad2274, type: 3}
+  m_Name: spirit-fish
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Configs.ItemConfigSO
+  definitionId: spirit-fish
+  displayName: "Linh Ng\u01B0"
+  description: "C\xE1 h\u1EA5p thu linh kh\xED \u1EDF h\u1ED3 Thanh Kh\xEA."
+  category: 7
+  maxStack: 99
+  equipmentSlot: 
+  icon: {fileID: 0}
+  outfit: {fileID: 0}
+  modifiers: []
+  useEffects: []
+  technique: {fileID: 0}
+  beastSpecies: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []

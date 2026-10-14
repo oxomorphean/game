@@ -25,7 +25,11 @@ namespace LinhThu.Client.Configs
         public ItemConfigSO seedItem;
         public string destinationMapId;
         public Vector2 portalDestination;
+        [Min(.1f)] public float fishingBiteSeconds = 4;
+        public Vector2 fishingWaterOffset;
+        [Tooltip("Convex bank outline relative to the node, matching the pond's ground footprint. Empty supports a single shore point.")]
+        public Vector2[] fishingShoreline = Array.Empty<Vector2>();
         public World.WorldNodeView prefab;
-        public WorldNodeSpec ToSpec() => new WorldNodeSpec(Id, kind, rewards.Select(r => r.ToStack()), interactionRadius, growthSeconds, respawnSeconds, seedItem != null ? seedItem.Id : null, string.IsNullOrWhiteSpace(destinationMapId) ? null : destinationMapId, new WorldPoint(portalDestination.x, portalDestination.y));
+        public WorldNodeSpec ToSpec() => new WorldNodeSpec(Id, kind, rewards.Select(r => r.ToStack()), interactionRadius, growthSeconds, respawnSeconds, seedItem != null ? seedItem.Id : null, string.IsNullOrWhiteSpace(destinationMapId) ? null : destinationMapId, new WorldPoint(portalDestination.x, portalDestination.y), fishingBiteSeconds, new WorldPoint(fishingWaterOffset.x, fishingWaterOffset.y), fishingShoreline.Select(p => new WorldPoint(p.x, p.y)));
     }
 }

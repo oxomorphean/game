@@ -33,10 +33,15 @@ namespace LinhThu.Domain.Beasts
             Guard.Delta(deltaTime);
             if (deltaTime == 0 || !world.TryGetActor(beastId, out var beast) || !world.TryGetActor(ownerId, out var owner) || !beast.CanAct || !owner.Vitals.IsAlive)
                 return;
+            beast.DesiredMovement = default;
+            beast.MovementSpeedFactor = 1;
+            if (beast.Dash.Active)
+                return;
             float distance = (owner.Transform.Position - beast.Transform.Position).Length;
             if (distance > spec.LeashDistance && world.Geometry.TryFindStandableNear(owner.Transform.Position + new WorldPoint(-spec.FollowDistance, 0), beast.Transform.CollisionRadius, spec.FollowDistance, out var point))
             {
                 beast.Transform.Position = point;
+                beast.Transform.CurrentVelocity = default;
                 distance = (owner.Transform.Position - point).Length;
             }
 
@@ -60,7 +65,7 @@ namespace LinhThu.Domain.Beasts
                 }
 
                 if (!inRange && beast.Abilities.Cast == null)
-                    Walk(world, beast, offset, deltaTime, 1);
+                    beast.DesiredMovement = offset.Normalized;
                 return;
             }
 
@@ -72,17 +77,9 @@ namespace LinhThu.Domain.Beasts
                 var offset = owner.Transform.Position - beast.Transform.Position;
                 float speed = Math.Min(100, Math.Max(0, beast.Stats.Get(StatId.MoveSpeed)) * (distance > spec.LeashDistance ? spec.CatchUpMultiplier : 1));
                 speed = Math.Min(speed, (distance - spec.FollowDistance) / deltaTime);
-                world.Motor.Move(beast.Transform, offset.Normalized, speed, deltaTime, MovementMode.Walk);
-                beast.State = ActorActionState.Moving;
+                beast.DesiredMovement = offset.Normalized;
+                beast.MovementSpeedFactor = speed / Math.Max(.0001f, beast.Stats.Get(StatId.MoveSpeed));
             }
-            else
-                beast.State = ActorActionState.Idle;
-        }
-
-        private static void Walk(WorldState world, ActorEntity beast, WorldPoint direction, float delta, float multiplier)
-        {
-            world.Motor.Move(beast.Transform, direction, Math.Min(100, Math.Max(0, beast.Stats.Get(StatId.MoveSpeed)) * multiplier), delta, MovementMode.Walk);
-            beast.State = ActorActionState.Moving;
         }
     }
 }

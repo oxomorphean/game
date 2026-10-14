@@ -11,7 +11,8 @@ namespace LinhThu.Domain.Persistence
     public sealed class GameSaveDto
     {
         public string SchemaId = "linhthu.foundation";
-        public int SchemaVersion = 1;
+        public const int CurrentVersion = 2;
+        public int SchemaVersion = CurrentVersion;
         public string MapDefinitionId;
         public double SimulationSeconds;
         public long TickIndex;
@@ -23,7 +24,6 @@ namespace LinhThu.Domain.Persistence
         public List<ActorSaveDto> Actors = new List<ActorSaveDto>();
         public List<WorldNodeSaveDto> Nodes = new List<WorldNodeSaveDto>();
         public List<ProjectileSaveDto> Projectiles = new List<ProjectileSaveDto>();
-        public PointDto DesiredMovement;
     }
 
     public struct PointDto
@@ -104,7 +104,12 @@ namespace LinhThu.Domain.Persistence
         public string DefinitionId;
         public ActorFaction Faction;
         public long? OwnerId, LastDamagerId;
-        public PointDto Position, Facing;
+        public PointDto Position, Facing, Velocity, DesiredMovement;
+        public float MovementSpeedFactor = 1;
+        public DashSaveDto Dash;
+        public AppearanceSaveDto Appearance;
+        // Additive schema-2 data: older idle/moving saves default to no activity.
+        public LifeActivitySaveDto LifeActivity = new LifeActivitySaveDto();
         public Dictionary<StatId, float> BaseStats = new Dictionary<StatId, float>();
         public float Hp, Qi, Shield;
         public ActorActionState State;
@@ -112,6 +117,26 @@ namespace LinhThu.Domain.Persistence
         public Dictionary<string, float> Cooldowns = new Dictionary<string, float>();
         public CastSaveDto Cast;
         public List<StatusSaveDto> Statuses = new List<StatusSaveDto>();
+    }
+
+    public sealed class DashSaveDto
+    {
+        public PointDto Direction;
+        public float Duration, Remaining, PeakSpeed, CooldownRemaining;
+    }
+
+    public sealed class LifeActivitySaveDto
+    {
+        public float MeditationElapsed, FishingRemaining;
+        public long? FishingNodeId;
+        public PointDto FishingTarget;
+    }
+
+    public sealed class AppearanceSaveDto
+    {
+        public string OutfitId, HairId, EyeId;
+        public ActorAppearance ToAppearance() => OutfitId == null && HairId == null && EyeId == null
+            ? default : new ActorAppearance(OutfitId, HairId, EyeId);
     }
 
     public sealed class ModifierSaveDto

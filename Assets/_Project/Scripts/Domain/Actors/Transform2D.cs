@@ -10,6 +10,8 @@ namespace LinhThu.Domain.Actors
 
         public WorldPoint FacingDirection { get; internal set; }
 
+        public WorldPoint CurrentVelocity { get; internal set; }
+
         public float CollisionRadius { get; }
 
         public Transform2D(WorldPoint position, WorldPoint facingDirection, float collisionRadius)

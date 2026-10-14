@@ -11,7 +11,6 @@ namespace LinhThu.Client.Environment
         private SpriteRenderer source;
         private GardenAccentKind kind;
         private Mesh mesh;
-        private Material material;
         private MeshRenderer view;
         private VertexHelper vertices;
         private Rect spriteRect;
@@ -36,13 +35,14 @@ namespace LinhThu.Client.Environment
             spriteRect = new Rect(bounds.min.x, bounds.min.y, bounds.size.x, bounds.size.y);
             if (template == null)
                 throw new InvalidOperationException("Garden ambience requires the daylight sprite material.");
-            material = new Material(template)
-            {mainTexture = Texture2D.whiteTexture};
             mesh = new Mesh{name = gameObject.name};
             mesh.MarkDynamic();
             gameObject.AddComponent<MeshFilter>().sharedMesh = mesh;
             view = gameObject.AddComponent<MeshRenderer>();
-            view.sharedMaterial = material;
+            view.sharedMaterial = template;
+            var properties = new MaterialPropertyBlock();
+            properties.SetTexture("_MainTex", Texture2D.whiteTexture);
+            view.SetPropertyBlock(properties);
             view.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             view.receiveShadows = false;
             vertices = new VertexHelper();
@@ -70,8 +70,6 @@ namespace LinhThu.Client.Environment
             vertices?.Dispose();
             if (mesh != null)
                 Destroy(mesh);
-            if (material != null)
-                Destroy(material);
         }
     }
 }

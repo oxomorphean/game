@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 5904290426763179098}
   - component: {fileID: 1445198552241441135}
   - component: {fileID: 2347284982985816744}
+  - component: {fileID: 7025362968129473240}
   m_Layer: 0
   m_Name: "B\u1EE5i c\u1ECF 7"
   m_TagString: Untagged
@@ -204,6 +205,24 @@ MonoBehaviour:
   floorOrder: -42
   baseOrder: 100
   unitsToOrder: 10
+--- !u!114 &7025362968129473240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179842854550766464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f7f6e403fb042f6801adc145d12e9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Environment.InteractiveFoliage
+  visual: {fileID: 699581433886336399}
+  contactRadius: 0.8
+  contactBend: 28
+  windBend: 2
+  response: 16
+  recovery: 4
 --- !u!1 &377468620226284646
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,6 +726,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.MeadowGroundSurface
   size: {x: 20.000002, y: 11.255981}
   coolShorePatch: {x: 7.25, y: -0.4, z: 3, w: 2}
+  dappledStrength: 0.14
+  sunlightPatchSize: 2.8
+  sunlightDrift: 0.025
 --- !u!1 &637102153085551300
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,6 +1016,7 @@ GameObject:
   - component: {fileID: 4243267249496054977}
   - component: {fileID: 8796764803366298162}
   - component: {fileID: 219776575017790107}
+  - component: {fileID: 5876596515321360397}
   m_Layer: 0
   m_Name: "B\u1EE5i c\u1ECF 6"
   m_TagString: Untagged
@@ -1061,6 +1084,24 @@ MonoBehaviour:
   floorOrder: -42
   baseOrder: 100
   unitsToOrder: 10
+--- !u!114 &5876596515321360397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031926269900163785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f7f6e403fb042f6801adc145d12e9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Environment.InteractiveFoliage
+  visual: {fileID: 7580263753889319790}
+  contactRadius: 0.8
+  contactBend: 28
+  windBend: 2
+  response: 16
+  recovery: 4
 --- !u!1 &1039808635103428644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,6 +1191,7 @@ GameObject:
   - component: {fileID: 1534957189657872778}
   - component: {fileID: 7970723710208253202}
   - component: {fileID: 7113918058083039291}
+  - component: {fileID: 1914836369148308701}
   m_Layer: 0
   m_Name: "B\u1EE5i c\u1ECF 4"
   m_TagString: Untagged
@@ -1217,6 +1259,24 @@ MonoBehaviour:
   floorOrder: -42
   baseOrder: 100
   unitsToOrder: 10
+--- !u!114 &1914836369148308701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293009901836120833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f7f6e403fb042f6801adc145d12e9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Environment.InteractiveFoliage
+  visual: {fileID: 1209554654399277352}
+  contactRadius: 0.8
+  contactBend: 28
+  windBend: 2
+  response: 16
+  recovery: 4
 --- !u!1 &1319917573841107720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1975,6 +2035,7 @@ GameObject:
   - component: {fileID: 5437478498120377635}
   - component: {fileID: 1466298505133969394}
   - component: {fileID: 8267397943558575606}
+  - component: {fileID: 3887716267085086761}
   m_Layer: 0
   m_Name: "B\u1EE5i c\u1ECF 3"
   m_TagString: Untagged
@@ -2042,6 +2103,24 @@ MonoBehaviour:
   floorOrder: -42
   baseOrder: 100
   unitsToOrder: 10
+--- !u!114 &3887716267085086761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2356724176687601944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f7f6e403fb042f6801adc145d12e9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Environment.InteractiveFoliage
+  visual: {fileID: 8830983065500645851}
+  contactRadius: 0.8
+  contactBend: 28
+  windBend: 2
+  response: 16
+  recovery: 4
 --- !u!1 &2592974987166067228
 GameObject:
   m_ObjectHideFlags: 0
@@ -2053,6 +2132,7 @@ GameObject:
   - component: {fileID: 4191093801413344781}
   - component: {fileID: 2765852000758515751}
   - component: {fileID: 9029257736759010707}
+  - component: {fileID: 1430487716667738255}
   m_Layer: 0
   m_Name: "B\u1EE5i c\xE2y tr\xE1i"
   m_TagString: Untagged
@@ -2121,6 +2201,24 @@ MonoBehaviour:
   floorOrder: -42
   baseOrder: 100
   unitsToOrder: 10
+--- !u!114 &1430487716667738255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2592974987166067228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f7f6e403fb042f6801adc145d12e9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Environment.InteractiveFoliage
+  visual: {fileID: 5128489864330174109}
+  contactRadius: 1.15
+  contactBend: 13
+  windBend: 1.1
+  response: 16
+  recovery: 4
 --- !u!1 &2623864433264264124
 GameObject:
   m_ObjectHideFlags: 0
@@ -3219,6 +3317,7 @@ GameObject:
   - component: {fileID: 4905391128491342013}
   - component: {fileID: 3242502112478765087}
   - component: {fileID: 5171065816981946277}
+  - component: {fileID: 396356615288323255}
   m_Layer: 0
   m_Name: "B\u1EE5i c\xE2y ph\u1EA3i"
   m_TagString: Untagged
@@ -3287,6 +3386,24 @@ MonoBehaviour:
   floorOrder: -42
   baseOrder: 100
   unitsToOrder: 10
+--- !u!114 &396356615288323255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3502043059843919120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f7f6e403fb042f6801adc145d12e9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Environment.InteractiveFoliage
+  visual: {fileID: 2217690000755216706}
+  contactRadius: 1.15
+  contactBend: 13
+  windBend: 1.1
+  response: 16
+  recovery: 4
 --- !u!1 &3723441364959002991
 GameObject:
   m_ObjectHideFlags: 0
@@ -3390,6 +3507,7 @@ GameObject:
   - component: {fileID: 1732078979389722785}
   - component: {fileID: 7058234422321781581}
   - component: {fileID: 355465592370260065}
+  - component: {fileID: 1827404785894015852}
   m_Layer: 0
   m_Name: "B\u1EE5i c\u1ECF 1"
   m_TagString: Untagged
@@ -3457,6 +3575,24 @@ MonoBehaviour:
   floorOrder: -42
   baseOrder: 100
   unitsToOrder: 10
+--- !u!114 &1827404785894015852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3800650953747918892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f7f6e403fb042f6801adc145d12e9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Environment.InteractiveFoliage
+  visual: {fileID: 678586327359276349}
+  contactRadius: 0.8
+  contactBend: 28
+  windBend: 2
+  response: 16
+  recovery: 4
 --- !u!1 &3823647432420712423
 GameObject:
   m_ObjectHideFlags: 0
@@ -4749,6 +4885,7 @@ GameObject:
   - component: {fileID: 6572663580349672482}
   - component: {fileID: 4445928933439260998}
   - component: {fileID: 8539907998352925430}
+  - component: {fileID: 12030979940072938}
   m_Layer: 0
   m_Name: "B\u1EE5i c\u1ECF 2"
   m_TagString: Untagged
@@ -4816,6 +4953,24 @@ MonoBehaviour:
   floorOrder: -42
   baseOrder: 100
   unitsToOrder: 10
+--- !u!114 &12030979940072938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5563025395815759250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f7f6e403fb042f6801adc145d12e9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Environment.InteractiveFoliage
+  visual: {fileID: 5378529773374634165}
+  contactRadius: 0.8
+  contactBend: 28
+  windBend: 2
+  response: 16
+  recovery: 4
 --- !u!1 &5662919302575786853
 GameObject:
   m_ObjectHideFlags: 0
@@ -5423,6 +5578,7 @@ GameObject:
   - component: {fileID: 9122555002193497013}
   - component: {fileID: 2491978660737615568}
   - component: {fileID: 8234602675508621594}
+  - component: {fileID: 8702694967761380815}
   m_Layer: 0
   m_Name: "B\u1EE5i c\u1ECF 5"
   m_TagString: Untagged
@@ -5490,6 +5646,24 @@ MonoBehaviour:
   floorOrder: -42
   baseOrder: 100
   unitsToOrder: 10
+--- !u!114 &8702694967761380815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6675031265350553502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f7f6e403fb042f6801adc145d12e9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Environment.InteractiveFoliage
+  visual: {fileID: 5828060537870232800}
+  contactRadius: 0.8
+  contactBend: 28
+  windBend: 2
+  response: 16
+  recovery: 4
 --- !u!1 &6697879857312199048
 GameObject:
   m_ObjectHideFlags: 0
@@ -5949,6 +6123,7 @@ GameObject:
   - component: {fileID: 756525578439077472}
   - component: {fileID: 4517776725076894778}
   - component: {fileID: 612159023583303429}
+  - component: {fileID: 8814391066460803558}
   m_Layer: 0
   m_Name: "B\u1EE5i c\u1ECF 8"
   m_TagString: Untagged
@@ -6016,6 +6191,24 @@ MonoBehaviour:
   floorOrder: -42
   baseOrder: 100
   unitsToOrder: 10
+--- !u!114 &8814391066460803558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7061733433022506708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f7f6e403fb042f6801adc145d12e9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Environment.InteractiveFoliage
+  visual: {fileID: 5173423791812815317}
+  contactRadius: 0.8
+  contactBend: 28
+  windBend: 2
+  response: 16
+  recovery: 4
 --- !u!1 &7418424698572245210
 GameObject:
   m_ObjectHideFlags: 0

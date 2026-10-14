@@ -17,7 +17,21 @@ namespace LinhThu.Domain.World
                     return DomainResult.Fail(DomainError.InvalidInput);
                 if (!world.PlayerActor.CanAct)
                     return DomainResult.Fail(DomainError.InvalidState);
-                world.desiredMovement = c.Direction.LengthSquared > 1 ? c.Direction.Normalized : c.Direction;
+                if (c.Direction.LengthSquared > 0) world.PlayerActor.CancelLifeActivity();
+                world.PlayerActor.DesiredMovement = c.Direction.LengthSquared > 1 ? c.Direction.Normalized : c.Direction;
+                return DomainResult.Ok();
+            });
+            Register<DashCommand>(c => world.TryDash(c.ActorId, c.Direction));
+            Register<ToggleMeditateCommand>(c => world.LifeActivities.ToggleMeditate(c.ActorId));
+            Register<FishCommand>(c => world.LifeActivities.Fish(c.ActorId, c.NodeId));
+            Register<ChangeAppearanceCommand>(c =>
+            {
+                var actor = world.PlayerActor;
+                if (!actor.CanAct)
+                    return DomainResult.Fail(DomainError.InvalidState);
+                if (actor.Spec.Appearance == null || !actor.Spec.Appearance.Supports(c.Appearance))
+                    return DomainResult.Fail(DomainError.InvalidInput);
+                actor.Appearance = c.Appearance;
                 return DomainResult.Ok();
             });
             Register<CastCommand>(c => world.Combat.TryCast(world, c.ActorId, c.TechniqueId, c.Aim));

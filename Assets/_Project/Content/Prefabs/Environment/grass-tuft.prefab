@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 5449516938501090640}
   - component: {fileID: 2485442668711965236}
   - component: {fileID: 3567298342383107238}
+  - component: {fileID: 7539205007970813521}
   m_Layer: 0
   m_Name: grass-tuft
   m_TagString: Untagged
@@ -170,3 +171,21 @@ MonoBehaviour:
   floorOrder: -42
   baseOrder: 100
   unitsToOrder: 10
+--- !u!114 &7539205007970813521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5422797566595345631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f7f6e403fb042f6801adc145d12e9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Environment.InteractiveFoliage
+  visual: {fileID: 901773642970120367}
+  contactRadius: 0.8
+  contactBend: 28
+  windBend: 2
+  response: 16
+  recovery: 4

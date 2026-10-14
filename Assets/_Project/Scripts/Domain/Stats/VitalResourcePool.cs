@@ -109,12 +109,13 @@ namespace LinhThu.Domain.Stats
             CurrentShield = Math.Min(CurrentShield, Maximum(VitalType.Shield));
         }
 
-        public void Regenerate(float deltaTime)
+        public void Regenerate(float deltaTime, float qiMultiplier = 1)
         {
             Guard.Delta(deltaTime);
+            Guard.Number(qiMultiplier, nameof(qiMultiplier), 1, 100);
             ClampToLimits();
             Restore(VitalType.Hp, Math.Max(0, stats.Get(StatId.HpRegen)) * deltaTime);
-            Restore(VitalType.Qi, Math.Max(0, stats.Get(StatId.QiRegen)) * deltaTime);
+            Restore(VitalType.Qi, Math.Min(Maximum(VitalType.Qi), Math.Max(0, stats.Get(StatId.QiRegen)) * qiMultiplier * deltaTime));
         }
     }
 }

@@ -11,6 +11,9 @@ namespace LinhThu.Client.Environment
         public Vector2 size = new Vector2(20, 11.25f);
         [Tooltip("Local centre and radii of the softly shaded, cooler grass by the water.")]
         public Vector4 coolShorePatch = new Vector4(7.25f, -.4f, 3, 2);
+        [Range(0, .4f)] public float dappledStrength = .14f;
+        [Min(.1f)] public float sunlightPatchSize = 2.8f;
+        [Range(0, .2f)] public float sunlightDrift = .025f;
         private Mesh ownedMesh;
         private bool dirty;
         private void OnEnable() => Rebuild();
@@ -44,6 +47,7 @@ namespace LinhThu.Client.Environment
 
         public void ApplySurfaceProperties(MaterialPropertyBlock properties)
         {
+            properties.SetVector("_DappledLight", new Vector4(dappledStrength, sunlightPatchSize, sunlightDrift, 0));
             var center = transform.TransformPoint(new Vector3(coolShorePatch.x, coolShorePatch.y));
             properties.SetVector("_CoolPatch", new Vector4(center.x, center.y,
                 Mathf.Max(.1f, coolShorePatch.z * Mathf.Abs(transform.lossyScale.x)),

@@ -48,10 +48,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2738132293664663415, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: view
+      value: 
+      objectReference: {fileID: 2052687017317610830}
     - target: {fileID: 3262857420319839003, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
       propertyPath: m_Name
       value: PlayerCultivator
       objectReference: {fileID: 0}
+    - target: {fileID: 3294805646149817429, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: view
+      value: 
+      objectReference: {fileID: 2052687017317610830}
     - target: {fileID: 4696333098839386113, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
       propertyPath: referenceHeight
       value: 1.625
@@ -79,6 +87,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2052687017317610830}
   m_SourcePrefab: {fileID: 100100000, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+--- !u!114 &456922591798716448 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3294805646149817429, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+  m_PrefabInstance: {fileID: 3165697293285686389}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479966938519056238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecb7d734b1dc04ddbbc2b20978cc4f6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Actors.CharacterToolAttachmentPresenter
 --- !u!1 &479966938519056238 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3262857420319839003, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
@@ -103,7 +122,21 @@ MonoBehaviour:
   actorAnimator: {fileID: 6787424821407146993}
   equipment: {fileID: 2654926717544195617}
   singleSpriteVisual: {fileID: 0}
+  footsteps: {fileID: 8254201637282178086}
+  actionPose: {fileID: 1013622427631819522}
+  tools: {fileID: 456922591798716448}
   overhead: {fileID: 4234296602486731817}
+--- !u!114 &1013622427631819522 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2738132293664663415, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+  m_PrefabInstance: {fileID: 3165697293285686389}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479966938519056238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4340c779f83c742a0a125772e93e8a6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Actors.ActionPoseController
 --- !u!114 &2654926717544195617 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1096311095848540756, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
@@ -131,6 +164,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18348bf7e9794d9681189c6f126f01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Actors.ActorAnimator
+--- !u!114 &8254201637282178086 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6440710702273632339, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+  m_PrefabInstance: {fileID: 3165697293285686389}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84175f61d78be400f8fc50495c6bc9d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Actors.FootstepDust
 --- !u!1001 &6590393681800109759
 PrefabInstance:
   m_ObjectHideFlags: 0

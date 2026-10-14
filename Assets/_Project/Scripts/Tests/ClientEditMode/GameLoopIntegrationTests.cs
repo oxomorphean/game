@@ -59,7 +59,7 @@ namespace LinhThu.Tests.ClientEditMode
         public void SceneBootsWithSinglePlayerCompanionHudAndBuildEntry()
         {
             Assert.That(game.World.Actors.Count, Is.EqualTo(3));
-            Assert.That(game.World.Nodes.Count, Is.EqualTo(5));
+            Assert.That(game.World.Nodes.Count, Is.EqualTo(6));
             Assert.That(game.World.Player.Beasts.All.Single().State, Is.EqualTo(BeastState.SummonedActive));
             Assert.That(scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<UnityEngine.EventSystems.EventSystem>()).Count(), Is.EqualTo(1));
             Assert.That(EditorBuildSettings.scenes.Where(s => s.enabled).Select(s => s.path), Is.EqualTo(new[]{ScenePath}));
@@ -74,7 +74,10 @@ namespace LinhThu.Tests.ClientEditMode
             game.World.Execute(new MoveCommand(game.World.Player.ActorId, new WorldPoint(1, 0)));
             Tick(.2f);
             game.World.Execute(new MoveCommand(game.World.Player.ActorId, default));
-            Assert.That(game.playerView.transform.position.x, Is.GreaterThan(start.X + .5f));
+            float speed = game.World.PlayerActor.Stats.Get(StatId.MoveSpeed);
+            float rampSeconds = speed / game.World.PlayerActor.Spec.Movement.Acceleration;
+            float expectedDistance = speed * (.2f - rampSeconds * .5f);
+            Assert.That(game.playerView.transform.position.x - start.X, Is.EqualTo(expectedDistance).Within(.001f));
             Assert.That(game.playerView.transform.position.x, Is.EqualTo(game.World.PlayerActor.Transform.Position.X));
             var target = game.World.Actors.Values.Single(a => a.DefinitionId == "training-dummy");
             float hp = target.Vitals.CurrentHp, qi = game.World.PlayerActor.Vitals.CurrentQi;
@@ -83,6 +86,28 @@ namespace LinhThu.Tests.ClientEditMode
             Assert.That(game.World.PlayerActor.Abilities.GetCooldownRemaining(game.registry.hotbar[0].Id), Is.GreaterThan(0));
             Tick(.5f);
             Assert.That(target.Vitals.CurrentHp, Is.LessThan(hp));
+        }
+
+        [Test]
+        public void HairEyesAndDamageArePresentedFromDomainWithoutChangingEquipmentStats()
+        {
+            float attack = game.World.PlayerActor.Stats.Get(StatId.Attack);
+            var original = game.World.PlayerActor.Appearance;
+            Assert.That(game.CycleHair().Succeeded, Is.True);
+            Assert.That(game.CycleEyes().Succeeded, Is.True);
+            var appearance = game.World.PlayerActor.Appearance;
+            Assert.That(appearance.HairId, Is.Not.EqualTo(original.HairId));
+            Assert.That(appearance.EyeId, Is.Not.EqualTo(original.EyeId));
+            Assert.That(game.playerView.equipment.CurrentAppearance, Is.EqualTo(appearance));
+            Assert.That(game.World.PlayerActor.Stats.Get(StatId.Attack), Is.EqualTo(attack));
+            Assert.That(game.CycleOutfit().Succeeded, Is.True);
+            Assert.That(game.World.PlayerActor.Appearance.HairId, Is.EqualTo(appearance.HairId));
+            Assert.That(game.World.PlayerActor.Appearance.EyeId, Is.EqualTo(appearance.EyeId));
+            var target = game.World.Actors.Values.Single(a => a.DefinitionId == "training-dummy");
+            var targetView = game.sceneActors.Single(v => v.Entity == target);
+            game.World.DealDamage(target, game.World.Player.ActorId, 1);
+            game.World.Events.Flush();
+            Assert.That(targetView.equipment.FlashAmount, Is.EqualTo(1));
         }
 
         [Test]
@@ -226,6 +251,10 @@ namespace LinhThu.Tests.ClientEditMode
             Assert.That(prompt.FocusedNodeId, Is.EqualTo(egg.Id));
             Assert.That(prompt.IsVisible, Is.True);
             Assert.That(prompt.label.text, Is.EqualTo("[E] Trứng Huyền Quy"));
+            var eggView = game.sceneNodes.Single(n => n.Entity.Id == egg.Id);
+            Assert.That(prompt.AnchorPosition, Is.EqualTo(eggView.LabelPosition));
+            Assert.That(prompt.AnchorPosition.y, Is.GreaterThan(eggView.additionalVisuals.Max(r => r.bounds.max.y)));
+            Assert.That(prompt.AnchorPosition, Is.Not.EqualTo(game.playerView.OverheadPosition));
             Assert.That(game.hud.interactButtonLabel.text, Does.Contain("Trứng Huyền Quy"));
             // Overlay canvas size/scale are zero in PreviewScene; pixel anchoring is checked in Editor Play.
             var position = player.Transform.Position;
@@ -242,6 +271,73 @@ namespace LinhThu.Tests.ClientEditMode
             Assert.That(prompt.FocusedNodeId, Is.Null);
             Assert.That(prompt.IsVisible, Is.False);
             Assert.That(game.hud.interactButton.interactable, Is.False);
+        }
+
+        [Test]
+        public void MainGamePondAllowsFishingAlongEveryBankAndAnchorsPromptAbovePond()
+        {
+            var nodeView = game.sceneNodes.Single(n => n.config.kind == WorldNodeKind.FishingSpot);
+            var pond = game.map.GetComponentsInChildren<LinhThu.Client.Environment.ModularMapProp>()
+                .Single(p => p.visual != null && p.visual.sprite != null && p.visual.sprite.name == "pond-cluster");
+            var outline = pond.GetComponent<LinhThu.Client.World.ObstacleAuthoring>().Definition();
+            Assert.That(nodeView.labelVisual, Is.SameAs(pond.visual));
+            Assert.That(nodeView.config.fishingShoreline.Length, Is.EqualTo(outline.VertexCount));
+            var spawns = game.sceneNodes.Select(n => new NodeSpawn(n.config.Id, new WorldPoint(n.transform.position.x, n.transform.position.y))).ToArray();
+            var content = game.registry.BuildContent();
+            int tested = 0;
+            for (int edge = 0; edge < outline.VertexCount; edge++)
+            {
+                var a = outline.Vertex(edge); var b = outline.Vertex((edge + 1) % outline.VertexCount);
+                var tangent = (b - a).Normalized;
+                var outward = new WorldPoint(tangent.Y, -tangent.X);
+                Assert.That((nodeView.Entity.Position + nodeView.Entity.Spec.FishingShoreline[edge] - a).Length, Is.LessThan(.0001f));
+                for (int sample = 0; sample < 5; sample++)
+                {
+                    var previous = (a - outline.Vertex((edge + outline.VertexCount - 1) % outline.VertexCount)).Normalized;
+                    var cornerOutward = (outward + new WorldPoint(previous.Y, -previous.X)).Normalized;
+                    var position = sample == 4 ? a + cornerOutward * .35f : a + (b - a) * ((sample + .5f) / 4) + outward * .35f;
+                    Assert.That(game.World.Geometry.CanStand(position, game.World.PlayerActor.Transform.CollisionRadius), Is.True, $"Bank {edge}/{sample} must remain walkable.");
+                    var initial = new WorldInitialState(game.registry.player.Id, game.registry.startingRealm.Id, game.registry.mapDefinitionId,
+                        position, 24, game.registry.CreateRules(), game.registry.CreateRelations(), spawns);
+                    var world = WorldFactory.Create(content, game.World.Geometry, new SeededRandomSource(7), new DomainEventBus(), initial);
+                    Assert.That(world.FocusedNode?.Spec.Kind, Is.EqualTo(WorldNodeKind.FishingSpot), $"E focus at bank {edge}/{sample}");
+                    Assert.That(world.Execute(new InteractCommand(world.Player.ActorId)).Succeeded, Is.True, $"E at bank {edge}/{sample}");
+                    Assert.That(outline.Overlaps(world.PlayerActor.LifeActivity.FishingTarget, 0), Is.True, "Bobber remains inside the pond.");
+                    Assert.That(world.PlayerActor.Transform.Position, Is.EqualTo(position), "Casting never moves the player.");
+                    Assert.That(world.Execute(new FishCommand(world.Player.ActorId)).Succeeded, Is.True, "F cancels before the bite.");
+                    Assert.That(world.Execute(new FishCommand(world.Player.ActorId)).Succeeded, Is.True, "F casts from this bank too.");
+                    tested++;
+                }
+            }
+            Assert.That(tested, Is.EqualTo(60));
+            var actor = game.World.PlayerActor;
+            // Walk around the ore footprint instead of trying to displace through it.
+            game.World.Motor.Displace(actor.Transform, new WorldPoint(0, -4.5f) - actor.Transform.Position);
+            game.World.Motor.Displace(actor.Transform, new WorldPoint(nodeView.Entity.Position.X, -4.5f) - actor.Transform.Position);
+            game.World.Motor.Displace(actor.Transform, nodeView.Entity.Position - actor.Transform.Position);
+            Assert.That((actor.Transform.Position - nodeView.Entity.Position).Length, Is.LessThan(.01f));
+            game.SyncViews();
+            var prompt = game.hud.interactionPrompt;
+            Assert.That(prompt.IsVisible, Is.True);
+            Assert.That(prompt.label.text, Is.EqualTo("[E] Thả câu"));
+            Assert.That(prompt.AnchorPosition.x, Is.EqualTo(pond.visual.bounds.center.x).Within(.001f));
+            Assert.That(prompt.AnchorPosition.y, Is.GreaterThan(pond.visual.bounds.max.y));
+            Assert.That(prompt.AnchorPosition, Is.Not.EqualTo(game.playerView.OverheadPosition));
+        }
+
+        [Test]
+        public void FloatingDamageTextStartsAndRemainsAboveTheMovingActor()
+        {
+            var target = game.sceneActors.Single(v => v.faction == ActorFaction.HostileMonster);
+            game.World.DealDamage(target.Entity, game.World.Player.ActorId, 1);
+            game.World.Events.Flush();
+            var text = game.effects.GetComponentsInChildren<LinhThu.Client.Combat.FloatingTextPresenter>()
+                .Single(t => t.gameObject.activeSelf);
+            Assert.That(text.label.transform.TransformPoint(text.label.bounds.min).y, Is.GreaterThanOrEqualTo(target.OverheadPosition.y - .001f));
+            target.transform.position += Vector3.up;
+            // PreviewScene does not run behaviour messages; invoke the presentation phase directly.
+            typeof(LinhThu.Client.Combat.FloatingTextPresenter).GetMethod("LateUpdate", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(text, null);
+            Assert.That(text.label.transform.TransformPoint(text.label.bounds.min).y, Is.GreaterThanOrEqualTo(target.OverheadPosition.y - .001f));
         }
 
         [Test]

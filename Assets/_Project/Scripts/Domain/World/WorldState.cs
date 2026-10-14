@@ -19,7 +19,6 @@ namespace LinhThu.Domain.World
         internal readonly Dictionary<EntityId, ActorEntity> actors = new Dictionary<EntityId, ActorEntity>();
         internal readonly Dictionary<EntityId, WorldNodeEntity> nodes = new Dictionary<EntityId, WorldNodeEntity>();
         internal readonly Dictionary<EntityId, BeastAiController> ai = new Dictionary<EntityId, BeastAiController>();
-        internal WorldPoint desiredMovement;
         private bool ticking;
         public bool IsTicking => ticking;
         public string MapDefinitionId { get; }
@@ -56,6 +55,7 @@ namespace LinhThu.Domain.World
         public CultivationService Cultivation { get; }
 
         public WorldInteractionService Interactions { get; }
+        public LifeActivityService LifeActivities { get; }
 
         public InteractionTargetSelector InteractionTargets { get; } = new InteractionTargetSelector();
 
@@ -86,6 +86,7 @@ namespace LinhThu.Domain.World
             Combat = new CombatResolver(content, Rules, effects, targeting, random, events);
             Cultivation = new CultivationService(content, events);
             Interactions = new WorldInteractionService();
+            LifeActivities = new LifeActivityService(this);
             Items = new ItemUseService();
             commands = new WorldCommandProcessor(this);
             if (!content.TryGetRealm(initialState.RealmDefinitionId, out var realm))
@@ -177,10 +178,12 @@ namespace LinhThu.Domain.World
             var applied = target.Vitals.ApplyDamage(amount);
             if (applied.HpLost + applied.ShieldLost == 0)
                 return;
+            target.CancelLifeActivity();
             target.LastDamagerId = source;
             Events.Publish(new ActorDamagedEvent(target.Id, source, applied.HpLost, applied.ShieldLost));
             if (applied.DiedNow)
             {
+                target.StopMotion();
                 target.State = ActorActionState.Dead;
                 target.Abilities.Cast = null;
                 target.StatusEffects.OnDeath();
@@ -197,6 +200,56 @@ namespace LinhThu.Domain.World
             return result;
         }
 
+        internal DomainResult TryDash(EntityId id, WorldPoint direction)
+        {
+            if (!direction.Finite)
+                return DomainResult.Fail(DomainError.InvalidInput);
+            if (!TryGetActor(id, out var actor))
+                return DomainResult.Fail(DomainError.NotFound);
+            if (!actor.CanAct || actor.Abilities.Cast != null || actor.Dash.Active)
+                return DomainResult.Fail(DomainError.InvalidState);
+            if (actor.Dash.CooldownRemaining > .000001f)
+                return DomainResult.Fail(DomainError.OnCooldown);
+            float peak = Math.Min(100, Math.Max(0, actor.Stats.Get(StatId.MoveSpeed)) * actor.Spec.Movement.DashSpeedMultiplier);
+            if (peak <= 0)
+                return DomainResult.Fail(DomainError.InvalidState);
+            if (direction.LengthSquared < .000001f)
+                direction = actor.Transform.FacingDirection;
+            actor.CancelLifeActivity();
+            actor.Dash.Start(direction, peak, actor.Spec.Movement);
+            actor.Transform.FacingDirection = actor.Dash.Direction;
+            actor.State = ActorActionState.Dashing;
+            return DomainResult.Ok();
+        }
+
+        private void ResolveMovement(ActorEntity actor, float deltaTime)
+        {
+            if (!actor.CanAct || actor.Abilities.Cast != null || actor.HasLifeActivity)
+            {
+                actor.Transform.CurrentVelocity = default;
+                actor.Dash.Cancel();
+                return;
+            }
+            if (actor.Dash.Active)
+            {
+                float distance = actor.Dash.Advance(deltaTime, out var duration);
+                float remainingRatio = actor.Dash.Remaining / actor.Dash.Duration;
+                Motor.Dash(actor.Transform, actor.Dash.Direction, distance, actor.Dash.PeakSpeed * remainingRatio * remainingRatio, duration);
+                actor.Transform.FacingDirection = actor.Dash.Direction;
+                if (actor.Dash.Active)
+                    return;
+                deltaTime -= duration;
+                if (deltaTime < .000001f)
+                {
+                    actor.State = actor.Transform.CurrentVelocity.LengthSquared > .0001f ? ActorActionState.Moving : ActorActionState.Idle;
+                    return;
+                }
+            }
+            float speed = Math.Min(100, Math.Max(0, actor.Stats.Get(StatId.MoveSpeed)) * actor.MovementSpeedFactor);
+            Motor.Move(actor.Transform, actor.DesiredMovement, speed, deltaTime, MovementMode.Walk, actor.Spec.Movement);
+            actor.State = actor.Transform.CurrentVelocity.LengthSquared > .0001f ? ActorActionState.Moving : ActorActionState.Idle;
+        }
+
         public void Tick(float deltaTime)
         {
             Guard.Delta(deltaTime);
@@ -210,11 +263,13 @@ namespace LinhThu.Domain.World
                 Clock.Advance(deltaTime);
                 foreach (var actor in actors.Values.OrderBy(a => a.Id).ToArray())
                 {
-                    actor.Vitals.Regenerate(deltaTime);
+                    actor.Dash.TickCooldown(deltaTime);
+                    actor.Vitals.Regenerate(deltaTime, actor.State == ActorActionState.Meditating ? actor.Spec.LifeActivities.MeditationQiMultiplier : 1);
                     actor.Abilities.Tick(deltaTime);
                     actor.StatusEffects.Tick(deltaTime, this);
                     if (!actor.Vitals.IsAlive && actor.State != ActorActionState.Dead)
                     {
+                        actor.StopMotion();
                         actor.State = ActorActionState.Dead;
                         actor.Abilities.Cast = null;
                         actor.StatusEffects.OnDeath();
@@ -224,6 +279,7 @@ namespace LinhThu.Domain.World
 
                 Player.Beasts.Reconcile(this);
                 Combat.Tick(this, deltaTime);
+                LifeActivities.Tick(deltaTime);
                 Player.Beasts.Reconcile(this);
                 foreach (var beast in Player.Beasts.All.Where(b => b.State == BeastState.SummonedActive).OrderBy(b => b.Id).ToArray())
                 {
@@ -237,11 +293,8 @@ namespace LinhThu.Domain.World
                     controller.Tick(this, deltaTime);
                 }
 
-                if (PlayerActor.CanAct && PlayerActor.Abilities.Cast == null)
-                {
-                    Motor.Move(PlayerActor.Transform, desiredMovement, Math.Min(100, Math.Max(0, PlayerActor.Stats.Get(StatId.MoveSpeed))), deltaTime, MovementMode.Walk);
-                    PlayerActor.State = desiredMovement.LengthSquared > 0 ? ActorActionState.Moving : ActorActionState.Idle;
-                }
+                foreach (var actor in actors.Values.OrderBy(a => a.Id))
+                    ResolveMovement(actor, deltaTime);
 
                 foreach (var node in nodes.Values.OrderBy(n => n.Id))
                     node.Tick(deltaTime);

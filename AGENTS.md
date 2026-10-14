@@ -12,6 +12,8 @@
 - Áp dụng chỉ thị Core Foundation của chủ dự án: hợp nhất tài nguyên, xây 7 trụ cột Domain, Configs/Client rồi kết nối game loop. Chỉ thị này thay phần xung đột của chế độ chỉ xem mỹ thuật ngày 12/10, pipeline nhiều hướng, scene thử, builder và Web QA trong tài liệu cũ; không tự phục hồi gameplay từ `Recovery/`.
 - Kế hoạch [Core Foundation Phase 1–2](Architecture/CORE_FOUNDATION_PHASES_1_2.md) đã được chủ dự án duyệt ngày 14/10/2026; thực hiện Phase 1 rồi Phase 2 và báo kết quả thực tế cuối Phase 2. Ba điều chỉnh bắt buộc: backup bền vững ngoài repo, giữ 22 StatId với 5 Affinity dùng chung công/kháng, và kiểm dependency Unity để xóa hai script Cartoon ngay khi không còn dùng.
 - Cả bốn Phase đã có implementation và checkpoint; xem [bằng chứng](Architecture/CORE_FOUNDATION_PROGRESS.md). MainGame là entry hiện hành; nghiệm thu mỹ thuật vẫn cần chủ dự án xem trực tiếp.
+- Chỉ thị Core Gameplay Feel hiện hành: tạm dừng mở rộng Owner/Admin Dashboard; chưa làm Spring Bone tóc/tà áo. Di chuyển/Dash và ngoại hình ID thuộc Domain; view đọc state, không nhận input để tự dịch chuyển hoặc sửa luật. Giữ nhãn E, overhead HP/status và visual scale 0.625 đã duyệt.
+- Chỉ thị Stride / Life Actions 14/10: cụm đầu HeroBase 78%, tư thế Tu Tiên thư thái, giữ toàn rig 0.625. Meditating/Fishing và phần thưởng thuộc Domain; pose/ToolSocket/hạt chỉ đọc state. Hiệu chỉnh stride từ clip và tỷ lệ prefab, không dùng MoveSpeed làm vận tốc chuẩn giả định của animation. Chưa làm đặt Linh Điền.
 - Thực hiện tuần tự: **1. Purge & Consolidate → 2. Domain + EditMode tests → 3. Configs + Client + DevTools → 4. MainGame + GameBootstrapper**. Cuối mỗi Phase phải có kết quả Unity compile **0 lỗi** trước khi chuyển Phase; cuối Phase 2 phải có NUnit EditMode tests đạt. Không dùng kết quả cũ thay cho kiểm chứng của Phase hiện tại.
 - Những công thức/cân bằng hoặc chính sách chưa được chỉ thị xác định phải ghi là đề xuất trong kế hoạch, không tự biến thành luật chính thức. Cập nhật tài liệu hiện hành theo từng Phase sau khi được duyệt.
 
@@ -69,6 +71,7 @@ Mười thư mục `Core`, `Stats`, `Actors`, `Cultivation`, `Combat`, `Beasts`,
 - Giữ thiết kế nhất quán qua asset và animation; đối chiếu đủ checklist trong style guide trước khi báo cáo đạt chuẩn.
 - Ghi rõ asset mới chỉ là mẫu ảnh hay đã nhập/chạy trong Unity. Không suy ra sprite có thể dùng ngay chỉ vì ảnh sinh ra trông đẹp.
 - Không tự đổi hướng mỹ thuật đã chọn. Yêu cầu trực tiếp mới của người dùng được ưu tiên.
+- Nhãn tương tác giữ tên vật thể (Linh dược, Trứng…), đặt toàn bộ khung chữ phía trên vật thể qua `WorldNodeView.LabelPosition`, không neo lên người chơi. Hồ hiện “Thả câu” phía trên hồ khi tới gần; mọi bờ có thể đứng được đều cho phép câu, kiểm tầm tới mép hồ và vật cản qua Domain. Chữ trạng thái/sát thương gắn nhân vật dùng `ActorView.OverheadPosition`, cập nhật sau animation và không che động tác. Áp dụng cho cả nhãn mới về sau; HUD cố định giữ vùng riêng.
 
 ## Phạm vi dự án
 

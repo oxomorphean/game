@@ -192,8 +192,13 @@ namespace LinhThu.Tests.EditMode
             var ai = new BeastAiController(actor.Id, world.Player.ActorId, new BeastAiSpec(1, 8, 5, 2, new[] { "strike" }));
             Assert.That(geometry.TryFindStandableNear(new WorldPoint(-1, 0), 2, 1, out _), Is.False);
             ai.Tick(world, .1f);
-            Assert.That(actor.Transform.Position.X, Is.EqualTo(-9.2f).Within(.0001));
+            Assert.That(actor.Transform.Position.X, Is.EqualTo(-10)); // AI writes intent; WorldState owns motion.
+            Assert.That(actor.DesiredMovement.X, Is.EqualTo(1));
+            world.Tick(.1f);
+            Assert.That(actor.Transform.Position.X, Is.GreaterThan(-10).And.LessThan(-9.2f));
             Assert.That(geometry.CanStand(actor.Transform.Position, 2), Is.True);
+            Fixture.Tick(world, .2f);
+            Assert.That(actor.Transform.CurrentVelocity.Length, Is.GreaterThan(actor.Stats.Get(StatId.MoveSpeed)), "Catch-up intent can exceed normal walking speed.");
         }
     }
 }

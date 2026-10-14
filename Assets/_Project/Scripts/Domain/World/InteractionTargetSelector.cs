@@ -19,7 +19,7 @@ namespace LinhThu.Domain.World
             {
                 if (!world.Interactions.CanFocus(world, actor.Id, node.Id))
                     continue;
-                var delta = node.Position - actor.Transform.Position;
+                var delta = node.InteractionPosition(actor.Transform.Position) - actor.Transform.Position;
                 float distance = delta.LengthSquared;
                 var direction = delta.Normalized;
                 float facing = direction.X * actor.Transform.FacingDirection.X + direction.Y * actor.Transform.FacingDirection.Y;

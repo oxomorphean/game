@@ -87,8 +87,12 @@ namespace LinhThu.Client.Bootstrap
             }
 
             foreach (var a in actors)
+            {
                 foreach (var t in a.abilities)
                     Reference(t, "actor technique");
+                foreach (var outfit in a.outfits)
+                    Reference(outfit, "actor outfit");
+            }
             foreach (var r in realms)
                 if (r.nextRealm != null)
                     Reference(r.nextRealm, "next realm");

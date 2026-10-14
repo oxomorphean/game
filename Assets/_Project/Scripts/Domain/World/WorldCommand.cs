@@ -1,6 +1,7 @@
 using LinhThu.Domain.Core;
 using LinhThu.Domain.Navigation;
 using LinhThu.Domain.Combat;
+using LinhThu.Domain.Actors;
 
 namespace LinhThu.Domain.World
 {
@@ -35,6 +36,29 @@ namespace LinhThu.Domain.World
             TechniqueId = technique;
             Aim = aim;
         }
+    }
+
+    public sealed class DashCommand : WorldCommand
+    {
+        public WorldPoint Direction { get; }
+        public DashCommand(EntityId actorId, WorldPoint direction) : base(actorId) => Direction = direction;
+    }
+
+    public sealed class ChangeAppearanceCommand : WorldCommand
+    {
+        public ActorAppearance Appearance { get; }
+        public ChangeAppearanceCommand(EntityId actorId, ActorAppearance appearance) : base(actorId) => Appearance = appearance;
+    }
+
+    public sealed class ToggleMeditateCommand : WorldCommand
+    {
+        public ToggleMeditateCommand(EntityId actorId) : base(actorId) { }
+    }
+
+    public sealed class FishCommand : WorldCommand
+    {
+        public EntityId? NodeId { get; }
+        public FishCommand(EntityId actorId, EntityId? nodeId = null) : base(actorId) => NodeId = nodeId;
     }
 
     public sealed class InteractCommand : WorldCommand

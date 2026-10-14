@@ -19,7 +19,7 @@ namespace LinhThu.Tests.EditMode
         {
             var c = new DomainContent();
             var stats = new Dictionary<StatId, float>{{StatId.MaxHp, 200}, {StatId.MaxQi, 20}, {StatId.Attack, 20}, {StatId.MoveSpeed, 4}, {StatId.BeastCommandCap, 1}, {StatId.BeastStatLinkRatio, .1f}, {StatId.CritDamage, 2}};
-            c.Add(new ActorSpec("player", ElementType.Wood, stats, new[]{"strike", "projectile", "channel", "windup"}));
+            c.Add(new ActorSpec("player", ElementType.Wood, stats, new[]{"strike", "projectile", "channel", "windup"}, appearance: new AppearanceSpec(new ActorAppearance("classic", "ink", "amber"), new[] { "classic", "jade", "basic" }, new[] { "ink", "silver" }, new[] { "amber", "jade" }), lifeActivities: new LifeActivitySpec()));
             c.Add(new ActorSpec("target", ElementType.Wood, stats, Array.Empty<string>()));
             c.Add(new ActorSpec("turtle-actor", ElementType.Water, stats, new[]{"strike"}));
             c.Add(new RealmSpec("qi", "foundation", new long[]{0, 20, 50, 100}, 100, new[]{new StatModifierSpec(StatId.Attack, ModifierType.FlatAdd, 5)}));
@@ -37,7 +37,7 @@ namespace LinhThu.Tests.EditMode
             c.Add(new ItemSpec("herb", ItemCategory.Herb));
             c.Add(new ItemSpec("ore", ItemCategory.Ore));
             c.Add(new ItemSpec("seed", ItemCategory.Herb));
-            c.Add(new ItemSpec("robe", ItemCategory.Artifact, 1, "body", new[]{new StatModifierSpec(StatId.Attack, ModifierType.FlatAdd, 3)}));
+            c.Add(new ItemSpec("robe", ItemCategory.Artifact, 1, "body", new[]{new StatModifierSpec(StatId.Attack, ModifierType.FlatAdd, 3)}, outfitId: "jade"));
             c.Add(new ItemSpec("pill", ItemCategory.Pill, useEffects: new AbilityEffectSpec[]{new RestoreVitalEffectSpec(VitalType.Hp, 20)}));
             c.Add(new ItemSpec("scroll", ItemCategory.TechniqueScroll, techniqueId: "strike"));
             c.Add(new ItemSpec("egg", ItemCategory.BeastEgg, beastSpeciesId: "turtle"));

@@ -14,6 +14,9 @@ namespace LinhThu.Client.Actors
         public ActorAnimator actorAnimator;
         public ModularEquipmentRenderer equipment;
         public Transform singleSpriteVisual;
+        public FootstepDust footsteps;
+        public ActionPoseController actionPose;
+        public CharacterToolAttachmentPresenter tools;
         public UI.ActorOverheadPresenter overhead;
         public ActorEntity Entity { get; private set; }
 
@@ -42,16 +45,26 @@ namespace LinhThu.Client.Actors
             if (entity == null || config == null || entity.DefinitionId != config.Id)
                 throw new InvalidOperationException("Actor view/config mismatch.");
             Entity = entity;
+            actionPose?.ResetPose();
+            tools?.ResetPresentation();
+            footsteps?.ResetMotion();
             Sync();
         }
 
-        public void Unbind() => Entity = null;
+        public void Unbind()
+        {
+            actionPose?.ResetPose();
+            tools?.ResetPresentation();
+            footsteps?.ResetMotion();
+            Entity = null;
+        }
         public void Sync()
         {
             if (Entity == null)
                 return;
             var p = Entity.Transform.Position;
             transform.position = new Vector3(p.X, p.Y, transform.position.z);
+            equipment?.ApplyAppearance(Entity.Appearance);
             equipment?.SetFacing(Entity.Transform.FacingDirection.X);
             if (singleSpriteVisual != null && Mathf.Abs(Entity.Transform.FacingDirection.X) > .001f)
             {
@@ -61,6 +74,7 @@ namespace LinhThu.Client.Actors
             }
 
             actorAnimator?.Present(Entity);
+            footsteps?.Present(Entity);
             overhead?.Refresh();
         }
     }

@@ -15,54 +15,100 @@ MonoBehaviour:
   definitionId: outfit-classic
   displayName: "\u0110\u1EA1o b\xE0o Thanh V\xE2n"
   description: 
+  appearanceId: classic
+  defaultHairId: silver
+  defaultEyeId: jade
+  hairVariants:
+  - id: ink
+    front: {fileID: 21300000, guid: f4657e45b89014af4bd2432c25a49b68, type: 3}
+    back: {fileID: 21300000, guid: e4d6f796e9c534ac496a6b1c917c8502, type: 3}
+    ornament: {fileID: 21300000, guid: e00d9536526b64893b3c6f4d91aa8f01, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: silver
+    front: {fileID: 21300000, guid: 14b38f8c7be72459fb7084796ebf1b49, type: 3}
+    back: {fileID: 21300000, guid: 76a8fd1cd35244ee285132c9bb2455d0, type: 3}
+    ornament: {fileID: 21300000, guid: b78ad3902874f44baad950499ec70e56, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  eyeVariants:
+  - id: amber
+    sprite: {fileID: 21300000, guid: fb505f71f490a43e5b5b6aef713c8d15, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - id: jade
+    sprite: {fileID: 21300000, guid: dbf5c026d1d724baeaa0acfa516c042c, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   slots:
   - slotId: hair-back
     sprite: {fileID: 21300000, guid: 76a8fd1cd35244ee285132c9bb2455d0, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: thigh-back
     sprite: {fileID: 21300000, guid: 48b8ae8960c5e4abb8898f1825cc9acd, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: shin-back
     sprite: {fileID: 21300000, guid: 369c3e350a6934cc08fcf2be6baf5898, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: thigh-front
     sprite: {fileID: 21300000, guid: 871333a04e06a46088ec22c79def1993, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: shin-front
     sprite: {fileID: 21300000, guid: 9df918aaa784c4c128ac7fc302d7a212, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: boot-back
     sprite: {fileID: 21300000, guid: 95303b12276a74274ac3152b51e4fb75, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: boot-front
     sprite: {fileID: 21300000, guid: 90592a4a9c5ac4697a1969d69c481ffe, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: shorts
     sprite: {fileID: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: neck
     sprite: {fileID: 21300000, guid: e5078b2463fb048cfa6dcdad6cb5befd, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: torso
     sprite: {fileID: 21300000, guid: 8c6468d36f2064579a47f1fdc95dd346, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: upper-back
     sprite: {fileID: 21300000, guid: d9ee41ead386948f7959937c009e5479, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: fore-back
     sprite: {fileID: 21300000, guid: 95bc55028cc7341d9a66d540963b5601, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: upper-front
     sprite: {fileID: 21300000, guid: c6cb34d9c7de045fda10a16c5f54fba2, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: fore-front
     sprite: {fileID: 21300000, guid: 469daba7a927d4599a4a158d18bb4c94, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: coat-back
     sprite: {fileID: 21300000, guid: 8d7a5ac2f782c4783b47a158f9e30c2d, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: coat-front
     sprite: {fileID: 21300000, guid: 0809f2e7180664ea383b63e8f824d526, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: sash
     sprite: {fileID: 21300000, guid: d3eb24cd1d34144188b2e364f012940c, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: belt
     sprite: {fileID: 21300000, guid: 59bedad0830014ee59968d6ab19c3669, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: hand-back
     sprite: {fileID: 21300000, guid: 9065162e4d71f4b4bb854ce9ddd4c801, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: hand-front
     sprite: {fileID: 21300000, guid: af225ccdc84e24ba8a939387f8f5a5c5, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: head
     sprite: {fileID: 21300000, guid: 130e258e82fbd408fb419fb7895e5c75, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: eyes
     sprite: {fileID: 21300000, guid: dbf5c026d1d724baeaa0acfa516c042c, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: mouth
     sprite: {fileID: 21300000, guid: e090b0048c4ef42b99d63ffd6d84d92e, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: hair-front
     sprite: {fileID: 21300000, guid: 14b38f8c7be72459fb7084796ebf1b49, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: hair-ornament
     sprite: {fileID: 21300000, guid: b78ad3902874f44baad950499ec70e56, type: 3}
+    tint: {r: 1, g: 1, b: 1, a: 1}

@@ -9,6 +9,7 @@ using LinhThu.Client.UI;
 using LinhThu.Client.Combat;
 using LinhThu.Client.World;
 using LinhThu.Domain.Beasts;
+using LinhThu.Domain.Actors;
 using LinhThu.Domain.Combat;
 using LinhThu.Domain.Core;
 using LinhThu.Domain.Inventory;
@@ -43,6 +44,7 @@ namespace LinhThu.Client.Bootstrap
         private readonly Dictionary<EntityId, WorldNodeView> nodeViews = new Dictionary<EntityId, WorldNodeView>();
         private WorldSaveStore saveStore;
         private double accumulator;
+        private IDisposable damageSubscription;
         private void Start() => Initialize();
         public void Initialize()
         {
@@ -77,9 +79,11 @@ namespace LinhThu.Client.Bootstrap
             actorViews.Add(playerView);
             actorViews.AddRange(sceneActors);
             World = world;
+            BindFoliage();
             playerView.Bind(World.PlayerActor);
-            saveStore = new WorldSaveStore(Path.Combine(Application.persistentDataPath, "linhthu.foundation", "save.json"));
-            effects.Bind(World, registry);
+            saveStore = new WorldSaveStore(Path.Combine(Application.persistentDataPath, "linhthu.foundation", "v2", "save.json"));
+            effects.Bind(World, registry, actorViews);
+            BindDamageFeedback();
             hud.Bind(this);
             SyncViews();
         }
@@ -101,6 +105,8 @@ namespace LinhThu.Client.Bootstrap
             {
                 movement.x = (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed ? 1 : 0) - (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed ? 1 : 0);
                 movement.y = (keyboard.wKey.isPressed || keyboard.upArrowKey.isPressed ? 1 : 0) - (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed ? 1 : 0);
+                if (keyboard.spaceKey.wasPressedThisFrame || keyboard.leftShiftKey.wasPressedThisFrame)
+                    Dash(new WorldPoint(movement.x, movement.y));
                 if (keyboard.digit1Key.wasPressedThisFrame)
                     Cast(0, PointerDirection());
                 if (keyboard.digit2Key.wasPressedThisFrame)
@@ -109,10 +115,18 @@ namespace LinhThu.Client.Bootstrap
                     Cast(2, PointerDirection());
                 if (keyboard.eKey.wasPressedThisFrame)
                     InteractFocused();
+                if (keyboard.xKey.wasPressedThisFrame)
+                    ToggleMeditate();
+                if (keyboard.fKey.wasPressedThisFrame)
+                    Fish();
                 if (keyboard.rKey.wasPressedThisFrame)
                     ToggleBeast();
                 if (keyboard.tabKey.wasPressedThisFrame)
                     CycleOutfit();
+                if (keyboard.hKey.wasPressedThisFrame)
+                    CycleHair();
+                if (keyboard.yKey.wasPressedThisFrame)
+                    CycleEyes();
                 if (keyboard.f5Key.wasPressedThisFrame)
                     SaveGame();
                 if (keyboard.f9Key.wasPressedThisFrame)
@@ -149,6 +163,8 @@ namespace LinhThu.Client.Bootstrap
             return Submit(new CastCommand(World.Player.ActorId, registry.hotbar[slot].Id, new AimRequest(direction)));
         }
 
+        public DomainResult Dash(WorldPoint direction) => Submit(new DashCommand(World.Player.ActorId, direction));
+
         public void CastFromHud(int slot)
         {
             var target = World.Actors.Values.Where(a => a.Vitals.IsAlive && World.Relations.IsHostile(World.PlayerActor.Faction, a.Faction)).OrderBy(a => (a.Transform.Position - World.PlayerActor.Transform.Position).LengthSquared).FirstOrDefault();
@@ -160,6 +176,8 @@ namespace LinhThu.Client.Bootstrap
             var node = World.FocusedNode;
             if (node == null)
                 return DomainResult.Fail(DomainError.NotFound);
+            if (node.Spec.Kind == WorldNodeKind.FishingSpot)
+                return Fish(node.Id);
             bool planting = node.Spec.Kind == WorldNodeKind.SpiritFieldPlot && node.CropDefinitionId == null;
             return Submit(new InteractCommand(World.Player.ActorId, registry.fieldCrop.Id),
                 node.Spec.Kind == WorldNodeKind.TeleportPortal ? "Đã dịch chuyển." : planting ? "Đã gieo linh thảo." : "Đã thu hoạch.");
@@ -173,6 +191,18 @@ namespace LinhThu.Client.Bootstrap
             bool recall = beast.State == BeastState.SummonedActive;
             string name = registry.beasts.First(b => b.Id == beast.DefinitionId).displayName;
             return Submit(recall ? (WorldCommand)new RecallCommand(World.Player.ActorId, beast.Id) : new SummonCommand(World.Player.ActorId, beast.Id), name + (recall ? " đã nghỉ." : " xuất chiến."));
+        }
+
+        public DomainResult ToggleMeditate() => Submit(new ToggleMeditateCommand(World.Player.ActorId),
+            World.PlayerActor.State == ActorActionState.Meditating ? "Đã đứng dậy." : "Ngồi thiền · WASD để đứng dậy.");
+
+        public DomainResult Fish(EntityId? nodeId = null)
+        {
+            bool biting = World.PlayerActor.LifeActivity.FishBiting;
+            var result = Submit(new FishCommand(World.Player.ActorId, nodeId));
+            if (result.Succeeded)
+                hud.Notify(World.PlayerActor.State == ActorActionState.Fishing ? "Đã thả câu · chờ phao động rồi nhấn F/E." : biting ? "Đã thu cá vào túi." : "Đã cất cần câu.", 1);
+            return result;
         }
 
         public DomainResult CycleOutfit()
@@ -190,6 +220,37 @@ namespace LinhThu.Client.Bootstrap
             hud.Notify("Chưa có đạo bào khác trong túi.");
             return DomainResult.Fail(DomainError.NoEffect);
         }
+
+        public DomainResult ChangeAppearance(ActorAppearance appearance) => Submit(new ChangeAppearanceCommand(World.Player.ActorId, appearance));
+        public DomainResult CycleHair()
+        {
+            var actor = World.PlayerActor;
+            var ids = actor.Spec.Appearance.HairIds;
+            int index = Array.IndexOf(ids.ToArray(), actor.Appearance.HairId);
+            return ChangeAppearance(new ActorAppearance(actor.Appearance.OutfitId, ids[(index + 1) % ids.Count], actor.Appearance.EyeId));
+        }
+        public DomainResult CycleEyes()
+        {
+            var actor = World.PlayerActor;
+            var ids = actor.Spec.Appearance.EyeIds;
+            int index = Array.IndexOf(ids.ToArray(), actor.Appearance.EyeId);
+            return ChangeAppearance(new ActorAppearance(actor.Appearance.OutfitId, actor.Appearance.HairId, ids[(index + 1) % ids.Count]));
+        }
+
+        private void BindDamageFeedback()
+        {
+            damageSubscription?.Dispose();
+            damageSubscription = World.Events.Subscribe<ActorDamagedEvent>(e => actorViews.FirstOrDefault(v => v.Entity?.Id == e.TargetId)?.equipment?.HitFlash());
+        }
+
+        private void BindFoliage()
+        {
+            foreach (var root in gameObject.scene.GetRootGameObjects())
+                foreach (var foliage in root.GetComponentsInChildren<InteractiveFoliage>(true))
+                    foliage.Bind(World);
+        }
+
+        private void OnDestroy() => damageSubscription?.Dispose();
 
         private DomainResult Submit(WorldCommand command, string success = null)
         {
@@ -232,13 +293,6 @@ namespace LinhThu.Client.Bootstrap
 
             foreach (var pair in nodeViews)
                 pair.Value.Sync();
-            if (World.Player.Equipment.Slots.TryGetValue(registry.startingOutfit.equipmentSlot, out var item))
-            {
-                var outfit = registry.Item(item.ItemId).outfit;
-                if (outfit != null && playerView.equipment.CurrentOutfit != outfit)
-                    playerView.equipment.ApplyOutfit(outfit);
-            }
-
             hud.Refresh();
         }
 
@@ -289,12 +343,14 @@ namespace LinhThu.Client.Bootstrap
             }
 
             World = world;
+            BindFoliage();
             accumulator = 0;
             playerView.gameObject.SetActive(true);
             playerView.Bind(World.PlayerActor);
             foreach (var node in World.Nodes)
                 nodeViews[node.Key].Bind(node.Value);
-            effects.Bind(World, registry);
+            effects.Bind(World, registry, actorViews);
+            BindDamageFeedback();
             SyncViews();
             hud.Notify("Đã đọc hành trình (F9).");
         }

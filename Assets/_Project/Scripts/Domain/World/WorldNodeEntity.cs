@@ -38,5 +38,26 @@ namespace LinhThu.Domain.World
             if (!IsDepleted)
                 GrowthTimer = Math.Max(0, GrowthTimer - deltaTime);
         }
+
+        /// <summary>Nearest bank, just outside the water footprint so the pond cannot block its own prompt.</summary>
+        public WorldPoint InteractionPosition(WorldPoint actorPosition)
+        {
+            var shoreline = Spec.FishingShoreline;
+            if (shoreline.Count == 0)
+                return Position;
+            var local = actorPosition - Position;
+            float bestDistance = float.PositiveInfinity;
+            WorldPoint closest = default;
+            for (int i = 0; i < shoreline.Count; i++)
+            {
+                var start = shoreline[i];
+                var edge = shoreline[(i + 1) % shoreline.Count] - start;
+                float t = Math.Max(0, Math.Min(1, WorldPoint.Dot(local - start, edge) / edge.LengthSquared));
+                var point = start + edge * t;
+                float distance = (local - point).LengthSquared;
+                if (distance < bestDistance) { bestDistance = distance; closest = point; }
+            }
+            return Position + closest + (local - closest).Normalized * .01f;
+        }
     }
 }

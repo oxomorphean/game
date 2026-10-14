@@ -4,6 +4,7 @@ using System.Linq;
 using LinhThu.Domain.Core;
 using LinhThu.Domain.Stats;
 using LinhThu.Domain.Combat;
+using LinhThu.Domain.Navigation;
 
 namespace LinhThu.Domain.Actors
 {
@@ -18,14 +19,20 @@ namespace LinhThu.Domain.Actors
         public IReadOnlyList<string> AbilityIds { get; }
 
         public float CollisionRadius { get; }
+        public MovementSpec Movement { get; }
+        public AppearanceSpec Appearance { get; }
+        public LifeActivitySpec LifeActivities { get; }
 
-        public ActorSpec(string definitionId, ElementType primaryElement, IReadOnlyDictionary<StatId, float> baseStats, IEnumerable<string> abilityIds, float collisionRadius = .2f)
+        public ActorSpec(string definitionId, ElementType primaryElement, IReadOnlyDictionary<StatId, float> baseStats, IEnumerable<string> abilityIds, float collisionRadius = .2f, MovementSpec movement = null, AppearanceSpec appearance = null, LifeActivitySpec lifeActivities = null)
         {
             DefinitionId = Guard.Id(definitionId);
             PrimaryElement = Guard.EnumValue(primaryElement);
             BaseStats = new StatSheet(baseStats).BaseValues;
             AbilityIds = Guard.Copy(abilityIds.Select(Guard.Id).Distinct());
             CollisionRadius = Guard.Number(collisionRadius, nameof(collisionRadius), .01f, 10);
+            Movement = movement ?? MovementSpec.Default;
+            Appearance = appearance;
+            LifeActivities = lifeActivities;
         }
     }
 }

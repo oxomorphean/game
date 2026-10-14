@@ -12,7 +12,8 @@ namespace LinhThu.Domain.World
         OreNode,
         SpiritEggNode,
         SpiritFieldPlot,
-        TeleportPortal
+        TeleportPortal,
+        FishingSpot
     }
 
     public sealed class WorldNodeSpec
@@ -34,8 +35,11 @@ namespace LinhThu.Domain.World
         public string DestinationMapId { get; }
 
         public WorldPoint PortalDestination { get; }
+        public float FishingBiteSeconds { get; }
+        public WorldPoint FishingWaterOffset { get; }
+        public IReadOnlyList<WorldPoint> FishingShoreline { get; }
 
-        public WorldNodeSpec(string definitionId, WorldNodeKind kind, IEnumerable<ItemStack> rewards, float interactionRadius = 2, float growthSeconds = 1, float respawnSeconds = 1, string seedItemId = null, string destinationMapId = null, WorldPoint portalDestination = default)
+        public WorldNodeSpec(string definitionId, WorldNodeKind kind, IEnumerable<ItemStack> rewards, float interactionRadius = 2, float growthSeconds = 1, float respawnSeconds = 1, string seedItemId = null, string destinationMapId = null, WorldPoint portalDestination = default, float fishingBiteSeconds = 4, WorldPoint fishingWaterOffset = default, IEnumerable<WorldPoint> fishingShoreline = null)
         {
             DefinitionId = Guard.Id(definitionId);
             Kind = Guard.EnumValue(kind);
@@ -48,6 +52,18 @@ namespace LinhThu.Domain.World
             if (!portalDestination.Finite)
                 throw new ArgumentException(nameof(portalDestination));
             PortalDestination = portalDestination;
+            FishingBiteSeconds = Guard.Number(fishingBiteSeconds, nameof(fishingBiteSeconds), .1f, 300);
+            if (!fishingWaterOffset.Finite || fishingWaterOffset.Length > 10) throw new ArgumentException(nameof(fishingWaterOffset));
+            FishingWaterOffset = fishingWaterOffset;
+            FishingShoreline = Guard.Copy(fishingShoreline ?? Array.Empty<WorldPoint>());
+            if (FishingShoreline.Count > 0)
+            {
+                var footprint = new WorldObstacle(FishingShoreline);
+                if (kind != WorldNodeKind.FishingSpot || !footprint.Overlaps(fishingWaterOffset, 0))
+                    throw new ArgumentException("A fishing shoreline must enclose its water target.");
+            }
+            if (kind == WorldNodeKind.FishingSpot && (Rewards.Count == 0 || (FishingShoreline.Count == 0 && fishingWaterOffset.LengthSquared < .01f)))
+                throw new ArgumentException("Fishing requires a water target and reward.");
             if (kind == WorldNodeKind.TeleportPortal && DestinationMapId == null)
                 throw new ArgumentException("Portal destination required.");
         }
