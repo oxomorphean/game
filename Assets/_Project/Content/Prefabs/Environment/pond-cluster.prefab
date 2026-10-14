@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2993714344870883926}
   - component: {fileID: 2628206038085109711}
   - component: {fileID: 7856143896990777693}
+  - component: {fileID: 2144258749827207081}
   m_Layer: 0
   m_Name: pond-cluster
   m_TagString: Untagged
@@ -52,6 +53,14 @@ MonoBehaviour:
   contactShadow: {fileID: 8569131021551736511}
   floorLayer: 1
   floorOrder: -44
+  shadowSettings:
+    heightScale: 1
+    width: 0.75
+    depth: 0.4
+    center: 0.52
+    contactHeight: 0.12
+    baseCutoff: -1
+    canopyBlueRatio: 0
 --- !u!114 &7856143896990777693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,17 +77,37 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   halfSize: {x: 0.4, y: 0.4}
   polygon:
-  - {x: -1.749517, y: -0.021667857}
-  - {x: -1.4791021, y: 0.53302926}
-  - {x: -0.4390449, y: 0.8935824}
-  - {x: 0.6426145, y: 0.64396876}
-  - {x: 1.3082511, y: 0.25568077}
-  - {x: 1.641069, y: -0.38222098}
-  - {x: 1.2250466, y: -0.964653}
-  - {x: 0.47620535, y: -1.1171948}
-  - {x: -0.4390449, y: -1.0339901}
-  - {x: -1.2294884, y: -0.7150393}
-  - {x: -1.603909, y: -0.35448617}
+  - {x: -1.7287159, y: -0.077137604}
+  - {x: -1.5207043, y: 0.28341562}
+  - {x: -0.8966701, y: 0.53302926}
+  - {x: -0.18943125, y: 0.58849907}
+  - {x: 0.55940986, y: 0.50529444}
+  - {x: 1.1002395, y: 0.25568077}
+  - {x: 1.4330581, y: -0.188077}
+  - {x: 1.2666489, y: -0.65956956}
+  - {x: 0.6426145, y: -0.9923879}
+  - {x: -0.18943125, y: -1.0201228}
+  - {x: -0.8966701, y: -0.7982439}
+  - {x: -1.4791021, y: -0.43769073}
+--- !u!114 &2144258749827207081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2592488881947741219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 2993714344870883926}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 2741603695430293075}
+  floorLayer: 1
+  floorOrder: -44
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &3632017418323219485
 GameObject:
   m_ObjectHideFlags: 0

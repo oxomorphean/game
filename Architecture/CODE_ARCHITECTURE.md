@@ -1,44 +1,62 @@
 # Kiến trúc code hiện hành
 
-Cập nhật 12/10/2026: theo yêu cầu chủ dự án, bản chạy chỉ phục vụ duyệt mỹ thuật, map và animation. Các hệ combat, chỉ số, công pháp, tu luyện, kho, nghề, rơi/nhặt, quái và save đã được đưa ra khỏi source đang biên dịch. Định hướng MMORPG dài hạn chưa phải tính năng hiện tại. [GAME_DESIGN.md](../GAME_DESIGN.md) ghi ưu tiên hiện hành.
+Cập nhật 14/10/2026: Core Foundation đã được duyệt. [Kế hoạch và API](CORE_FOUNDATION_PHASES_1_2.md) · [Kết quả thực thi](CORE_FOUNDATION_PROGRESS.md). Không phục hồi gameplay retired; thông số fixture không phải cân bằng sản phẩm.
 
-## Luồng và trách nhiệm
+## Luồng đích và ranh giới
 
-`Input System → ArtPreviewHost → PreviewMovement → DirectionalHeroView`. `ArtPreviewHud` trình bày hướng dẫn và tạo `OwnerDashboard`: nút Quản trị luôn hiện trong game, mở Tổng quan/Bản đồ/Asset và chặn input đi lại khi bảng mở. Catalogue đọc metadata do `Editor/OwnerCatalogBuilder` sinh từ AssetDatabase khi Play/build; không tải toàn bộ artwork vào RAM để đếm. [Phạm vi và cách đếm](OWNER_DASHBOARD.md). Scene mặc định là `Assets/_Project/Content/Scenes/ArtPreview.unity`; không khởi tạo phiên gameplay hoặc truy cập save.
+`Client Input → WorldCommand → WorldState → typed Domain events → View/HUD`. Domain sở hữu luật, clock, RNG và runtime state; Client ánh xạ ScriptableObject thành spec bất biến và chuyển WorldPoint sang Vector2. Domain không tham chiếu Unity hoặc file I/O.
 
-- `Domain/Navigation`: C# thuần, assembly `LinhThu.Domain` không tham chiếu Unity. `WorldGeometry` giữ footprint convex/circle/box, giới hạn map và trượt dọc vật cản; `PreviewMovement` giữ vị trí cùng độ dịch chuyển đã giải quyết va chạm. Bán kính chân và tốc độ đến từ controller đã cấu hình.
-- `Client/Preview`: input, camera, bootstrap và HUD mẫu. `ObstacleAuthoring` chuyển contour của prefab thành dữ liệu hình học; vị trí và animation không được suy ra từ input chưa xử lý va chạm.
-- `Client/Characters`: definition và renderer cho hình minh họa nhiều hướng; mẫu nhân vật tách lớp dùng `ModularHeroDefinition`, `ModularHeroRig` và `ModularHeroTrial`. Đổi tóc/áo/kiếm ở mẫu này chỉ là đổi hình, không có chỉ số, trang bị hoặc kho. Clip/pose mỹ thuật cũ được giữ; không có luật đánh, tính sát thương hoặc cooldown.
-- Mẫu riêng `AuthoredHeroView`/`AuthoredHeroPreview` dùng nguồn Krita/PSD, SpriteSkin và clip Idle/Run đã lưu; `SetOutfit("Ivory" | "Navy")` chỉ đổi hình. Scene `HeroProductionTrial` chưa thay player chính. [Nguồn, cách chỉnh và bằng chứng](../ArtDirection/HeroProduction2D/README.md).
-- Các component môi trường hiện có tiếp tục giữ mesh nền/đường, đồ vật độc lập, bóng đổ, ánh sáng và ambient. `Editor/ArtPreviewBuilder` tạo scene/build bằng Unity API. Các builder mỹ thuật còn lại tiếp tục phục vụ nhập và chỉnh artwork.
+`LinhThu.Domain` không tham chiếu engine. `LinhThu.Client` tham chiếu Domain/InputSystem/uGUI/TMP; `LinhThu.DevTools` tham chiếu Client, không có chiều ngược. `LinhThu.Editor` chỉ có inspector MeadowTerrainPathEditor. Hai assembly tests tách Domain và Client integration. MainGame là scene duy nhất trong Build Settings.
 
-Không có lớp profile, campaign, event bus gameplay, spatial grid cho actor, persistence hoặc transport trong bản hiện tại. Chỉ thêm lại hệ game khi có mốc thiết kế cụ thể; không giữ implementation chưa dùng như bằng chứng rằng game đã sẵn sàng cho hàng trăm người chơi.
+## Domain đã hiện thực ở Phase 2
+
+`Scripts/Domain` có mười thư mục tổ chức bảy trụ cột. `WorldFactory.Create` đăng ký bốn effect handler và năm delivery selector; `WorldInitialState` nhận player/realm/map, geometry, faction rules, node và `BeastSeed`. `IDomainContent` cấp immutable spec; không có tên Hero/Huyền Quy hoặc thông số cân bằng sản phẩm hardcode trong mô phỏng. `ActorEntity` dùng chung cho mọi faction; `SetStaggered` hủy cast, còn HP/Qi/Shield nằm trong `VitalResourcePool`.
+
+`WorldState.Execute` nhận command tại boundary; `Tick` nhận delta hữu hạn trong `[0, 0.1]`. Move command chỉ đổi hướng mong muốn; Tick mới resolve vị trí. Cooldown, status, cast/channel, projectile, AI và growth chạy qua WorldState; Client không tick lại từng container. Projectile sinh giữa tick chỉ di chuyển trong thời gian còn lại. Event được queue sau mutation rồi flush; callback lỗi được báo bằng AggregateException, không tự retry command đã commit.
+
+StatSheet giữ đúng 22 ID, dirty cache và nguồn modifier riêng cho realm/equipment/status/beast. Năm Affinity dùng chung offense/resistance. Status có refresh/add-stack/independent, snapshot nguồn cho periodic effect; equipment swap, harvest và consumable validate trước khi tiêu hao. Beast Follow/Assist đi qua cùng motor/combat, có leash và recall khi chết hoặc giảm cap.
+
+`GameSaveMapper.Capture` yêu cầu boundary đã flush. `SaveSerializer` dùng schema `linhthu.foundation`/1, JSON DTO, giới hạn size/depth/count, không type metadata. Restore nhận RNG/event bus **mới**, dựng graph riêng, kiểm ID/definition/vị trí/nguồn modifier rồi mới trả world; caller chỉ thay world khi thành công. Realm, equipment, status và bond được tái tạo đúng một lần. Domain chỉ xử lý JSON trong RAM; `StringReader` không đọc file. Phase 4 thêm WorldSaveStore ở Client/Persistence; không có migration save người dùng.
+
+Unity Test Framework được pin bản `1.8.0` đã resolve. Tám fixture EditMode gồm năm fixture bắt buộc, cộng Core/Actor, Cultivation và WorldState; counts/XML thực tế xem [báo cáo Phase 2](CORE_FOUNDATION_PROGRESS.md).
+
+## Asset chuẩn
+
+- `Art/Characters/HeroBase`: 52 PNG cùng meta, `Animation/Idle.anim`, `Run.anim`, `HeroBase.controller`.
+- `Content/Prefabs/Actors/HeroBase.prefab`: cùng hierarchy xương và controller/clip, 25 slot renderer dùng ba OutfitConfigSO (classic/jade/basic). Đổi sprite, không reset animator hoặc đổi bind coordinates.
+- `Art/Environment/Meadow`: PNG/texture/material; `Content/Prefabs/Environment/MeadowMainMap.prefab` và prop riêng giữ GUID/bố cục.
+- `ObstacleAuthoring` chuyển contour chân thành WorldGeometry; nền/đường dùng tiling và mesh. Inspector đường chỉnh điểm, không dựng scene.
+- Material ở `Art/Materials`, catalogue ở `Content/DevTools`; font hiện có và mọi reference được serialize, không còn Resources.Load trong source project. [Dashboard](OWNER_DASHBOARD.md) đã chuyển vào DevTools.
+
+Các nhánh nhân vật cũ, trial scenes, CartoonCharacterRig/CartoonUiRig, builders/checks và Web QA đã được loại theo manifest. Hai Cartoon rig không nằm trong dependency Unity của chín prefab giữ lại.
+
+## Configs, composition và presentation
+
+`ContentRegistrySO.BuildContent()` kiểm tra ID/reference, chuyển SO thành DomainContent. Asset SO chỉ chứa định nghĩa; từng world giữ state riêng. Sample gồm Luyện Khí → Trúc Cơ, ba đạo bào, ba công pháp người chơi, Thủy Tức của Huyền Quy và các node/vật phẩm. Thêm content cùng loại bằng SO; thêm kiểu effect bằng AbilityEffectData + Domain handler, không switch tên kỹ năng.
+
+`GameBootstrapper.Initialize` đọc prefab scene, tạo geometry từ ObstacleAuthoring, seed player/node/roster/inventory và gắn view theo EntityId. Update nhận Input System, gửi command rồi tích lũy fixed step 1/60s cho WorldState. ActorView/ActorAnimator chỉ trình bày pose/state; BeastView nhún/nghiêng; WorldNodeView thể hiện ready/growth. CultivationHudPresenter đọc HP/Qi/shield, cảnh giới, inventory/cooldown và phản hồi Domain; button cùng đi qua command như bàn phím. TopDownCameraController theo player trong biên map.
+
+TechniqueVfxPresenter đọc projectile/event sau commit; FloatingTextPresenter chỉ hiện damage, không quyết định sát thương. OwnerDashboard không nằm trong MainGame và không được Client tham chiếu.
+
+WorldSaveStore ghi JSON UTF-8 vào file pending riêng, flush rồi Move/Replace, giữ `.bak`. Load dựng world riêng, xác nhận map/node/prefab rồi mới đổi live reference; lỗi load giữ nguyên world. F5/F9 và nút HUD là thao tác tường minh, không tự động mở save cũ.
+
+SpiritField, Portal, SpiritEgg và Camp dùng mesh prop riêng; Herb/Ore dùng sprite môi trường thật. Các ô màu placeholder và ảnh `field.png` toàn cảnh cũ không nằm trong dependency MainGame. Cả MeadowMainMap và MeadowMap đều dùng tiling/đường mesh; MeadowMap giữ 21 vị trí prop và GUID khi bỏ nền ảnh cũ.
 
 ## Dữ liệu mỹ thuật
 
-`MeadowMainMap.prefab` giữ map chính gồm nền texture lặp, đường mesh chỉnh điểm, đá lát, 21 đồ vật và contour chân. Cây, đá và cụm hồ vẫn là các đối tượng độc lập. Nguồn PNG, shader, texture, material, bố trí prefab và các định nghĩa trang phục được giữ.
+### Bóng mặt trời dùng chung
 
-`Content/Characters/` chứa definition của người minh họa và mẫu tách lớp; GUID giữ khi chuyển từ `Content/Combat`. Nhân vật chính sử dụng artwork minh họa hiện hành: có mặt trước/lưng/góc nghiêng, phản chiếu trái phải và ánh xạ tám hướng di chuyển; chưa phải tám góc artwork độc lập. Mẫu `HeroModularTrial` hiện chỉ có artwork mặt trước/phản chiếu, chưa thể thay nhân vật nhiều hướng.
+`DaylightPresentation` cung cấp giờ, hướng và độ dài bóng cho toàn cảnh. `Shaders/SunShadow.cginc` là phép chiếu duy nhất cho cây, đá và nhân vật: điểm tiếp đất giữ nguyên; phần cao dịch ngược hướng mặt trời; giữa trưa còn diện tích bóng theo hình khối. `SunShadowSettings` lưu chiều cao, bề rộng, chiều sâu và vùng tiếp đất trên prefab/definition. Runtime không chọn công thức bằng tên cây, đá hay nhân vật.
 
-Scene mỹ thuật còn lại: `ArtPreview`, `HeroModularTrial`, `CartoonArtTrial`. Build mặc định chỉ chứa `ArtPreview`; hai scene khác là công cụ duyệt art riêng. `HeroMotion` và các sprite clip lịch sử là dữ liệu animation, không sở hữu gameplay.
+`SunShadowMesh` chia lưới silhouette cho prop và nhân vật sprite sheet. Rig HeroBase giữ transform hierarchy, SpriteRenderer và Animator; các lớp dùng chung điểm chân. Hướng SpriteSkin trước đây không phải mô tả rig hiện hành. Stencil bit 64 hợp vùng bóng để các lớp chồng nhau không làm bóng đậm thêm; camera cần depth/stencil được xóa mỗi frame. `ModularHeroShadow.shader` chỉ còn dẫn tới pass chung để tương thích material cũ. `DaylightCanvasEffect` chỉ xử lý màu UI.
 
-## Kiểm tra và chạy
+Profile tán trên cao dùng `canopyBlueRatio` để chọn hoa anh đào hồng khỏi thân/rễ nâu trong artwork hiện hành. Tán giữ contour qua phép chiếu affine; một khối thân hẹp nối tán với điểm chân trong cùng mesh/pass. Ngưỡng màu này phụ thuộc palette: đổi màu tán hoặc nhập cây khác cần chỉnh profile và kiểm tra ảnh, không áp mặc định cho mọi cây.
 
-Qua Unity CLI/Pipeline trên Editor đang mở đúng project:
+Đây là mô phỏng 2.5D theo silhouette và thông số khối do artist chỉnh, không phải hình học 3D thật. Asset mới cần kiểm tra sáng, 11:30, trưa, chiều; nhân vật cần thêm chạy, lật hướng và đổi đồ.
 
-```sh
-unity recompile --project-path /Users/nguyenhoangdacdat/dev/nguthu-unity-demo --json
-unity command --project-path /Users/nguyenhoangdacdat/dev/nguthu-unity-demo eval 'return LinhThu.Editor.ArtPreviewBuilder.Prepare();' --json
-unity command --project-path /Users/nguyenhoangdacdat/dev/nguthu-unity-demo eval 'return LinhThu.Editor.ArtPreviewChecks.Run();' --json
-python3 serve_adventure.py
-```
 
-Build bằng menu Unity **Demo → Mỹ thuật → Build Web xem mẫu**. Gọi `Build()` trực tiếp qua `eval` có thể vượt timeout 5 giây của Pipeline dù build vẫn tiếp tục; timeout CLI không thay giới hạn đó. Lần nghiệm thu qua menu đạt 0 lỗi.
+## Kiểm chứng và khôi phục
 
-`Prepare` tạo lại riêng scene mẫu sau khi xác nhận scene hiện hành đã lưu; không dựng lại các prefab môi trường hoặc artwork. `Build` ghi `WebBuildV1`, cổng local giữ 8791 để dùng lại địa chỉ quen thuộc. WASD/mũi tên hoặc bấm sân để đi, R về điểm đầu. Kiểm tra focused nằm ở `ArtPreviewChecks`; kết quả mới được ghi trong `Verification/ArtOnly/`. Phải xem thêm bản chạy thật, đặc biệt đứng/chạy, đổi hướng, tiếp đất và đường ráp quần áo; compile không chứng minh thẩm mỹ.
+Dùng Unity CLI/Pipeline trên Editor đúng project: `unity command recompile`, sau đó `unity command recompile_status`. EditMode tests chạy qua Unity Test Runner; log/NUnit XML ở ngoài checkout. Mỗi Phase cần compile 0 lỗi, Phase 2 cần suite đạt; kiểm dependency/reference prefab riêng vì compile không phát hiện mất sprite/material. Chủ dự án đánh giá hiển thị trong Editor.
 
-## Khôi phục và bàn giao
-
-`Recovery/ArtOnly-20261012/source-before.tgz` chứa 711 file source, meta, asset, scene, cấu hình và tài liệu trước thay đổi, gồm cả source chưa theo dõi bằng Git; SHA-256 đối chiếu trong `sha256.json`. `retired-source/` giữ nguyên những file được dời khỏi source đang dùng; `before-edit/` giữ một số bản trước sửa. Các file save cũ trên máy/trình duyệt không bị sửa hoặc xóa, nhưng bản art không tải chúng.
-
-Để trở về gameplay cũ, dừng Editor, giải nén archive vào thư mục riêng rồi đối chiếu/copy theo manifest. Không dùng reset Git vì phần lớn source hiện đại chưa nằm trong commit hiện hành. Tài liệu mốc gameplay cũ dưới `Architecture/` được đánh dấu lịch sử. UI/UX và Mỹ thuật dùng các entry point mới ở trên; không nối lại `AdventureHost`, `CombatWorld` hoặc `ActorState`.
+Không sửa scene/prefab YAML hoặc thêm builder. Save foundation phiên bản đầu `linhthu.foundation`/1 không tự đọc/ghi đè save cũ. [Quy tắc lưu trữ](REPOSITORY_STORAGE.md) · [Rollback](../ROLLBACK.md).

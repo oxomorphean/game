@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 876689556003708032}
   - component: {fileID: 8617753738600578231}
   - component: {fileID: 7626497744661367460}
+  - component: {fileID: 4150956291635938582}
   m_Layer: 0
   m_Name: rock
   m_TagString: Untagged
@@ -52,6 +53,14 @@ MonoBehaviour:
   contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 1.4
+    depth: 0.65
+    center: 0.28
+    contactHeight: 0.1
+    baseCutoff: -1
+    canopyBlueRatio: 0
 --- !u!114 &7626497744661367460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,6 +85,25 @@ MonoBehaviour:
   - {x: 0.398851, y: 0.071463}
   - {x: 0.018026156, y: 0.0042586084}
   - {x: -0.34039727, y: 0.071463}
+--- !u!114 &4150956291635938582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12815453622439718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 876689556003708032}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 8527909308339837630}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &1613242476424014956
 GameObject:
   m_ObjectHideFlags: 0

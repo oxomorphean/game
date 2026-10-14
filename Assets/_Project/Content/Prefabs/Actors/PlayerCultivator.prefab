@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3165697293285686389
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 527852258564501167, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 527852258564501167, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 527852258564501167, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 527852258564501167, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 527852258564501167, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 527852258564501167, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 527852258564501167, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 527852258564501167, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 527852258564501167, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 527852258564501167, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3262857420319839003, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: m_Name
+      value: PlayerCultivator
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3262857420319839003, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2052687017317610830}
+  m_SourcePrefab: {fileID: 100100000, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+--- !u!1 &479966938519056238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3262857420319839003, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+  m_PrefabInstance: {fileID: 3165697293285686389}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2052687017317610830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479966938519056238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899a83b0a1f284a529041a9e088a324e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Actors.ActorView
+  config: {fileID: 11400000, guid: 8a935a692bf044b89804dafaa78e983b, type: 2}
+  faction: 0
+  playerControlled: 1
+  rosterCompanion: 0
+  actorAnimator: {fileID: 6787424821407146993}
+  equipment: {fileID: 2654926717544195617}
+  singleSpriteVisual: {fileID: 0}
+--- !u!114 &2654926717544195617 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1096311095848540756, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+  m_PrefabInstance: {fileID: 3165697293285686389}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479966938519056238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 075a0c6830daa4918bee1368e21c182c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Prototype::NguThu.Client.Preview.HeroC2Preview
+--- !u!114 &6787424821407146993 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8493531626583695236, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+  m_PrefabInstance: {fileID: 3165697293285686389}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479966938519056238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d18348bf7e9794d9681189c6f126f01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Actors.ActorAnimator

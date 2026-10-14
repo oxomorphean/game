@@ -51,6 +51,136 @@ Transform:
   - {fileID: 4231238543933413578}
   m_Father: {fileID: 8798813697390406072}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1461974058210147808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1632355548085421064}
+  - component: {fileID: 3826411248289911615}
+  - component: {fileID: 9097114365959393242}
+  - component: {fileID: 6648676670018830440}
+  m_Layer: 0
+  m_Name: "\u0110\u01B0\u1EDDng \u0111\u1EA5t \xB7 k\xE9o c\xE1c \u0111i\u1EC3m trong Scene"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1632355548085421064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461974058210147808}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8798813697390406072}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3826411248289911615
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461974058210147808}
+  m_Mesh: {fileID: 0}
+--- !u!23 &9097114365959393242
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461974058210147808}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9918f0f7c4e7b450a95615cd63df780b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -55
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6648676670018830440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461974058210147808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043246c6108014199ac60a0fb1113482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.MeadowTerrainPath
+  knots:
+  - position: {x: -10.7, y: -5.65}
+    halfWidth: 0.72
+  - position: {x: -8.3, y: -3.65}
+    halfWidth: 0.72
+  - position: {x: -5.6, y: -2.8}
+    halfWidth: 0.67
+  - position: {x: -2.85, y: -1.65}
+    halfWidth: 0.63
+  - position: {x: -2.2, y: -0.6}
+    halfWidth: 0.59
+  - position: {x: -0.4, y: 0.1}
+    halfWidth: 0.74
+  - position: {x: 1.35, y: 0.85}
+    halfWidth: 0.58
+  - position: {x: 2.2, y: 2}
+    halfWidth: 0.61
+  - position: {x: 3.5, y: 3}
+    halfWidth: 0.67
+  - position: {x: 4.9, y: 3.85}
+    halfWidth: 0.65
+  - position: {x: 5.7, y: 5.25}
+    halfWidth: 0.54
+  - position: {x: 6.5, y: 6.3}
+    halfWidth: 0.58
+  samplesPerSegment: 32
+  mapSize: {x: 20.000002, y: 11.255981}
 --- !u!1 &2375616851200319070
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,6 +191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8798813697390406072}
   - component: {fileID: 1311808166616780389}
+  - component: {fileID: 2053665247495500434}
   m_Layer: 0
   m_Name: MeadowMap
   m_TagString: Untagged
@@ -81,9 +212,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 886226721381232651}
   - {fileID: 9164780507038210213}
   - {fileID: 351039069390802526}
+  - {fileID: 3241881897751126841}
+  - {fileID: 1632355548085421064}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1311808166616780389
@@ -98,8 +230,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f50d17fc81fb4454a9f5f77b7c0c9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapLayout
-  ground: {fileID: 5811089933327339849}
+  ground: {fileID: 0}
+  ambientMaterial: {fileID: 2100000, guid: c4ad937a80ee54c8db55c5bb4b7be45b, type: 2}
   size: {x: 20.000002, y: 11.255981}
+--- !u!114 &2053665247495500434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2375616851200319070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c042659776e462ca346d699c26b877, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Environment.DaylightPresentation
+  startHour: 8
+  dayDurationSeconds: 240
+  advanceTime: 1
+  clockFont: {fileID: 11400000, guid: bd6496e73f8924f10a7f80040ef2df3b, type: 2}
+  showClock: 1
 --- !u!1 &7630174706161632551
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +282,7 @@ Transform:
   - {fileID: 416226551141077919}
   m_Father: {fileID: 8798813697390406072}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8055027868362442563
+--- !u!1 &8588775647561780368
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,38 +290,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 886226721381232651}
-  - component: {fileID: 5811089933327339849}
+  - component: {fileID: 3241881897751126841}
+  - component: {fileID: 1971385632490347966}
+  - component: {fileID: 8398192480952388179}
+  - component: {fileID: 1963253630780786354}
   m_Layer: 0
-  m_Name: "N\u1EC1n c\u1ECF + \u0111\u01B0\u1EDDng \u0111\u1EA5t c\u1ED1 \u0111\u1ECBnh"
+  m_Name: "N\u1EC1n c\u1ECF \xB7 texture l\u1EB7p"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &886226721381232651
+--- !u!4 &3241881897751126841
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8055027868362442563}
+  m_GameObject: {fileID: 8588775647561780368}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1961724, y: 1.1961724, z: 1.1961724}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8798813697390406072}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5811089933327339849
-SpriteRenderer:
-  serializedVersion: 3
+--- !u!33 &1971385632490347966
+MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8055027868362442563}
+  m_GameObject: {fileID: 8588775647561780368}
+  m_Mesh: {fileID: 0}
+--- !u!23 &8398192480952388179
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588775647561780368}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -180,7 +339,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
+  m_RayTracingMode: 2
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
@@ -190,7 +349,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c4ad937a80ee54c8db55c5bb4b7be45b, type: 2}
+  - {fileID: 2100000, guid: c78e7412610ad4f72b80e4352753a992, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -203,7 +362,7 @@ SpriteRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -211,19 +370,22 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -50
+  m_SortingOrder: -60
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: eae20499c11d5485f81be91927c85e18, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 16.72, y: 9.41}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
-  m_BlendShapeWeights: []
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1963253630780786354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588775647561780368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 890e92f17b3724b419f5ee2f65328572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.MeadowGroundSurface
+  size: {x: 20.000002, y: 11.255981}
 --- !u!1001 &661333960337841449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -295,11 +457,43 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 12815453622439718, guid: e3c3c235977c04d49ac8ad9de2b027fa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2600789812573685929}
   m_SourcePrefab: {fileID: 100100000, guid: e3c3c235977c04d49ac8ad9de2b027fa, type: 3}
 --- !u!4 &362301426098209193 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 876689556003708032, guid: e3c3c235977c04d49ac8ad9de2b027fa, type: 3}
+  m_PrefabInstance: {fileID: 661333960337841449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &648518543760675343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 12815453622439718, guid: e3c3c235977c04d49ac8ad9de2b027fa, type: 3}
+  m_PrefabInstance: {fileID: 661333960337841449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2600789812573685929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648518543760675343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 362301426098209193}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 9184176573056616343}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
+--- !u!212 &9184176573056616343 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8527909308339837630, guid: e3c3c235977c04d49ac8ad9de2b027fa, type: 3}
   m_PrefabInstance: {fileID: 661333960337841449}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &679108015131041715
@@ -373,11 +567,43 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 12815453622439718, guid: e3c3c235977c04d49ac8ad9de2b027fa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3746913528552720197}
   m_SourcePrefab: {fileID: 100100000, guid: e3c3c235977c04d49ac8ad9de2b027fa, type: 3}
 --- !u!4 &380006224602907443 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 876689556003708032, guid: e3c3c235977c04d49ac8ad9de2b027fa, type: 3}
+  m_PrefabInstance: {fileID: 679108015131041715}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &666861164202594453 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 12815453622439718, guid: e3c3c235977c04d49ac8ad9de2b027fa, type: 3}
+  m_PrefabInstance: {fileID: 679108015131041715}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3746913528552720197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666861164202594453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 380006224602907443}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 9166396929386890509}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
+--- !u!212 &9166396929386890509 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8527909308339837630, guid: e3c3c235977c04d49ac8ad9de2b027fa, type: 3}
   m_PrefabInstance: {fileID: 679108015131041715}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1242430366130691092
@@ -505,8 +731,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 378252087094600820, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 968778935274637120}
   m_SourcePrefab: {fileID: 100100000, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+--- !u!1 &1169181011707280988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 378252087094600820, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+  m_PrefabInstance: {fileID: 1514917752507423272}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &968778935274637120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169181011707280988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 4231238543933413578}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 2969154700495790619}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
+--- !u!212 &2969154700495790619 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4337705121310373939, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+  m_PrefabInstance: {fileID: 1514917752507423272}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4231238543933413578 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3440311009753219810, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
@@ -649,8 +907,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 378252087094600820, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4087732778634883443}
   m_SourcePrefab: {fileID: 100100000, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+--- !u!1 &1971966604131026408 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 378252087094600820, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+  m_PrefabInstance: {fileID: 2189320517800632732}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4087732778634883443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971966604131026408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 3592878319043863422}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 2472644120911534511}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
+--- !u!212 &2472644120911534511 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4337705121310373939, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+  m_PrefabInstance: {fileID: 2189320517800632732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3592878319043863422 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3440311009753219810, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
@@ -715,13 +1005,45 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 378252087094600820, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2973714842246260374}
   m_SourcePrefab: {fileID: 100100000, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
 --- !u!4 &991527205353037039 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3440311009753219810, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
   m_PrefabInstance: {fileID: 2485120715125218829}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &2183810192705594942 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4337705121310373939, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+  m_PrefabInstance: {fileID: 2485120715125218829}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2829173552820927097 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 378252087094600820, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+  m_PrefabInstance: {fileID: 2485120715125218829}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2973714842246260374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2829173552820927097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 991527205353037039}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 2183810192705594942}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1001 &3192335813037564361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -777,13 +1099,45 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2592488881947741219, guid: 3faddb66bc3a24199ae3b6d9ffe452a1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 142375789837250493}
   m_SourcePrefab: {fileID: 100100000, guid: 3faddb66bc3a24199ae3b6d9ffe452a1, type: 3}
 --- !u!4 &416226551141077919 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2993714344870883926, guid: 3faddb66bc3a24199ae3b6d9ffe452a1, type: 3}
   m_PrefabInstance: {fileID: 3192335813037564361}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &738966969249298330 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2741603695430293075, guid: 3faddb66bc3a24199ae3b6d9ffe452a1, type: 3}
+  m_PrefabInstance: {fileID: 3192335813037564361}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1132420444980882922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2592488881947741219, guid: 3faddb66bc3a24199ae3b6d9ffe452a1, type: 3}
+  m_PrefabInstance: {fileID: 3192335813037564361}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &142375789837250493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132420444980882922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 416226551141077919}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 738966969249298330}
+  floorLayer: 1
+  floorOrder: -44
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1001 &3207037454613932506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -987,11 +1341,43 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 12815453622439718, guid: e3c3c235977c04d49ac8ad9de2b027fa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6191330678665716351}
   m_SourcePrefab: {fileID: 100100000, guid: e3c3c235977c04d49ac8ad9de2b027fa, type: 3}
 --- !u!4 &3896751922182724153 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 876689556003708032, guid: e3c3c235977c04d49ac8ad9de2b027fa, type: 3}
+  m_PrefabInstance: {fileID: 4196980725228029625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4184737054714612127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 12815453622439718, guid: e3c3c235977c04d49ac8ad9de2b027fa, type: 3}
+  m_PrefabInstance: {fileID: 4196980725228029625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6191330678665716351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4184737054714612127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 3896751922182724153}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 5505531723656928263}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
+--- !u!212 &5505531723656928263 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8527909308339837630, guid: e3c3c235977c04d49ac8ad9de2b027fa, type: 3}
   m_PrefabInstance: {fileID: 4196980725228029625}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4265827775059548475
@@ -1485,8 +1871,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 378252087094600820, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6911111324882948149}
   m_SourcePrefab: {fileID: 100100000, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+--- !u!1 &6489735410010360196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 378252087094600820, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+  m_PrefabInstance: {fileID: 6858975344450596336}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6911111324882948149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6489735410010360196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 8111415168029110034}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 7141977211564398019}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
+--- !u!212 &7141977211564398019 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4337705121310373939, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+  m_PrefabInstance: {fileID: 6858975344450596336}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8111415168029110034 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3440311009753219810, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
@@ -1695,10 +2113,42 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 378252087094600820, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8729945965765118707}
   m_SourcePrefab: {fileID: 100100000, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+--- !u!212 &5659704998963124127 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4337705121310373939, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+  m_PrefabInstance: {fileID: 8266867730417446828}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6703503335810346318 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3440311009753219810, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
   m_PrefabInstance: {fileID: 8266867730417446828}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8612573683694242776 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 378252087094600820, guid: a12e4504489b04a5cb4ce75562ba2bea, type: 3}
+  m_PrefabInstance: {fileID: 8266867730417446828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8729945965765118707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8612573683694242776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 6703503335810346318}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 5659704998963124127}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10

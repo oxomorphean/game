@@ -1,0 +1,13 @@
+{
+  "name": "LinhThu.Client",
+  "rootNamespace": "LinhThu.Client",
+  "references": [
+    "LinhThu.Domain",
+    "Unity.InputSystem",
+    "UnityEngine.UI",
+    "Unity.TextMeshPro",
+    "Unity.2D.Animation.Runtime",
+    "Unity.Collections"
+  ],
+  "autoReferenced": true
+}

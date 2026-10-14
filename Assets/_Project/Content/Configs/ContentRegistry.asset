@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5545577a26b804d14ba9b6f248160a35, type: 3}
+  m_Name: ContentRegistry
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Bootstrap.ContentRegistrySO
+  actors:
+  - {fileID: 11400000, guid: 8a935a692bf044b89804dafaa78e983b, type: 2}
+  - {fileID: 11400000, guid: 66008e50786794d54948b43c1d64e240, type: 2}
+  - {fileID: 11400000, guid: 39921a17ab42444bab99eb2ae8a372e4, type: 2}
+  realms:
+  - {fileID: 11400000, guid: b10335cfb21d04277b50cebe7d8e1970, type: 2}
+  - {fileID: 11400000, guid: 46890dd42f6e8428eafbfef060c01ec9, type: 2}
+  techniques:
+  - {fileID: 11400000, guid: a002f023cf0ab43b9a7bc7d6bce12a2b, type: 2}
+  - {fileID: 11400000, guid: 146b38e69d09c4cf6988ba5999eb4956, type: 2}
+  - {fileID: 11400000, guid: 78042881e958d460aa12b15c6d838293, type: 2}
+  - {fileID: 11400000, guid: 29f07bc57a5224f878bff44d0700cf4e, type: 2}
+  statuses:
+  - {fileID: 11400000, guid: d9dd35bf0278345f3b6bf8d614d9b95c, type: 2}
+  - {fileID: 11400000, guid: 3797c55672cb340de800c67053d16103, type: 2}
+  beasts:
+  - {fileID: 11400000, guid: 088bc6c5d8b514aac867dbd3e38874c1, type: 2}
+  items:
+  - {fileID: 11400000, guid: a50fdd74610fe44469abde575555880a, type: 2}
+  - {fileID: 11400000, guid: f8dec9664001f4c3caab2deeb59bc277, type: 2}
+  - {fileID: 11400000, guid: 37aa1d9b2cd094da4b9eb32d82f86e84, type: 2}
+  - {fileID: 11400000, guid: bcdc7bb07d90b488ba7a33106733f8aa, type: 2}
+  - {fileID: 11400000, guid: 46df6874af7364829aa615384c63e2a6, type: 2}
+  - {fileID: 11400000, guid: 3d90f566d51534d8e980c1d40d4255d4, type: 2}
+  - {fileID: 11400000, guid: 19cfe3862fd1a4ce2b596eef2b536a7d, type: 2}
+  - {fileID: 11400000, guid: 2049e6ad8adf6424eb9220a8da827866, type: 2}
+  - {fileID: 11400000, guid: 05a614d7aa6364038a46d0055c5c2403, type: 2}
+  nodes:
+  - {fileID: 11400000, guid: 75060e9abdc9a43daad40fcfa3906fb9, type: 2}
+  - {fileID: 11400000, guid: 79b60511a62ba4a7eafe713f881d0ce3, type: 2}
+  - {fileID: 11400000, guid: 421252892bade4e9194cd822733e8c95, type: 2}
+  - {fileID: 11400000, guid: 5498189f8fc5b4ecda0342ff302ce397, type: 2}
+  - {fileID: 11400000, guid: 81ea8a6519f7443b5b877d831ca7fb18, type: 2}
+  outfits:
+  - {fileID: 11400000, guid: 428f85ebd92ff4e7eb23efcd3a21148e, type: 2}
+  - {fileID: 11400000, guid: bf24f6e97650e4ee09aeafbdbabbacd0, type: 2}
+  - {fileID: 11400000, guid: c956d44a54ac24961973dde3b38683bd, type: 2}
+  player: {fileID: 11400000, guid: 8a935a692bf044b89804dafaa78e983b, type: 2}
+  startingRealm: {fileID: 11400000, guid: b10335cfb21d04277b50cebe7d8e1970, type: 2}
+  startingBeast: {fileID: 11400000, guid: 088bc6c5d8b514aac867dbd3e38874c1, type: 2}
+  startingOutfit: {fileID: 11400000, guid: 19cfe3862fd1a4ce2b596eef2b536a7d, type: 2}
+  hotbar:
+  - {fileID: 11400000, guid: a002f023cf0ab43b9a7bc7d6bce12a2b, type: 2}
+  - {fileID: 11400000, guid: 146b38e69d09c4cf6988ba5999eb4956, type: 2}
+  - {fileID: 11400000, guid: 78042881e958d460aa12b15c6d838293, type: 2}
+  startingItems:
+  - item: {fileID: 11400000, guid: 19cfe3862fd1a4ce2b596eef2b536a7d, type: 2}
+    count: 1
+  - item: {fileID: 11400000, guid: 2049e6ad8adf6424eb9220a8da827866, type: 2}
+    count: 1
+  - item: {fileID: 11400000, guid: 05a614d7aa6364038a46d0055c5c2403, type: 2}
+    count: 1
+  - item: {fileID: 11400000, guid: 37aa1d9b2cd094da4b9eb32d82f86e84, type: 2}
+    count: 5
+  - item: {fileID: 11400000, guid: bcdc7bb07d90b488ba7a33106733f8aa, type: 2}
+    count: 3
+  fieldCrop: {fileID: 11400000, guid: 75060e9abdc9a43daad40fcfa3906fb9, type: 2}
+  mapDefinitionId: meadow
+  inventoryCapacity: 24
+  randomSeed: 7
+  defenseScale: 1
+  offenseScale: 1
+  resistanceScale: 1
+  cooldownReductionCap: 0.8
+  elementRules:
+  - attack: 1
+    defense: 2
+    factor: 1.2
+  - attack: 2
+    defense: 5
+    factor: 1.2
+  - attack: 5
+    defense: 3
+    factor: 1.2
+  - attack: 3
+    defense: 4
+    factor: 1.2
+  - attack: 4
+    defense: 1
+    factor: 1.2
+  factionRules:
+  - from: 0
+    to: 3
+  - from: 1
+    to: 3
+  - from: 3
+    to: 0
+  - from: 3
+    to: 1

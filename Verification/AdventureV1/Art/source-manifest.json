@@ -1,7 +1,0 @@
-{
-  "Assets/_Project/Scripts/Client/AdventureArt/AdventureEnemyPresentation.cs": "661d3a3d21e527eccd74d29cb97671b57f2dc6270aab29d7dabc58d3aec87855",
-  "Assets/_Project/Scripts/Client/AdventureArt/AdventureArtGeometry.cs": "df76b51cc1a0ccda2be977999dcdb0e7c1ea487a2284e5978b673b13ed70bc4f",
-  "Assets/_Project/Scripts/Client/AdventureArt/AdventureMapPresentation.cs": "2337d9b060a94a0034caf2beeab4f5d00525c0898c16b9019c88d8c7beb62acb",
-  "Assets/_Project/Scripts/Client/AdventureArt/AdventureArtMesh.cs": "9af3e64c059cefe55034726f1bc1e6edbd88a7b5b40a7fc04931091b5248bb2b",
-  "Assets/_Project/Scripts/Client/Combat/CombatWorldView.cs": "50a7befbb9e47d3bdf9437445d3cd94eef1e6aa7a450c545fe1de6437974b08a"
-}

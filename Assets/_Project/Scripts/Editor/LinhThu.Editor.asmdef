@@ -1,0 +1,7 @@
+{
+  "name": "LinhThu.Editor",
+  "rootNamespace": "LinhThu.Editor",
+  "references": ["LinhThu.Client"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": true
+}

@@ -1,0 +1,8 @@
+{
+  "name": "LinhThu.Tests.EditMode",
+  "rootNamespace": "LinhThu.Tests.EditMode",
+  "references": ["LinhThu.Domain"],
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "autoReferenced": false
+}

@@ -1,13 +1,24 @@
-# Linh Thú Ký — bản thử mỹ thuật
+# Linh Thú Ký — Core Foundation
 
-Theo yêu cầu 12/10/2026, bản hiện tại chỉ có map, nhân vật, di chuyển/va chạm, animation và ánh sáng. Combat, lên cấp/tu luyện, kỹ năng, vật phẩm, nghề và save không còn trong source đang biên dịch.
+Dự án Unity `6000.6.4f1`. Bốn Phase đã được triển khai: repository hợp nhất, bảy trụ cột Domain, Configs/Client/DevTools và MainGame. Kết quả compile, NUnit và giới hạn nghiệm thu được ghi tại [tiến độ](Architecture/CORE_FOUNDATION_PROGRESS.md).
 
-Mở scene `Assets/_Project/Content/Scenes/ArtPreview.unity` rồi bấm Play. WASD/mũi tên hoặc bấm sân để đi; R về điểm xuất phát. Bản WebGL dùng [localhost:8791](http://127.0.0.1:8791/) sau khi build và chạy `python3 serve_adventure.py`.
+Mở `Assets/_Project/Content/Scenes/MainGame.unity`, bấm **Play**. Scene chứa MeadowMainMap, PlayerCultivator, Huyền Quy, mục tiêu chiến đấu, linh thảo, linh khoáng, linh điền, trứng và cổng. Build Settings chỉ có MainGame.
 
-Nút **Quản trị** trên màn chơi (hoặc F2) mở dashboard chủ dự án: Tổng quan, Bản đồ và Asset. Có số lượng thực, tìm kiếm, bộ lọc và chi tiết nguồn; Escape đóng để đi lại tiếp. [Quy tắc catalogue](Architecture/OWNER_DASHBOARD.md).
+| Điều khiển | Hành động |
+| --- | --- |
+| WASD / phím mũi tên | Di chuyển, trượt quanh footprint |
+| 1 / 2 / 3 | Linh Kiếm / Thanh Phong Bộ / Hộ Thể, ngắm theo chuột |
+| Chuột trái | Linh Kiếm; không thi triển khi nhấn UI |
+| Nút công pháp trên HUD | Ngắm mục tiêu thù địch gần nhất |
+| E | Thu hoạch, gieo hạt trên linh điền trống hoặc dùng cổng gần nhất |
+| R | Triệu hồi / thu hồi Huyền Quy |
+| Tab | Đổi ba đạo bào đang có trong túi |
+| F5 / F9 | Lưu / đọc Foundation theo yêu cầu người chơi |
 
-Build qua menu **Demo → Mỹ thuật → Build Web xem mẫu**. [Kiến trúc hiện hành và workflow](Architecture/CODE_ARCHITECTURE.md) · [Thiết kế và phạm vi hiện hành](GAME_DESIGN.md) · [Chuẩn mỹ thuật](ArtDirection/STYLE_GUIDE.md).
+Save mới nằm tại `Application.persistentDataPath/linhthu.foundation/save.json`; ghi thay thế nguyên tử, giữ `.bak` của bản trước. Không tự đọc hoặc ghi đè save cũ. Thông số SO là dữ liệu mẫu, chưa phải cân bằng sản phẩm. Hệ thống đột phá đã có trong Domain/config; cơ chế kiếm tu vi và UI tiến trình mở rộng chưa nằm trong mốc game loop này.
 
-Map chính giữ texture cỏ/đất lặp, đường mesh chỉnh điểm và các prefab cây/đá/hồ riêng. Nhân vật minh họa có hướng trước/lưng/nghiêng và animation. `HeroModularTrial` là mẫu tách lớp để xem trang phục, hiện chỉ có hình mặt trước/phản chiếu; `CartoonArtTrial` giữ mẫu người/quy cũ để so sánh mỹ thuật.
+Asset chuẩn: `Art/Characters/HeroBase`, `Art/Environment/Meadow`, `Content/Configs`, `Content/Prefabs/{Actors,WorldNodes,Environment,UI}` dưới `Assets/_Project`. Trang phục thay Sprite trên cùng rig/AnimatorController. Map dùng tiling và mesh; prop riêng dùng Y-sort và footprint ở chân.
 
-Bản khôi phục trước dọn nằm ở `Recovery/ArtOnly-20261012/`; có archive source/asset và nguyên file gameplay được chuyển ra khỏi `Assets`. Save cũ không bị xóa. Không suy ra khả năng multiplayer hoặc chất lượng thẩm mỹ từ các báo cáo test cũ.
+Kiểm logic bằng Unity Test Runner **EditMode** với hai assembly `LinhThu.Tests.EditMode`, `LinhThu.Tests.ClientEditMode`. Chủ dự án nghiệm thu hình ảnh trực tiếp trong Editor: idle/run, flip, đổi đồ giữa clip, điểm chân và bóng. Không dùng builder hoặc Web QA.
+
+[Kiến trúc](Architecture/CODE_ARCHITECTURE.md) · [Kế hoạch 1–2](Architecture/CORE_FOUNDATION_PHASES_1_2.md) · [Kế hoạch 3–4](Architecture/CORE_FOUNDATION_PHASES_3_4.md) · [Thiết kế](GAME_DESIGN.md) · [Mỹ thuật](ArtDirection/STYLE_GUIDE.md) · [Khôi phục](ROLLBACK.md).

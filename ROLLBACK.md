@@ -1,18 +1,21 @@
-# Đổi giữa các bản môi trường
+# Khôi phục Core Foundation
 
-1. Dừng Play Mode. Tại thư mục dự án, chạy `git status --short`; chỉ đổi nhánh khi không có output. Nếu có thay đổi chưa lưu/commit, dừng và giữ nguyên chúng. Không dùng `reset --hard` hoặc `clean`.
-2. Chọn nhánh cần xem:
-   - `git switch main` — v4, baseline `4247dcf` (`art-v4-before-unify`).
-   - `git switch codex/art-style-sample` — v5, `d59a13e` (`art-v5-candidate`).
-   - `git switch codex/huyen-giap-quy` — v6, tag `art-v6-huyen-giap-quy`, trước khi thêm chi tiết khu vườn.
-   - `git switch codex/living-garden-v7` — v7, tag `art-v7-living-garden`, cỏ phẳng đã sửa theo ảnh 2.
-3. Chờ Unity import xong, rồi mở lại scene `Assets/ArtSample/SpiritTurtleGarden.unity`. Nếu cần dựng lại scene và sprite từ nguồn, chạy `CreateScene` trước; sau đó build WebGL bằng Unity CLI như README:
+Backup trước Phase 1 nằm cố định ngoài repository:
 
-```sh
-unity command run_script --project-path /Users/nguyenhoangdacdat/dev/nguthu-unity-demo --caller plugin --skill sprite-editor --file AgentScripts/ArtSampleBuilder.cs --entry ArtSampleBuilder.CreateScene --format json
-unity command run_script --project-path /Users/nguyenhoangdacdat/dev/nguthu-unity-demo --caller plugin --skill unity-cli --file AgentScripts/ArtSampleBuilder.cs --entry ArtSampleBuilder.BuildWeb --timeout_ms 180000 --timeout 240 --format json
-```
+`/Users/nguyenhoangdacdat/dev/nguthu-backups/core-foundation-backup/20261014T014359Z/`
 
-4. Chạy `python3 serve.py` tại thư mục dự án nếu server chưa chạy, rồi reload `http://127.0.0.1:8788/`.
+- `source-before-phase-1.tar.gz` chứa source, asset, meta, master artwork và file chưa tracked.
+- `manifest-sha256.json` chứa checksum từng file; checksum archive: `de36f8aea624bcf54cfd70f275b5ce2ea09ef91c99eb046e348f8b08caf6c8f1`.
+- `status.z`, `unstaged.patch`, `staged.patch`, `tracked-files.z` ghi baseline.
 
-Builder trong baseline v4 lấy cổng từ `ArtDirection/Sources/gate-v2.png`, cây từ `tree-v2.png` và `tree-puffy-v3.png`, hồ từ `pond-v3.png`, đá từ `rock-v2.png`; các tile cỏ/gạch được tạo trong builder.
+Để lấy lại file Krita/PSD/SVG: giải nén archive vào một thư mục riêng ngoài repo, tìm dưới ArtDirection hoặc nhánh HeroProduction2D rồi đối chiếu checksum. Không cần khôi phục cả game để vẽ thêm trang phục; chỉ export PNG game cần dùng vào Assets theo style guide.
+
+Để rollback code/asset: dừng thay đổi/import, kiểm tra status mới nhất, đối chiếu manifest đã duyệt và chỉ phục hồi các path của task (kèm meta và Build Settings). Bảo toàn thay đổi các phiên khác. Import và compile lại bằng Unity. Không dùng reset --hard, clean, hoặc giải nén đè toàn checkout.
+
+Backup không ở /private/tmp; thư mục tạm chỉ giữ log/kết quả kiểm tra. Recovery của gameplay cũ và save trên máy vẫn giữ nguyên. Các nhánh/tag mỹ thuật cũ là lịch sử, không dùng builder hay server Web cũ làm workflow hiện hành.
+
+Snapshot trước khi chuẩn hóa Client/prefab tại Phase 3:
+
+`/Users/nguyenhoangdacdat/dev/nguthu-backups/core-foundation-backup/phase3-20261014T030912Z/source-before-phase-3.tar.gz`
+
+490 file, có manifest SHA-256 riêng; archive SHA-256 `f4ff36ab72f51e6790b6d60ff4add1cc92a5c80ac0b5ed249db8a9459648d0cb`. Dùng snapshot này để so sánh hoặc phục hồi từng prefab/script sau Phase 2; không giải nén đè cả checkout.

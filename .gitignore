@@ -29,3 +29,21 @@ __pycache__/
 # Krita backup and autosave files stay local.
 *.kra~
 *.kra-autosave.kra
+
+# Retired tooling and generated evidence must not return to source.
+/AgentScripts/
+/Verification/
+/Web/
+/serve.py
+/serve_adventure.py
+/Assets/Verification/
+/Assets/Verification.meta
+/Assets/ArtDirection/
+/Assets/ArtDirection.meta
+/ArtDirection/*
+!/ArtDirection/STYLE_GUIDE.md
+# Editable masters and backups belong outside this checkout.
+/Assets/**/*.kra
+/Assets/**/*.psd
+/Assets/**/*.svg
+/Assets/**/*.py

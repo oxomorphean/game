@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac4d0372958a490b84fe197bafc7aca, type: 3}
+  m_Name: linh-kiem
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Configs.TechniqueConfigSO
+  definitionId: linh-kiem
+  displayName: "Linh Ki\u1EBFm"
+  description: 
+  shape: 3
+  targetFilter: 0
+  range: 6
+  radius: 0.16
+  angleDegrees: 90
+  projectileSpeed: 10
+  maxTargets: 1
+  qiCost: 6
+  cooldown: 0.65
+  castDuration: 0
+  channelDuration: 0
+  channelInterval: 0
+  effects:
+  - rid: 7548894146264563773
+  effectColor: {r: 0.98, g: 0.85, b: 0.35, a: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 7548894146264563773
+      type: {class: DamageEffectData, ns: LinhThu.Client.Configs, asm: LinhThu.Client}
+      data:
+        scalingStat: 7
+        coefficient: 1.2
+        flatDamage: 0
+        element: 1

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd7909ea8ffab4b408765b3165175829, type: 3}
+  m_Name: egg-node
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Configs.WorldNodeConfigSO
+  definitionId: egg-node
+  displayName: "Tr\u1EE9ng linh th\xFA"
+  description: 
+  kind: 2
+  interactionRadius: 1.4
+  growthSeconds: 12
+  respawnSeconds: 0
+  rewards:
+  - item: {fileID: 11400000, guid: 46df6874af7364829aa615384c63e2a6, type: 2}
+    count: 1
+  seedItem: {fileID: 0}
+  destinationMapId: 
+  portalDestination: {x: 0, y: 0}
+  prefab: {fileID: 2919318319265287470, guid: 756437c7b99ab4ed9a507d7ee4f14528, type: 3}

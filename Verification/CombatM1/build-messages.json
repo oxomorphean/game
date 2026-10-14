@@ -1,9 +1,0 @@
-{
-  "result": "Succeeded",
-  "messages": [
-    {
-      "type": "Warning",
-      "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
-    }
-  ]
-}

@@ -11,7 +11,12 @@ namespace LinhThu.Domain.Navigation
     public readonly struct WorldPoint
     {
         public readonly float X, Y;
-        public WorldPoint(float x, float y) { X = x; Y = y; }
+        public WorldPoint(float x, float y)
+        {
+            X = x;
+            Y = y;
+        }
+
         public float LengthSquared => X * X + Y * Y;
         public float Length => (float)Math.Sqrt(LengthSquared);
         public bool Finite => GeometryRules.Range(X, -100000, 100000) && GeometryRules.Range(Y, -100000, 100000);
@@ -35,73 +40,99 @@ namespace LinhThu.Domain.Navigation
         {
             if (!center.Finite || !GeometryRules.Range(halfSize.X, .01f, 100) || !GeometryRules.Range(halfSize.Y, .01f, 100))
                 throw new ArgumentException("Invalid obstacle.");
-            Center = center; HalfSize = box ? halfSize : new WorldPoint(halfSize.X, halfSize.X); Box = box; vertices = null;
+            Center = center;
+            HalfSize = box ? halfSize : new WorldPoint(halfSize.X, halfSize.X);
+            Box = box;
+            vertices = null;
         }
+
         public WorldObstacle(IEnumerable<WorldPoint> polygon)
         {
-            if (polygon == null) throw new ArgumentException("Missing footprint.");
+            if (polygon == null)
+                throw new ArgumentException("Missing footprint.");
             vertices = new List<WorldPoint>(polygon).ToArray();
-            if (vertices.Length < 3 || vertices.Length > 32) throw new ArgumentException("A footprint needs 3–32 vertices.");
+            if (vertices.Length < 3 || vertices.Length > 32)
+                throw new ArgumentException("A footprint needs 3–32 vertices.");
             float area = 0, minX = float.MaxValue, minY = float.MaxValue, maxX = float.MinValue, maxY = float.MinValue;
             for (int i = 0; i < vertices.Length; i++)
             {
-                var a = vertices[i]; var b = vertices[(i + 1) % vertices.Length];
-                if (!a.Finite || (b - a).LengthSquared < .000001f) throw new ArgumentException("Invalid footprint vertex.");
-                area += Cross(a, b); minX = Math.Min(minX, a.X); minY = Math.Min(minY, a.Y);
-                maxX = Math.Max(maxX, a.X); maxY = Math.Max(maxY, a.Y);
+                var a = vertices[i];
+                var b = vertices[(i + 1) % vertices.Length];
+                if (!a.Finite || (b - a).LengthSquared < .000001f)
+                    throw new ArgumentException("Invalid footprint vertex.");
+                area += Cross(a, b);
+                minX = Math.Min(minX, a.X);
+                minY = Math.Min(minY, a.Y);
+                maxX = Math.Max(maxX, a.X);
+                maxY = Math.Max(maxY, a.Y);
             }
-            if (Math.Abs(area) < .0001f) throw new ArgumentException("Empty footprint.");
-            if (area < 0) Array.Reverse(vertices);
+
+            if (Math.Abs(area) < .0001f)
+                throw new ArgumentException("Empty footprint.");
+            if (area < 0)
+                Array.Reverse(vertices);
             for (int i = 0; i < vertices.Length; i++)
-            for (int j = 0; j < vertices.Length; j++)
-                if (Cross(vertices[(i + 1) % vertices.Length] - vertices[i], vertices[j] - vertices[i]) < -.00001f)
-                    throw new ArgumentException("Footprints must be convex; use separate components for concave props.");
+                for (int j = 0; j < vertices.Length; j++)
+                    if (Cross(vertices[(i + 1) % vertices.Length] - vertices[i], vertices[j] - vertices[i]) < -.00001f)
+                        throw new ArgumentException("Footprints must be convex; use separate components for concave props.");
             Center = new WorldPoint((minX + maxX) * .5f, (minY + maxY) * .5f);
-            HalfSize = new WorldPoint((maxX - minX) * .5f, (maxY - minY) * .5f); Box = false;
+            HalfSize = new WorldPoint((maxX - minX) * .5f, (maxY - minY) * .5f);
+            Box = false;
         }
+
         private static float Cross(WorldPoint a, WorldPoint b) => a.X * b.Y - a.Y * b.X;
         private bool Contains(WorldPoint point)
         {
             for (int i = 0; i < vertices.Length; i++)
-                if (Cross(vertices[(i + 1) % vertices.Length] - vertices[i], point - vertices[i]) < 0) return false;
+                if (Cross(vertices[(i + 1) % vertices.Length] - vertices[i], point - vertices[i]) < 0)
+                    return false;
             return true;
         }
+
         private WorldPoint Closest(WorldPoint point)
         {
             if (vertices == null)
-                return new WorldPoint(Math.Max(Center.X - HalfSize.X, Math.Min(Center.X + HalfSize.X, point.X)),
-                    Math.Max(Center.Y - HalfSize.Y, Math.Min(Center.Y + HalfSize.Y, point.Y)));
-            float best = float.MaxValue; WorldPoint result = default;
+                return new WorldPoint(Math.Max(Center.X - HalfSize.X, Math.Min(Center.X + HalfSize.X, point.X)), Math.Max(Center.Y - HalfSize.Y, Math.Min(Center.Y + HalfSize.Y, point.Y)));
+            float best = float.MaxValue;
+            WorldPoint result = default;
             for (int i = 0; i < vertices.Length; i++)
             {
-                var a = vertices[i]; var edge = vertices[(i + 1) % vertices.Length] - a;
+                var a = vertices[i];
+                var edge = vertices[(i + 1) % vertices.Length] - a;
                 float t = Math.Max(0, Math.Min(1, WorldPoint.Dot(point - a, edge) / edge.LengthSquared));
-                var candidate = a + edge * t; float distance = (point - candidate).LengthSquared;
-                if (distance < best) { best = distance; result = candidate; }
+                var candidate = a + edge * t;
+                float distance = (point - candidate).LengthSquared;
+                if (distance < best)
+                {
+                    best = distance;
+                    result = candidate;
+                }
             }
+
             return result;
         }
-        public WorldPoint ContactNormal(WorldPoint exteriorPoint) =>
-            (exteriorPoint - (vertices == null && !Box ? Center : Closest(exteriorPoint))).Normalized;
 
+        public WorldPoint ContactNormal(WorldPoint exteriorPoint) => (exteriorPoint - (vertices == null && !Box ? Center : Closest(exteriorPoint))).Normalized;
         public bool Overlaps(WorldPoint point, float radius)
         {
             if (Math.Abs(point.X - Center.X) > HalfSize.X + radius || Math.Abs(point.Y - Center.Y) > HalfSize.Y + radius)
                 return false;
-            if (vertices != null) return Contains(point) || (point - Closest(point)).LengthSquared < radius * radius;
-            if (!Box) return (point - Center).LengthSquared < (HalfSize.X + radius) * (HalfSize.X + radius);
+            if (vertices != null)
+                return Contains(point) || (point - Closest(point)).LengthSquared < radius * radius;
+            if (!Box)
+                return (point - Center).LengthSquared < (HalfSize.X + radius) * (HalfSize.X + radius);
             float dx = Math.Max(0, Math.Abs(point.X - Center.X) - HalfSize.X);
             float dy = Math.Max(0, Math.Abs(point.Y - Center.Y) - HalfSize.Y);
             return dx * dx + dy * dy < radius * radius;
         }
+
         public bool Crosses(WorldPoint start, WorldPoint end)
         {
             float segMinX = Math.Min(start.X, end.X);
             float segMaxX = Math.Max(start.X, end.X);
             float segMinY = Math.Min(start.Y, end.Y);
             float segMaxY = Math.Max(start.Y, end.Y);
-            if (segMaxX < Center.X - HalfSize.X || segMinX > Center.X + HalfSize.X ||
-                segMaxY < Center.Y - HalfSize.Y || segMinY > Center.Y + HalfSize.Y)
+            if (segMaxX < Center.X - HalfSize.X || segMinX > Center.X + HalfSize.X || segMaxY < Center.Y - HalfSize.Y || segMinY > Center.Y + HalfSize.Y)
                 return false;
             var delta = end - start;
             if (vertices != null)
@@ -111,68 +142,137 @@ namespace LinhThu.Domain.Navigation
                 {
                     var edge = vertices[(i + 1) % vertices.Length] - vertices[i];
                     float distance = Cross(edge, start - vertices[i]), velocity = Cross(edge, delta);
-                    if (Math.Abs(velocity) < .000001f) { if (distance < 0) return false; continue; }
+                    if (Math.Abs(velocity) < .000001f)
+                    {
+                        if (distance < 0)
+                            return false;
+                        continue;
+                    }
+
                     float t = -distance / velocity;
-                    if (velocity > 0) first = Math.Max(first, t); else last = Math.Min(last, t);
-                    if (first > last) return false;
+                    if (velocity > 0)
+                        first = Math.Max(first, t);
+                    else
+                        last = Math.Min(last, t);
+                    if (first > last)
+                        return false;
                 }
+
                 return true;
             }
+
             if (!Box)
             {
                 float t = delta.LengthSquared < .000001f ? 0 : Math.Max(0, Math.Min(1, WorldPoint.Dot(Center - start, delta) / delta.LengthSquared));
                 return (start + delta * t - Center).LengthSquared <= HalfSize.X * HalfSize.X;
             }
+
             float enter = 0, exit = 1;
-            return Slab(start.X, delta.X, Center.X - HalfSize.X, Center.X + HalfSize.X, ref enter, ref exit) &&
-                Slab(start.Y, delta.Y, Center.Y - HalfSize.Y, Center.Y + HalfSize.Y, ref enter, ref exit);
+            return Slab(start.X, delta.X, Center.X - HalfSize.X, Center.X + HalfSize.X, ref enter, ref exit) && Slab(start.Y, delta.Y, Center.Y - HalfSize.Y, Center.Y + HalfSize.Y, ref enter, ref exit);
         }
+
         private static bool Slab(float start, float delta, float min, float max, ref float enter, ref float exit)
         {
-            if (Math.Abs(delta) < .000001f) return start >= min && start <= max;
+            if (Math.Abs(delta) < .000001f)
+                return start >= min && start <= max;
             float a = (min - start) / delta, b = (max - start) / delta;
-            enter = Math.Max(enter, Math.Min(a, b)); exit = Math.Min(exit, Math.Max(a, b));
+            enter = Math.Max(enter, Math.Min(a, b));
+            exit = Math.Min(exit, Math.Max(a, b));
             return enter <= exit;
         }
     }
 
     /// <summary>Circle movement with bounded substeps and wall sliding, and contour footprints.</summary>
-    public sealed class MovementArena
+    public sealed class WorldGeometry
     {
         public WorldPoint HalfSize { get; }
+
         private readonly WorldObstacle[] obstacles;
-        public MovementArena(WorldPoint halfSize, IEnumerable<WorldObstacle> obstacles)
+        public WorldGeometry(WorldPoint halfSize, IEnumerable<WorldObstacle> obstacles)
         {
             if (!GeometryRules.Range(halfSize.X, 1, 1000) || !GeometryRules.Range(halfSize.Y, 1, 1000) || obstacles == null)
                 throw new ArgumentException("Invalid arena.");
-            HalfSize = halfSize; this.obstacles = new List<WorldObstacle>(obstacles).ToArray();
+            HalfSize = halfSize;
+            this.obstacles = new List<WorldObstacle>(obstacles).ToArray();
         }
+
         public bool CanStand(WorldPoint p, float radius)
         {
-            if (!p.Finite || Math.Abs(p.X) > HalfSize.X - radius || Math.Abs(p.Y) > HalfSize.Y - radius) return false;
-            foreach (var obstacle in obstacles) if (obstacle.Overlaps(p, radius)) return false;
+            if (!GeometryRules.Range(radius, .01f, 10) || !p.Finite || Math.Abs(p.X) > HalfSize.X - radius || Math.Abs(p.Y) > HalfSize.Y - radius)
+                return false;
+            foreach (var obstacle in obstacles)
+                if (obstacle.Overlaps(p, radius))
+                    return false;
             return true;
         }
+
         public bool ClearLine(WorldPoint a, WorldPoint b)
         {
-            foreach (var obstacle in obstacles) if (obstacle.Crosses(a, b)) return false;
+            if (!a.Finite || !b.Finite)
+                throw new ArgumentException("Invalid line.");
+            foreach (var obstacle in obstacles)
+                if (obstacle.Crosses(a, b))
+                    return false;
             return true;
         }
+
         /// <summary>Optional steering assists walking around a blocked surface.</summary>
         public WorldPoint Move(WorldPoint from, WorldPoint delta, float radius, bool slideAround = false)
         {
+            if (!delta.Finite || delta.Length > 2000 || !CanStand(from, radius))
+                throw new ArgumentException("Invalid movement or blocked origin.");
             int steps = Math.Max(1, (int)Math.Ceiling(delta.Length / Math.Min(.12f, radius * .5f)));
             var increment = delta / steps;
             for (int i = 0; i < steps; i++)
             {
-                if (CanStand(from + increment, radius)) { from += increment; continue; }
-                if (slideAround) { from = Slide(from, increment, radius); continue; }
+                if (CanStand(from + increment, radius))
+                {
+                    from += increment;
+                    continue;
+                }
+
+                if (slideAround)
+                {
+                    from = Slide(from, increment, radius);
+                    continue;
+                }
+
                 var x = from + new WorldPoint(increment.X, 0);
-                if (CanStand(x, radius)) from = x;
+                if (CanStand(x, radius))
+                    from = x;
                 var y = from + new WorldPoint(0, increment.Y);
-                if (CanStand(y, radius)) from = y;
+                if (CanStand(y, radius))
+                    from = y;
             }
+
             return from;
+        }
+
+        public bool TryFindStandableNear(WorldPoint center, float radius, float searchRadius, out WorldPoint point)
+        {
+            if (!center.Finite || !GeometryRules.Range(radius, .01f, 10) || !GeometryRules.Range(searchRadius, 0, 100))
+                throw new ArgumentException("Invalid spawn search.");
+            if (CanStand(center, radius))
+            {
+                point = center;
+                return true;
+            }
+
+            for (int ring = 1; ring <= 16; ring++)
+                for (int step = 0; step < 32; step++)
+                {
+                    double angle = step * Math.PI * 2 / 32;
+                    float distance = searchRadius * ring / 16;
+                    var candidate = center + new WorldPoint((float)Math.Cos(angle) * distance, (float)Math.Sin(angle) * distance);
+                    if (CanStand(candidate, radius))
+                    {
+                        point = candidate;
+                        return true;
+                    }
+                }
+
+            point = default;
+            return false;
         }
 
         private WorldPoint Slide(WorldPoint from, WorldPoint increment, float radius)
@@ -180,21 +280,25 @@ namespace LinhThu.Domain.Navigation
             float fraction = FreeFraction(from, increment, radius);
             var contact = from + increment * fraction;
             var remaining = increment * (1 - fraction);
-            if (remaining.LengthSquared < .00000001f) return contact;
+            if (remaining.LengthSquared < .00000001f)
+                return contact;
             // Only a physical prop receives steering assistance; the map boundary remains a hard edge.
             var probe = contact + increment.Normalized * .002f;
             foreach (var obstacle in obstacles)
             {
-                if (!obstacle.Overlaps(probe, radius)) continue;
+                if (!obstacle.Overlaps(probe, radius))
+                    continue;
                 var normal = obstacle.ContactNormal(contact);
                 var tangent = new WorldPoint(normal.Y, -normal.X);
                 float along = WorldPoint.Dot(remaining, tangent);
                 if (Math.Abs(along) < remaining.Length * .05f)
                 {
                     // A head-on press chooses the nearer side; a centered tie consistently goes clockwise.
-                    if (WorldPoint.Dot(contact - obstacle.Center, tangent) < -.001f) tangent *= -1;
+                    if (WorldPoint.Dot(contact - obstacle.Center, tangent) < -.001f)
+                        tangent *= -1;
                 }
-                else if (along < 0) tangent *= -1;
+                else if (along < 0)
+                    tangent *= -1;
                 float distance = Math.Max(Math.Abs(along), remaining.Length * .45f);
                 var slide = tangent * distance;
                 float available = FreeFraction(contact, slide, radius);
@@ -202,26 +306,39 @@ namespace LinhThu.Domain.Navigation
                 {
                     var alternate = slide * -1;
                     float other = FreeFraction(contact, alternate, radius);
-                    if (other > available) { slide = alternate; available = other; }
+                    if (other > available)
+                    {
+                        slide = alternate;
+                        available = other;
+                    }
                 }
+
                 return contact + slide * available;
             }
+
             var x = contact + new WorldPoint(remaining.X, 0);
-            if (CanStand(x, radius)) contact = x;
+            if (CanStand(x, radius))
+                contact = x;
             var y = contact + new WorldPoint(0, remaining.Y);
-            if (CanStand(y, radius)) contact = y;
+            if (CanStand(y, radius))
+                contact = y;
             return contact;
         }
 
         private float FreeFraction(WorldPoint from, WorldPoint delta, float radius)
         {
-            if (CanStand(from + delta, radius)) return 1;
+            if (CanStand(from + delta, radius))
+                return 1;
             float low = 0, high = 1;
             for (int i = 0; i < 12; i++)
             {
                 float middle = (low + high) * .5f;
-                if (CanStand(from + delta * middle, radius)) low = middle; else high = middle;
+                if (CanStand(from + delta * middle, radius))
+                    low = middle;
+                else
+                    high = middle;
             }
+
             return low;
         }
     }

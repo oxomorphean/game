@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac4d0372958a490b84fe197bafc7aca, type: 3}
+  m_Name: ho-the
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Configs.TechniqueConfigSO
+  definitionId: ho-the
+  displayName: "H\u1ED9 Th\u1EC3"
+  description: 
+  shape: 4
+  targetFilter: 0
+  range: 1
+  radius: 0.2
+  angleDegrees: 90
+  projectileSpeed: 8
+  maxTargets: 1
+  qiCost: 12
+  cooldown: 7
+  castDuration: 0
+  channelDuration: 0
+  channelInterval: 0
+  effects:
+  - rid: 7548894146264563774
+  - rid: 7548894146264563775
+  effectColor: {r: 0.4, g: 0.7, b: 1, a: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 7548894146264563774
+      type: {class: ApplyStatusEffectData, ns: LinhThu.Client.Configs, asm: LinhThu.Client}
+      data:
+        status: {fileID: 11400000, guid: d9dd35bf0278345f3b6bf8d614d9b95c, type: 2}
+    - rid: 7548894146264563775
+      type: {class: RestoreVitalEffectData, ns: LinhThu.Client.Configs, asm: LinhThu.Client}
+      data:
+        vital: 2
+        amount: 60

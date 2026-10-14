@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" stroke-linecap="round" stroke-linejoin="round"><g id="Boot_front" data-bone="foot_front"><path id="Boot_front__front-boot" d="M 436 810 Q 461 806 492 816 L 488 838 C 489 855 496 873 491 889 Q 460 907 418 889 C 414 880 426 855 430 843 Z" fill="#334561" stroke="#222c40" stroke-width="6" />
-<path id="Boot_front__front-boot-shadow" d="M 439 824 Q 455 831 481 826 L 475 850 Q 457 850 443 873 L 423 879 Q 433 846 439 824 Z" fill="#222e47" stroke="none" />
-<path id="Boot_front__front-boot-toe" d="M 445 869 Q 459 855 482 859 L 486 882 Q 456 893 426 884 Z" fill="#394c68" stroke="none" />
-<path id="Boot_front__front-sole" d="M 419 883 Q 452 900 491 884" fill="none" stroke="#cba45f" stroke-width="5.5" />
-<path id="Boot_front__front-boot-cuff" d="M 435 825 Q 459 838 489 827" fill="none" stroke="#cba45f" stroke-width="7" />
-</g></svg>

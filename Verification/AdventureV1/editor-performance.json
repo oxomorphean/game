@@ -1,7 +1,0 @@
-{
-  "environment": "Editor; not WebGL performance evidence",
-  "messages": [
-    "V1_PERF_STARTED: 20 gameplay seconds, menus excluded.",
-    "V1_PERF {\"frames\":1118,\"actors\":5,\"area\":2,\"width\":1339,\"height\":667,\"memoryMB\":16384,\"seconds\":20.03476333618164,\"fps\":55.80300521850586,\"medianMs\":16.6906681060791,\"p95Ms\":29.68558692932129,\"maxMs\":86.94866180419922,\"unity\":\"6000.6.4f1\",\"device\":\"Mac16,10\",\"cpu\":\"Apple M4\",\"gpu\":\"Apple M4\",\"build\":\"00000000000000000000000000000000\"}"
-  ]
-}

@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ec47791c8d544159f71b44d95ffc58, type: 3}
+  m_Name: outfit-jade
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Configs.OutfitConfigSO
+  definitionId: outfit-jade
+  displayName: "\u0110\u1EA1o b\xE0o B\xEDch Ng\u1ECDc"
+  description: 
+  slots:
+  - slotId: hair-back
+    sprite: {fileID: 21300000, guid: 76a8fd1cd35244ee285132c9bb2455d0, type: 3}
+  - slotId: thigh-back
+    sprite: {fileID: 21300000, guid: eb56f8796acc24cfd8e7bf0232e9a88e, type: 3}
+  - slotId: shin-back
+    sprite: {fileID: 21300000, guid: 16fd449cb70a6433db9a8d3031bdac70, type: 3}
+  - slotId: thigh-front
+    sprite: {fileID: 21300000, guid: 0cb8739509b604400813cf0e0438e68f, type: 3}
+  - slotId: shin-front
+    sprite: {fileID: 21300000, guid: 5d4e123c178154725bf94faeeae4fb03, type: 3}
+  - slotId: boot-back
+    sprite: {fileID: 21300000, guid: 95303b12276a74274ac3152b51e4fb75, type: 3}
+  - slotId: boot-front
+    sprite: {fileID: 21300000, guid: 90592a4a9c5ac4697a1969d69c481ffe, type: 3}
+  - slotId: shorts
+    sprite: {fileID: 0}
+  - slotId: neck
+    sprite: {fileID: 21300000, guid: e5078b2463fb048cfa6dcdad6cb5befd, type: 3}
+  - slotId: torso
+    sprite: {fileID: 21300000, guid: 5c7d6bd674f9e4983ab4fa6100464fa8, type: 3}
+  - slotId: upper-back
+    sprite: {fileID: 21300000, guid: 845dd5316a84a4405a821444c78f029a, type: 3}
+  - slotId: fore-back
+    sprite: {fileID: 21300000, guid: 05a3f81ec6e314aa5bcbb80405dfaf6f, type: 3}
+  - slotId: upper-front
+    sprite: {fileID: 21300000, guid: 30416c751843446868ec3d4f57489cb3, type: 3}
+  - slotId: fore-front
+    sprite: {fileID: 21300000, guid: 9b4cacf0924714dca80a0bd89449b3db, type: 3}
+  - slotId: coat-back
+    sprite: {fileID: 21300000, guid: e62c69cb30cf947898f13d611fa4ce3c, type: 3}
+  - slotId: coat-front
+    sprite: {fileID: 21300000, guid: ed5eafdf0209347b4afe157ee6fb7d24, type: 3}
+  - slotId: sash
+    sprite: {fileID: 0}
+  - slotId: belt
+    sprite: {fileID: 21300000, guid: 3f940aae835b5421cbe56f57e10a4778, type: 3}
+  - slotId: hand-back
+    sprite: {fileID: 21300000, guid: 9065162e4d71f4b4bb854ce9ddd4c801, type: 3}
+  - slotId: hand-front
+    sprite: {fileID: 21300000, guid: af225ccdc84e24ba8a939387f8f5a5c5, type: 3}
+  - slotId: head
+    sprite: {fileID: 21300000, guid: 130e258e82fbd408fb419fb7895e5c75, type: 3}
+  - slotId: eyes
+    sprite: {fileID: 21300000, guid: dbf5c026d1d724baeaa0acfa516c042c, type: 3}
+  - slotId: mouth
+    sprite: {fileID: 21300000, guid: e090b0048c4ef42b99d63ffd6d84d92e, type: 3}
+  - slotId: hair-front
+    sprite: {fileID: 21300000, guid: 14b38f8c7be72459fb7084796ebf1b49, type: 3}
+  - slotId: hair-ornament
+    sprite: {fileID: 21300000, guid: b78ad3902874f44baad950499ec70e56, type: 3}

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd7909ea8ffab4b408765b3165175829, type: 3}
+  m_Name: herb-node
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Configs.WorldNodeConfigSO
+  definitionId: herb-node
+  displayName: "Linh th\u1EA3o"
+  description: 
+  kind: 0
+  interactionRadius: 1.4
+  growthSeconds: 12
+  respawnSeconds: 10
+  rewards:
+  - item: {fileID: 11400000, guid: a50fdd74610fe44469abde575555880a, type: 2}
+    count: 2
+  seedItem: {fileID: 11400000, guid: 37aa1d9b2cd094da4b9eb32d82f86e84, type: 2}
+  destinationMapId: 
+  portalDestination: {x: 0, y: 0}
+  prefab: {fileID: 4743127955555078904, guid: 86967ce7f61da46e6815f03bcf3d64ca, type: 3}

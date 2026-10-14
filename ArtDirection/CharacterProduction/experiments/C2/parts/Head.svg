@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" stroke-linecap="round" stroke-linejoin="round"><g id="Head" data-bone="head"><path id="Head__head" d="M 439 408 C 423 362 450 317 497 305 C 534 295 570 301 591 311 C 638 324 668 357 668 403 L 660 465 C 655 503 622 529 580 534 C 540 540 493 531 467 512 L 447 489 C 425 488 414 477 414 462 Q 412 443 433 438 Z" fill="#f5c8a5" stroke="#222c40" stroke-width="4.7" />
-<path id="Head__face-side-shadow" d="M 627 351 C 651 373 662 403 661 429 L 654 466 Q 650 497 623 515 Q 646 484 643 447 Q 642 404 615 378 Z" fill="#e6af92" stroke="none" />
-<path id="Head__jaw-warmth" d="M 462 501 Q 509 533 571 528 Q 607 528 631 511 Q 609 531 578 535 Q 510 539 474 518 Z" fill="#e6aa8a" stroke="none" />
-<path id="Head__ear-inner" d="M 425 468 C 425 459.163444 430.372583 452 437 452 C 443.627417 452 449 459.163444 449 468 C 449 476.836556 443.627417 484 437 484 C 430.372583 484 425 476.836556 425 468 Z" fill="#da9b85" stroke="none" />
-<path id="Head__ear-light" d="M 427 457 Q 441 447 450 457 L 441 463 Q 430 459 431 475 Q 424 467 427 457 Z" fill="#ffddba" stroke="none" />
-<path id="Head__ear-fold" d="M 429 471 Q 430 459 440 461 Q 446 464 439 471" fill="none" stroke="#bb806e" stroke-width="2.5" />
-<path id="Head__face-light" d="M 522 461 Q 563 433 600 423 Q 621 432 625 451 Q 603 474 597 498 Q 565 524 525 510 Z" fill="#fbd1ab" stroke="none" />
-</g></svg>

@@ -1,0 +1,6 @@
+{
+  "name": "LinhThu.DevTools",
+  "rootNamespace": "LinhThu.DevTools",
+  "references": ["LinhThu.Client", "Unity.InputSystem", "UnityEngine.UI", "Unity.TextMeshPro"],
+  "autoReferenced": false
+}

@@ -1,4 +1,6 @@
-> Lịch sử trước 12/10/2026. Bản hiện hành chỉ thử mỹ thuật; gameplay đã được chuyển ra khỏi source đang dùng. Xem [kiến trúc hiện hành](CODE_ARCHITECTURE.md).
+> Hiện hành 13/10/2026: chủ dự án yêu cầu nút Quản trị luôn hiện ngay trong game; mở bảng riêng cùng phiên với Tổng quan, Bản đồ và Asset. Phạm vi dữ liệu, cách đếm và hành vi input nằm ở [OWNER_DASHBOARD.md](OWNER_DASHBOARD.md). Các mục gameplay và dashboard cũ bên dưới là lịch sử trước 12/10/2026; không nối lại hệ đã gỡ.
+
+Thanh giờ trên cùng của bản mỹ thuật cho phép bấm/kéo tự do từ 06:00 tới 18:00. Khi chọn giờ, đồng hồ giữ tại giờ đó để quan sát bóng và màu nắng; bấm Chạy để thời gian tiếp tục, Dừng để giữ lại. Kéo quá mép thanh được giới hạn về đầu/cuối ngày. Thao tác trên thanh không đặt đích đi cho nhân vật.
 
 # Hai giao diện riêng: người chơi và chủ dự án
 

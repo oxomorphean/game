@@ -1,10 +1,12 @@
 # Hướng thiết kế game
 
-## Ưu tiên hiện hành — xác nhận 12/10/2026
+## Ưu tiên hiện hành — xác nhận 14/10/2026
 
-Chủ dự án yêu cầu tạm thời không có gameplay; gỡ logic đánh/tấn công, lên cấp và các hệ gameplay khác để tập trung kiểm tra kiến trúc, hình ảnh và animation. Bản hiện tại chỉ giữ map, đi lại/va chạm, nhân vật, hiệu ứng môi trường và công cụ xem mỹ thuật. Không khởi tạo combat, quái, chỉ số, công pháp, tu luyện, kho, nghề, rơi/nhặt hoặc save. Đổi trang phục trong mẫu art chỉ đổi hình.
+Chủ dự án đã duyệt Core Foundation: hợp nhất HeroBase/Meadow, xây bảy trụ cột Domain thuần C# và NUnit EditMode tests, sau đó Configs/Client và game loop. Kế hoạch chi tiết và chính sách kỹ thuật tại [Phase 1–2](Architecture/CORE_FOUNDATION_PHASES_1_2.md); kết quả thực tế tại [tiến độ](Architecture/CORE_FOUNDATION_PROGRESS.md). Phase 1–4 đã có implementation; MainGame là scene chơi duy nhất. Kết quả kiểm chứng xem tiến độ; cấu hình mẫu chưa phải cân bằng phát hành. Điều khiển hiện hành xem README.
 
-Source gameplay cũ được chuyển ra khỏi thư mục đang biên dịch vào `Recovery/ArtOnly-20261012/retired-source/`; archive và SHA-256 giữ cả source chưa có trong Git. Asset art/bố cục map và save cũ được giữ. Hướng MMORPG dài hạn chưa bị thay bằng luật mới, nhưng các mốc gameplay bên dưới hiện chỉ là lịch sử; không tự triển khai hoặc nối lại chúng. [Kiến trúc và entry point hiện hành](Architecture/CODE_ARCHITECTURE.md).
+Chốt 22 StatId; năm Affinity dùng chung hệ số công/kháng nguyên tố. Công pháp ghép effect, ActorEntity dùng chung cho tu sĩ/thú/quái, modifier phân biệt từng nguồn, cộng hưởng chỉ từ thú xuất chiến. Số liệu fixture không phải cân bằng chính thức. Tinh hạch/tẩy luyện và multiplayer chưa thuộc phạm vi này.
+
+Chỉ thị này thay chế độ chỉ xem mỹ thuật ngày 12/10 và pipeline nhiều hướng. Không nhập lại gameplay cũ từ `Recovery/`; giữ nguyên save cũ, schema foundation mới không tự đọc/ghi đè chúng. Nhân vật dùng một góc 3/4 + flip và chung bộ xương; môi trường dùng nền tiling/mesh cùng prefab độc lập.
 
 ## Lịch sử thiết kế trước khi tạm gỡ gameplay
 

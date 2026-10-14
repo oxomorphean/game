@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 1298822137281958482}
   - component: {fileID: 1945651194439174858}
   - component: {fileID: 8814040182053916454}
+  - component: {fileID: 8314117188485871483}
   m_Layer: 0
   m_Name: cherry-tree
   m_TagString: Untagged
@@ -236,6 +237,14 @@ MonoBehaviour:
   contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 1.3
+    depth: 0.64
+    center: 0.49
+    contactHeight: 0.1
+    baseCutoff: -1
+    canopyBlueRatio: 0.65
 --- !u!114 &8814040182053916454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,10 +261,30 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   halfSize: {x: 0.4, y: 0.4}
   polygon:
-  - {x: -0.35577607, y: 0.30667886}
-  - {x: -0.19380298, y: 0.56030166}
-  - {x: 0.1301434, y: 0.6525281}
-  - {x: 0.45408982, y: 0.44501862}
-  - {x: 0.50808114, y: 0.28362226}
-  - {x: 0.18413475, y: 0.053056072}
-  - {x: -0.13981187, y: 0.053056072}
+  - {x: -0.51774937, y: 0.3297355}
+  - {x: -0.40976718, y: 0.56030166}
+  - {x: -0.03182967, y: 0.69864136}
+  - {x: 0.34610784, y: 0.56030166}
+  - {x: 0.6430588, y: 0.3297355}
+  - {x: 0.40009895, y: 0.0069428426}
+  - {x: 0.022161437, y: -0.062227003}
+  - {x: -0.27478954, y: 0.053056072}
+--- !u!114 &8314117188485871483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6978765190360403005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 1298822137281958482}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 6080306970598287034}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10

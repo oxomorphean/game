@@ -102,6 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5904290426763179098}
   - component: {fileID: 1445198552241441135}
+  - component: {fileID: 2347284982985816744}
   m_Layer: 0
   m_Name: "B\u1EE5i c\u1ECF 7"
   m_TagString: Untagged
@@ -123,7 +124,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 699581433886336399}
-  - {fileID: 5463174392116479373}
   - {fileID: 9188610125254837787}
   m_Father: {fileID: 5537122046139638190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -141,9 +141,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapProp
   visual: {fileID: 6259367437643358034}
   castShadow: {fileID: 2761767885410805118}
-  contactShadow: {fileID: 3741546151091622400}
+  contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 0.75
+    depth: 0.4
+    center: 0.52
+    contactHeight: 0.12
+    baseCutoff: -1
+    canopyBlueRatio: 0
+--- !u!114 &2347284982985816744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179842854550766464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 5904290426763179098}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 6259367437643358034}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &346915058054040950
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,6 +458,7 @@ GameObject:
   - component: {fileID: 5347660815222049490}
   - component: {fileID: 5506103581116981760}
   - component: {fileID: 3394512282931033412}
+  - component: {fileID: 2824842643137637384}
   m_Layer: 0
   m_Name: "H\u1ED3 n\u01B0\u1EDBc tr\u1ECDn c\u1EE5m"
   m_TagString: Untagged
@@ -472,6 +500,14 @@ MonoBehaviour:
   contactShadow: {fileID: 6598854756598040018}
   floorLayer: 1
   floorOrder: -44
+  shadowSettings:
+    heightScale: 1
+    width: 0.75
+    depth: 0.4
+    center: 0.52
+    contactHeight: 0.12
+    baseCutoff: -1
+    canopyBlueRatio: 0
 --- !u!114 &3394512282931033412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,17 +524,37 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   halfSize: {x: 0.4, y: 0.4}
   polygon:
-  - {x: -1.749517, y: -0.021667857}
-  - {x: -1.4791021, y: 0.53302926}
-  - {x: -0.4390449, y: 0.8935824}
-  - {x: 0.6426145, y: 0.64396876}
-  - {x: 1.3082511, y: 0.25568077}
-  - {x: 1.641069, y: -0.38222098}
-  - {x: 1.2250466, y: -0.964653}
-  - {x: 0.47620535, y: -1.1171948}
-  - {x: -0.4390449, y: -1.0339901}
-  - {x: -1.2294884, y: -0.7150393}
-  - {x: -1.603909, y: -0.35448617}
+  - {x: -1.7287159, y: -0.07713759}
+  - {x: -1.5207043, y: 0.28341568}
+  - {x: -0.89667034, y: 0.53302926}
+  - {x: -0.18943119, y: 0.58849907}
+  - {x: 0.5594101, y: 0.50529444}
+  - {x: 1.1002398, y: 0.2556808}
+  - {x: 1.4330578, y: -0.18807697}
+  - {x: 1.2666492, y: -0.6595696}
+  - {x: 0.64261436, y: -0.9923879}
+  - {x: -0.18943119, y: -1.0201229}
+  - {x: -0.89667034, y: -0.7982439}
+  - {x: -1.4791021, y: -0.43769073}
+--- !u!114 &2824842643137637384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427260456911341932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 5347660815222049490}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 1494704434145565898}
+  floorLayer: 1
+  floorOrder: -44
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &474495732331536386
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 599673126668708785}
   - component: {fileID: 4299716675216523662}
+  - component: {fileID: 5245460846472069579}
   m_Layer: 0
   m_Name: MeadowMainMap
   m_TagString: Untagged
@@ -550,7 +607,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapLayout
   ground: {fileID: 2321918551359495334}
+  ambientMaterial: {fileID: 2100000, guid: c4ad937a80ee54c8db55c5bb4b7be45b, type: 2}
   size: {x: 20.000002, y: 11.255981}
+--- !u!114 &5245460846472069579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474495732331536386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c042659776e462ca346d699c26b877, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Environment.DaylightPresentation
+  startHour: 8
+  dayDurationSeconds: 240
+  advanceTime: 1
+  clockFont: {fileID: 11400000, guid: bd6496e73f8924f10a7f80040ef2df3b, type: 2}
+  showClock: 1
 --- !u!1 &571370949046571581
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,98 +914,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!1 &749977408491557188
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4948823688720401178}
-  - component: {fileID: 1132008804613663617}
-  m_Layer: 0
-  m_Name: "B\xF3ng ti\u1EBFp x\xFAc"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4948823688720401178
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 749977408491557188}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0}
-  m_LocalScale: {x: 0.65625, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2780833989309828045}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1132008804613663617
-SpriteRenderer:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 749977408491557188}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -28
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 3ac3bc08bc9904ca091f2932c6e5c72a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.16}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
-  m_BlendShapeWeights: []
 --- !u!1 &764973753330987793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,6 +1108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4243267249496054977}
   - component: {fileID: 8796764803366298162}
+  - component: {fileID: 219776575017790107}
   m_Layer: 0
   m_Name: "B\u1EE5i c\u1ECF 6"
   m_TagString: Untagged
@@ -1146,7 +1130,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7580263753889319790}
-  - {fileID: 3678609218475606916}
   - {fileID: 4732347399152496867}
   m_Father: {fileID: 5537122046139638190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1164,9 +1147,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapProp
   visual: {fileID: 3874971038623637820}
   castShadow: {fileID: 5666737851516855113}
-  contactShadow: {fileID: 6757262498539101015}
+  contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 0.75
+    depth: 0.4
+    center: 0.52
+    contactHeight: 0.12
+    baseCutoff: -1
+    canopyBlueRatio: 0
+--- !u!114 &219776575017790107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031926269900163785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 4243267249496054977}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 3874971038623637820}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &1039808635103428644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2780833989309828045}
   - component: {fileID: 6852224723622575538}
+  - component: {fileID: 2168027608785106149}
   m_Layer: 0
   m_Name: "Hoa tr\u1EAFng 4"
   m_TagString: Untagged
@@ -1198,7 +1209,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3873134581800697214}
-  - {fileID: 4948823688720401178}
   - {fileID: 7637032235870215750}
   m_Father: {fileID: 5537122046139638190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1216,9 +1226,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapProp
   visual: {fileID: 6468423445511635936}
   castShadow: {fileID: 4872073817373354509}
-  contactShadow: {fileID: 1132008804613663617}
+  contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 0.75
+    depth: 0.4
+    center: 0.52
+    contactHeight: 0.12
+    baseCutoff: -1
+    canopyBlueRatio: 0
+--- !u!114 &2168027608785106149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039808635103428644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 2780833989309828045}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 6468423445511635936}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &1293009901836120833
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,6 +1266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1534957189657872778}
   - component: {fileID: 7970723710208253202}
+  - component: {fileID: 7113918058083039291}
   m_Layer: 0
   m_Name: "B\u1EE5i c\u1ECF 4"
   m_TagString: Untagged
@@ -1250,7 +1288,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1209554654399277352}
-  - {fileID: 8363312846633138506}
   - {fileID: 4254015145597435786}
   m_Father: {fileID: 5537122046139638190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1268,9 +1305,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapProp
   visual: {fileID: 62140221974092200}
   castShadow: {fileID: 6657841486330088024}
-  contactShadow: {fileID: 5616646271219111744}
+  contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 0.75
+    depth: 0.4
+    center: 0.52
+    contactHeight: 0.12
+    baseCutoff: -1
+    canopyBlueRatio: 0
+--- !u!114 &7113918058083039291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293009901836120833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 1534957189657872778}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 62140221974092200}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &1319917573841107720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1450,190 +1514,6 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.56, y: 2.56}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
-  m_BlendShapeWeights: []
---- !u!1 &1364268861319080234
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5696720114452269063}
-  - component: {fileID: 1301699865044807664}
-  m_Layer: 0
-  m_Name: "B\xF3ng ti\u1EBFp x\xFAc"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5696720114452269063
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364268861319080234}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0}
-  m_LocalScale: {x: 0.65625, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8243887457635034968}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1301699865044807664
-SpriteRenderer:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364268861319080234}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -28
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 3ac3bc08bc9904ca091f2932c6e5c72a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.16}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
-  m_BlendShapeWeights: []
---- !u!1 &1468996260135243763
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3316949275895597640}
-  - component: {fileID: 6682353952753922928}
-  m_Layer: 0
-  m_Name: "B\xF3ng ti\u1EBFp x\xFAc"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3316949275895597640
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1468996260135243763}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0}
-  m_LocalScale: {x: 0.65625, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 132898972289830859}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6682353952753922928
-SpriteRenderer:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1468996260135243763}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -28
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 3ac3bc08bc9904ca091f2932c6e5c72a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.16}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1963,6 +1843,7 @@ GameObject:
   m_Component:
   - component: {fileID: 132898972289830859}
   - component: {fileID: 6126600248970081069}
+  - component: {fileID: 4116956862076213820}
   m_Layer: 0
   m_Name: "Hoa tr\u1EAFng 3"
   m_TagString: Untagged
@@ -1984,7 +1865,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3416609956721389504}
-  - {fileID: 3316949275895597640}
   - {fileID: 454748072555048444}
   m_Father: {fileID: 5537122046139638190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2002,9 +1882,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapProp
   visual: {fileID: 562248932786404017}
   castShadow: {fileID: 2327329193474479275}
-  contactShadow: {fileID: 6682353952753922928}
+  contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 0.75
+    depth: 0.4
+    center: 0.52
+    contactHeight: 0.12
+    baseCutoff: -1
+    canopyBlueRatio: 0
+--- !u!114 &4116956862076213820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072061781899831824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 132898972289830859}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 562248932786404017}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &2227593975963886644
 GameObject:
   m_ObjectHideFlags: 0
@@ -2199,6 +2106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3918225106216279888}
   - component: {fileID: 2204827651213023530}
+  - component: {fileID: 234555345855635978}
   m_Layer: 0
   m_Name: "Hoa tr\u1EAFng 2"
   m_TagString: Untagged
@@ -2220,7 +2128,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8094520509591072416}
-  - {fileID: 7605989077620727921}
   - {fileID: 669275003737618825}
   m_Father: {fileID: 5537122046139638190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2238,9 +2145,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapProp
   visual: {fileID: 2607700367726433199}
   castShadow: {fileID: 7248665794405359023}
-  contactShadow: {fileID: 1884764722227633221}
+  contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 0.75
+    depth: 0.4
+    center: 0.52
+    contactHeight: 0.12
+    baseCutoff: -1
+    canopyBlueRatio: 0
+--- !u!114 &234555345855635978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2326397514011694485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 3918225106216279888}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 2607700367726433199}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &2356724176687601944
 GameObject:
   m_ObjectHideFlags: 0
@@ -2251,6 +2185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5437478498120377635}
   - component: {fileID: 1466298505133969394}
+  - component: {fileID: 8267397943558575606}
   m_Layer: 0
   m_Name: "B\u1EE5i c\u1ECF 3"
   m_TagString: Untagged
@@ -2272,7 +2207,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8830983065500645851}
-  - {fileID: 2300081376405033798}
   - {fileID: 4590824619159626096}
   m_Father: {fileID: 5537122046139638190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2290,9 +2224,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapProp
   visual: {fileID: 187161956498539845}
   castShadow: {fileID: 5368900648246990248}
-  contactShadow: {fileID: 6900451610652630329}
+  contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 0.75
+    depth: 0.4
+    center: 0.52
+    contactHeight: 0.12
+    baseCutoff: -1
+    canopyBlueRatio: 0
+--- !u!114 &8267397943558575606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2356724176687601944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 5437478498120377635}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 187161956498539845}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &2415830990054156746
 GameObject:
   m_ObjectHideFlags: 0
@@ -2395,6 +2356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4191093801413344781}
   - component: {fileID: 2765852000758515751}
+  - component: {fileID: 9029257736759010707}
   m_Layer: 0
   m_Name: "B\u1EE5i c\xE2y tr\xE1i"
   m_TagString: Untagged
@@ -2417,7 +2379,6 @@ Transform:
   m_Children:
   - {fileID: 5128489864330174109}
   - {fileID: 5985674003375691161}
-  - {fileID: 5742855523341088054}
   m_Father: {fileID: 5537122046139638190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2765852000758515751
@@ -2434,9 +2395,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapProp
   visual: {fileID: 2597862745165914137}
   castShadow: {fileID: 4112753467949378249}
-  contactShadow: {fileID: 7981219308560872608}
+  contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 1.4
+    depth: 0.5
+    center: 0.4
+    contactHeight: 0.1
+    baseCutoff: -1
+    canopyBlueRatio: 0
+--- !u!114 &9029257736759010707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2592974987166067228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 4191093801413344781}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 2597862745165914137}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &2623864433264264124
 GameObject:
   m_ObjectHideFlags: 0
@@ -2447,6 +2435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8243887457635034968}
   - component: {fileID: 1303529543815004843}
+  - component: {fileID: 4006524659992513798}
   m_Layer: 0
   m_Name: "Hoa tr\u1EAFng 5"
   m_TagString: Untagged
@@ -2468,7 +2457,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6938580507548635507}
-  - {fileID: 5696720114452269063}
   - {fileID: 3883092671228557717}
   m_Father: {fileID: 5537122046139638190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2486,9 +2474,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapProp
   visual: {fileID: 6692725799273084546}
   castShadow: {fileID: 490155825128608002}
-  contactShadow: {fileID: 1301699865044807664}
+  contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 0.75
+    depth: 0.4
+    center: 0.52
+    contactHeight: 0.12
+    baseCutoff: -1
+    canopyBlueRatio: 0
+--- !u!114 &4006524659992513798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2623864433264264124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 8243887457635034968}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 6692725799273084546}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &2651021015792319755
 GameObject:
   m_ObjectHideFlags: 0
@@ -2684,6 +2699,7 @@ GameObject:
   - component: {fileID: 6310185701141510582}
   - component: {fileID: 2611179906857286387}
   - component: {fileID: 3299342366126458400}
+  - component: {fileID: 3971222344102486216}
   m_Layer: 0
   m_Name: "\u0110\xE1 ph\xEDa tr\xEAn"
   m_TagString: Untagged
@@ -2725,6 +2741,14 @@ MonoBehaviour:
   contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 1.4
+    depth: 0.65
+    center: 0.28
+    contactHeight: 0.1
+    baseCutoff: -1
+    canopyBlueRatio: 0
 --- !u!114 &3299342366126458400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2749,6 +2773,25 @@ MonoBehaviour:
   - {x: 0.398851, y: 0.071463}
   - {x: 0.018026156, y: 0.0042586084}
   - {x: -0.34039727, y: 0.071463}
+--- !u!114 &3971222344102486216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709973661842316667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 6310185701141510582}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 3571665875474416739}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &2783671370607672437
 GameObject:
   m_ObjectHideFlags: 0
@@ -2928,98 +2971,6 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 15.375014, y: 10.24}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
-  m_BlendShapeWeights: []
---- !u!1 &3260760530212037333
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3317200651672660556}
-  - component: {fileID: 8263672872198345659}
-  m_Layer: 0
-  m_Name: "B\xF3ng ti\u1EBFp x\xFAc"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3317200651672660556
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3260760530212037333}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0}
-  m_LocalScale: {x: 0.71875, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1732078979389722785}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8263672872198345659
-SpriteRenderer:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3260760530212037333}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -28
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 3ac3bc08bc9904ca091f2932c6e5c72a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.16}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3495,6 +3446,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4905391128491342013}
   - component: {fileID: 3242502112478765087}
+  - component: {fileID: 5171065816981946277}
   m_Layer: 0
   m_Name: "B\u1EE5i c\xE2y ph\u1EA3i"
   m_TagString: Untagged
@@ -3517,7 +3469,6 @@ Transform:
   m_Children:
   - {fileID: 2217690000755216706}
   - {fileID: 7641597367320629646}
-  - {fileID: 5169274716578837046}
   m_Father: {fileID: 5537122046139638190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3242502112478765087
@@ -3534,9 +3485,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapProp
   visual: {fileID: 2929040685303512571}
   castShadow: {fileID: 7279044809741891646}
-  contactShadow: {fileID: 8324511764125214126}
+  contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 1.4
+    depth: 0.5
+    center: 0.4
+    contactHeight: 0.1
+    baseCutoff: -1
+    canopyBlueRatio: 0
+--- !u!114 &5171065816981946277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3502043059843919120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 4905391128491342013}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 2929040685303512571}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &3719044197564254340
 GameObject:
   m_ObjectHideFlags: 0
@@ -3731,6 +3709,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732078979389722785}
   - component: {fileID: 7058234422321781581}
+  - component: {fileID: 355465592370260065}
   m_Layer: 0
   m_Name: "B\u1EE5i c\u1ECF 1"
   m_TagString: Untagged
@@ -3752,7 +3731,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 678586327359276349}
-  - {fileID: 3317200651672660556}
   - {fileID: 6779051535129387206}
   m_Father: {fileID: 5537122046139638190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3770,9 +3748,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapProp
   visual: {fileID: 3616988484551632640}
   castShadow: {fileID: 6804523103575009035}
-  contactShadow: {fileID: 8263672872198345659}
+  contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 0.75
+    depth: 0.4
+    center: 0.52
+    contactHeight: 0.12
+    baseCutoff: -1
+    canopyBlueRatio: 0
+--- !u!114 &355465592370260065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3800650953747918892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 1732078979389722785}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 3616988484551632640}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &3823647432420712423
 GameObject:
   m_ObjectHideFlags: 0
@@ -3860,190 +3865,6 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 15.375014, y: 10.24}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
-  m_BlendShapeWeights: []
---- !u!1 &3825615561259933336
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5169274716578837046}
-  - component: {fileID: 8324511764125214126}
-  m_Layer: 0
-  m_Name: "B\xF3ng ti\u1EBFp x\xFAc"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5169274716578837046
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3825615561259933336}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.055, z: 0}
-  m_LocalScale: {x: 1.484375, y: 0.5, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4905391128491342013}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8324511764125214126
-SpriteRenderer:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3825615561259933336}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -28
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 3ac3bc08bc9904ca091f2932c6e5c72a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.28}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
-  m_BlendShapeWeights: []
---- !u!1 &4038465900855941015
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8363312846633138506}
-  - component: {fileID: 5616646271219111744}
-  m_Layer: 0
-  m_Name: "B\xF3ng ti\u1EBFp x\xFAc"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8363312846633138506
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4038465900855941015}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0}
-  m_LocalScale: {x: 0.71875, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1534957189657872778}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5616646271219111744
-SpriteRenderer:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4038465900855941015}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -28
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 3ac3bc08bc9904ca091f2932c6e5c72a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.16}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -4796,6 +4617,7 @@ GameObject:
   - component: {fileID: 2004804181526512194}
   - component: {fileID: 5180413842582391007}
   - component: {fileID: 6057237916820873243}
+  - component: {fileID: 5093955820310897296}
   m_Layer: 0
   m_Name: "Anh \u0111\xE0o tr\xE1i"
   m_TagString: Untagged
@@ -4837,6 +4659,14 @@ MonoBehaviour:
   contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 1.3
+    depth: 0.64
+    center: 0.49
+    contactHeight: 0.1
+    baseCutoff: -1
+    canopyBlueRatio: 0.65
 --- !u!114 &6057237916820873243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4853,13 +4683,33 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   halfSize: {x: 0.4, y: 0.4}
   polygon:
-  - {x: -0.35577607, y: 0.30667886}
-  - {x: -0.19380298, y: 0.56030166}
-  - {x: 0.1301434, y: 0.6525281}
-  - {x: 0.45408982, y: 0.44501862}
-  - {x: 0.50808114, y: 0.28362226}
-  - {x: 0.18413475, y: 0.053056072}
-  - {x: -0.13981187, y: 0.053056072}
+  - {x: -0.5177493, y: 0.32973552}
+  - {x: -0.40976715, y: 0.56030166}
+  - {x: -0.031829834, y: 0.6986413}
+  - {x: 0.34610796, y: 0.56030166}
+  - {x: 0.6430588, y: 0.32973552}
+  - {x: 0.4000988, y: 0.006942868}
+  - {x: 0.022161484, y: -0.06222701}
+  - {x: -0.27478933, y: 0.05305612}
+--- !u!114 &5093955820310897296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4827620687177730648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 2004804181526512194}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 1029810887337329680}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &4913174289343059783
 GameObject:
   m_ObjectHideFlags: 0
@@ -5014,6 +4864,7 @@ GameObject:
   - component: {fileID: 888435913998266007}
   - component: {fileID: 2578776075193648019}
   - component: {fileID: 4833866153980198148}
+  - component: {fileID: 6555918432088412719}
   m_Layer: 0
   m_Name: "Anh \u0111\xE0o ph\u1EA3i"
   m_TagString: Untagged
@@ -5055,6 +4906,14 @@ MonoBehaviour:
   contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 1.3
+    depth: 0.64
+    center: 0.49
+    contactHeight: 0.1
+    baseCutoff: -1
+    canopyBlueRatio: 0.65
 --- !u!114 &4833866153980198148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5071,13 +4930,33 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   halfSize: {x: 0.4, y: 0.4}
   polygon:
-  - {x: -0.35577607, y: 0.30667886}
-  - {x: -0.19380298, y: 0.56030166}
-  - {x: 0.1301434, y: 0.6525281}
-  - {x: 0.45408982, y: 0.44501862}
-  - {x: 0.50808114, y: 0.28362226}
-  - {x: 0.18413475, y: 0.053056072}
-  - {x: -0.13981187, y: 0.053056072}
+  - {x: -0.51774925, y: 0.32973543}
+  - {x: -0.40976697, y: 0.56030166}
+  - {x: -0.031829894, y: 0.69864124}
+  - {x: 0.3461077, y: 0.56030166}
+  - {x: 0.64305854, y: 0.32973543}
+  - {x: 0.40009883, y: 0.0069428}
+  - {x: 0.02216126, y: -0.062226996}
+  - {x: -0.27478957, y: 0.053056125}
+--- !u!114 &6555918432088412719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5475082327761886801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 888435913998266007}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 1652641306853888811}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &5476741064733148457
 GameObject:
   m_ObjectHideFlags: 0
@@ -5180,6 +5059,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6572663580349672482}
   - component: {fileID: 4445928933439260998}
+  - component: {fileID: 8539907998352925430}
   m_Layer: 0
   m_Name: "B\u1EE5i c\u1ECF 2"
   m_TagString: Untagged
@@ -5201,7 +5081,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5378529773374634165}
-  - {fileID: 715353958521151177}
   - {fileID: 7761610909379746462}
   m_Father: {fileID: 5537122046139638190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5219,101 +5098,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapProp
   visual: {fileID: 4086761537306650887}
   castShadow: {fileID: 6481855355798763179}
-  contactShadow: {fileID: 1978236047490858984}
+  contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
---- !u!1 &5649972268090504084
-GameObject:
+  shadowSettings:
+    heightScale: 1
+    width: 0.75
+    depth: 0.4
+    center: 0.52
+    contactHeight: 0.12
+    baseCutoff: -1
+    canopyBlueRatio: 0
+--- !u!114 &8539907998352925430
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7605989077620727921}
-  - component: {fileID: 1884764722227633221}
-  m_Layer: 0
-  m_Name: "B\xF3ng ti\u1EBFp x\xFAc"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7605989077620727921
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5649972268090504084}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0}
-  m_LocalScale: {x: 0.65625, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3918225106216279888}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1884764722227633221
-SpriteRenderer:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5649972268090504084}
+  m_GameObject: {fileID: 5563025395815759250}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -28
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 3ac3bc08bc9904ca091f2932c6e5c72a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.16}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
-  m_BlendShapeWeights: []
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 6572663580349672482}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 4086761537306650887}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &5662919302575786853
 GameObject:
   m_ObjectHideFlags: 0
@@ -5357,6 +5171,7 @@ GameObject:
   - component: {fileID: 3592307554793245079}
   - component: {fileID: 3036731470217167218}
   - component: {fileID: 3654376581629491219}
+  - component: {fileID: 361265591569343926}
   m_Layer: 0
   m_Name: "\u0110\xE1 tr\xE1i"
   m_TagString: Untagged
@@ -5398,6 +5213,14 @@ MonoBehaviour:
   contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 1.4
+    depth: 0.65
+    center: 0.28
+    contactHeight: 0.1
+    baseCutoff: -1
+    canopyBlueRatio: 0
 --- !u!114 &3654376581629491219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5422,6 +5245,25 @@ MonoBehaviour:
   - {x: 0.398851, y: 0.071463}
   - {x: 0.018026156, y: 0.0042586084}
   - {x: -0.34039727, y: 0.071463}
+--- !u!114 &361265591569343926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5695164554716177066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 3592307554793245079}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 5979664562585785928}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &5734358014653263472
 GameObject:
   m_ObjectHideFlags: 0
@@ -5790,190 +5632,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!1 &6461186711706725595
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2300081376405033798}
-  - component: {fileID: 6900451610652630329}
-  m_Layer: 0
-  m_Name: "B\xF3ng ti\u1EBFp x\xFAc"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2300081376405033798
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461186711706725595}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0}
-  m_LocalScale: {x: 0.71875, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5437478498120377635}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6900451610652630329
-SpriteRenderer:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461186711706725595}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -28
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 3ac3bc08bc9904ca091f2932c6e5c72a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.16}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
-  m_BlendShapeWeights: []
---- !u!1 &6461259765588022486
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 715353958521151177}
-  - component: {fileID: 1978236047490858984}
-  m_Layer: 0
-  m_Name: "B\xF3ng ti\u1EBFp x\xFAc"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &715353958521151177
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461259765588022486}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0}
-  m_LocalScale: {x: 0.71875, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6572663580349672482}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1978236047490858984
-SpriteRenderer:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461259765588022486}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -28
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 3ac3bc08bc9904ca091f2932c6e5c72a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.16}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
-  m_BlendShapeWeights: []
 --- !u!1 &6583146046240758677
 GameObject:
   m_ObjectHideFlags: 0
@@ -6168,6 +5826,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9122555002193497013}
   - component: {fileID: 2491978660737615568}
+  - component: {fileID: 8234602675508621594}
   m_Layer: 0
   m_Name: "B\u1EE5i c\u1ECF 5"
   m_TagString: Untagged
@@ -6189,7 +5848,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5828060537870232800}
-  - {fileID: 6482869765429941727}
   - {fileID: 4630861882418066455}
   m_Father: {fileID: 5537122046139638190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6207,9 +5865,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapProp
   visual: {fileID: 8068352873203476565}
   castShadow: {fileID: 5335587825702543641}
-  contactShadow: {fileID: 6844066126855464242}
+  contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 0.75
+    depth: 0.4
+    center: 0.52
+    contactHeight: 0.12
+    baseCutoff: -1
+    canopyBlueRatio: 0
+--- !u!114 &8234602675508621594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6675031265350553502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 9122555002193497013}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 8068352873203476565}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &6697879857312199048
 GameObject:
   m_ObjectHideFlags: 0
@@ -6405,6 +6090,7 @@ GameObject:
   - component: {fileID: 6845780442336574221}
   - component: {fileID: 5346325358520150659}
   - component: {fileID: 4566412288226030333}
+  - component: {fileID: 7387659030571534220}
   m_Layer: 0
   m_Name: "\u0110\xE1 g\xF3c d\u01B0\u1EDBi"
   m_TagString: Untagged
@@ -6446,6 +6132,14 @@ MonoBehaviour:
   contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 1.4
+    depth: 0.65
+    center: 0.28
+    contactHeight: 0.1
+    baseCutoff: -1
+    canopyBlueRatio: 0
 --- !u!114 &4566412288226030333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6470,6 +6164,25 @@ MonoBehaviour:
   - {x: 0.398851, y: 0.071463}
   - {x: 0.018026156, y: 0.0042586084}
   - {x: -0.34039727, y: 0.071463}
+--- !u!114 &7387659030571534220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6761199057389528916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 6845780442336574221}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 5409285856879548098}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &6776407512580148068
 GameObject:
   m_ObjectHideFlags: 0
@@ -6557,98 +6270,6 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 15.375014, y: 10.24}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
-  m_BlendShapeWeights: []
---- !u!1 &6907689377778880716
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 90644139139649180}
-  - component: {fileID: 8493329445080553958}
-  m_Layer: 0
-  m_Name: "B\xF3ng ti\u1EBFp x\xFAc"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &90644139139649180
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6907689377778880716}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0}
-  m_LocalScale: {x: 0.71875, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 756525578439077472}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8493329445080553958
-SpriteRenderer:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6907689377778880716}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -28
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 3ac3bc08bc9904ca091f2932c6e5c72a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.16}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -6940,6 +6561,7 @@ GameObject:
   m_Component:
   - component: {fileID: 756525578439077472}
   - component: {fileID: 4517776725076894778}
+  - component: {fileID: 612159023583303429}
   m_Layer: 0
   m_Name: "B\u1EE5i c\u1ECF 8"
   m_TagString: Untagged
@@ -6961,7 +6583,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5173423791812815317}
-  - {fileID: 90644139139649180}
   - {fileID: 4365954910209518022}
   m_Father: {fileID: 5537122046139638190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6979,9 +6600,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapProp
   visual: {fileID: 7688425699371174989}
   castShadow: {fileID: 2480060987102528527}
-  contactShadow: {fileID: 8493329445080553958}
+  contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 0.75
+    depth: 0.4
+    center: 0.52
+    contactHeight: 0.12
+    baseCutoff: -1
+    canopyBlueRatio: 0
+--- !u!114 &612159023583303429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7061733433022506708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 756525578439077472}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 7688425699371174989}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &7418424698572245210
 GameObject:
   m_ObjectHideFlags: 0
@@ -7258,98 +6906,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!1 &7638158141641022672
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6482869765429941727}
-  - component: {fileID: 6844066126855464242}
-  m_Layer: 0
-  m_Name: "B\xF3ng ti\u1EBFp x\xFAc"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6482869765429941727
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7638158141641022672}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0}
-  m_LocalScale: {x: 0.71875, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9122555002193497013}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6844066126855464242
-SpriteRenderer:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7638158141641022672}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -28
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 3ac3bc08bc9904ca091f2932c6e5c72a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.16}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
-  m_BlendShapeWeights: []
 --- !u!1 &7640811667807220830
 GameObject:
   m_ObjectHideFlags: 0
@@ -7437,98 +6993,6 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 15.375014, y: 10.24}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
-  m_BlendShapeWeights: []
---- !u!1 &7914194294976952296
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3678609218475606916}
-  - component: {fileID: 6757262498539101015}
-  m_Layer: 0
-  m_Name: "B\xF3ng ti\u1EBFp x\xFAc"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3678609218475606916
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7914194294976952296}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0}
-  m_LocalScale: {x: 0.71875, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4243267249496054977}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6757262498539101015
-SpriteRenderer:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7914194294976952296}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -28
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 3ac3bc08bc9904ca091f2932c6e5c72a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.16}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -7636,6 +7100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3379007819956699471}
   - component: {fileID: 2643050934491515046}
+  - component: {fileID: 4849218052964380635}
   m_Layer: 0
   m_Name: "Hoa tr\u1EAFng 1"
   m_TagString: Untagged
@@ -7657,7 +7122,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3674362902977258171}
-  - {fileID: 7564366441142728185}
   - {fileID: 5020793956855832138}
   m_Father: {fileID: 5537122046139638190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7675,9 +7139,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapProp
   visual: {fileID: 7142125465356178441}
   castShadow: {fileID: 2877180061911549363}
-  contactShadow: {fileID: 6127786602076517953}
+  contactShadow: {fileID: 0}
   floorLayer: 0
   floorOrder: -42
+  shadowSettings:
+    heightScale: 1
+    width: 0.75
+    depth: 0.4
+    center: 0.52
+    contactHeight: 0.12
+    baseCutoff: -1
+    canopyBlueRatio: 0
+--- !u!114 &4849218052964380635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8079087828951533215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9c8c9e4af14403c82971fcf8b64d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.YSortRenderer
+  foot: {fileID: 3379007819956699471}
+  group: {fileID: 0}
+  targetRenderer: {fileID: 7142125465356178441}
+  floorLayer: 0
+  floorOrder: -42
+  baseOrder: 100
+  unitsToOrder: 10
 --- !u!1 &8217796364496455206
 GameObject:
   m_ObjectHideFlags: 0
@@ -8273,282 +7764,6 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.56, y: 2.56}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
-  m_BlendShapeWeights: []
---- !u!1 &8736942654995581678
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5742855523341088054}
-  - component: {fileID: 7981219308560872608}
-  m_Layer: 0
-  m_Name: "B\xF3ng ti\u1EBFp x\xFAc"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5742855523341088054
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8736942654995581678}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.055, z: 0}
-  m_LocalScale: {x: 1.484375, y: 0.5, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4191093801413344781}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7981219308560872608
-SpriteRenderer:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8736942654995581678}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -28
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 3ac3bc08bc9904ca091f2932c6e5c72a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.28}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
-  m_BlendShapeWeights: []
---- !u!1 &8817920706969970979
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7564366441142728185}
-  - component: {fileID: 6127786602076517953}
-  m_Layer: 0
-  m_Name: "B\xF3ng ti\u1EBFp x\xFAc"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7564366441142728185
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8817920706969970979}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0}
-  m_LocalScale: {x: 0.65625, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3379007819956699471}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6127786602076517953
-SpriteRenderer:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8817920706969970979}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -28
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 3ac3bc08bc9904ca091f2932c6e5c72a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.16}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
-  m_BlendShapeWeights: []
---- !u!1 &9059655395166626353
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5463174392116479373}
-  - component: {fileID: 3741546151091622400}
-  m_Layer: 0
-  m_Name: "B\xF3ng ti\u1EBFp x\xFAc"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5463174392116479373
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9059655395166626353}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.025, z: 0}
-  m_LocalScale: {x: 0.71875, y: 0.25, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5904290426763179098}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3741546151091622400
-SpriteRenderer:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9059655395166626353}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -28
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 3ac3bc08bc9904ca091f2932c6e5c72a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.16}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

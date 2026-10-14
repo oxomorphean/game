@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" stroke-linecap="round" stroke-linejoin="round"><g id="Classic_Fore_front" data-bone="fore_front"><path id="Classic_Fore_front__front-sleeve" d="M 414 596 Q 440 588 463 609 L 450 628 Q 452 644 463 670 L 467 680 Q 454 697 438 704 L 408 718 Q 381 726 359 719 C 347 708 333 690 327 677 Q 344 660 369 642 Q 390 624 398 611 Z" fill="#f5ebd1" stroke="#222c40" stroke-width="6" />
-<path id="Classic_Fore_front__front-sleeve-shadow" d="M 446 610 L 452 616 L 443 630 Q 451 656 459 676 L 440 689 Q 420 684 399 692 L 385 715 L 365 715 Q 358 696 363 683 L 397 663 Q 427 643 446 610 Z" fill="#b7b8ae" stroke="none" />
-<path id="Classic_Fore_front__front-sleeve-fold" d="M 394 628 Q 411 616 436 616 Q 416 633 405 650 L 366 666 Z" fill="#d5d0c0" stroke="none" />
-<path id="Classic_Fore_front__front-sleeve-light" d="M 397 617 Q 413 602 437 609 Q 415 616 405 629 L 386 651 L 350 674 L 338 674 Q 365 648 387 635 Z" fill="#fffcf2" stroke="none" />
-<path id="Classic_Fore_front__front-sleeve-gold" d="M 332 674 Q 349 681 366 674 Q 397 654 415 654 Q 435 657 460 674" fill="none" stroke="#cba45f" stroke-width="6" />
-<path id="Classic_Fore_front__front-cuff" d="M 394 677 Q 416 661 439 681 L 445 707 L 432 724 L 388 714 Z" fill="#334561" stroke="#222c40" stroke-width="4.5" />
-<path id="Classic_Fore_front__front-cuff-shadow" d="M 417 675 Q 431 675 437 685 L 441 704 L 429 711 L 414 688 Z" fill="#222e47" stroke="none" />
-<path id="Classic_Fore_front__front-cuff-gold" d="M 390 707 Q 413 687 439 703" fill="none" stroke="#cba45f" stroke-width="6" />
-</g></svg>

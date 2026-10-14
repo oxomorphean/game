@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" stroke-linecap="round" stroke-linejoin="round"><g id="Hand_front" data-bone="hand_front"><path id="Hand_front__front-hand" d="M 405 701 C 420 695 431 701 437 712 Q 451 731 441 736 Q 432 738 428 724 C 428 740 427 748 417 750 C 400 749 388 739 389 725 Q 389 708 405 701 Z" fill="#f5c8a5" stroke="#222c40" stroke-width="5" />
-<path id="Hand_front__front-hand-shadow" d="M 400 707 Q 390 722 397 737 Q 404 745 416 748 Q 398 751 391 735 Q 387 717 400 707 Z" fill="#da9b85" stroke="none" />
-<path id="Hand_front__front-hand-light" d="M 406 707 Q 419 703 427 712 Q 413 708 405 718 Z" fill="#ffe1bb" stroke="none" />
-<path id="Hand_front__thumb-joint" d="M 428 724 Q 426 716 422 714" fill="none" stroke="#b87565" stroke-width="2.4" />
-<path id="Hand_front__front-finger-fold" d="M 396 734 Q 396 739 400 741" fill="none" stroke="#c18672" stroke-width="2" />
-</g></svg>

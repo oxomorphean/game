@@ -2,5 +2,9 @@
   "name": "LinhThu.Domain",
   "rootNamespace": "LinhThu.Domain",
   "noEngineReferences": true,
-  "autoReferenced": true
+  "autoReferenced": true,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "Newtonsoft.Json.dll"
+  ]
 }
