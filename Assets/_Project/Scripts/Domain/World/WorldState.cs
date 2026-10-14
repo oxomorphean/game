@@ -224,6 +224,7 @@ namespace LinhThu.Domain.World
 
         private void ResolveMovement(ActorEntity actor, float deltaTime)
         {
+            Motor.RecoverOverlap(actor.Transform);
             if (!actor.CanAct || actor.Abilities.Cast != null || actor.HasLifeActivity)
             {
                 actor.Transform.CurrentVelocity = default;

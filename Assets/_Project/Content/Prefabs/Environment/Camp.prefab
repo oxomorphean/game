@@ -87,7 +87,7 @@ MeshRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 2012
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7052798957670850554
@@ -165,10 +165,12 @@ MonoBehaviour:
   foot: {fileID: 3287142789387655517}
   group: {fileID: 0}
   targetRenderer: {fileID: 5106536331363098976}
+  useRendererBottom: 1
+  groundContactOffset: 0
   floorLayer: 0
   floorOrder: -39
-  baseOrder: 100
-  unitsToOrder: 10
+  baseOrder: 2000
+  unitsToOrder: 100
 --- !u!114 &673868120449475355
 MonoBehaviour:
   m_ObjectHideFlags: 0

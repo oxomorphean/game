@@ -55,7 +55,7 @@ namespace LinhThu.Tests.EditMode
             Assert.That(geo.TryFindStandableNear(P(0), .2f, .1f, out _), Is.False);
             Assert.Throws<ArgumentException>(() => geo.Move(P(-2), P(1), 0));
             Assert.Throws<ArgumentException>(() => new Transform2D(P(0), P(1), 0));
-            Assert.Throws<ArgumentException>(() => geo.Move(P(0), P(1), .2f));
+            Assert.That(geo.CanStand(geo.Move(P(0), P(1), .2f), .2f), Is.True);
         }
 
         [Test]
@@ -85,6 +85,58 @@ namespace LinhThu.Tests.EditMode
             Assert.That(a.Position, Is.EqualTo(position));
             Assert.That(Fixture.World(geo).TrySpawnActor("target", ActorFaction.Neutral, P(1, 1)).ErrorCode, Is.EqualTo(DomainError.Blocked));
             Assert.Throws<ArgumentException>(() => motor.Displace(a, P(float.PositiveInfinity)));
+        }
+
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        public void EmbeddedOriginsRecoverAtCenterEdgesAndCornersWithoutVelocitySpikes(int shape)
+        {
+            var obstacle = shape == 2 ? new WorldObstacle(new[] { P(-.5f, -.5f), P(.5f, -.5f), P(.5f, .5f), P(-.5f, .5f) })
+                : new WorldObstacle(P(0), P(.5f, .5f), shape == 1);
+            var geometry = new WorldGeometry(P(5, 5), new[] { obstacle });
+            var motor = new MovementMotor(geometry);
+            foreach (var start in new[] { P(0), P(.5f, 0), P(.49f, .49f), P(-.59f, 0), P(0, -.5f) })
+            {
+                var actor = new Transform2D(start, P(1), .2f);
+                motor.Move(actor, default, 3, .016f, MovementMode.Walk);
+                Assert.That(geometry.CanStand(actor.Position, .2f), Is.True, $"shape {shape} origin {start.X},{start.Y}");
+                Assert.That(actor.CurrentVelocity.Length, Is.LessThan(.00001f), "Push-out is not locomotion velocity.");
+                Assert.That(actor.Position, Is.EqualTo(geometry.ResolvePenetration(start, .2f)), "Deterministic recovery.");
+                var from = actor.Position;
+                motor.Move(actor, (from - obstacle.Center).Normalized, 3, .1f, MovementMode.Walk);
+                Assert.That((actor.Position - obstacle.Center).Length, Is.GreaterThan((from - obstacle.Center).Length));
+            }
+        }
+
+        [Test]
+        public void OverlappingFootprintsAndArenaEdgeCannotTrapOrOscillateAnActor()
+        {
+            var geometry = new WorldGeometry(P(3, 3), new[] {
+                new WorldObstacle(P(-.3f), P(.5f, .6f), true),
+                new WorldObstacle(P(.3f), P(.5f, .6f), true),
+                new WorldObstacle(P(2.7f, 2.7f), P(.5f, .5f), false) });
+            foreach (var start in new[] { P(0), P(2.8f, 2.8f), P(3.1f, -2.9f) })
+            {
+                var free = geometry.ResolvePenetration(start, .22f);
+                Assert.That(geometry.CanStand(free, .22f), Is.True);
+                for (int i = 0; i < 60; i++) Assert.That(geometry.ResolvePenetration(free, .22f), Is.EqualTo(free));
+            }
+        }
+
+        [Test]
+        public void IdleAndMeditatingWorldActorsArePushedOutBeforeMovementIsLocked()
+        {
+            var geometry = new WorldGeometry(P(5, 5), new[] { new WorldObstacle(P(2), P(.5f, .5f), false) });
+            var world = Fixture.World(geometry);
+            foreach (bool meditate in new[] { false, true })
+            {
+                if (meditate) Assert.That(world.Execute(new LinhThu.Domain.World.ToggleMeditateCommand(world.Player.ActorId)).Succeeded, Is.True);
+                typeof(Transform2D).GetProperty(nameof(Transform2D.Position)).SetValue(world.PlayerActor.Transform, P(2));
+                world.Tick(.016f);
+                Assert.That(geometry.CanStand(world.PlayerActor.Transform.Position, world.PlayerActor.Transform.CollisionRadius), Is.True);
+                Assert.That(world.PlayerActor.Transform.CurrentVelocity.Length, Is.Zero);
+            }
         }
     }
 }

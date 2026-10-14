@@ -113,6 +113,41 @@ namespace LinhThu.Domain.Navigation
         }
 
         public WorldPoint ContactNormal(WorldPoint exteriorPoint) => (exteriorPoint - (vertices == null && !Box ? Center : Closest(exteriorPoint))).Normalized;
+        public WorldPoint PushOut(WorldPoint point, float radius, float clearance)
+        {
+            if (!Overlaps(point, radius)) return default;
+            if (vertices == null && !Box)
+            {
+                var radial = point - Center;
+                return radial.Normalized * (HalfSize.X + radius + clearance - radial.Length);
+            }
+
+            var closest = Closest(point);
+            bool inside = vertices != null ? Contains(point)
+                : Math.Abs(point.X - Center.X) <= HalfSize.X && Math.Abs(point.Y - Center.Y) <= HalfSize.Y;
+            if (inside && vertices == null)
+            {
+                // Clamping an interior point gives itself, so select an actual box face.
+                var relative = point - Center;
+                float x = HalfSize.X - Math.Abs(relative.X), y = HalfSize.Y - Math.Abs(relative.Y);
+                return x <= y ? new WorldPoint((relative.X < 0 ? -1 : 1) * (x + radius + clearance), 0)
+                    : new WorldPoint(0, (relative.Y < 0 ? -1 : 1) * (y + radius + clearance));
+            }
+            var difference = inside ? closest - point : point - closest;
+            var normal = difference.Normalized;
+            if (difference.LengthSquared < .00000001f && vertices != null)
+            {
+                // A point exactly on a polygon edge still needs its outward normal.
+                float best = float.MaxValue;
+                for (int i = 0; i < vertices.Length; i++)
+                {
+                    var edge = vertices[(i + 1) % vertices.Length] - vertices[i];
+                    float distance = Math.Abs(Cross(edge, point - vertices[i])) / edge.Length;
+                    if (distance < best) { best = distance; normal = new WorldPoint(edge.Y, -edge.X).Normalized; }
+                }
+            }
+            return normal * (radius + clearance + (inside ? difference.Length : -difference.Length));
+        }
         public bool Overlaps(WorldPoint point, float radius)
         {
             if (Math.Abs(point.X - Center.X) > HalfSize.X + radius || Math.Abs(point.Y - Center.Y) > HalfSize.Y + radius)
@@ -219,8 +254,9 @@ namespace LinhThu.Domain.Navigation
         /// <summary>Optional steering assists walking around a blocked surface.</summary>
         public WorldPoint Move(WorldPoint from, WorldPoint delta, float radius, bool slideAround = false)
         {
-            if (!delta.Finite || delta.Length > 2000 || !CanStand(from, radius))
-                throw new ArgumentException("Invalid movement or blocked origin.");
+            if (!delta.Finite || delta.Length > 2000)
+                throw new ArgumentException("Invalid movement.");
+            from = ResolvePenetration(from, radius);
             int steps = Math.Max(1, (int)Math.Ceiling(delta.Length / Math.Min(.12f, radius * .5f)));
             var increment = delta / steps;
             for (int i = 0; i < steps; i++)
@@ -246,6 +282,38 @@ namespace LinhThu.Domain.Navigation
             }
 
             return from;
+        }
+
+        /// <summary>Recovers overlapping origins, including idle actors, without turning correction into velocity.</summary>
+        public WorldPoint ResolvePenetration(WorldPoint point, float radius)
+        {
+            if (!point.Finite || !GeometryRules.Range(radius, .01f, 10) || radius >= Math.Min(HalfSize.X, HalfSize.Y))
+                throw new ArgumentException("Invalid collision footprint.");
+            if (CanStand(point, radius)) return point;
+            var origin = point;
+            for (int pass = 0; pass < 32; pass++)
+            {
+                point = new WorldPoint(Math.Max(-HalfSize.X + radius, Math.Min(HalfSize.X - radius, point.X)),
+                    Math.Max(-HalfSize.Y + radius, Math.Min(HalfSize.Y - radius, point.Y)));
+                foreach (var obstacle in obstacles)
+                    point += obstacle.PushOut(point, radius, .02f);
+                if (CanStand(point, radius)) return point;
+            }
+            // Intersecting footprints can alternate their corrections. Search outwards from the
+            // original contact, deterministically, rather than oscillating in a concave corner.
+            float distance = .02f;
+            float limit = HalfSize.Length * 2;
+            while (distance <= limit)
+            {
+                for (int step = 0; step < 64; step++)
+                {
+                    double angle = step * Math.PI * 2 / 64;
+                    var candidate = origin + new WorldPoint((float)Math.Cos(angle), (float)Math.Sin(angle)) * distance;
+                    if (CanStand(candidate, radius)) return candidate;
+                }
+                distance = distance * 1.15f + .02f;
+            }
+            throw new InvalidOperationException("The arena has no reachable free footprint for this actor.");
         }
 
         public bool TryFindStandableNear(WorldPoint center, float radius, float searchRadius, out WorldPoint point)

@@ -240,7 +240,7 @@ namespace LinhThu.Client.Bootstrap
         private void BindDamageFeedback()
         {
             damageSubscription?.Dispose();
-            damageSubscription = World.Events.Subscribe<ActorDamagedEvent>(e => actorViews.FirstOrDefault(v => v.Entity?.Id == e.TargetId)?.equipment?.HitFlash());
+            damageSubscription = World.Events.Subscribe<ActorDamagedEvent>(e => actorViews.FirstOrDefault(v => v.Entity?.Id == e.TargetId)?.HitFlash());
         }
 
         private void BindFoliage()

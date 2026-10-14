@@ -38,6 +38,7 @@ namespace LinhThu.Client.Environment
 
         public static float GoldenHour { get; private set; }
 
+        private LinhThu.Client.UI.HudFrameSkin clockSkin;
         private float started;
         private DaylightSkyGraphic sky;
         private TextMeshProUGUI clock;
@@ -89,9 +90,16 @@ namespace LinhThu.Client.Environment
             var node = new GameObject("Thanh thời gian", typeof(RectTransform), typeof(DaylightSkyGraphic));
             node.transform.SetParent(layer.transform, false);
             var rect = (RectTransform)node.transform;
-            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(.5f, 1);
-            rect.anchoredPosition = new Vector2(0, -22);
-            rect.sizeDelta = new Vector2(300, 52);
+            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(1, 1);
+            rect.anchoredPosition = new Vector2(-16, -16);
+            rect.sizeDelta = new Vector2(248, 42);
+            clockSkin = new LinhThu.Client.UI.HudFrameSkin();
+            var frame = new GameObject("Clock frame", typeof(RectTransform), typeof(Image));
+            frame.transform.SetParent(layer.transform, false); frame.transform.SetAsFirstSibling();
+            var frameRect = (RectTransform)frame.transform;
+            frameRect.anchorMin = frameRect.anchorMax = frameRect.pivot = Vector2.one;
+            frameRect.anchoredPosition = rect.anchoredPosition; frameRect.sizeDelta = rect.sizeDelta;
+            clockSkin.Apply(frame.GetComponent<Image>()); frame.GetComponent<Image>().raycastTarget = false;
             sky = node.GetComponent<DaylightSkyGraphic>();
             sky.raycastTarget = true;
             sky.Owner = this;
@@ -100,13 +108,13 @@ namespace LinhThu.Client.Environment
             var labelRect = (RectTransform)text.transform;
             labelRect.anchorMin = Vector2.zero;
             labelRect.anchorMax = Vector2.one;
-            labelRect.offsetMin = new Vector2(10, 23);
+            labelRect.offsetMin = new Vector2(10, 17);
             labelRect.offsetMax = new Vector2(-66, -5);
             clock = text.GetComponent<TextMeshProUGUI>();
             clock.font = clockFont;
             if (clock.font == null)
                 throw new System.InvalidOperationException("Daylight clock requires the existing Vietnamese font.");
-            clock.fontSize = 14;
+            clock.fontSize = 12;
             clock.alignment = TextAlignmentOptions.Center;
             clock.color = new Color(.94f, .97f, .96f);
             clock.raycastTarget = false;
@@ -140,7 +148,7 @@ namespace LinhThu.Client.Environment
             var playbackRect = (RectTransform)playback.transform;
             playbackRect.anchorMin = playbackRect.anchorMax = playbackRect.pivot = Vector2.one;
             playbackRect.anchoredPosition = new Vector2(-8, -5);
-            playbackRect.sizeDelta = new Vector2(48, 22);
+            playbackRect.sizeDelta = new Vector2(48, 18);
             var playbackImage = playback.GetComponent<Image>();
             playbackImage.color = new Color(.24f, .38f, .35f);
             var button = playback.GetComponent<Button>();
@@ -250,6 +258,7 @@ namespace LinhThu.Client.Environment
 
         private void OnDestroy()
         {
+            clockSkin?.Dispose();
             if (Current == this)
             {
                 Current = null;

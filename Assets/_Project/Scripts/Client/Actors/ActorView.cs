@@ -13,6 +13,7 @@ namespace LinhThu.Client.Actors
         public bool rosterCompanion;
         public ActorAnimator actorAnimator;
         public ModularEquipmentRenderer equipment;
+        public TrainingDummyRenderer trainingDummy;
         public Transform singleSpriteVisual;
         public FootstepDust footsteps;
         public ActionPoseController actionPose;
@@ -38,6 +39,12 @@ namespace LinhThu.Client.Actors
                 }
                 return new Vector3(transform.position.x, top + .14f, transform.position.z);
             }
+        }
+
+        public void HitFlash()
+        {
+            equipment?.HitFlash();
+            trainingDummy?.HitFlash();
         }
 
         public void Bind(ActorEntity entity)

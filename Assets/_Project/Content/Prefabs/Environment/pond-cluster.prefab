@@ -104,10 +104,12 @@ MonoBehaviour:
   foot: {fileID: 2993714344870883926}
   group: {fileID: 0}
   targetRenderer: {fileID: 2741603695430293075}
+  useRendererBottom: 0
+  groundContactOffset: 0
   floorLayer: 1
   floorOrder: -44
-  baseOrder: 100
-  unitsToOrder: 10
+  baseOrder: 2000
+  unitsToOrder: 100
 --- !u!1 &3632017418323219485
 GameObject:
   m_ObjectHideFlags: 0

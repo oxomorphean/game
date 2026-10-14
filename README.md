@@ -27,6 +27,8 @@ Chỉ một vật thể trong tầm và sẵn sàng được chọn; nhích lạ
 
 Asset chuẩn: `Art/Characters/HeroBase`, `Art/Environment/Meadow`, `Content/Configs`, `Content/Prefabs/{Actors,WorldNodes,Environment,UI}` dưới `Assets/_Project`. Cụm đầu 78%, vai thu gọn, tay thư thái; mặc định áo classic. Áo/tóc/mắt thay Sprite trên cùng rig/AnimatorController; tint và hit flash dùng MaterialPropertyBlock với material chung. Run giữ hông gần Idle, chân trụ được hiệu chỉnh: `BaseStrideSpeed=0.9375`, clip chạy tỷ lệ trực tiếp với vận tốc tới ngưỡng 6, rồi nén mềm. Pose thiền/câu cá trộn sau Animator, cần trúc neo ở bàn tay. Map dùng texture vẽ tay tiling, ánh nắng nền/đường, cỏ/bụi cây phản ứng theo actor và cánh hoa theo gió. Bụi phát ở nhịp chân tiếp đất, phanh/đổi hướng/lướt; footprint không bị hiệu ứng thay đổi.
 
+HUD hiện hành: thẻ chỉ số gọn phía trái trên, túi đồ tự co phía phải trên, năm ô kỹ năng ở giữa đáy và micro-bar phím phụ. Mộc Nhân dùng trụ gỗ; đi/lướt trượt mép vật cản và tự đẩy thoát nếu overlap.
+
 Kiểm logic bằng Unity Test Runner **EditMode** với hai assembly `LinhThu.Tests.EditMode`, `LinhThu.Tests.ClientEditMode`. Chủ dự án nghiệm thu hình ảnh trực tiếp trong Editor: idle/run, flip, đổi đồ giữa clip, điểm chân và bóng. Không dùng builder hoặc Web QA.
 
 [Kiến trúc](Architecture/CODE_ARCHITECTURE.md) · [Kế hoạch 1–2](Architecture/CORE_FOUNDATION_PHASES_1_2.md) · [Kế hoạch 3–4](Architecture/CORE_FOUNDATION_PHASES_3_4.md) · [Thiết kế](GAME_DESIGN.md) · [Mỹ thuật](ArtDirection/STYLE_GUIDE.md) · [Khôi phục](ROLLBACK.md).

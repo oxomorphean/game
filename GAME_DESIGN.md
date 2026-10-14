@@ -10,7 +10,7 @@ Chỉ thị này thay chế độ chỉ xem mỹ thuật ngày 12/10 và pipelin
 
 ### Tinh chỉnh tương tác và hiển thị — chỉ thị 14/10/2026
 
-- Chỉ thị bóng/tỷ lệ: người/thú dùng bóng elip mềm; bóng chiếu chỉ ở prop lớn, ngắn và mờ biên. Mọi xương thân/tay/chân scale 1; đầu giảm đồng đều 78%. Tab chỉ đổi classic/jade, basic là lớp lót; Mộc Nhân mặc classic màu gỗ. Linh Điền đặt thẳng ở bãi cỏ cạnh lều, thanh phím tắt có nền mờ trên hotbar.
+- Chỉ thị bóng/tỷ lệ: người/thú dùng bóng elip mềm; bóng chiếu chỉ ở prop lớn, ngắn và mờ biên. Mọi xương thân/tay/chân scale 1; đầu giảm đồng đều 78%. Tab chỉ đổi classic/jade, basic là lớp lót; Mộc Nhân là trụ gỗ có đế đá và bia luyện kiếm theo chỉ thị sửa va chạm/HUD mới. Linh Điền đặt thẳng ở bãi cỏ cạnh lều, thanh phím tắt có nền mờ trên hotbar.
 
 - Phản hồi nghiệm thu: bỏ dáng co chân khi chạy; giữ hông gần độ cao Idle và gối không cuộn lên thân. Nhãn tương tác giữ nguyên tên Linh dược, Trứng… và nằm trên từng vật thể. Hồ hiện “Thả câu” phía trên hồ khi người chơi ở gần; cho phép câu quanh toàn bộ bờ hồ có thể đứng được, không giới hạn một điểm. Chữ trạng thái/sát thương gắn nhân vật hiện tại/về sau nằm trên đầu để không che animation.
 
@@ -135,4 +135,4 @@ Mốc nền hiện tại: map catalogue theo ID ổn định, cổng có đích/
 
 ### Cảm giác di chuyển quanh địa hình — đã xác nhận 2026-10-08
 
-Giữ hướng di chuyển khi gặp đá, gốc cây hoặc bờ hồ thì người chơi men theo mép vật cản để tiếp tục đi. Hitbox theo phần tiếp đất của asset; tán lá và bóng đổ không tạo tường vô hình. Đường đi kiểm tra cả bán kính chân nhân vật. Hành vi này áp dụng cho bước đi, không biến lướt/đòn lao thành tự tìm đường. Thông số hỗ trợ trượt 45% và contour mẫu hiện tại là giá trị thử nghiệm có thể chỉnh.
+Giữ hướng di chuyển khi gặp đá, gốc cây hoặc bờ hồ thì người chơi men theo mép vật cản để tiếp tục đi. Hitbox theo phần tiếp đất của asset; tán lá và bóng đổ không tạo tường vô hình. Đường đi kiểm tra cả bán kính chân nhân vật. Walk và Dash đều trượt theo tiếp tuyến khi chạm vật cản; hướng dash vẫn khóa và không có tìm đường. Actor overlap được đẩy về vùng đứng được mỗi bước mô phỏng, kể cả đang đứng yên/thiền. Thông số hỗ trợ trượt 45% và contour mẫu hiện tại là giá trị thử nghiệm có thể chỉnh.

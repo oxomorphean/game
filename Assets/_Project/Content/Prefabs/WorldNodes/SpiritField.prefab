@@ -165,10 +165,12 @@ MonoBehaviour:
   foot: {fileID: 424591616661421271}
   group: {fileID: 0}
   targetRenderer: {fileID: 2103448831138744878}
+  useRendererBottom: 0
+  groundContactOffset: 0
   floorLayer: 1
   floorOrder: -39
-  baseOrder: 100
-  unitsToOrder: 10
+  baseOrder: 2000
+  unitsToOrder: 100
 --- !u!114 &6622204306889114072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +187,7 @@ MonoBehaviour:
   visual: {fileID: 0}
   additionalVisuals:
   - {fileID: 2103448831138744878}
+  labelVisual: {fileID: 0}
   initiallyReady: 1
   readyColor: {r: 1, g: 1, b: 1, a: 1}
   growingColor: {r: 0.65, g: 0.72, b: 0.65, a: 0.7}

@@ -2499,7 +2499,7 @@ ParticleSystemRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 99
+  m_SortingOrder: 1999
   m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -2547,10 +2547,12 @@ MonoBehaviour:
   foot: {fileID: 6569139768606903995}
   group: {fileID: 0}
   targetRenderer: {fileID: 8939195399262455662}
+  useRendererBottom: 0
+  groundContactOffset: 0
   floorLayer: 0
   floorOrder: -40
-  baseOrder: 99
-  unitsToOrder: 10
+  baseOrder: 1999
+  unitsToOrder: 100
 --- !u!1 &4032264818958246784
 GameObject:
   m_ObjectHideFlags: 0
@@ -2594,7 +2596,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 2000
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
 --- !u!1 &7007422547104192316
@@ -2650,10 +2652,12 @@ MonoBehaviour:
   foot: {fileID: 6569139768606903995}
   group: {fileID: 1012373621291371923}
   targetRenderer: {fileID: 0}
+  useRendererBottom: 0
+  groundContactOffset: 0
   floorLayer: 0
   floorOrder: -40
-  baseOrder: 100
-  unitsToOrder: 10
+  baseOrder: 2000
+  unitsToOrder: 100
 --- !u!114 &6064602056769738328
 MonoBehaviour:
   m_ObjectHideFlags: 0

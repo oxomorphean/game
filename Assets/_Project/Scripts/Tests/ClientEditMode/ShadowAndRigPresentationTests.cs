@@ -71,7 +71,7 @@ namespace LinhThu.Tests.ClientEditMode
         }
 
         [Test]
-        public void RobeShortcutNeverSelectsUnderwearAndDummyTintDoesNotAffectPlayerMaterial()
+        public void RobeShortcutNeverSelectsUnderwearAndTrainingPillarHasNoHumanRig()
         {
             var scene = EditorSceneManager.OpenPreviewScene("Assets/_Project/Content/Scenes/MainGame.unity");
             try
@@ -86,22 +86,17 @@ namespace LinhThu.Tests.ClientEditMode
                     Assert.That(game.CycleOutfit().Succeeded, Is.True);
                     Assert.That(game.World.PlayerActor.Appearance.OutfitId, Is.EqualTo(previous == "classic" ? "jade" : "classic"));
                 }
-                var dummy = game.sceneActors.Single(a => a.config.Id == "training-dummy").equipment;
-                Assert.That(dummy.CurrentAppearance.OutfitId, Is.EqualTo("classic"));
-                var dummySlot = dummy.slots.First(s => s.renderer.sprite != null).renderer;
+                var dummy = game.sceneActors.Single(a => a.config.Id == "training-dummy");
+                Assert.That(dummy.equipment == null && dummy.actorAnimator == null, Is.True);
+                Assert.That(dummy.GetComponentsInChildren<SpriteRenderer>().Length, Is.Zero, "Pillar must not retain a face, hair or body sprites.");
+                Assert.That(dummy.singleSpriteVisual.GetComponent<MeshFilter>().sharedMesh.name, Is.EqualTo("TrainingPillar"));
+                Assert.That(dummy.singleSpriteVisual.GetComponent<MeshFilter>().sharedMesh.vertexCount, Is.GreaterThan(500));
                 var playerSlot = game.playerView.equipment.slots.First(s => s.renderer.sprite != null).renderer;
-                Assert.That(dummySlot.sharedMaterial, Is.SameAs(playerSlot.sharedMaterial));
-                var block = new MaterialPropertyBlock(); dummySlot.GetPropertyBlock(block);
-                Assert.That(block.GetColor("_MaterialTint"), Is.EqualTo(dummy.materialTint));
-                Assert.That(block.GetFloat("_MonochromeTint"), Is.EqualTo(1));
-                Assert.That(dummy.materialTint.r, Is.GreaterThan(dummy.materialTint.g));
-                Assert.That(dummy.materialTint.g, Is.GreaterThan(dummy.materialTint.b));
-                dummy.HitFlash(); dummy.AdvancePresentation(1); dummySlot.GetPropertyBlock(block);
-                Assert.That(block.GetColor("_MaterialTint"), Is.EqualTo(dummy.materialTint));
-                playerSlot.GetPropertyBlock(block); Assert.That(block.GetColor("_MaterialTint"), Is.EqualTo(Color.white));
+                var block = new MaterialPropertyBlock(); playerSlot.GetPropertyBlock(block);
+                Assert.That(block.GetColor("_MaterialTint"), Is.EqualTo(Color.white));
                 var bar = game.hud.message.transform.parent.GetComponent<UnityEngine.UI.Image>();
-                Assert.That(bar, Is.Not.Null); Assert.That(bar.color.a, Is.InRange(.5f, .85f));
-                Assert.That(bar.raycastTarget, Is.False);
+                Assert.That(bar, Is.Not.Null); Assert.That(bar.type, Is.EqualTo(UnityEngine.UI.Image.Type.Sliced));
+                Assert.That(bar.sprite.border.x, Is.GreaterThan(0)); Assert.That(bar.raycastTarget, Is.False);
                 var field = game.sceneNodes.Single(n => n.config.kind == WorldNodeKind.SpiritFieldPlot);
                 Assert.That(field.transform.eulerAngles.z, Is.EqualTo(0));
                 Assert.That(field.GetComponentsInChildren<Renderer>().Any(r => r.sharedMaterial.shader.name.Contains("Shadow")), Is.False);

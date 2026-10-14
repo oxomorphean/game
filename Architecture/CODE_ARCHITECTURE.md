@@ -82,3 +82,14 @@ Profile tán trên cao dùng `canopyBlueRatio` để chọn hoa anh đào hồng
 Dùng Unity CLI/Pipeline trên Editor đúng project: `unity command recompile`, sau đó `unity command recompile_status`. EditMode tests chạy qua Unity Test Runner; log/NUnit XML ở ngoài checkout. Mỗi Phase cần compile 0 lỗi, Phase 2 cần suite đạt; kiểm dependency/reference prefab riêng vì compile không phát hiện mất sprite/material. Chủ dự án đánh giá hiển thị trong Editor.
 
 Không sửa scene/prefab YAML hoặc thêm builder. Save schema 1 và mọi save cũ được giữ nguyên ngoài luồng schema 2. [Quy tắc lưu trữ](REPOSITORY_STORAGE.md) · [Rollback](../ROLLBACK.md).
+
+
+## Va chạm, thứ tự vẽ và HUD — 14/10/2026
+
+`WorldGeometry.ResolvePenetration` phục hồi circle/box/convex polygon với khe an toàn 0.02; nhiều footprint giao nhau được lặp có giới hạn và tìm vị trí trống có thứ tự cố định nếu push-out luân phiên. `MovementMotor.RecoverOverlap` chạy trước kiểm khóa hành động mỗi Tick, không tính quãng đẩy thoát thành velocity. Đi và Dash trượt bề mặt; displacement hiệu ứng vẫn dùng bước chia nhỏ và tách trục. MainGame không có Collider2D điều khiển song song với Domain.
+
+`YSortRenderer` tính prop từ bounds.min.y + groundContactOffset, actor từ root chân. `ModularMapProp` chuyển quyền sort về component này. Dải world dùng base 2000 và 100 order/unit; SortingGroup giữ các mảnh rig/thú thành một cụm. VFX ở 4000, overhead 5000, damage text 5100; nền/bóng giữ lớp dưới. Các đá có footprint 42% chiều cao phần dưới; đá dưới hồ tại (7.2, -4.25), giữ lối tiếp cận hồ và mỏ khoáng.
+
+TrainingDummy dùng mesh `TrainingPillar` trên prefab riêng và `TrainingDummyRenderer` nhận HitFlash qua ActorView; không còn rig, tóc hoặc mặt người. ID/Stats/appearance lưu trữ hiện có giữ tương thích. SpiritEgg/Portal giữ GUID và gameplay, mesh mượt với material MeadowCraftedProps dùng ánh sáng chung.
+
+`CultivationHudPresenter` đọc World và gửi lệnh như trước; `CultivationHudLayout` dựng UI runtime từ font serialize trên CultivationHud.prefab. `HudFrameSkin` sở hữu texture/sprite 9-slice dùng chung và hủy khi HUD/đồng hồ bị hủy. HUD có 3 thanh sinh lực/linh lực/hộ thuẫn, 5 ô (3 công pháp + Dash + Beast), cooldown theo state thật, túi tự co và cuộn khi quá 10 dòng. Prompt E là nút nhỏ trên vật thể; phím phụ chuyển vào micro-bar. Không còn hierarchy HUD thử cũ hoặc prefab prompt không dùng.

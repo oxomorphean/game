@@ -78,7 +78,13 @@ namespace LinhThu.Domain.Navigation
         }
 
         internal MovementResult Dash(Transform2D transform, WorldPoint direction, float distance, float endSpeed, float delta)
-            => ApplyVelocity(transform, direction * distance, direction * endSpeed, delta, false);
+            => ApplyVelocity(transform, direction * distance, direction * endSpeed, delta, true);
+
+        public void RecoverOverlap(Transform2D transform)
+        {
+            if (transform == null) throw new ArgumentNullException(nameof(transform));
+            transform.Position = geometry.ResolvePenetration(transform.Position, transform.CollisionRadius);
+        }
 
         private MovementResult ApplyVelocity(Transform2D transform, WorldPoint delta, WorldPoint velocity, float seconds, bool slide)
         {
@@ -92,6 +98,7 @@ namespace LinhThu.Domain.Navigation
         {
             if (transform == null)
                 throw new ArgumentNullException(nameof(transform));
+            RecoverOverlap(transform);
             var from = transform.Position;
             var next = geometry.Move(from, delta, transform.CollisionRadius, slide);
             transform.Position = next;

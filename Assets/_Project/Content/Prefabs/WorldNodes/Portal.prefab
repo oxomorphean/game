@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4981039146032108900}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8175e1f3476cd4c8791a830f04dcc341, type: 2}
+  - {fileID: 2100000, guid: a4fa9c4f6ce4e46b2a270e224be7151e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -165,10 +165,12 @@ MonoBehaviour:
   foot: {fileID: 33911784718844039}
   group: {fileID: 0}
   targetRenderer: {fileID: 5889412942957721325}
+  useRendererBottom: 0
+  groundContactOffset: 0
   floorLayer: 1
   floorOrder: -39
-  baseOrder: 100
-  unitsToOrder: 10
+  baseOrder: 2000
+  unitsToOrder: 100
 --- !u!114 &5852990874197197330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +187,7 @@ MonoBehaviour:
   visual: {fileID: 0}
   additionalVisuals:
   - {fileID: 5889412942957721325}
+  labelVisual: {fileID: 0}
   initiallyReady: 1
   readyColor: {r: 1, g: 1, b: 1, a: 1}
   growingColor: {r: 0.65, g: 0.72, b: 0.65, a: 0.7}

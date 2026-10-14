@@ -79,7 +79,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 2021
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: a504957dbc69a49b29202ab3f387b780, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -167,10 +167,12 @@ MonoBehaviour:
   foot: {fileID: 5449516938501090640}
   group: {fileID: 0}
   targetRenderer: {fileID: 867125041674831856}
+  useRendererBottom: 1
+  groundContactOffset: 0
   floorLayer: 0
   floorOrder: -42
-  baseOrder: 100
-  unitsToOrder: 10
+  baseOrder: 2000
+  unitsToOrder: 100
 --- !u!114 &7539205007970813521
 MonoBehaviour:
   m_ObjectHideFlags: 0

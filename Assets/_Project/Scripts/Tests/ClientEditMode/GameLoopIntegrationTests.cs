@@ -107,7 +107,7 @@ namespace LinhThu.Tests.ClientEditMode
             var targetView = game.sceneActors.Single(v => v.Entity == target);
             game.World.DealDamage(target, game.World.Player.ActorId, 1);
             game.World.Events.Flush();
-            Assert.That(targetView.equipment.FlashAmount, Is.EqualTo(1));
+            Assert.That(targetView.trainingDummy.FlashAmount, Is.EqualTo(1));
         }
 
         [Test]
@@ -364,7 +364,7 @@ namespace LinhThu.Tests.ClientEditMode
             Tick(.6f);
             Assert.That(overhead.hpFill.fillAmount, Is.LessThan(1));
             Assert.That(overhead.hpFill.fillAmount, Is.EqualTo(target.Entity.Vitals.CurrentHp / target.Entity.Vitals.Maximum(VitalType.Hp)).Within(.0001f));
-            Assert.That(overhead.transform.position.y, Is.GreaterThan(target.equipment.slots.Max(s => s.renderer.bounds.max.y)));
+            Assert.That(overhead.transform.position.y, Is.GreaterThan(target.singleSpriteVisual.GetComponent<Renderer>().bounds.max.y));
             var status = game.registry.statuses.Single(s => s.Id == "han-khi");
             Assert.That(target.Entity.StatusEffects.Apply(status.ToSpec(), game.World.Player.ActorId, EffectSourceSnapshot.Capture(game.World.PlayerActor)).Succeeded, Is.True);
             game.SyncViews();
@@ -377,9 +377,9 @@ namespace LinhThu.Tests.ClientEditMode
         }
 
         [Test]
-        public void SmallerRigKeepsScaleShadowAndColliderAcrossEveryOutfit()
+        public void PlayerRigKeepsScaleShadowAndColliderAcrossEveryOutfit()
         {
-            foreach (var view in new[] { game.playerView, game.sceneActors.Single(v => v.faction == ActorFaction.HostileMonster) })
+            foreach (var view in new[] { game.playerView })
             {
                 Assert.That(view.equipment.visual.localScale.y, Is.EqualTo(.625f));
                 Assert.That(view.Entity.Transform.CollisionRadius, Is.EqualTo(.22f * .625f).Within(.00001f));

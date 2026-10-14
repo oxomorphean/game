@@ -70,8 +70,7 @@ namespace LinhThu.Client.Environment
         private void OnDestroy() => groundShadow?.Dispose();
         private void UpdateDepth()
         {
-            if (visual != null)
-                visual.sortingOrder = floorLayer ? floorOrder : 100 - Mathf.RoundToInt(transform.position.y * 10);
+            GetComponent<LinhThu.Client.World.YSortRenderer>()?.Refresh();
             // Cast shadows stay on the terrain, including when a character passes underneath a canopy.
             if (castShadow != null)
                 castShadow.sortingOrder = -30;

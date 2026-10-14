@@ -46,7 +46,6 @@ namespace LinhThu.Client.Environment
         {
             mesh.Clear();
             var rect = rectTransform.rect;
-            Quad(mesh, rect.xMin, rect.yMin, rect.xMax, rect.yMax, new Color(.10f, .16f, .17f, .90f));
             float left = rect.xMin + 14, right = rect.xMax - 14, y = rect.yMin + 8;
             Quad(mesh, left, y, right, y + 3, new Color(.72f, .83f, .81f, .24f));
             float end = Mathf.Lerp(left, right, Mathf.Clamp01(Progress));
