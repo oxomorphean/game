@@ -1,0 +1,28 @@
+{
+  "changedFromCheckpoint": [
+    "Assets/_Project/Scripts/Client/Combat/CombatObstacleAuthoring.cs",
+    "Assets/_Project/Scripts/Client/Adventure/AdventureMapAsset.cs",
+    "Assets/_Project/Scripts/Domain/Combat/CombatWorld.cs",
+    "Assets/_Project/Scripts/Domain/Combat/CombatGeometry.cs",
+    "Assets/_Project/Editor/CombatTrialBuilder.cs",
+    "Assets/_Project/Editor/AdventureBuilder.cs",
+    "Assets/_Project/Content/Scenes/CultivationV1.unity",
+    "Assets/_Project/Content/Scenes/PlayerCombatTrial.unity",
+    "Assets/_Project/Content/Prefabs/Environment/cherry-tree.prefab",
+    "Assets/_Project/Content/Prefabs/Environment/rock.prefab",
+    "Assets/_Project/Content/Prefabs/Environment/pond-cluster.prefab",
+    "AgentScripts/CombatTests.cs",
+    "Architecture/CODE_ARCHITECTURE.md",
+    "GAME_DESIGN.md"
+  ],
+  "artSources": {
+    "Assets/_Project/Scripts/Client/ModularMapProp.cs": true,
+    "Assets/_Project/Scripts/Client/DaylightCanvasEffect.cs": true
+  },
+  "prefabVisualPreservation": {
+    "rock": true,
+    "cherry-tree": true,
+    "pond-cluster": true
+  },
+  "preservedCheckpointFiles": 241
+}

@@ -1,0 +1,14 @@
+{
+  "result": "Succeeded",
+  "errors": 1,
+  "warnings": 4,
+  "bytes": 94435623,
+  "seconds": 37.427051,
+  "messages": [
+    "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds.",
+    "/Users/nguyenhoangdacdat/dev/nguthu-unity-demo/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TMP_TextParsingUtilities::.cctor() - Method was given it's own cpp file because it is large and costly to compile",
+    "/Users/nguyenhoangdacdat/dev/nguthu-unity-demo/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshPro::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile",
+    "/Users/nguyenhoangdacdat/dev/nguthu-unity-demo/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshProUGUI::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile",
+    "Failed to handle /api/exec request: Main thread operation timed out after 5000ms"
+  ]
+}

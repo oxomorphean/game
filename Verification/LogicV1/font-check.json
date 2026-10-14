@@ -1,0 +1,27 @@
+{
+    "fontAsset": "Assets/_Project/Resources/Fonts/NotoSans-Regular.ttf",
+    "fontName": "NotoSans-Regular",
+    "coverageMethod": "FontEngine.TryGetGlyphIndex from embedded font file",
+    "missingCharacters": "",
+    "result": "Passed",
+    "tmpResourceLoaded": true,
+    "tmpAtlasCount": 1,
+    "tmpCharacterCount": 238,
+    "resourceLoaded": true,
+    "includeFontData": true,
+    "dynamic": true,
+    "vietnameseAlphabetIncluded": true,
+    "fallbackReferences": 0,
+    "sourceCharacterCount": 238,
+    "rasterizedSamples": 3808,
+    "normalAndBoldSizes": [
+        10,
+        11,
+        13,
+        14,
+        16,
+        18,
+        22,
+        28
+    ]
+}

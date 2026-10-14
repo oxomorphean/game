@@ -1,0 +1,425 @@
+{
+  "date": "2026-10-13T09:38:11.521444+07:00",
+  "scope": "static art/source experiments; no Unity changes",
+  "samples": {
+    "A": {
+      "reopened_kra": true,
+      "canvas": [
+        1024,
+        1024
+      ],
+      "slots": {
+        "Head_Underpaint_CANDIDATE": {
+          "nontransparent_pixels": 41319,
+          "bounds": [
+            432,
+            316,
+            671,
+            536
+          ]
+        },
+        "Hair_Back": {
+          "nontransparent_pixels": 28936,
+          "bounds": [
+            261,
+            100,
+            590,
+            399
+          ]
+        },
+        "Boot_Back": {
+          "nontransparent_pixels": 5113,
+          "bounds": [
+            566,
+            813,
+            675,
+            869
+          ]
+        },
+        "Boot_Front": {
+          "nontransparent_pixels": 5227,
+          "bounds": [
+            414,
+            828,
+            497,
+            900
+          ]
+        },
+        "Leg_Back": {
+          "nontransparent_pixels": 7316,
+          "bounds": [
+            557,
+            686,
+            656,
+            814
+          ]
+        },
+        "Leg_Front": {
+          "nontransparent_pixels": 9608,
+          "bounds": [
+            427,
+            679,
+            570,
+            832
+          ]
+        },
+        "Arm_Back": {
+          "nontransparent_pixels": 1301,
+          "bounds": [
+            679,
+            676,
+            710,
+            727
+          ]
+        },
+        "Torso": {
+          "nontransparent_pixels": 16319,
+          "bounds": [
+            385,
+            536,
+            682,
+            858
+          ]
+        },
+        "Sleeve_Back": {
+          "nontransparent_pixels": 6550,
+          "bounds": [
+            590,
+            537,
+            706,
+            692
+          ]
+        },
+        "Coat": {
+          "nontransparent_pixels": 11273,
+          "bounds": [
+            439,
+            671,
+            684,
+            781
+          ]
+        },
+        "Sleeve_Front": {
+          "nontransparent_pixels": 15178,
+          "bounds": [
+            323,
+            538,
+            487,
+            723
+          ]
+        },
+        "Arm_Front": {
+          "nontransparent_pixels": 4555,
+          "bounds": [
+            381,
+            681,
+            457,
+            755
+          ]
+        },
+        "Belt": {
+          "nontransparent_pixels": 5335,
+          "bounds": [
+            485,
+            638,
+            637,
+            681
+          ]
+        },
+        "Head": {
+          "nontransparent_pixels": 17360,
+          "bounds": [
+            409,
+            378,
+            663,
+            538
+          ]
+        },
+        "Eyes": {
+          "nontransparent_pixels": 6131,
+          "bounds": [
+            486,
+            416,
+            663,
+            514
+          ]
+        },
+        "Mouth": {
+          "nontransparent_pixels": 483,
+          "bounds": [
+            572,
+            506,
+            608,
+            525
+          ]
+        },
+        "Hair_Front": {
+          "nontransparent_pixels": 81728,
+          "bounds": [
+            326,
+            198,
+            763,
+            546
+          ]
+        },
+        "Hair_Accessory": {
+          "nontransparent_pixels": 7172,
+          "bounds": [
+            363,
+            174,
+            547,
+            287
+          ]
+        }
+      },
+      "tests": {
+        "without-eyes": {
+          "changed": true,
+          "hidden_slots": [
+            "Eyes"
+          ]
+        },
+        "without-hair": {
+          "changed": true,
+          "hidden_slots": [
+            "Hair_Back",
+            "Hair_Front",
+            "Hair_Accessory"
+          ]
+        },
+        "without-clothes": {
+          "changed": true,
+          "hidden_slots": [
+            "Boot_Back",
+            "Boot_Front",
+            "Leg_Back",
+            "Leg_Front",
+            "Torso",
+            "Sleeve_Back",
+            "Coat",
+            "Sleeve_Front",
+            "Belt"
+          ]
+        },
+        "eyes-amber": {
+          "changed_pixels": 760,
+          "source_restored_exactly": true,
+          "method": "temporary color transform for editability check; not new drawing"
+        }
+      },
+      "psd_roundtrip_max_channel_difference": 0,
+      "psd_roundtrip": {
+        "opaque_rgb_max_difference": 0,
+        "alpha_max_difference": 0,
+        "over_black_gray_white_max_difference": 0,
+        "pixels_over_2_levels": 0,
+        "status": "PASS"
+      }
+    },
+    "B": {
+      "reopened_kra": true,
+      "canvas": [
+        1024,
+        1024
+      ],
+      "slots": {
+        "Hair_Back": {
+          "nontransparent_pixels": 34401,
+          "bounds": [
+            263,
+            99,
+            567,
+            385
+          ]
+        },
+        "Boot_Back": {
+          "nontransparent_pixels": 5500,
+          "bounds": [
+            567,
+            797,
+            673,
+            867
+          ]
+        },
+        "Boot_Front": {
+          "nontransparent_pixels": 5637,
+          "bounds": [
+            419,
+            811,
+            503,
+            894
+          ]
+        },
+        "Leg_Back": {
+          "nontransparent_pixels": 10766,
+          "bounds": [
+            532,
+            687,
+            644,
+            813
+          ]
+        },
+        "Leg_Front": {
+          "nontransparent_pixels": 14405,
+          "bounds": [
+            433,
+            667,
+            563,
+            828
+          ]
+        },
+        "Arm_Back": {
+          "nontransparent_pixels": 1699,
+          "bounds": [
+            671,
+            670,
+            710,
+            725
+          ]
+        },
+        "Torso": {
+          "nontransparent_pixels": 16932,
+          "bounds": [
+            449,
+            534,
+            623,
+            656
+          ]
+        },
+        "Sleeve_Back": {
+          "nontransparent_pixels": 8164,
+          "bounds": [
+            585,
+            543,
+            707,
+            695
+          ]
+        },
+        "Coat": {
+          "nontransparent_pixels": 16363,
+          "bounds": [
+            433,
+            636,
+            667,
+            778
+          ]
+        },
+        "Arm_Front": {
+          "nontransparent_pixels": 2932,
+          "bounds": [
+            388,
+            691,
+            450,
+            753
+          ]
+        },
+        "Sleeve_Front": {
+          "nontransparent_pixels": 19080,
+          "bounds": [
+            325,
+            535,
+            493,
+            726
+          ]
+        },
+        "Cloth_Details": {
+          "nontransparent_pixels": 9337,
+          "bounds": [
+            343,
+            544,
+            693,
+            892
+          ]
+        },
+        "Head": {
+          "nontransparent_pixels": 46710,
+          "bounds": [
+            401,
+            316,
+            677,
+            545
+          ]
+        },
+        "Eyes": {
+          "nontransparent_pixels": 4893,
+          "bounds": [
+            482,
+            433,
+            657,
+            511
+          ]
+        },
+        "Mouth": {
+          "nontransparent_pixels": 146,
+          "bounds": [
+            578,
+            507,
+            608,
+            518
+          ]
+        },
+        "Hair_Front": {
+          "nontransparent_pixels": 81813,
+          "bounds": [
+            328,
+            198,
+            763,
+            517
+          ]
+        },
+        "Hair_Accessory": {
+          "nontransparent_pixels": 4035,
+          "bounds": [
+            445,
+            189,
+            544,
+            267
+          ]
+        }
+      },
+      "tests": {
+        "without-eyes": {
+          "changed": true,
+          "hidden_slots": [
+            "Eyes"
+          ]
+        },
+        "without-hair": {
+          "changed": true,
+          "hidden_slots": [
+            "Hair_Back",
+            "Hair_Front",
+            "Hair_Accessory"
+          ]
+        },
+        "without-clothes": {
+          "changed": true,
+          "hidden_slots": [
+            "Boot_Back",
+            "Boot_Front",
+            "Leg_Back",
+            "Leg_Front",
+            "Torso",
+            "Sleeve_Back",
+            "Coat",
+            "Sleeve_Front",
+            "Cloth_Details"
+          ]
+        },
+        "eyes-amber": {
+          "changed_pixels": 649,
+          "source_restored_exactly": true,
+          "method": "temporary color transform for editability check; not new drawing"
+        }
+      },
+      "psd_roundtrip_max_channel_difference": 59,
+      "psd_roundtrip": {
+        "opaque_rgb_max_difference": 0,
+        "alpha_max_difference": 0,
+        "over_black_gray_white_max_difference": 0,
+        "pixels_over_2_levels": 0,
+        "status": "PASS"
+      }
+    }
+  }
+}

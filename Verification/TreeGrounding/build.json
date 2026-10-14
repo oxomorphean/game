@@ -1,0 +1,12 @@
+{
+  "result": "Succeeded",
+  "errors": 0,
+  "warnings": 2,
+  "bytes": 105474584,
+  "seconds": 18.854345,
+  "messages": [
+    "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds.",
+    "Shader warning in 'TextMeshPro/Mobile/Distance Field': #pragma enable_d3d11_debug_symbols has been deprecated, instead please use #pragma enable_debug_symbols at line 84"
+  ],
+  "builtAtUtc": "2026-10-13T14:31:06.925051+00:00"
+}

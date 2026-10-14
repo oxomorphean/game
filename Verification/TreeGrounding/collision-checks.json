@@ -1,0 +1,19 @@
+{
+  "passed": 14,
+  "checks": [
+    "Tree assets exist: Assets/_Project/Content/Prefabs/Environment/cherry-tree.prefab",
+    "Left and right roots block the player's foot: Assets/_Project/Content/Prefabs/Environment/cherry-tree.prefab / cherry-tree",
+    "Trunk origin is inside the ground footprint: Assets/_Project/Content/Prefabs/Environment/cherry-tree.prefab / cherry-tree",
+    "The player can still walk under the outer canopy: Assets/_Project/Content/Prefabs/Environment/cherry-tree.prefab / cherry-tree",
+    "Approaching from below stops before the roots: Assets/_Project/Content/Prefabs/Environment/cherry-tree.prefab / cherry-tree",
+    "Tree assets exist: Assets/_Project/Content/Prefabs/Environment/MeadowMainMap.prefab",
+    "Left and right roots block the player's foot: Assets/_Project/Content/Prefabs/Environment/MeadowMainMap.prefab / Anh đào trái",
+    "Trunk origin is inside the ground footprint: Assets/_Project/Content/Prefabs/Environment/MeadowMainMap.prefab / Anh đào trái",
+    "The player can still walk under the outer canopy: Assets/_Project/Content/Prefabs/Environment/MeadowMainMap.prefab / Anh đào trái",
+    "Approaching from below stops before the roots: Assets/_Project/Content/Prefabs/Environment/MeadowMainMap.prefab / Anh đào trái",
+    "Left and right roots block the player's foot: Assets/_Project/Content/Prefabs/Environment/MeadowMainMap.prefab / Anh đào phải",
+    "Trunk origin is inside the ground footprint: Assets/_Project/Content/Prefabs/Environment/MeadowMainMap.prefab / Anh đào phải",
+    "The player can still walk under the outer canopy: Assets/_Project/Content/Prefabs/Environment/MeadowMainMap.prefab / Anh đào phải",
+    "Approaching from below stops before the roots: Assets/_Project/Content/Prefabs/Environment/MeadowMainMap.prefab / Anh đào phải"
+  ]
+}

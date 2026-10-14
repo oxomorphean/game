@@ -1,0 +1,15 @@
+{
+  "url": "http://127.0.0.1:8794/",
+  "desktopViewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "narrowViewport": {
+    "width": 319,
+    "height": 954
+  },
+  "enteredGame": true,
+  "playerMovementObserved": true,
+  "runtimeErrors": 0,
+  "logs": []
+}

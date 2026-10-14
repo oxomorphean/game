@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" stroke-linecap="round" stroke-linejoin="round"><g id="Classic_Torso" data-bone="chest"><path id="Classic_Torso__neck" d="M 524 509 L 577 508 L 585 554 L 564 583 L 526 555 Z" fill="#f5c8a5" stroke="#222c40" stroke-width="6" />
+<path id="Classic_Torso__neck-shadow" d="M 527 518 Q 552 530 577 521 L 579 541 L 555 554 L 529 542 Z" fill="#da9b85" stroke="none" />
+<path id="Classic_Torso__tunic-body" d="M 479 541 C 506 529 523 535 543 546 L 571 559 L 584 537 C 604 537 619 544 625 568 L 625 638 Q 624 659 607 665 L 488 660 C 476 630 463 579 479 541 Z" fill="#334561" stroke="#222c40" stroke-width="6" />
+<path id="Classic_Torso__torso-shadow" d="M 571 560 L 585 547 L 600 566 Q 609 603 613 635 Q 583 654 537 644 L 554 623 Z" fill="#222e47" stroke="none" />
+<path id="Classic_Torso__torso-chest-plane" d="M 521 550 L 554 573 L 544 610 Q 528 603 516 581 Z" fill="#455670" stroke="none" />
+<path id="Classic_Torso__inner-collar-gold" d="M 520 540 L 559 567 L 574 542" fill="none" stroke="#cba45f" stroke-width="6" />
+<path id="Classic_Torso__ivory-left-lapel" d="M 480 541 Q 499 537 510 548 C 519 563 530 596 535 630 L 542 647 L 505 643 Q 488 623 484 602 Z" fill="#f5ebd1" stroke="#222c40" stroke-width="4.5" />
+<path id="Classic_Torso__left-lapel-shadow" d="M 490 551 Q 507 574 510 605 Q 511 630 528 641 L 508 639 Q 496 622 493 603 Z" fill="#b7b8ae" stroke="none" />
+<path id="Classic_Torso__left-lapel-light" d="M 481 544 Q 491 543 499 551 Q 501 577 505 591 Q 491 574 481 568 Z" fill="#fffcf2" stroke="none" />
+<path id="Classic_Torso__cross-lapel" d="M 587 540 L 601 549 C 594 580 575 611 552 636 L 531 635 Q 564 606 582 562 Z" fill="#f5ebd1" stroke="#222c40" stroke-width="3.5" />
+<path id="Classic_Torso__cross-lapel-shadow" d="M 594 548 L 599 551 C 592 580 573 610 551 633 L 542 632 Q 576 599 594 548 Z" fill="#d0cbbb" stroke="none" />
+</g></svg>

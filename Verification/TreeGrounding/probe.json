@@ -1,0 +1,44 @@
+[
+  {
+    "variant": "baseline",
+    "hour": 11.5,
+    "area": 49101,
+    "width": 435,
+    "horizontalBottomRun": 59
+  },
+  {
+    "variant": "baseline",
+    "hour": 12.0,
+    "area": 49108,
+    "width": 432,
+    "horizontalBottomRun": 54
+  },
+  {
+    "variant": "no-cutoff",
+    "hour": 11.5,
+    "area": 49101,
+    "width": 435,
+    "horizontalBottomRun": 59
+  },
+  {
+    "variant": "no-cutoff",
+    "hour": 12.0,
+    "area": 49108,
+    "width": 432,
+    "horizontalBottomRun": 54
+  },
+  {
+    "variant": "wide-contact",
+    "hour": 11.5,
+    "area": 42824,
+    "width": 435,
+    "horizontalBottomRun": 62
+  },
+  {
+    "variant": "wide-contact",
+    "hour": 12.0,
+    "area": 42772,
+    "width": 432,
+    "horizontalBottomRun": 44
+  }
+]

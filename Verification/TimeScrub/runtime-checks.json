@@ -1,0 +1,11 @@
+{
+  "passed": 6,
+  "checks": [
+    "Manual hour clamps to sunrise",
+    "Manual hour clamps to sunset",
+    "Slider selects and holds exact 11:30",
+    "Resume starts at selected hour",
+    "Dragging pauses and captures movement",
+    "Release frame remains captured"
+  ]
+}

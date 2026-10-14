@@ -1,0 +1,27 @@
+{
+  "url": "http://127.0.0.1:8791/",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "action": "Continue existing saved game; no new game/reset/save action",
+  "observedClock": [
+    "11:53",
+    "12:08",
+    "14:15",
+    "15:41"
+  ],
+  "screenshots": [
+    "web-noon.png",
+    "web-afternoon.png"
+  ],
+  "visualChecks": {
+    "sunGraphicHidden": true,
+    "timeBarVisible": true,
+    "noonCanopyFootprint": true,
+    "treeAndRockShadowsConnected": true,
+    "afternoonShadowsEast": true,
+    "warmAfternoonLight": true
+  },
+  "consoleWarningsAndErrors": []
+}

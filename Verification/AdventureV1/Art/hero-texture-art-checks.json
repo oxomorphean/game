@@ -1,0 +1,91 @@
+{
+  "passed": 17,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Trees have silhouette shadows without an ellipse",
+      "passed": true,
+      "evidence": "Both cherry trees use only their own silhouette"
+    },
+    {
+      "name": "Tree cast shadow overlaps its roots",
+      "passed": true,
+      "evidence": "Anh đào trái: (0.00, 0.00, 0.00); Anh đào phải: (0.00, 0.00, 0.00)"
+    },
+    {
+      "name": "Other contact shades remain below actors and follow prop roots",
+      "passed": true,
+      "evidence": "Ground contact point must be inside shade bounds"
+    },
+    {
+      "name": "Canvas map excludes tree ellipses and keeps other contact shades below props",
+      "passed": true,
+      "evidence": "19 Canvas contact shades"
+    },
+    {
+      "name": "Shared map retains its independent prop roots",
+      "passed": true,
+      "evidence": "21 roots"
+    },
+    {
+      "name": "Canvas idle keeps both feet at rest",
+      "passed": true,
+      "evidence": "No foot offset when motion blend is zero"
+    },
+    {
+      "name": "Canvas walking lifts one foot at a time",
+      "passed": true,
+      "evidence": "Left and right half cycles alternate their raised foot"
+    },
+    {
+      "name": "Human skin keeps six bones and source identity",
+      "passed": true,
+      "evidence": "hero"
+    },
+    {
+      "name": "Human sprite has the deformable runtime grid",
+      "passed": true,
+      "evidence": "475 vertices"
+    },
+    {
+      "name": "Live scene skins have current deformed vertices",
+      "passed": true,
+      "evidence": "1 other live actors"
+    },
+    {
+      "name": "Idle feet stay planted without walking in place",
+      "passed": true,
+      "evidence": "Idle foot angles: 0, 0"
+    },
+    {
+      "name": "Walking alternates lifted feet",
+      "passed": true,
+      "evidence": "Left: True; right: True; alternate: True"
+    },
+    {
+      "name": "Animation leaves the gameplay root at ground contact",
+      "passed": true,
+      "evidence": "(4.00, -1.00, 0.00)"
+    },
+    {
+      "name": "Actor shadow stays on ground below foreground",
+      "passed": true,
+      "evidence": "Order: -27"
+    },
+    {
+      "name": "Windup and strike use opposite sword-arm poses",
+      "passed": true,
+      "evidence": "Windup: 32.38057; strike: -70.53091"
+    },
+    {
+      "name": "Collapse pose is distinct and reversible",
+      "passed": true,
+      "evidence": "Body angle: 295"
+    },
+    {
+      "name": "Respawn returns to an upright human",
+      "passed": true,
+      "evidence": "Neutral body and tint"
+    }
+  ]
+}

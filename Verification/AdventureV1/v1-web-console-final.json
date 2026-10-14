@@ -1,0 +1,20 @@
+[
+  {
+    "level": "warn",
+    "message": "Manual synchronization of Unity Application.persistentDataPath via JS_FileSystem_Sync() is deprecated and will be later removed in a future Unity version. The persistent data directory will be automatically synchronized instead on file modification. Pass config.autoSyncPersistentDataPath = true; to configuration in createUnityInstance() to opt in to the new behavior.",
+    "timestamp": "2026-10-08T00:42:55.038Z",
+    "url": "http://127.0.0.1:8791/Build/WebBuildV1.framework.js?v=555f3beb2cc64a22b799e63fcb740f83"
+  },
+  {
+    "level": "warn",
+    "message": "Manual synchronization of Unity Application.persistentDataPath via JS_FileSystem_Sync() is deprecated and will be later removed in a future Unity version. The persistent data directory will be automatically synchronized instead on file modification. Pass config.autoSyncPersistentDataPath = true; to configuration in createUnityInstance() to opt in to the new behavior.",
+    "timestamp": "2026-10-08T01:00:05.604Z",
+    "url": "http://127.0.0.1:8791/Build/WebBuildV1.framework.js?v=555f3beb2cc64a22b799e63fcb740f83"
+  },
+  {
+    "level": "warn",
+    "message": "Manual synchronization of Unity Application.persistentDataPath via JS_FileSystem_Sync() is deprecated and will be later removed in a future Unity version. The persistent data directory will be automatically synchronized instead on file modification. Pass config.autoSyncPersistentDataPath = true; to configuration in createUnityInstance() to opt in to the new behavior.",
+    "timestamp": "2026-10-08T01:02:11.472Z",
+    "url": "http://127.0.0.1:8791/Build/WebBuildV1.framework.js?v=43faf258acb745f1a3bc6f3c06767b82"
+  }
+]

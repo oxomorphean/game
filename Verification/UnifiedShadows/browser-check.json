@@ -1,0 +1,10 @@
+{
+  "checkedAtUtc": "2026-10-13T13:03:31.578Z",
+  "url": "http://127.0.0.1:8791/",
+  "logs": [],
+  "scripts": [
+    "http://127.0.0.1:8791/Build/WebBuildV1.loader.js?v=bdb17e598a284eb4bb9a5438a8ddb560",
+    "http://127.0.0.1:8791/Build/WebBuildV1.framework.js?v=bdb17e598a284eb4bb9a5438a8ddb560"
+  ],
+  "input": "Clicked ground, held W and D; observed movement and direction change with foot-attached shadow"
+}

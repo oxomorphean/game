@@ -1,0 +1,89 @@
+{
+  "assetTypes": 10,
+  "rows": [
+    {
+      "asset": "paving-slab",
+      "editableSource": "ArtDirection/Handmade/GardenV8/Props/paving-slab.aseprite",
+      "exportMatchesUnity": true
+    },
+    {
+      "asset": "paving-split",
+      "editableSource": "ArtDirection/Handmade/GardenV8/Props/paving-split.aseprite",
+      "exportMatchesUnity": true
+    },
+    {
+      "asset": "paving-petal",
+      "editableSource": "ArtDirection/Handmade/GardenV8/Props/paving-petal.aseprite",
+      "exportMatchesUnity": true
+    },
+    {
+      "asset": "bamboo",
+      "editableSource": "ArtDirection/Handmade/GardenV8/Props/bamboo.aseprite",
+      "exportMatchesUnity": true
+    },
+    {
+      "asset": "spirit-herb",
+      "editableSource": "ArtDirection/Handmade/GardenV8/Props/spirit-herb.aseprite",
+      "exportMatchesUnity": true
+    },
+    {
+      "asset": "jade-ore",
+      "editableSource": "ArtDirection/Handmade/GardenV8/Props/jade-ore.aseprite",
+      "exportMatchesUnity": true
+    },
+    {
+      "asset": "spirit-egg",
+      "editableSource": "ArtDirection/Handmade/GardenV8/Props/spirit-egg.aseprite",
+      "exportMatchesUnity": true
+    },
+    {
+      "asset": "grass-meadow-a",
+      "editableSource": "ArtDirection/Handmade/GardenV8/CultivatorAndMeadow/grass-meadow-a.aseprite",
+      "exportMatchesUnity": true
+    },
+    {
+      "asset": "grass-meadow-b",
+      "editableSource": "ArtDirection/Handmade/GardenV8/CultivatorAndMeadow/grass-meadow-b.aseprite",
+      "exportMatchesUnity": true
+    },
+    {
+      "asset": "player-cultivator-sheet",
+      "editableSource": "ArtDirection/Handmade/GardenV8/CultivatorAndMeadow/player-cultivator.aseprite",
+      "exportMatchesUnity": true
+    }
+  ],
+  "build": {
+    "result": "Succeeded",
+    "seconds": 49.771108,
+    "bytes": 63553589,
+    "errors": 0
+  },
+  "runtime": {
+    "passed": 7,
+    "failed": 0,
+    "cases": [
+      "PASS 14 reused petals and 3 pond glints initialized",
+      "PASS Player moves through unchanged command/input loop",
+      "PASS Player and ambient visual clocks advance across frames",
+      "PASS Cherry petals fall/drift instead of static decoration",
+      "PASS All four existing pond glint frames render in the loop",
+      "PASS Human directional walk advances through multiple frames",
+      "PASS Stopping movement returns human to side idle"
+    ],
+    "glintFrames": [
+      "water-ripple-0",
+      "water-ripple-1",
+      "water-ripple-2",
+      "water-ripple-3"
+    ],
+    "humanWalkFrames": [
+      "cultivator-24",
+      "cultivator-25",
+      "cultivator-26",
+      "cultivator-27",
+      "cultivator-28",
+      "cultivator-29"
+    ],
+    "elapsed": 1.722320556640625
+  }
+}

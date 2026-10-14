@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-08",
+  "scope": "character texture filtering",
+  "importApi": "Unity TextureImporter.SaveAndReimport",
+  "changedImports": [
+    "Assets/_Project/Art/CartoonV2/hero.png.meta",
+    "Assets/_Project/Art/CartoonV2/huyen-quy.png.meta"
+  ],
+  "mipmaps": true,
+  "filter": "Trilinear",
+  "rigShaderUnchanged": true,
+  "artChecks": {
+    "passed": 17,
+    "failed": 0,
+    "file": "Verification/AdventureV1/Art/hero-texture-art-checks.json"
+  },
+  "compile": {
+    "status": "up_to_date",
+    "failed": false,
+    "errors": 0,
+    "warnings": 0
+  },
+  "webgl": {
+    "url": "http://127.0.0.1:8791/",
+    "viewport": [
+      1280,
+      720
+    ],
+    "entry": "Continue existing save",
+    "screenshot": "Verification/AdventureV1/Art/hero-webgl-after.png",
+    "tabErrors": 0,
+    "tabWarnings": 0,
+    "temporaryTabClosed": true
+  },
+  "buildReport": "Verification/AdventureV1/build.json",
+  "recovery": "Recovery/hero-rig-before-20261007/Assets/_Project/Art/CartoonV2/"
+}

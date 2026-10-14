@@ -1,0 +1,19 @@
+{
+  "passed": 12,
+  "failed": 0,
+  "placedProps": 21,
+  "checks": [
+    {"name":"Fixed irregular path belongs to terrain sprite","passed":true},
+    {"name":"21 separately selectable prop roots","passed":true},
+    {"name":"Six independent environment PNG sprites","passed":true},
+    {"name":"Six reusable object prefabs","passed":true},
+    {"name":"Trial is an instance of the shared authored map","passed":true},
+    {"name":"HUD builds enabled props from persistent prefab asset","passed":true},
+    {"name":"Standalone PNGs have transparent corners","passed":true},
+    {"name":"Pond and its shore move as one composite prop","passed":true},
+    {"name":"Moved tree persists after scene save and reopen","passed":true},
+    {"name":"Moving tree leaves rock and substrate unchanged","passed":true},
+    {"name":"Separate tree shadow follows its root","passed":true},
+    {"name":"Reimport preserves authored scene placement","passed":true}
+  ]
+}

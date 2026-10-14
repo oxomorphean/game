@@ -1,0 +1,16 @@
+{
+  "checkedAtUtc": "2026-10-13T14:34:42.781Z",
+  "url": "http://127.0.0.1:8791/",
+  "logs": [],
+  "scripts": [
+    "http://127.0.0.1:8791/Build/WebBuildV1.loader.js?v=5bf8400169e549f8bd7475a07ded691a",
+    "http://127.0.0.1:8791/Build/WebBuildV1.framework.js?v=5bf8400169e549f8bd7475a07ded691a"
+  ],
+  "checks": [
+    "Dragged beyond right edge: 18:00 held, actor stationary",
+    "Dragged beyond left edge: 06:00 held, actor stationary",
+    "Clicked 11:30: lighting updated and time held",
+    "Clicked Run: continued from 11:31",
+    "Reloaded final build and clicked tree: actor stopped outside root footprint"
+  ]
+}

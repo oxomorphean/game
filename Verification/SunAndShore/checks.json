@@ -1,0 +1,16 @@
+{
+  "passed": 10,
+  "northShoreStop": 0.8499999,
+  "checks": [
+    "Player feet can reach the north shore without a gap",
+    "Water and the low north bank remain impassable",
+    "Approaching the north bank stops within 0.9 world units of pond origin",
+    "Morning sun is left and casts right",
+    "Noon shadow has no lateral throw",
+    "Afternoon sun is right and casts left",
+    "Sunset warms both props and water reflection",
+    "Shader compiles: LinhThu/Daylight Sprite",
+    "Shader compiles: LinhThu/Daylight Shadow",
+    "Shader compiles: LinhThu/Meadow Terrain"
+  ]
+}

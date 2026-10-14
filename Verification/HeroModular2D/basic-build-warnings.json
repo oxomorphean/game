@@ -1,0 +1,34 @@
+{
+  "groundTruth": {
+    "sampledUtc": "2026-10-09T08:20:38.368068Z",
+    "ageMs": 73,
+    "compilationFailed": false,
+    "compiling": false,
+    "consoleErrors": 0,
+    "consoleWarnings": 5,
+    "consoleLogs": 2,
+    "seeded": true
+  },
+  "entries": [
+    {
+      "timestamp": "2026-10-09T08:17:24.337193Z",
+      "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+    },
+    {
+      "timestamp": "2026-10-09T08:17:27.238598Z",
+      "message": "Shader warning in 'TextMeshPro/Mobile/Distance Field': #pragma enable_d3d11_debug_symbols has been deprecated, instead please use #pragma enable_debug_symbols at line 84"
+    },
+    {
+      "timestamp": "2026-10-09T08:18:26.844862Z",
+      "message": "/Users/nguyenhoangdacdat/dev/nguthu-unity-demo/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TMP_TextParsingUtilities::.cctor() - Method was given it's own cpp file because it is large and costly to compile"
+    },
+    {
+      "timestamp": "2026-10-09T08:18:26.845617Z",
+      "message": "/Users/nguyenhoangdacdat/dev/nguthu-unity-demo/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshPro::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile"
+    },
+    {
+      "timestamp": "2026-10-09T08:18:26.845806Z",
+      "message": "/Users/nguyenhoangdacdat/dev/nguthu-unity-demo/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshProUGUI::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile"
+    }
+  ]
+}

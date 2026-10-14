@@ -1,0 +1,13 @@
+{
+    "passed": 7,
+    "failed": 0,
+    "cases": [
+        "PASS One EventSystem; gameplay keys cannot also submit/navigate UI",
+        "PASS Owner dashboard pauses simulation and blocks movement",
+        "PASS Player modal blocks movement while simulation continues",
+        "PASS D-pad pointer down starts movement intent",
+        "PASS D-pad pointer up clears movement intent",
+        "PASS Leaving D-pad clears movement intent",
+        "PASS Return to play retains same session and unblocks input"
+    ]
+}

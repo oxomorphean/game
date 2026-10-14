@@ -1,0 +1,10 @@
+--- Assets/_Project/Content/Scenes/CultivationV1.unity before
++++ Assets/_Project/Content/Scenes/CultivationV1.unity after
+@@ -293,6 +293,7 @@
+   shadow: {fileID: 21300000, guid: 3ac3bc08bc9904ca091f2932c6e5c72a, type: 3}
+   flat: {fileID: 21300000, guid: 4ea77cac7728940a29b3e10c07a83293, type: 3}
+   font: {fileID: 11400000, guid: bd6496e73f8924f10a7f80040ef2df3b, type: 2}
++  directionalHero: {fileID: 11400000, guid: 2326e6f5dae184f48b9c851f11a4afc4, type: 2}
+ --- !u!4 &277618088
+ Transform:
+   m_ObjectHideFlags: 0

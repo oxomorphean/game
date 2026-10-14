@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "command": "command run_script",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "AgentScripts/CollisionRuntime.cs",
+      "entry": "CollisionRuntime.Run",
+      "timeout_ms": "20000"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 112,
+      "executeMs": 3497,
+      "assemblyName": "PipelineRunScript_CollisionRuntime_2a43ab800a0b4e2f8e31d9eed6461550",
+      "success": true,
+      "result": "Runtime: 6 passed"
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "/Users/nguyenhoangdacdat/dev/nguthu-unity-demo"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Linh Thú Ký — Mẫu mỹ thuật</title>
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#192c29;color:#f7ebcc;font:16px system-ui,sans-serif}
+    #game{width:100%;height:100%;display:block;outline:none}#loading{position:absolute;inset:0;display:grid;place-content:center;text-align:center;gap:14px;background:#192c29}
+    progress{width:280px;accent-color:#ddb966}#error{white-space:pre-wrap;max-width:700px}
+  </style>
+</head>
+<body>
+  <canvas id="game" tabindex="0" aria-label="Bản chơi Mẫu mỹ thuật"></canvas>
+  <div id="loading"><strong>LINH THÚ KÝ · MẪU MỸ THUẬT</strong><span id="status">Đang tải phiên thử…</span><progress id="progress" max="1" value="0"></progress><div id="error"></div></div>
+  <script src="Build/__LOADER__"></script>
+  <script>
+    const canvas=document.getElementById('game');
+    createUnityInstance(canvas,{
+      dataUrl:'Build/__DATA__',frameworkUrl:'Build/__FRAMEWORK__',codeUrl:'Build/__WASM__',
+      streamingAssetsUrl:'StreamingAssets',companyName:'Local Demo',productName:'Linh Thu Art Preview',productVersion:'0.1',
+      matchWebGLToCanvasSize:true,devicePixelRatio:Math.min(window.devicePixelRatio||1,2),
+      showBanner:(message,type)=>{if(type==='error'){document.getElementById('loading').style.display='grid';document.getElementById('error').textContent=message;}}
+    },progress=>document.getElementById('progress').value=progress).then(instance=>{
+      window.artPreview=instance;document.getElementById('loading').style.display='none';canvas.focus();
+    }).catch(error=>{document.getElementById('status').textContent='Không mở được mẫu';document.getElementById('error').textContent=String(error);});
+    canvas.addEventListener('pointerdown',()=>canvas.focus());
+    window.addEventListener('keydown',event=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' ','F5'].includes(event.key))event.preventDefault();});
+  </script>
+</body>
+</html>

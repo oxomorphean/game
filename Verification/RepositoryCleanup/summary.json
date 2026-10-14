@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-13",
+  "scope": "Source, art, evidence and Git housekeeping; no gameplay/art/render changes",
+  "bytesBefore": {
+    ".git": 264142848,
+    "Assets": 85979136,
+    "ArtDirection": 128442368,
+    "Verification": 122900480
+  },
+  "bytesAfter": {
+    ".git": 252907520,
+    "Assets": 50655232,
+    "ArtDirection": 69623808,
+    "Verification": 39194624
+  },
+  "coreDirectoriesBytesReduced": 189083648,
+  "sizeExcludes": [
+    "Library",
+    "Recovery",
+    "WebBuildV1",
+    "outside recovery folder"
+  ],
+  "recovery": {
+    "path": "/Users/nguyenhoangdacdat/dev/nguthu-unity-demo-archive/cleanup-20261013",
+    "manifestFiles": 948,
+    "gitFiles": 925,
+    "archivedUncommittedFiles": 23,
+    "restoredAndSha256Checked": 948,
+    "restoreTestOutputRemoved": true,
+    "status": "permanently_deleted_at_owner_request",
+    "deletedDate": "2026-10-13",
+    "bytesAllocatedBeforeDeletion": 58900480,
+    "bytesAllocated": 0
+  },
+  "verification": {
+    "unityCompile": "up_to_date; 0 errors, 0 warnings",
+    "artPreviewChecksPassed": 18,
+    "sceneCount": 5,
+    "sceneDependenciesUnchanged": 152,
+    "missingDependencies": 0,
+    "protectedFilesUnchanged": 810,
+    "play": {
+      "scene": "ArtPreview",
+      "props": 21,
+      "heroPresent": true,
+      "capture": "Verification/RepositoryCleanup/play.png",
+      "visuallyInspected": true
+    },
+    "gitFsck": "passed",
+    "diffCheck": "passed",
+    "headAndRefsUnchanged": true,
+    "stagedChanges": false,
+    "webglBuild": "not rerun; enabled scene, scene dependencies and render source unchanged"
+  },
+  "pngAudit": {
+    "before": {
+      "files": 994,
+      "extraCopies": 103,
+      "duplicateBytesApprox": 23890000
+    },
+    "afterTrackedAndNonignored": {
+      "files": 228,
+      "extraCopies": 60,
+      "duplicateBytes": 4451787
+    },
+    "retainedCopies": "Primarily art export inputs and Unity imports; GUIDs not merged"
+  },
+  "gitLfs": {
+    "version": "3.8.0",
+    "localConfig": true,
+    "existingHistoryMigrated": false,
+    "unusedCacheObjectsPruned": 19
+  },
+  "handoff": "Editor stopped; preserve current art-shadow WIP; no full aesthetics approval from this cleanup"
+}

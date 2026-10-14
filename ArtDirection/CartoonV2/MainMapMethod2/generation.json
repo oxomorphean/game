@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-08",
+  "scope": "Main meadow only; reusable textures and separate flat stepping stones",
+  "reference": "Assets/_Project/Art/CartoonV2/Environment/ground-road.png",
+  "assets": {
+    "meadow-grass.png": "exec-47a2600c-5322-4330-a61f-90dfa34fcaad.png",
+    "meadow-earth.png": "exec-2d767d37-615a-4e92-b133-45c4d82891d2.png",
+    "stepping-stones.png": "exec-cf9513b1-3165-4299-a30f-3145d0aa0e1d.png"
+  },
+  "prompts": {
+    "grass": "Seamlessly repeatable painted cel lime and olive meadow grass, broad quiet patches, flat orthographic, no lighting, roads or objects.",
+    "earth": "Seamlessly repeatable painted golden beige earth, broad tan sand and soft darker variations, flat, no complete path, grass or objects.",
+    "stones": "Six separate flat grey beige irregular stepping slabs in 3 by 2 grid, high view 60 to 65 degrees, transparent gutters, thin olive grey contour, no ground or cast shadow."
+  }
+}

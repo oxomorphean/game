@@ -1,0 +1,51 @@
+/Library/
+/Temp/
+/Obj/
+/Logs/
+/UserSettings/
+/.vscode/
+/*.log
+/*.slnx
+/*.csproj
+.DS_Store
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+__pycache__/
+*.pyc
+
+# Unity crash recovery stays local and is preserved.
+/Assets/_Recovery/
+/Assets/_Recovery.meta
+
+# Local recovery snapshots
+/Recovery/
+
+# Generated local previews; rebuild from source.
+/WebBuild*/
+
+# Krita backup and autosave files stay local.
+*.kra~
+*.kra-autosave.kra
+
+# Generated evidence stays local, outside Unity's import tree.
+/Verification/**/*.png
+/Verification/**/*.jpg
+/Verification/**/*.jpeg
+/Verification/**/*.gif
+/Verification/**/*.webp
+/Verification/**/*.mp4
+/Verification/**/*.tgz
+/Verification/**/*.zip
+/Verification/**/before/
+/Assets/Verification/
+/Assets/Verification.meta
+/Assets/ArtDirection/
+/Assets/ArtDirection.meta
+
+# Bulk art render output; keep editable masters and final game exports.
+/ArtDirection/CharacterProduction/experiments/**/process-frames/
+/ArtDirection/CharacterProduction/experiments/**/unity-frames/
+/ArtDirection/CharacterProduction/experiments/**/revisions/

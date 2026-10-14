@@ -1,0 +1,370 @@
+{
+  "passed": 69,
+  "checks": [
+    "Props and both layered hero paths use the shared material",
+    "Standing props have authored geometry and no legacy ellipse",
+    "Hero geometry is authored on its definition",
+    "Shader compiles: LinhThu/Daylight Shadow",
+    "Shader compiles: LinhThu/Modular Hero Shadow",
+    "Rendered morning and afternoon shadows lie on opposite sides",
+    "Rendered noon footprint has area and is shorter than low-sun shadows",
+    "Ground contact and nonzero footprint at 6.00",
+    "Ground contact and nonzero footprint at 6.25",
+    "Ground contact and nonzero footprint at 6.50",
+    "Ground contact and nonzero footprint at 6.75",
+    "Ground contact and nonzero footprint at 7.00",
+    "Ground contact and nonzero footprint at 7.25",
+    "Ground contact and nonzero footprint at 7.50",
+    "Ground contact and nonzero footprint at 7.75",
+    "Ground contact and nonzero footprint at 8.00",
+    "Ground contact and nonzero footprint at 8.25",
+    "Ground contact and nonzero footprint at 8.50",
+    "Ground contact and nonzero footprint at 8.75",
+    "Ground contact and nonzero footprint at 9.00",
+    "Ground contact and nonzero footprint at 9.25",
+    "Ground contact and nonzero footprint at 9.50",
+    "Ground contact and nonzero footprint at 9.75",
+    "Ground contact and nonzero footprint at 10.00",
+    "Ground contact and nonzero footprint at 10.25",
+    "Ground contact and nonzero footprint at 10.50",
+    "Ground contact and nonzero footprint at 10.75",
+    "Ground contact and nonzero footprint at 11.00",
+    "Ground contact and nonzero footprint at 11.25",
+    "Ground contact and nonzero footprint at 11.50",
+    "Ground contact and nonzero footprint at 11.75",
+    "Ground contact and nonzero footprint at 12.00",
+    "Ground contact and nonzero footprint at 12.25",
+    "Ground contact and nonzero footprint at 12.50",
+    "Ground contact and nonzero footprint at 12.75",
+    "Ground contact and nonzero footprint at 13.00",
+    "Ground contact and nonzero footprint at 13.25",
+    "Ground contact and nonzero footprint at 13.50",
+    "Ground contact and nonzero footprint at 13.75",
+    "Ground contact and nonzero footprint at 14.00",
+    "Ground contact and nonzero footprint at 14.25",
+    "Ground contact and nonzero footprint at 14.50",
+    "Ground contact and nonzero footprint at 14.75",
+    "Ground contact and nonzero footprint at 15.00",
+    "Ground contact and nonzero footprint at 15.25",
+    "Ground contact and nonzero footprint at 15.50",
+    "Ground contact and nonzero footprint at 15.75",
+    "Ground contact and nonzero footprint at 16.00",
+    "Ground contact and nonzero footprint at 16.25",
+    "Ground contact and nonzero footprint at 16.50",
+    "Ground contact and nonzero footprint at 16.75",
+    "Ground contact and nonzero footprint at 17.00",
+    "Ground contact and nonzero footprint at 17.25",
+    "Ground contact and nonzero footprint at 17.50",
+    "Ground contact and nonzero footprint at 17.75",
+    "Ground contact and nonzero footprint at 18.00",
+    "Overlapping clothing layers do not double shadow opacity",
+    "Mirroring the caster does not reverse the sun direction",
+    "Warm roots do not enter the foliage shadow",
+    "Dark root outlines do not enter the foliage shadow",
+    "Elevated canopy keeps an independent foot-to-crown trunk caster",
+    "Real tree silhouette has no broad horizontal bottom edge at 8.0",
+    "Main tree shadow remains joined to the root region at 8.0",
+    "Real tree silhouette has no broad horizontal bottom edge at 11.5",
+    "Main tree shadow remains joined to the root region at 11.5",
+    "Real tree silhouette has no broad horizontal bottom edge at 12.0",
+    "Main tree shadow remains joined to the root region at 12.0",
+    "Real tree silhouette has no broad horizontal bottom edge at 16.0",
+    "Main tree shadow remains joined to the root region at 16.0"
+  ],
+  "samples": [
+    {
+      "hour": 6.0,
+      "area": 2110,
+      "x": 307.00238,
+      "width": 141
+    },
+    {
+      "hour": 6.25,
+      "area": 2110,
+      "x": 307.00238,
+      "width": 141
+    },
+    {
+      "hour": 6.5,
+      "area": 2110,
+      "x": 307.00238,
+      "width": 141
+    },
+    {
+      "hour": 6.75,
+      "area": 2110,
+      "x": 307.00238,
+      "width": 141
+    },
+    {
+      "hour": 7.0,
+      "area": 2110,
+      "x": 307.00238,
+      "width": 141
+    },
+    {
+      "hour": 7.25,
+      "area": 2112,
+      "x": 306.993378,
+      "width": 141
+    },
+    {
+      "hour": 7.5,
+      "area": 2091,
+      "x": 305.192719,
+      "width": 138
+    },
+    {
+      "hour": 7.75,
+      "area": 2033,
+      "x": 297.223328,
+      "width": 124
+    },
+    {
+      "hour": 8.0,
+      "area": 1990,
+      "x": 291.3211,
+      "width": 114
+    },
+    {
+      "hour": 8.25,
+      "area": 1958,
+      "x": 286.532166,
+      "width": 105
+    },
+    {
+      "hour": 8.5,
+      "area": 1934,
+      "x": 282.773,
+      "width": 98
+    },
+    {
+      "hour": 8.75,
+      "area": 1904,
+      "x": 279.6859,
+      "width": 92
+    },
+    {
+      "hour": 9.0,
+      "area": 1874,
+      "x": 277.144623,
+      "width": 88
+    },
+    {
+      "hour": 9.25,
+      "area": 1832,
+      "x": 275.027283,
+      "width": 83
+    },
+    {
+      "hour": 9.5,
+      "area": 1782,
+      "x": 273.177338,
+      "width": 80
+    },
+    {
+      "hour": 9.75,
+      "area": 1709,
+      "x": 271.69223,
+      "width": 77
+    },
+    {
+      "hour": 10.0,
+      "area": 1697,
+      "x": 269.736,
+      "width": 74
+    },
+    {
+      "hour": 10.25,
+      "area": 1698,
+      "x": 267.798,
+      "width": 71
+    },
+    {
+      "hour": 10.5,
+      "area": 1693,
+      "x": 265.938,
+      "width": 68
+    },
+    {
+      "hour": 10.75,
+      "area": 1676,
+      "x": 264.082336,
+      "width": 65
+    },
+    {
+      "hour": 11.0,
+      "area": 1668,
+      "x": 262.417267,
+      "width": 63
+    },
+    {
+      "hour": 11.25,
+      "area": 1644,
+      "x": 260.6904,
+      "width": 60
+    },
+    {
+      "hour": 11.5,
+      "area": 1629,
+      "x": 258.8981,
+      "width": 57
+    },
+    {
+      "hour": 11.75,
+      "area": 1614,
+      "x": 257.182159,
+      "width": 54
+    },
+    {
+      "hour": 12.0,
+      "area": 1618,
+      "x": 255.5,
+      "width": 52
+    },
+    {
+      "hour": 12.25,
+      "area": 1615,
+      "x": 253.803711,
+      "width": 54
+    },
+    {
+      "hour": 12.5,
+      "area": 1630,
+      "x": 252.092026,
+      "width": 57
+    },
+    {
+      "hour": 12.75,
+      "area": 1644,
+      "x": 250.309616,
+      "width": 60
+    },
+    {
+      "hour": 13.0,
+      "area": 1668,
+      "x": 248.582733,
+      "width": 63
+    },
+    {
+      "hour": 13.25,
+      "area": 1676,
+      "x": 246.917664,
+      "width": 65
+    },
+    {
+      "hour": 13.5,
+      "area": 1693,
+      "x": 245.062027,
+      "width": 68
+    },
+    {
+      "hour": 13.75,
+      "area": 1698,
+      "x": 243.202,
+      "width": 71
+    },
+    {
+      "hour": 14.0,
+      "area": 1697,
+      "x": 241.263992,
+      "width": 74
+    },
+    {
+      "hour": 14.25,
+      "area": 1709,
+      "x": 239.307785,
+      "width": 77
+    },
+    {
+      "hour": 14.5,
+      "area": 1782,
+      "x": 237.822678,
+      "width": 80
+    },
+    {
+      "hour": 14.75,
+      "area": 1832,
+      "x": 235.9727,
+      "width": 83
+    },
+    {
+      "hour": 15.0,
+      "area": 1874,
+      "x": 233.8554,
+      "width": 88
+    },
+    {
+      "hour": 15.25,
+      "area": 1905,
+      "x": 231.319687,
+      "width": 92
+    },
+    {
+      "hour": 15.5,
+      "area": 1934,
+      "x": 228.22699,
+      "width": 98
+    },
+    {
+      "hour": 15.75,
+      "area": 1958,
+      "x": 224.467819,
+      "width": 105
+    },
+    {
+      "hour": 16.0,
+      "area": 1991,
+      "x": 219.693115,
+      "width": 114
+    },
+    {
+      "hour": 16.25,
+      "area": 2034,
+      "x": 213.79744,
+      "width": 124
+    },
+    {
+      "hour": 16.5,
+      "area": 2092,
+      "x": 205.827911,
+      "width": 138
+    },
+    {
+      "hour": 16.75,
+      "area": 2113,
+      "x": 204.027451,
+      "width": 141
+    },
+    {
+      "hour": 17.0,
+      "area": 2111,
+      "x": 204.018478,
+      "width": 141
+    },
+    {
+      "hour": 17.25,
+      "area": 2111,
+      "x": 204.018478,
+      "width": 141
+    },
+    {
+      "hour": 17.5,
+      "area": 2111,
+      "x": 204.018478,
+      "width": 141
+    },
+    {
+      "hour": 17.75,
+      "area": 2111,
+      "x": 204.018478,
+      "width": 141
+    },
+    {
+      "hour": 18.0,
+      "area": 2111,
+      "x": 204.018478,
+      "width": 141
+    }
+  ]
+}

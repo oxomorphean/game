@@ -1,0 +1,42 @@
+{
+  "props": 21,
+  "silhouetteProps": 20,
+  "cherryTrees": 2,
+  "cherryTreeEllipses": 0,
+  "sunCanvasRenderer": true,
+  "shaderMessages": [],
+  "phases": [
+    {
+      "name": "morning",
+      "hour": 6.5,
+      "directionX": 0.888669848,
+      "directionY": -0.4585476,
+      "length": 0.9494948,
+      "r": 1.0,
+      "g": 0.99,
+      "b": 0.93
+    },
+    {
+      "name": "noon",
+      "hour": 12.0,
+      "directionX": -3.715468E-08,
+      "directionY": -1.0,
+      "length": 0.28,
+      "r": 1.0,
+      "g": 0.99,
+      "b": 0.93
+    },
+    {
+      "name": "sunset",
+      "hour": 17.5,
+      "directionX": -0.8886699,
+      "directionY": -0.458547533,
+      "length": 0.9494949,
+      "r": 1.0,
+      "g": 0.7794531,
+      "b": 0.4993359
+    }
+  ],
+  "sunMeshVertices": 116,
+  "note": "Phase values were sampled before deleting ellipses; final ellipse count and sunset image were verified after removal."
+}

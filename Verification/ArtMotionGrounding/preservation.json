@@ -1,0 +1,12 @@
+{
+  "sourcePNGsChecked": 28,
+  "sourcePNGsUnchanged": true,
+  "changedSourcePNGs": [],
+  "nativeSavesUnchanged": {
+    "/Users/nguyenhoangdacdat/Library/Application Support/Local Demo/Linh Thu Ky - Linh Quy/thandinh-v1.json.before-logic-v3": true,
+    "/Users/nguyenhoangdacdat/Library/Application Support/Local Demo/Linh Thu Ky - Linh Quy/thandinh-v1.json.before-logic-v2": true,
+    "/Users/nguyenhoangdacdat/Library/Application Support/Local Demo/Linh Thu Ky - Linh Quy/thandinh-v1.json": true,
+    "/Users/nguyenhoangdacdat/Library/Application Support/Local Demo/Linh Thu Ky - Linh Quy/thandinh-v1.json.previous": true
+  },
+  "note": "Other sessions are changing gameplay concurrently; this check covers source PNGs and native saves only."
+}

@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf7c34a0dc4e6348bea04faa70406ee, type: 3}
+  m_Name: Hero outfits
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibraryAsset
+  m_Labels:
+  - m_Name: Foot_L
+    m_Hash: 22397879
+    m_CategoryList:
+    - m_Name: Navy
+      m_Hash: 52840173
+      m_Sprite: {fileID: 3922553092523761923, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+    - m_Name: Ivory
+      m_Hash: 718171284
+      m_Sprite: {fileID: -5926416522887908444, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+  - m_Name: Sleeve_Back
+    m_Hash: 243603188
+    m_CategoryList:
+    - m_Name: Navy
+      m_Hash: 52840173
+      m_Sprite: {fileID: 4328516298839408319, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+    - m_Name: Ivory
+      m_Hash: 718171284
+      m_Sprite: {fileID: 1301072930483780199, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+  - m_Name: Leg_L
+    m_Hash: 403231969
+    m_CategoryList:
+    - m_Name: Base
+      m_Hash: 545673567
+      m_Sprite: {fileID: 5420594113330481692, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+    - m_Name: Navy
+      m_Hash: 52840173
+      m_Sprite: {fileID: -3438252026329217504, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+    - m_Name: Ivory
+      m_Hash: 718171284
+      m_Sprite: {fileID: 3020978129606219367, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+  - m_Name: Coat_R
+    m_Hash: 189274196
+    m_CategoryList:
+    - m_Name: Navy
+      m_Hash: 52840173
+      m_Sprite: {fileID: 5766334756765006915, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+    - m_Name: Ivory
+      m_Hash: 718171284
+      m_Sprite: {fileID: 8592847156460051722, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+  - m_Name: Foot_R
+    m_Hash: 995819220
+    m_CategoryList:
+    - m_Name: Navy
+      m_Hash: 52840173
+      m_Sprite: {fileID: 5786070699464113729, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+    - m_Name: Ivory
+      m_Hash: 718171284
+      m_Sprite: {fileID: -1371035914735451401, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+  - m_Name: Eyes_Mouth
+    m_Hash: 644647897
+    m_CategoryList:
+    - m_Name: Base
+      m_Hash: 545673567
+      m_Sprite: {fileID: 5796295466627699836, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+  - m_Name: Body_Torso
+    m_Hash: 170529945
+    m_CategoryList:
+    - m_Name: Ivory
+      m_Hash: 718171284
+      m_Sprite: {fileID: 8473029511904705978, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+    - m_Name: Base
+      m_Hash: 545673567
+      m_Sprite: {fileID: -6521770964403289287, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+    - m_Name: Navy
+      m_Hash: 52840173
+      m_Sprite: {fileID: -5490265950299734148, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+  - m_Name: Arm_Front
+    m_Hash: 791984367
+    m_CategoryList:
+    - m_Name: Base
+      m_Hash: 545673567
+      m_Sprite: {fileID: 9078303012767696196, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+  - m_Name: Sleeve_Front
+    m_Hash: 1018542635
+    m_CategoryList:
+    - m_Name: Navy
+      m_Hash: 52840173
+      m_Sprite: {fileID: -8122507135415915299, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+    - m_Name: Ivory
+      m_Hash: 718171284
+      m_Sprite: {fileID: 620836148224369983, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+  - m_Name: Head
+    m_Hash: 130111906
+    m_CategoryList:
+    - m_Name: Base
+      m_Hash: 545673567
+      m_Sprite: {fileID: -7976694558756421220, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+  - m_Name: Coat_L
+    m_Hash: 826746167
+    m_CategoryList:
+    - m_Name: Ivory
+      m_Hash: 718171284
+      m_Sprite: {fileID: -6731190393762367980, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+    - m_Name: Navy
+      m_Hash: 52840173
+      m_Sprite: {fileID: -1468471700502451579, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+  - m_Name: Hair_Front
+    m_Hash: 359448730
+    m_CategoryList:
+    - m_Name: Base
+      m_Hash: 545673567
+      m_Sprite: {fileID: -5547189626249788096, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+  - m_Name: Arm_Back
+    m_Hash: 426977683
+    m_CategoryList:
+    - m_Name: Base
+      m_Hash: 545673567
+      m_Sprite: {fileID: -3291933572076442388, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+  - m_Name: Leg_R
+    m_Hash: 570943874
+    m_CategoryList:
+    - m_Name: Ivory
+      m_Hash: 718171284
+      m_Sprite: {fileID: 1732330055113788275, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+    - m_Name: Navy
+      m_Hash: 52840173
+      m_Sprite: {fileID: 2058810674924384127, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+    - m_Name: Base
+      m_Hash: 545673567
+      m_Sprite: {fileID: 2715091028833131839, guid: 521f07705ce3044cfbb37dccd30ab83c, type: 3}
+  m_ModificationHash: 0
+  m_Version: 1

@@ -1,0 +1,31 @@
+{
+  "method": "ImageGen raster partitioned using scripted masks through Krita API",
+  "paint_source": "Ink, flats, shading remain fused within each AI raster part",
+  "repairs": "Scripted scalp and face-under-eyes on explicitly labelled layers; provisional",
+  "nonempty_source_pixels": {
+    "Torso": 16319,
+    "Hair_Back": 28936,
+    "Hair_Front": 81728,
+    "Head": 10746,
+    "Eyes": 6131,
+    "Mouth": 483,
+    "Sleeve_Back": 6550,
+    "Arm_Back": 1301,
+    "Leg_Back": 7316,
+    "Boot_Back": 5113,
+    "Leg_Front": 9608,
+    "Boot_Front": 5227,
+    "Coat": 11273,
+    "Sleeve_Front": 15178,
+    "Arm_Front": 4555,
+    "Belt": 5335,
+    "Hair_Accessory": 7172
+  },
+  "limits": [
+    "Static source trial only",
+    "No complete hidden torso/arm anatomy",
+    "No joint overlaps or rig yet",
+    "Mask edges require artist cleanup before motion",
+    "Not approved production art"
+  ]
+}

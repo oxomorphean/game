@@ -1,0 +1,62 @@
+[
+  {
+    "name": "cherry-tree",
+    "width": 1357,
+    "height": 1159,
+    "filter": "Bilinear",
+    "compression": "Uncompressed",
+    "beforeBounds": "Center: (-0.08, 5.18, 0.00), Extents: (6.79, 5.80, 0.10)",
+    "afterBounds": "Center: (-0.08, 5.18, 0.00), Extents: (6.79, 5.80, 0.10)",
+    "sizeDifference": 0.005457878
+  },
+  {
+    "name": "rock",
+    "width": 1536,
+    "height": 1024,
+    "filter": "Bilinear",
+    "compression": "Uncompressed",
+    "beforeBounds": "Center: (-0.03, 3.05, 0.00), Extents: (7.69, 5.12, 0.10)",
+    "afterBounds": "Center: (-0.03, 3.05, 0.00), Extents: (7.68, 5.12, 0.10)",
+    "sizeDifference": 0.0150146484
+  },
+  {
+    "name": "grass-tuft",
+    "width": 1536,
+    "height": 1024,
+    "filter": "Bilinear",
+    "compression": "Uncompressed",
+    "beforeBounds": "Center: (-0.03, 2.56, 0.00), Extents: (7.69, 5.12, 0.10)",
+    "afterBounds": "Center: (-0.03, 2.56, 0.00), Extents: (7.68, 5.12, 0.10)",
+    "sizeDifference": 0.0150146484
+  },
+  {
+    "name": "white-flowers",
+    "width": 1536,
+    "height": 1024,
+    "filter": "Bilinear",
+    "compression": "Uncompressed",
+    "beforeBounds": "Center: (-0.01, 3.29, 0.00), Extents: (7.69, 5.12, 0.10)",
+    "afterBounds": "Center: (-0.01, 3.29, 0.00), Extents: (7.68, 5.12, 0.10)",
+    "sizeDifference": 0.0150146484
+  },
+  {
+    "name": "bush",
+    "width": 1536,
+    "height": 1024,
+    "filter": "Bilinear",
+    "compression": "Uncompressed",
+    "beforeBounds": "Center: (-0.03, 3.33, 0.00), Extents: (7.69, 5.12, 0.10)",
+    "afterBounds": "Center: (-0.03, 3.33, 0.00), Extents: (7.68, 5.12, 0.10)",
+    "sizeDifference": 0.0150146484
+  },
+  {
+    "name": "pond-cluster",
+    "width": 1536,
+    "height": 1024,
+    "filter": "Bilinear",
+    "compression": "Uncompressed",
+    "beforeBounds": "Center: (-0.09, -0.08, 0.00), Extents: (7.68, 5.12, 0.10)",
+    "afterBounds": "Center: (-0.09, -0.08, 0.00), Extents: (7.68, 5.12, 0.10)",
+    "sizeDifference": 0.00499916077
+  }
+]

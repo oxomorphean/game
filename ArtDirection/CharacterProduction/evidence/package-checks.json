@@ -1,0 +1,35 @@
+{
+  "checked_at": "2026-10-13T09:55:40.926211+07:00",
+  "scope": "static source package only",
+  "baseline_unchanged": {
+    "ArtDirection/HeroProduction2D/hero-three-quarter.kra": true,
+    "Assets/_Project/Art/HeroProduction2D/hero-three-quarter.psd": true,
+    "Assets/_Project/Content/Scenes/HeroProductionTrial.unity": true
+  },
+  "kra": {
+    "character-template.kra": {
+      "archive_valid": true,
+      "character_slot_groups": 19,
+      "sha256": "012e7cf9e5363612564c7cea0465e6c599ed45d810951caceb94a1e571cb599f"
+    },
+    "experiments/A/A.kra": {
+      "archive_valid": true,
+      "character_slot_groups": 18,
+      "sha256": "907534ff152549637c1b444cd1d9a256fe3a7d4d082e3f0df4d0922bfc63d8a6"
+    },
+    "experiments/B/B.kra": {
+      "archive_valid": true,
+      "character_slot_groups": 17,
+      "sha256": "83914514b7c8f57f2a1e897801f4e280b48c54aacd59d99e56b522716ac53ea2"
+    }
+  },
+  "python_syntax": "PASS",
+  "json_parse": "PASS",
+  "local_markdown_links_checked": 36,
+  "psd_dimensions": [
+    1024,
+    1024
+  ],
+  "unity_animation": "NOT TESTED",
+  "art_acceptance": "See RESULTS.md; neither sample production-ready"
+}

@@ -1,0 +1,54 @@
+{
+  "body_id": "NGUTHU_CHIBI_34_V1_CANDIDATE",
+  "view_id": "three_quarter_right",
+  "variant_id": "static_trial_B",
+  "source_version": "trial-2026-10-13",
+  "status": "NOT APPROVED FOR PRODUCTION",
+  "canvas": [
+    1024,
+    1024
+  ],
+  "coordinates": "shared full canvas; x right, y down",
+  "source": "B.kra",
+  "source_saved_at": "2026-10-13T09:30:27.193656+07:00",
+  "exports": {
+    "B.psd": {
+      "exported_at": "2026-10-13T09:38:20.648343+07:00",
+      "sha256": "879dc0f73492d33f8fc37603ef18cc6f09af8cf15390477784e9a366f78d3694"
+    },
+    "B.png": {
+      "exported_at": "2026-10-13T09:38:18.006232+07:00",
+      "sha256": "f3ae9c49609c193397f76cf0fe440939df694a53ce1f7b4d2d3b39c82d94bd63"
+    }
+  },
+  "slots": [
+    "Hair_Back",
+    "Boot_Back",
+    "Boot_Front",
+    "Leg_Back",
+    "Leg_Front",
+    "Arm_Back",
+    "Torso",
+    "Sleeve_Back",
+    "Coat",
+    "Arm_Front",
+    "Sleeve_Front",
+    "Cloth_Details",
+    "Head",
+    "Eyes",
+    "Mouth",
+    "Hair_Front",
+    "Hair_Accessory"
+  ],
+  "anchor_file": "../../anchors.json",
+  "anchor_status": "candidate A measurements; not validated bind pivots for either sample",
+  "validated_poses": [],
+  "psd_roundtrip": {
+    "opaque_rgb_max_difference": 0,
+    "alpha_max_difference": 0,
+    "over_black_gray_white_max_difference": 0,
+    "pixels_over_2_levels": 0,
+    "status": "PASS"
+  },
+  "known_limits": "See source-method.json and ../../RESULTS.md"
+}

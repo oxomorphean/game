@@ -1,0 +1,22 @@
+{
+    "passed": 16,
+    "failed": 0,
+    "cases": [
+        "PASS V1 upgrades to V3 preserving progress custom food and old equipment",
+        "PASS V1 invalid old item counts remain invalid after upgrade",
+        "PASS V2 upgrades to V3 preserving progress custom food and old equipment",
+        "PASS V2 invalid old item counts remain invalid after upgrade",
+        "PASS V2 drops keep amounts expiry and trip markers through migration",
+        "PASS V3 preserves work orders gear effects currencies and claimed rewards in round trip",
+        "PASS V3 missing required workshop fields refuses silent recreation",
+        "PASS V3 incomplete work-order and progression objects cannot silently reset",
+        "PASS Highest profession speed can persist the shortest configurable recipe",
+        "PASS Future and mismatched save versions are rejected",
+        "PASS Negative currency duplicate rewards and unknown equipment are rejected",
+        "PASS Wrong effect targets or duplicate active effects are rejected",
+        "PASS Unknown job outputs negative timers and duplicate profession jobs are rejected",
+        "PASS V3 loader retains completed jobs without auto granting output or experience",
+        "PASS New content rejects missing mandatory IDs and invalid buff strength",
+        "PASS Encoder refuses invalid live state before serializing"
+    ]
+}

@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" stroke-linecap="round" stroke-linejoin="round"><g id="Hand_back" data-bone="hand_back"><path id="Hand_back__back-hand" d="M 680 673 C 693 676 704 691 707 704 Q 711 719 704 722 Q 697 720 695 709 L 692 700 Q 690 698 688 702 L 691 716 Q 685 726 679 716 L 674 700 L 664 691 Z" fill="#f5c8a5" stroke="#222c40" stroke-width="5" />
+<path id="Hand_back__back-hand-shadow" d="M 686 683 Q 695 689 699 702 L 702 717 Q 698 716 697 706 L 691 696 Q 685 693 681 698 L 675 692 Z" fill="#da9b85" stroke="none" />
+<path id="Hand_back__back-hand-thumb" d="M 687 700 L 682 693" fill="none" stroke="#af746b" stroke-width="2.2" />
+</g></svg>

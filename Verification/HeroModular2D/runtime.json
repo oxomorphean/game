@@ -1,0 +1,122 @@
+{
+  "passed": 29,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "The preview starts covered in the separate basic outfit",
+      "passed": true
+    },
+    {
+      "name": "All 25 body and garment parts use the shared native skeleton",
+      "passed": true
+    },
+    {
+      "name": "Bare hands and feet are body parts, separate from sleeves and boots",
+      "passed": true
+    },
+    {
+      "name": "Visible body and garment skins produce actual deformed vertices",
+      "passed": true
+    },
+    {
+      "name": "Every preview button survived scene serialization",
+      "passed": true
+    },
+    {
+      "name": "The underlying leg mesh changes during running",
+      "passed": true
+    },
+    {
+      "name": "Basic shorts deform with the running leg, without repainting the body",
+      "passed": true
+    },
+    {
+      "name": "Hair and coat buttons replace their separate artwork",
+      "passed": true
+    },
+    {
+      "name": "Changing clothes preserves the head and running pose",
+      "passed": true
+    },
+    {
+      "name": "New sleeve variants still deform on the same arm bones",
+      "passed": true
+    },
+    {
+      "name": "Removing the outer outfit shows all basic clothes over the intact body",
+      "passed": true
+    },
+    {
+      "name": "Putting garments on does not reset the animated body mesh",
+      "passed": true
+    },
+    {
+      "name": "The outer outfit replaces all basic layers, without baking clothes onto skin",
+      "passed": true
+    },
+    {
+      "name": "Jade and crimson outfits swap coat and sleeve sprites while deforming on arm bones",
+      "passed": true
+    },
+    {
+      "name": "Azure greatsword button swaps weapon sprite and shadow",
+      "passed": true
+    },
+    {
+      "name": "Crimson flame sword button selects weapon style 2",
+      "passed": true
+    },
+    {
+      "name": "All five 2D weapon buttons cycle cleanly and restore the short sword",
+      "passed": true
+    },
+    {
+      "name": "Strike swings the sword through a different impact pose",
+      "passed": true
+    },
+    {
+      "name": "Animation never changes the actor foot position",
+      "passed": true
+    },
+    {
+      "name": "Appearance is independent per actor and leaves shared sources unchanged",
+      "passed": true
+    },
+    {
+      "name": "Real held keyboard input moves and selects running",
+      "passed": true
+    },
+    {
+      "name": "Moving left and right flips FacingSign and horizontal scale",
+      "passed": true
+    },
+    {
+      "name": "Releasing movement returns to idle",
+      "passed": true
+    },
+    {
+      "name": "Meadow arena loads obstacles and blocks movement into rock center (-7.8, -0.7)",
+      "passed": true
+    },
+    {
+      "name": "Real J input starts a finite strike and updates its label",
+      "passed": true
+    },
+    {
+      "name": "The strike ends and returns to idle",
+      "passed": true
+    },
+    {
+      "name": "Eye controls act independently of clothing",
+      "passed": true
+    },
+    {
+      "name": "The running preview button uses the same body animation",
+      "passed": true
+    },
+    {
+      "name": "Normal zoom keeps the entire view inside the meadow",
+      "passed": true
+    }
+  ]
+}

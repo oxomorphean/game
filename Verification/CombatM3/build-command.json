@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "command": "command run_script",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "AgentScripts/CombatBuild.cs",
+      "entry": "CombatBuild.Run",
+      "timeout_ms": "300000"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 554,
+      "executeMs": 48939,
+      "assemblyName": "PipelineRunScript_CombatBuild_ebebde5a316341e7bb84be5d7c9a6ca7",
+      "success": true,
+      "result": "{\"result\":\"Succeeded\",\"errors\":0,\"warnings\":4,\"bytes\":101965504,\"seconds\":48.891842}"
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "/Users/nguyenhoangdacdat/dev/nguthu-unity-demo"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

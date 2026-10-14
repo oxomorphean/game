@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Linh viên anh đào · Huyền Giáp Quy</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f0e6cf; color: #35354b; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    main { width: min(1152px, 96vw); margin: 20px auto; }
+    header { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 14px; }
+    .eyebrow { color: #716b74; font-size: 12px; letter-spacing: 1px; }
+    h1 { margin: 5px 0 0; font-size: 26px; font-weight: 650; }
+    button { border: 2px solid #7e654e; background: #e8d3a5; color: #3c3547; border-radius: 4px; padding: 10px 16px; font: inherit; cursor: pointer; }
+    button:disabled { opacity: .45; cursor: default; }
+    .viewport { position: relative; width: 100%; aspect-ratio: 3 / 2; border: 0; overflow: hidden; background: #526b65; }
+    canvas { width: 100%; height: 100%; display: block; outline: none; touch-action: none; image-rendering: pixelated; }
+    #loading { position: absolute; inset: 0; display: grid; place-content: center; gap: 14px; text-align: center; background: #e8ddb6; }
+    progress { width: min(260px, 70vw); height: 8px; accent-color: #4c8063; }
+    .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; margin: 16px 2px; font-size: 14px; color: #605b67; }
+    kbd { font: inherit; font-size: 12px; background: #fff9e9; border: 1px solid #b9a382; border-bottom-width: 2px; border-radius: 3px; padding: 3px 6px; color: #41405d; }
+    @media (max-width: 640px) { main { margin-top: 16px; } h1 { font-size: 22px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div><div class="eyebrow">Linh Thú Ký · mẫu mỹ thuật</div><h1>Linh viên anh đào</h1></div>
+    <button id="reset" disabled>Về điểm xuất phát</button>
+  </header>
+  <div class="viewport">
+    <canvas id="game" tabindex="0" aria-label="Sân mẫu Huyền Giáp Quy. Dùng WASD, phím mũi tên hoặc bấm xuống sân để di chuyển."></canvas>
+    <div id="loading"><span id="loading-text">Đang mở sân mẫu…</span><progress id="progress" value="0" max="1"></progress></div>
+  </div>
+  <div class="controls">
+    <span><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> hoặc phím mũi tên</span>
+    <span>Bấm xuống sân để đi tới</span>
+    <span><kbd>R</kbd> về điểm xuất phát</span>
+  </div>
+</main>
+<script>
+  const canvas = document.querySelector('#game');
+  const reset = document.querySelector('#reset');
+  const progress = document.querySelector('#progress');
+  let game;
+  const loader = document.createElement('script');
+  loader.src = 'Build/__LOADER__';
+  loader.onload = () => createUnityInstance(canvas, {
+    dataUrl: 'Build/__DATA__', frameworkUrl: 'Build/__FRAMEWORK__', codeUrl: 'Build/__WASM__',
+    streamingAssetsUrl: 'StreamingAssets', companyName: 'Linh Thu Ky', productName: 'SpiritTurtleGarden', productVersion: '0.7',
+    devicePixelRatio: 1
+  }, value => { progress.value = value; }).then(instance => {
+    game = instance;
+    document.querySelector('#loading').remove();
+    reset.disabled = false;
+    canvas.focus();
+  }).catch(showError);
+  loader.onerror = () => showError('Không tải được sân mẫu. Hãy tải lại trang.');
+  document.body.append(loader);
+  function showError(error) {
+    document.querySelector('#loading-text').textContent = String(error);
+    progress.hidden = true;
+  }
+  reset.addEventListener('click', () => { game.SendMessage('Pet', 'ResetPet'); canvas.focus(); });
+  canvas.addEventListener('pointerdown', () => canvas.focus());
+  canvas.addEventListener('keydown', event => {
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(event.key)) event.preventDefault();
+  });
+</script>
+</body>
+</html>

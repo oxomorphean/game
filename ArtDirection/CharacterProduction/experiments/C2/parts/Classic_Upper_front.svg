@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" stroke-linecap="round" stroke-linejoin="round"><g id="Classic_Upper_front" data-bone="upper_front"><path id="Classic_Upper_front__front-shoulder" d="M 481 544 C 459 530 441 537 426 554 L 405 584 L 415 595 Q 436 591 456 600 L 478 620 Q 491 600 487 578 Z" fill="#f5ebd1" stroke="#222c40" stroke-width="6" />
+<path id="Classic_Upper_front__shoulder-shadow" d="M 478 551 Q 478 578 486 594 L 478 610 Q 467 596 451 591 Q 467 573 466 555 Z" fill="#b7b8ae" stroke="none" />
+<path id="Classic_Upper_front__shoulder-light" d="M 440 548 Q 457 537 471 549 Q 462 561 459 576 Q 442 566 424 582 Q 431 558 440 548 Z" fill="#fffcf2" stroke="none" />
+<path id="Classic_Upper_front__shoulder-gold" d="M 411 581 Q 443 579 477 605" fill="none" stroke="#cba45f" stroke-width="5" />
+</g></svg>

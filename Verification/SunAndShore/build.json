@@ -1,0 +1,14 @@
+{
+  "result": "Succeeded",
+  "errors": 0,
+  "warnings": 5,
+  "bytes": 105486083,
+  "seconds": 54.384752,
+  "messages": [
+    "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds.",
+    "Shader warning in 'TextMeshPro/Mobile/Distance Field': #pragma enable_d3d11_debug_symbols has been deprecated, instead please use #pragma enable_debug_symbols at line 84",
+    "/Users/nguyenhoangdacdat/dev/nguthu-unity-demo/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TMP_TextParsingUtilities::.cctor() - Method was given it's own cpp file because it is large and costly to compile",
+    "/Users/nguyenhoangdacdat/dev/nguthu-unity-demo/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshPro::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile",
+    "/Users/nguyenhoangdacdat/dev/nguthu-unity-demo/Library/Bee/artifacts/WebGL/il2cppOutput/cpp: [Unity.TextMeshPro] - System.Void TMPro.TextMeshProUGUI::GenerateTextMesh() - Method was given it's own cpp file because it is large and costly to compile"
+  ]
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "variant": "baseline",
+    "hour": 8.0,
+    "area": 47466,
+    "width": 477,
+    "horizontalBottomRun": 56
+  },
+  {
+    "variant": "baseline",
+    "hour": 11.5,
+    "area": 35003,
+    "width": 436,
+    "horizontalBottomRun": 20
+  },
+  {
+    "variant": "baseline",
+    "hour": 12.0,
+    "area": 34116,
+    "width": 428,
+    "horizontalBottomRun": 17
+  },
+  {
+    "variant": "baseline",
+    "hour": 16.0,
+    "area": 46221,
+    "width": 467,
+    "horizontalBottomRun": 56
+  },
+  {
+    "variant": "no-cutoff",
+    "hour": 8.0,
+    "area": 48241,
+    "width": 477,
+    "horizontalBottomRun": 22
+  },
+  {
+    "variant": "no-cutoff",
+    "hour": 11.5,
+    "area": 35003,
+    "width": 436,
+    "horizontalBottomRun": 20
+  },
+  {
+    "variant": "no-cutoff",
+    "hour": 12.0,
+    "area": 34116,
+    "width": 428,
+    "horizontalBottomRun": 17
+  },
+  {
+    "variant": "no-cutoff",
+    "hour": 16.0,
+    "area": 46995,
+    "width": 467,
+    "horizontalBottomRun": 12
+  },
+  {
+    "variant": "short-contact",
+    "hour": 8.0,
+    "area": 50603,
+    "width": 479,
+    "horizontalBottomRun": 15
+  },
+  {
+    "variant": "short-contact",
+    "hour": 11.5,
+    "area": 48462,
+    "width": 435,
+    "horizontalBottomRun": 31
+  },
+  {
+    "variant": "short-contact",
+    "hour": 12.0,
+    "area": 48370,
+    "width": 432,
+    "horizontalBottomRun": 24
+  },
+  {
+    "variant": "short-contact",
+    "hour": 16.0,
+    "area": 49284,
+    "width": 467,
+    "horizontalBottomRun": 25
+  },
+  {
+    "variant": "medium-contact",
+    "hour": 8.0,
+    "area": 50151,
+    "width": 479,
+    "horizontalBottomRun": 15
+  },
+  {
+    "variant": "medium-contact",
+    "hour": 11.5,
+    "area": 43054,
+    "width": 435,
+    "horizontalBottomRun": 22
+  },
+  {
+    "variant": "medium-contact",
+    "hour": 12.0,
+    "area": 42528,
+    "width": 432,
+    "horizontalBottomRun": 14
+  },
+  {
+    "variant": "medium-contact",
+    "hour": 16.0,
+    "area": 48841,
+    "width": 467,
+    "horizontalBottomRun": 21
+  }
+]
