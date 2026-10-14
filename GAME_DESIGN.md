@@ -10,6 +10,8 @@ Chỉ thị này thay chế độ chỉ xem mỹ thuật ngày 12/10 và pipelin
 
 ### Tinh chỉnh tương tác và hiển thị — chỉ thị 14/10/2026
 
+- Chỉ thị bóng/tỷ lệ: người/thú dùng bóng elip mềm; bóng chiếu chỉ ở prop lớn, ngắn và mờ biên. Mọi xương thân/tay/chân scale 1; đầu giảm đồng đều 78%. Tab chỉ đổi classic/jade, basic là lớp lót; Mộc Nhân mặc classic màu gỗ. Linh Điền đặt thẳng ở bãi cỏ cạnh lều, thanh phím tắt có nền mờ trên hotbar.
+
 - Phản hồi nghiệm thu: bỏ dáng co chân khi chạy; giữ hông gần độ cao Idle và gối không cuộn lên thân. Nhãn tương tác giữ nguyên tên Linh dược, Trứng… và nằm trên từng vật thể. Hồ hiện “Thả câu” phía trên hồ khi người chơi ở gần; cho phép câu quanh toàn bộ bờ hồ có thể đứng được, không giới hạn một điểm. Chữ trạng thái/sát thương gắn nhân vật hiện tại/về sau nằm trên đầu để không che animation.
 
 - Bổ sung chỉ thị tỷ lệ / stride / động tác đời sống: HeroBase đầu 78%, vai/tay thư thái và mặc đạo bào mặc định. X thiền, F hoặc E tại bờ hồ để câu cá; di chuyển/chiến đấu ngắt hoạt động. Thông số mẫu: tốc độ Tu sĩ 2.8, hồi Qi khi thiền ×3, 1 Tu vi/giây; cá cắn sau 4 giây, nhận 1 Linh Ngư khi giật cần. Chưa làm đặt Linh Điền. Các giá trị này là tuning triển khai, chưa là cân bằng sản phẩm.

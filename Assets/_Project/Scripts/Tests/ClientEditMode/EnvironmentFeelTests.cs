@@ -90,9 +90,18 @@ namespace LinhThu.Tests.ClientEditMode
                 Assert.That(deflection, Is.GreaterThan(.1f));
                 Assert.That(root.transform.position, Is.EqualTo(rootPosition));
                 Assert.That(actor.Transform.Position, Is.EqualTo(actorPosition));
-                actor.SetStaggered(true);
+                if (companion)
+                {
+                    var beast = world.Player.Beasts.All.Single();
+                    Assert.That(world.Execute(new RecallCommand(world.Player.ActorId, beast.Id)).Succeeded, Is.True);
+                    Assert.That(world.Actors.ContainsKey(actor.Id), Is.False);
+                    Assert.That(actor.Transform.CurrentVelocity.Length, Is.GreaterThan(0), "The retired actor still has velocity; foliage must read only the live roster.");
+                }
+                else actor.SetStaggered(true);
                 for (int i = 0; i < 20; i++) foliage.Present(.1f, i * .1f);
                 Assert.That(Mathf.Abs(foliage.ContactAngle), Is.LessThan(deflection * .01f));
+                foliage.Bind(World());
+                Assert.That(foliage.ContactAngle, Is.EqualTo(0), "Loading a new world must release the old roster and contact pose.");
                 foliage.windBend = 2;
                 foliage.Present(.1f, 2);
                 var first = foliage.visual.localRotation;

@@ -25,6 +25,8 @@ namespace LinhThu.Client.Actors
         public Slot[] slots = Array.Empty<Slot>();
         public OutfitConfigSO defaultOutfit;
         public OutfitConfigSO[] outfits = Array.Empty<OutfitConfigSO>();
+        public Color materialTint = Color.white;
+        [Range(0, 1)] public float monochromeTint;
         [Min(.01f)] public float hitFlashDuration = .13f;
         public Color hitFlashColor = new Color(1, .95f, .8f, 1);
         public OutfitConfigSO CurrentOutfit { get; private set; }
@@ -126,6 +128,8 @@ namespace LinhThu.Client.Actors
                 properties.Clear();
                 slot.renderer.GetPropertyBlock(properties);
                 properties.SetColor(Tint, colors.TryGetValue(slot.id, out var tint) ? tint : Color.white);
+                properties.SetColor("_MaterialTint", materialTint);
+                properties.SetFloat("_MonochromeTint", monochromeTint);
                 properties.SetColor(FlashColor, hitFlashColor);
                 properties.SetFloat(Flash, FlashAmount);
                 slot.renderer.SetPropertyBlock(properties);

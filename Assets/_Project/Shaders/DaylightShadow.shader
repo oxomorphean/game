@@ -19,7 +19,7 @@ Shader "LinhThu/Daylight Shadow"
         Pass
         {
             Name "SunShadow"
-            // One sun: overlapping body parts and casters cover the ground once.
+            // One sun: overlapping large prop casters cover the ground once.
             Stencil { Ref 64 ReadMask 64 WriteMask 64 Comp NotEqual Pass Replace }
             CGPROGRAM
             #pragma vertex SunShadowVert

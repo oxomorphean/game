@@ -232,10 +232,11 @@ namespace LinhThu.Client.Environment
             float horizontal = -Mathf.Cos(progress * Mathf.PI);
             SunHorizontal = horizontal;
             SunAltitude = altitude;
-            ShadowDirection = Mathf.Abs(horizontal) < .001f ? Vector2.zero : new Vector2(-Mathf.Sign(horizontal), 0);
-            ShadowLength = Mathf.Min(1.25f, .5f * Mathf.Abs(horizontal) / Mathf.Max(.25f, altitude));
+            // The horizontal component crosses noon smoothly instead of flipping a full-length shadow.
+            ShadowDirection = new Vector2(-horizontal * .75f, 0);
+            ShadowLength = Mathf.Lerp(.35f, .85f, 1 - altitude);
             Overhead = Mathf.Pow(altitude, 8);
-            ShadowOpacity = Mathf.Lerp(.30f, .20f, altitude);
+            ShadowOpacity = Mathf.Lerp(.26f, .20f, altitude);
             GoldenHour = Mathf.SmoothStep(0, 1, Mathf.InverseLerp(14, 18, hour));
             float dawn = 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(6, 9, hour));
             var morning = Color.Lerp(new Color(1, 1, .97f), new Color(1.04f, .96f, .83f), dawn);

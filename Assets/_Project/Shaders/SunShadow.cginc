@@ -18,11 +18,21 @@ struct SunShadowVaryings
     float4 vertex : SV_POSITION;
     float2 uv : TEXCOORD0;
     float height : TEXCOORD1;
+    float2 borderUV : TEXCOORD2;
     fixed4 color : COLOR;
     UNITY_VERTEX_OUTPUT_STEREO
 };
 
-SunShadowVaryings SunShadowVert(appdata_t input)
+struct SunShadowInput
+{
+    float4 vertex : POSITION;
+    float4 color : COLOR;
+    float2 texcoord : TEXCOORD0;
+    float2 borderUV : TEXCOORD1;
+    UNITY_VERTEX_INPUT_INSTANCE_ID
+};
+
+SunShadowVaryings SunShadowVert(SunShadowInput input)
 {
     SunShadowVaryings output;
     UNITY_SETUP_INSTANCE_ID(input);
@@ -49,6 +59,7 @@ SunShadowVaryings SunShadowVert(appdata_t input)
     world.xy = foot + float2(offset.x, groundY) + _SunShadow.xy * elevation * _SunShadow.z;
     output.vertex = mul(UNITY_MATRIX_VP, world);
     output.uv = input.texcoord;
+    output.borderUV = input.borderUV;
     output.height = offset.y / referenceHeight;
     output.color = input.color * _Color * _RendererColor;
     return output;
@@ -71,9 +82,12 @@ fixed4 SunShadowFrag(SunShadowVaryings input) : SV_Target
         alpha = coverage * input.color.a;
     }
     alpha = lerp(alpha, 1, trunk);
-    clip(lerp(input.height - cutoff, 1, trunk));
-    clip(alpha - .12);
-    alpha = _SunShadow.w;
+    float2 border = smoothstep(0, .08, input.borderUV) * (1 - smoothstep(.92, 1, input.borderUV));
+    float heightFade = 1 - smoothstep(.72, 1, input.borderUV.y);
+    float baseFade = lerp(smoothstep(cutoff, cutoff + .08, input.height), 1, trunk);
+    alpha *= border.x * border.y * heightFade * baseFade * clamp(_SunShadow.w, .18, .28);
+    // Preserve coverage and fade instead of replacing every covered texel with opaque shadow alpha.
+    clip(alpha - .001);
     return fixed4(_DaylightShade.rgb * alpha, alpha);
 }
 #endif

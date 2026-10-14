@@ -70,8 +70,12 @@ MonoBehaviour:
   dashDuration: 0.2
   dashSpeedMultiplier: 4
   dashCooldown: 1
-  defaultOutfit: {fileID: 11400000, guid: c956d44a54ac24961973dde3b38683bd, type: 2}
+  defaultOutfit: {fileID: 11400000, guid: 428f85ebd92ff4e7eb23efcd3a21148e, type: 2}
   outfits:
   - {fileID: 11400000, guid: 428f85ebd92ff4e7eb23efcd3a21148e, type: 2}
   - {fileID: 11400000, guid: bf24f6e97650e4ee09aeafbdbabbacd0, type: 2}
   - {fileID: 11400000, guid: c956d44a54ac24961973dde3b38683bd, type: 2}
+  supportsLifeActivities: 0
+  meditationQiMultiplier: 3
+  meditationTickSeconds: 1
+  meditationExperience: 1

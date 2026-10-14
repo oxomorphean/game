@@ -47,6 +47,11 @@ namespace LinhThu.Client.Actors
         public void Present(float deltaTime)
         {
             if (view == null || view.Entity == null) return;
+            if (view.Entity.State == ActorActionState.Idle || view.Entity.State == ActorActionState.Moving)
+            {
+                ResetPose();
+                return;
+            }
             foreach (var pose in poses)
             {
                 pose.weight = Mathf.MoveTowards(pose.weight, view.Entity.State == pose.state ? 1 : 0, Mathf.Max(0, deltaTime) / Mathf.Max(.01f, transitionSeconds));

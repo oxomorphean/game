@@ -35,6 +35,12 @@ namespace LinhThu.Tests.ClientEditMode
                         var head = visual.Find("root/pelvis/chest/head");
                         Assert.That(head.localScale.x, Is.EqualTo(.78f).Within(.0001f));
                         Assert.That(head.localScale.y, Is.EqualTo(.78f).Within(.0001f));
+                        foreach (var bone in visual.GetComponentsInChildren<Transform>())
+                        {
+                            Assert.That(Mathf.Abs(bone.localScale.x), Is.EqualTo(Mathf.Abs(bone.localScale.y)).Within(.0001f), bone.name + " must not shear during rotation.");
+                            if (bone != visual && bone != head)
+                                Assert.That(bone.localScale, Is.EqualTo(Vector3.one), bone.name);
+                        }
                         foreach (string slot in new[] { "head", "eyes", "mouth", "hair-front", "hair-back", "hair-ornament" })
                             Assert.That(rig.slots.Single(s => s.id == slot).renderer.transform.IsChildOf(head), Is.True, slot);
                         Assert.That(visual.Find("root/pelvis/chest/upper_front").localPosition.x, Is.GreaterThan(-.30f));
@@ -128,7 +134,7 @@ namespace LinhThu.Tests.ClientEditMode
                 Assert.That(tools.meditationParticles.isPlaying, Is.True);
                 Assert.That(tools.fishingVisuals.activeSelf, Is.False);
                 game.World.Execute(new MoveCommand(actor.Id, new WorldPoint(1, 0)));
-                pose.RestoreAnimatedPose(); pose.Present(.3f); tools.Present(.3f);
+                pose.RestoreAnimatedPose(); pose.Present(.001f); tools.Present(.3f);
                 Assert.That(pelvis.localPosition.y, Is.EqualTo(standingY).Within(.001f));
                 var spot = game.World.Nodes.Values.Single(n => n.Spec.Kind == WorldNodeKind.FishingSpot);
                 game.World.Motor.Displace(actor.Transform, new WorldPoint(0, -4.5f) - actor.Transform.Position);

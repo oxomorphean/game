@@ -150,7 +150,6 @@ namespace LinhThu.Tests.ClientEditMode
             game.hud.outfitButton.onClick.Invoke();
             Assert.That(game.playerView.equipment.CurrentOutfit, Is.Not.SameAs(outfit));
             game.hud.outfitButton.onClick.Invoke();
-            game.hud.outfitButton.onClick.Invoke();
             Assert.That(game.playerView.equipment.CurrentOutfit, Is.SameAs(outfit));
             Assert.That(game.World.PlayerActor.Stats.Get(StatId.Defense), Is.EqualTo(defense));
         }
@@ -384,7 +383,10 @@ namespace LinhThu.Tests.ClientEditMode
             {
                 Assert.That(view.equipment.visual.localScale.y, Is.EqualTo(.625f));
                 Assert.That(view.Entity.Transform.CollisionRadius, Is.EqualTo(.22f * .625f).Within(.00001f));
-                Assert.That(view.GetComponent<LinhThu.Client.Actors.ActorShadow>().referenceHeight, Is.EqualTo(2.6f * .625f).Within(.00001f));
+                var shadow = view.GetComponent<LinhThu.Client.Actors.GroundContactShadow>();
+                Assert.That(shadow, Is.Not.Null);
+                Assert.That(shadow.size, Is.EqualTo(new Vector2(.6f, .24f)));
+                Assert.That(shadow.shadow.transform.parent, Is.EqualTo(view.transform));
             }
             var controller = game.playerView.equipment.animator.runtimeAnimatorController;
             for (int i = 0; i < 3; i++)

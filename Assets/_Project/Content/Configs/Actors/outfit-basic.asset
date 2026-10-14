@@ -16,6 +16,7 @@ MonoBehaviour:
   displayName: "\u0110\u1EA1o ph\u1EE5c Nh\u1EADp M\xF4n"
   description: 
   appearanceId: basic
+  includeInRobeCycle: 0
   defaultHairId: silver
   defaultEyeId: jade
   hairVariants:

@@ -1,6 +1,6 @@
 # Quy tắc mỹ thuật — Tu Tiên góc nhìn cao
 
-Chỉ thị 14/10/2026 về tỷ lệ và động tác thay chuẩn chibi đầu lớn: HeroBase giữ góc 3/4, cụm đầu bằng 78% kích thước cũ, vai thu hẹp, tay thả gần thân, thân/chân kéo dài nhẹ. Tu sĩ khởi tạo mặc đạo bào classic; basic chỉ là lựa chọn thử thay đồ. Tỷ lệ toàn rig 0.625 giữ nguyên. Thiền/câu cá dùng chính rig, pose mượt và đạo cụ neo bàn tay; nghiệm thu thị giác trong Editor.
+Chỉ thị 14/10/2026 về tỷ lệ và động tác thay chuẩn chibi đầu lớn: HeroBase giữ góc 3/4, cụm đầu bằng 78% kích thước cũ, vai thu hẹp, tay thả gần thân, thân/chân điều chỉnh bằng vị trí khớp, mọi xương thân/tay/chân giữ scale 1 để tránh shear. Tu sĩ khởi tạo mặc đạo bào classic; Tab chỉ đổi classic/jade, basic là lớp lót. Tỷ lệ toàn rig 0.625 giữ nguyên. Thiền/câu cá dùng chính rig, pose mượt và đạo cụ neo bàn tay; nghiệm thu thị giác trong Editor.
 
 Phản hồi sau Play: chạy phải giữ dáng đứng, gối ở dưới hông; không hạ hông sâu hoặc cuộn chân vào thân để ép khớp stride. Kiểm cả silhouette của trọn chu kỳ và sai lệch chân trụ. Nhãn tương tác nằm hoàn toàn trên vật thể và giữ tên item; hồ hiện “Thả câu” phía trên cụm hồ khi người chơi tới gần từ bất kỳ phía nào. Chữ trạng thái/sát thương gắn nhân vật nằm trên đầu nhân vật tương ứng, không che thân, tay hoặc animation. HUD cố định có vùng riêng.
 
@@ -16,7 +16,7 @@ Yêu cầu ngày 07/10/2026: dùng Soul Strike (tham chiếu lịch sử; ảnh 
 - Viền ngoài nhân vật đậm hơn nét bên trong; độ dày thị giác nhất quán giữa các nhân vật. Tô 2–3 mảng sáng tối. Mặt trời ẩn mọc từ bên trái (đông, −X), qua đỉnh đầu rồi lặn về bên phải (tây, +X): bóng sáng ngả phải, trưa nằm quanh gốc theo hình tán, chiều ngả trái và dài hơn. Bóng lấy silhouette vật thể, nối chân cây/đá; bóng đá giữ bề rộng theo khối đá, cây và đá không dùng bóng elip phụ. Không vẽ mặt trời trên màn hình; thanh thời gian hiển thị giờ ban ngày. Hoàng hôn có ánh vàng; tạm chưa làm buổi tối. Nét nhân vật rõ hơn nền. Không pixel, không mô hình bóng nhựa, không lông/tóc tả thực.
 - Nền là mảng cỏ xanh rộng yên mắt, chỉ thỉnh thoảng có mảng xanh đậm/nhạt nhẹ; không rắc nét vụn, texture nham nhở hoặc mảng màu phản chiếu/lặp rõ. Cỏ tại mép đường phải khớp nền. Đá, cây, bụi cỏ tập trung ít cụm; phần giữa để trống cho nhân vật và chiến đấu.
 - Gần trưa, bóng đá bám đáy silhouette, không có dải bóng rời dưới đá. Tán trên cao giữ dáng các cụm hoa/lá; thân nối về chân bằng khối hẹp, không chiếu rễ nằm trên đất thành vệt ngang. Bóng thân hòa vào tán, không đậm hơn vì lưới tự chồng lớp. Xem ảnh scene ở 11:30 cùng sáng/trưa/chiều; số đo diện tích và đường biên không thay cho nghiệm thu hình ảnh.
-- Nhân vật và môi trường dùng chung phép chiếu `SunShadow.cginc`. Thông số hình khối/điểm tiếp đất nằm trên prefab hoặc definition; không thêm công thức runtime theo tên asset. Các lớp tóc, áo, người và vũ khí dùng cùng điểm chân, không cộng dồn độ đậm khi bóng chồng nhau.
+- Người, Mộc Nhân và Linh thú dùng một `GroundContactShadow` elip mềm dưới chân, không chiếu từng mảnh rig. Chỉ prop lớn dùng `SunShadow.cginc`, chiều dài 0.35–0.85 và alpha 0.18–0.28; mép UV cùng phần cao mờ dần, không có đường cắt chữ nhật. Stencil tránh cộng dồn bóng. Mộc Nhân mặc classic với tông gỗ nâu trầm qua MaterialPropertyBlock. Kiểm cảnh 17:50 cùng các giờ sáng/trưa khi sửa bóng.
 - Nắng dùng chung cho nền, cây/cỏ/hoa, đá, nhân vật và mặt nước; sắc ấm chiều tà vẫn giữ màu riêng của từng chất liệu. Hồ có gợn phản quang và điểm lấp lánh thưa, không chạy hiệu ứng lên đá bờ/lá sen. Rễ sát đất không được chiếu thành một bóng rễ rời; contour hồ bám chân bờ thấp, không ôm phần cỏ hay đỉnh đá nhô cao. Kiểm tra bằng chân nhân vật tại bờ và ảnh sáng–11:30–trưa–chiều.
 - Góc nhìn và tỷ lệ phải đồng nhất giữa người, thú, đá và cây. Map rộng nhìn thoáng; tránh cổng lớn hoặc tán cây chắn cả trung tâm.
 - PNG alpha cho người và thú. Ảnh người và quy dùng mipmap/Trilinear khi hiển thị nhỏ trong bản chơi để giảm răng cưa và lốm đốm; sprite môi trường giữ Bilinear hiện có. Texture cỏ/đất lặp của mẫu map chính dùng mipmap/Trilinear. Nền giữ tỷ lệ, không kéo méo nền hoặc nhân vật.
@@ -39,11 +39,11 @@ Thông số thử để duyệt, không phải số đo Soul Strike: góc xoay n
 
 ## Tài nguyên và nghiệm thu
 
-Nguồn game chuẩn ở `Assets/_Project/Art/Characters/HeroBase/` và `Art/Environment/Meadow/`; prefab rig ở `Content/Prefabs/Actors/HeroBase.prefab`, map ở `Content/Prefabs/Environment/MeadowMainMap.prefab`. Giữ xương, pivot, clip Idle/Run, nền tiling và đường mesh hiện có. Linh thú dùng cùng ActorEntity, hình có thể nhiều mảnh hoặc sprite đơn với chuyển động phụ và SunShadowMesh.
+Nguồn game chuẩn ở `Assets/_Project/Art/Characters/HeroBase/` và `Art/Environment/Meadow/`; prefab rig ở `Content/Prefabs/Actors/HeroBase.prefab`, map ở `Content/Prefabs/Environment/MeadowMainMap.prefab`. Giữ xương, pivot, clip Idle/Run, nền tiling và đường mesh hiện có. Linh thú dùng cùng ActorEntity, hình có thể nhiều mảnh hoặc sprite đơn với chuyển động phụ và GroundContactShadow.
 
 Master KRA/PSD/SVG và ảnh tham chiếu lịch sử nằm trong backup bền vững ngoài repo; xem [khôi phục](../ROLLBACK.md). ArtDirection chỉ giữ file này. Không đưa master hoặc script export vào Assets.
 
-Chủ dự án mở Unity Editor để xem idle/run, thay ba bộ đồ giữa clip, lật trái/phải, tiếp đất và bóng sáng/trưa/chiều. Compile và EditMode tests xác minh cấu trúc/logic; không chứng minh mỹ thuật đã đạt. Không chụp WebGL/headless tự nghiệm thu.
+Chủ dự án mở Unity Editor để xem idle/run, đổi classic/jade giữa clip, lật trái/phải, tiếp đất và bóng sáng/trưa/chiều. Compile và EditMode tests xác minh cấu trúc/logic; không chứng minh mỹ thuật đã đạt. Không chụp WebGL/headless tự nghiệm thu.
 
 ## UI — yêu cầu chủ dự án 07/10/2026
 

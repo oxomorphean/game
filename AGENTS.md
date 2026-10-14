@@ -42,7 +42,7 @@ Mười thư mục `Core`, `Stats`, `Actors`, `Cultivation`, `Combat`, `Beasts`,
 
 - Nhân vật chuẩn từ HeroC2, chuyển thành `HeroBase`: **một góc 3/4 top-down**, lật trái/phải bằng FlipX/phép phản chiếu chung của toàn rig; không làm tám hướng artwork riêng. Bộ phận đầu, thân, tay/chân/giày chia front/back dùng chung xương, canvas/bind coordinates và điểm chân.
 - `OutfitConfigSO` điều khiển **Sprite Swap theo dữ liệu** trên các slot/xương tương ứng. Đổi đồ giữ `AnimatorController`, thời điểm clip, pivot và rig; không sinh lại animation hoặc reset clip. Cách bật/tắt lớp ở prototype chỉ là trạng thái cũ cần chuyển đổi.
-- Linh thú dùng cùng `ActorEntity`; hình ảnh có thể rig nhiều mảnh hoặc sprite đơn với procedural motion/`SunShadowMesh`. Presentation không sở hữu luật AI/combat.
+- Linh thú dùng cùng `ActorEntity`; hình ảnh có thể rig nhiều mảnh hoặc sprite đơn với procedural motion. Người/thú dùng duy nhất một `GroundContactShadow` elip mềm, không tạo bóng chiếu theo từng mảnh rig. `SunShadowMesh` chỉ dùng cho prop lớn. Presentation không sở hữu luật AI/combat.
 - Map dùng tiling + `MeadowGroundSurface`/`MeadowTerrainPath` hoặc Tilemap; không ghép ảnh nền nguyên mảng. Cây/bụi/đá/hồ/thảo/khoáng/linh điền/trại/cổng là prefab độc lập, pivot tại chân, Y-sorting theo Y; collision chỉ ở phần gốc qua `WorldGeometry`.
 
 ## Guardrails khi hợp nhất
@@ -71,6 +71,7 @@ Mười thư mục `Core`, `Stats`, `Actors`, `Cultivation`, `Combat`, `Beasts`,
 - Giữ thiết kế nhất quán qua asset và animation; đối chiếu đủ checklist trong style guide trước khi báo cáo đạt chuẩn.
 - Ghi rõ asset mới chỉ là mẫu ảnh hay đã nhập/chạy trong Unity. Không suy ra sprite có thể dùng ngay chỉ vì ảnh sinh ra trông đẹp.
 - Không tự đổi hướng mỹ thuật đã chọn. Yêu cầu trực tiếp mới của người dùng được ưu tiên.
+- Xương HeroBase giữ scale (1,1,1); chỉ cụm đầu giảm đồng đều X/Y (0.78), toàn Visual giữ 0.625. Chỉnh tỷ lệ bằng vị trí khớp; Idle/Moving trả quyền góc khớp hoàn toàn cho Animator. Tab chỉ đổi classic/jade; basic là lớp lót. Mộc Nhân dùng classic với tint gỗ qua MPB. Bóng prop dài 0.35–0.85, alpha 0.18–0.28, mép UV/chiều cao phải mờ; kiểm trực tiếp lúc 17:50 khi sửa bóng.
 - Nhãn tương tác giữ tên vật thể (Linh dược, Trứng…), đặt toàn bộ khung chữ phía trên vật thể qua `WorldNodeView.LabelPosition`, không neo lên người chơi. Hồ hiện “Thả câu” phía trên hồ khi tới gần; mọi bờ có thể đứng được đều cho phép câu, kiểm tầm tới mép hồ và vật cản qua Domain. Chữ trạng thái/sát thương gắn nhân vật dùng `ActorView.OverheadPosition`, cập nhật sau animation và không che động tác. Áp dụng cho cả nhãn mới về sau; HUD cố định giữ vùng riêng.
 
 ## Phạm vi dự án

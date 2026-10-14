@@ -16,6 +16,7 @@ MonoBehaviour:
   displayName: "\u0110\u1EA1o b\xE0o Thanh V\xE2n"
   description: 
   appearanceId: classic
+  includeInRobeCycle: 1
   defaultHairId: silver
   defaultEyeId: jade
   hairVariants:

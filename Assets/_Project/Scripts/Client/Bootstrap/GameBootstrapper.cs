@@ -207,7 +207,7 @@ namespace LinhThu.Client.Bootstrap
 
         public DomainResult CycleOutfit()
         {
-            var robes = registry.items.Where(i => i.outfit != null).ToArray();
+            var robes = registry.items.Where(i => i.outfit != null && i.outfit.includeInRobeCycle).ToArray();
             var current = World.Player.Equipment.Slots.TryGetValue(registry.startingOutfit.equipmentSlot, out var equipped) ? equipped.ItemId : null;
             int start = Array.FindIndex(robes, i => i.Id == current);
             for (int i = 1; i <= robes.Length; i++)

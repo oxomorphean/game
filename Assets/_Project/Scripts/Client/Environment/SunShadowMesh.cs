@@ -108,6 +108,10 @@ namespace LinhThu.Client.Environment
                 vertices[gridCount + 1] = foot + new Vector3(width, 0);
                 vertices[gridCount + 2] = foot + new Vector3(-width * .7f, height * settings.center);
                 vertices[gridCount + 3] = foot + new Vector3(width * .7f, height * settings.center);
+                normalized[gridCount] = new Vector2(0, 0);
+                normalized[gridCount + 1] = new Vector2(1, 0);
+                normalized[gridCount + 2] = new Vector2(0, 1);
+                normalized[gridCount + 3] = new Vector2(1, 1);
                 colors[gridCount] = colors[gridCount + 2] = new Color32(0, 0, 0, 0);
                 colors[gridCount + 1] = colors[gridCount + 3] = new Color32(255, 0, 0, 0);
                 triangles[t++] = gridCount;
@@ -121,6 +125,7 @@ namespace LinhThu.Client.Environment
             mesh.Clear();
             mesh.vertices = vertices;
             mesh.colors32 = colors;
+            mesh.uv2 = normalized; // Local sprite UVs; border fade must also work for atlas sub-rects.
             mesh.triangles = triangles;
             mesh.bounds = new Bounds(Vector3.zero, Vector3.one * next.bounds.size.magnitude * 6);
             previousRect = next.rect;

@@ -34,6 +34,8 @@ namespace LinhThu.Client.Configs
     public sealed class OutfitConfigSO : ContentConfigSO
     {
         public string appearanceId;
+        [Tooltip("Exclude base underlayers from the normal robe shortcut.")]
+        public bool includeInRobeCycle = true;
         public string defaultHairId = "ink", defaultEyeId = "amber";
         public HairVariantData[] hairVariants = Array.Empty<HairVariantData>();
         public EyeVariantData[] eyeVariants = Array.Empty<EyeVariantData>();
