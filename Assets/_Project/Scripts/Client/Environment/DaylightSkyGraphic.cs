@@ -51,6 +51,26 @@ namespace LinhThu.Client.Environment
             float end = Mathf.Lerp(left, right, Mathf.Clamp01(Progress));
             var tint = Color.Lerp(new Color(.48f, .85f, .72f), new Color(1, .74f, .39f), Mathf.InverseLerp(.65f, 1, Progress));
             Quad(mesh, left, y, Mathf.Max(left + 1, end), y + 3, tint);
+            Circle(mesh, new Vector2(end, y + 1.5f), 3.5f, new Color32(242, 217, 141, 255));
+        }
+
+        private static void Circle(VertexHelper mesh, Vector2 center, float radius, Color color)
+        {
+            const int segments = 40;
+            int first = mesh.currentVertCount;
+            mesh.AddVert(center, color, Vector2.zero);
+            for (int i = 0; i <= segments; i++)
+            {
+                float angle = i * Mathf.PI * 2 / segments;
+                var direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+                mesh.AddVert(center + direction * (radius - .5f), color, Vector2.zero);
+                mesh.AddVert(center + direction * (radius + .5f), new Color(color.r, color.g, color.b, 0), Vector2.zero);
+                if (i == segments) continue;
+                int a = first + 1 + i * 2;
+                mesh.AddTriangle(first, a, a + 2);
+                mesh.AddTriangle(a, a + 1, a + 2);
+                mesh.AddTriangle(a + 1, a + 3, a + 2);
+            }
         }
 
         private static void Quad(VertexHelper mesh, float left, float bottom, float right, float top, Color color)

@@ -54,7 +54,7 @@ namespace LinhThu.Client.Environment
             ownedMesh.Clear();
             GetComponent<MeshFilter>().sharedMesh = ownedMesh;
             var view = GetComponent<MeshRenderer>();
-            view.sortingOrder = -55;
+            view.sortingOrder = LinhThu.Client.World.WorldRenderOrder.Road;
             view.shadowCastingMode = ShadowCastingMode.Off;
             view.receiveShadows = false;
             if (knots.Length < 2)

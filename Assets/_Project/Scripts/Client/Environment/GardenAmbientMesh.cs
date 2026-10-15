@@ -60,7 +60,7 @@ namespace LinhThu.Client.Environment
             view.enabled = source.enabled;
             view.sortingLayerID = source.sortingLayerID;
             view.sortingOrder = source.sortingOrder + 1;
-            GardenAmbientArt.Draw(vertices, spriteRect, kind, Time.unscaledTime, seed, Color.white);
+            GardenAmbientArt.Draw(vertices, spriteRect, kind, Time.unscaledTime, seed, new Color(1, 1, 1, source.color.a));
             vertices.FillMesh(mesh);
             mesh.RecalculateBounds();
         }

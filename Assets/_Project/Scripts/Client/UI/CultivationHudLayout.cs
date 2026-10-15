@@ -8,13 +8,17 @@ namespace LinhThu.Client.UI
     public sealed class HudSkillView
     {
         public Button Button;
-        public TMP_Text Name, Detail, CooldownText;
+        public TMP_Text Name, Detail, CooldownText, Key;
         public Image Cooldown;
         public void SetCooldown(float remaining, float duration)
         {
-            Cooldown.gameObject.SetActive(remaining > .001f);
+            bool cooling = remaining > 0;
+            Name.gameObject.SetActive(!cooling);
+            Detail.gameObject.SetActive(!cooling);
+            CooldownText.gameObject.SetActive(cooling);
+            Cooldown.gameObject.SetActive(cooling);
             Cooldown.fillAmount = duration > 0 ? Mathf.Clamp01(remaining / duration) : 0;
-            CooldownText.text = remaining > .001f ? $"{remaining:0.0}s" : "";
+            CooldownText.text = cooling ? $"{remaining:0.0}s" : "";
         }
     }
 
@@ -71,8 +75,8 @@ namespace LinhThu.Client.UI
                 var slot = new HudSkillView();
                 slot.Button = Button("Skill" + (i + 1), hotbar, new Vector2(0, 1), new Vector2(i * 96, 0), new Vector2(88, 56), null, 11);
                 var badge = Rect("Key", slot.Button.transform, new Vector2(0, 1), new Vector2(4, -3), new Vector2(i == 3 ? 34 : 16, 14));
-                var badgeImage = badge.gameObject.AddComponent<Image>(); badgeImage.color = new Color(.37f, .62f, .55f, .25f); badgeImage.raycastTarget = false;
-                var key = Text("Label", badge, Vector2.zero, badge.sizeDelta, 9, Gold); key.text = keys[i]; key.alignment = TextAlignmentOptions.Center;
+                var badgeImage = badge.gameObject.AddComponent<UnityEngine.UI.Image>(); badgeImage.color = new Color32(7, 18, 14, 245); badgeImage.raycastTarget = false;
+                var key = Text("Label", badge, Vector2.zero, badge.sizeDelta, 9, new Color32(242, 217, 141, 255)); key.text = keys[i]; key.alignment = TextAlignmentOptions.Center; slot.Key = key;
                 slot.Name = Text("Name", slot.Button.transform, new Vector2(3, -19), new Vector2(82, 18), 11, TextColor); slot.Name.text = names[i]; slot.Name.alignment = TextAlignmentOptions.Center;
                 slot.Detail = Text("Detail", slot.Button.transform, new Vector2(3, -38), new Vector2(82, 14), 10, Gold); slot.Detail.alignment = TextAlignmentOptions.Center;
                 var overlay = Rect("Cooldown", slot.Button.transform, new Vector2(0, 1), new Vector2(3, -3), new Vector2(82, 50));
@@ -80,6 +84,7 @@ namespace LinhThu.Client.UI
                 slot.Cooldown.type = Image.Type.Filled; slot.Cooldown.fillMethod = Image.FillMethod.Vertical;
                 slot.Cooldown.fillOrigin = (int)Image.OriginVertical.Bottom; slot.Cooldown.color = new Color(.015f, .045f, .06f, .78f); slot.Cooldown.raycastTarget = false;
                 slot.CooldownText = Text("Remaining", slot.Button.transform, new Vector2(3, -20), new Vector2(82, 22), 15, Gold); slot.CooldownText.alignment = TextAlignmentOptions.Center;
+                badge.SetAsLastSibling();
                 slot.SetCooldown(0, 1); hud.skills[i] = slot;
                 if (i < 3) { hud.hotbar[i] = slot.Button; hud.hotbarLabels[i] = slot.Detail; }
             }

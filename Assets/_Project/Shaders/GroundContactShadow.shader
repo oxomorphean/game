@@ -1,33 +1,28 @@
 Shader "LinhThu/Ground Contact Shadow"
 {
+    Properties
+    {
+        [PerRendererData] _MainTex ("Radial footprint", 2D) = "white" {}
+        _Color ("Tint", Color) = (1,1,1,1)
+        [HideInInspector] _RendererColor ("RendererColor", Color) = (1,1,1,1)
+        [HideInInspector] _Flip ("Flip", Vector) = (1,1,1,1)
+    }
     SubShader
     {
         Tags { "Queue"="Transparent" "RenderType"="Transparent" "IgnoreProjector"="True" }
         Cull Off Lighting Off ZWrite Off Blend One OneMinusSrcAlpha
         Pass
         {
-            // Shared coverage bit keeps intersecting ground shadows from stacking darkness.
-            Stencil { Ref 64 ReadMask 64 WriteMask 64 Comp NotEqual Pass Replace }
             CGPROGRAM
-            #pragma vertex vert
+            #pragma vertex SpriteVert
             #pragma fragment frag
-            #include "UnityCG.cginc"
-            float4 _DaylightShade, _SunShadow;
-            struct Input { float4 vertex : POSITION; float2 uv : TEXCOORD0; };
-            struct Output { float4 vertex : SV_POSITION; float2 uv : TEXCOORD0; };
-            Output vert(Input input)
+            #include "UnitySprites.cginc"
+            fixed4 frag(v2f input) : SV_Target
             {
-                Output output;
-                output.vertex = UnityObjectToClipPos(input.vertex);
-                output.uv = input.uv;
-                return output;
-            }
-            fixed4 frag(Output input) : SV_Target
-            {
-                float radius = length(input.uv * 2 - 1);
-                float alpha = (1 - smoothstep(.12, 1, radius)) * clamp(_SunShadow.w, .18, .28);
+                float radius = length(input.texcoord * 2 - 1);
+                float alpha = (1 - smoothstep(.05, 1, radius)) * input.color.a;
                 clip(alpha - .001);
-                return fixed4(_DaylightShade.rgb * alpha, alpha);
+                return fixed4(input.color.rgb * alpha, alpha);
             }
             ENDCG
         }

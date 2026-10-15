@@ -79,7 +79,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2021
+  m_SortingOrder: 21
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: a504957dbc69a49b29202ab3f387b780, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -87,6 +87,98 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 15.375014, y: 10.24}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
+--- !u!1 &4363155481969270365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1089891931805593893}
+  - component: {fileID: 3051654279260448006}
+  m_Layer: 0
+  m_Name: GroundContactShadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1089891931805593893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4363155481969270365}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0024366598, y: -0.17292684, z: 0}
+  m_LocalScale: {x: 0.9980489, y: 0.24951223, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5449516938501090640}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &3051654279260448006
+SpriteRenderer:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4363155481969270365}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 6e595d40a9a1d4960b36001fe39ef6e7, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -8200
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: -5102196166332090522, guid: 4d653639850b940f78fb877195c5ebea, type: 2}
+  m_Color: {r: 0.02745098, g: 0.07058824, b: 0.05490196, a: 0.2392}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -104,6 +196,7 @@ GameObject:
   - component: {fileID: 2485442668711965236}
   - component: {fileID: 3567298342383107238}
   - component: {fileID: 7539205007970813521}
+  - component: {fileID: 9126938190755626251}
   m_Layer: 0
   m_Name: grass-tuft
   m_TagString: Untagged
@@ -125,6 +218,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 901773642970120367}
+  - {fileID: 1089891931805593893}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2485442668711965236
@@ -141,9 +235,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: LinhThu.Prototype::LinhThu.Prototype.ModularMapProp
   visual: {fileID: 867125041674831856}
   castShadow: {fileID: 0}
-  contactShadow: {fileID: 0}
-  floorLayer: 1
-  floorOrder: -42
+  contactShadow: {fileID: 3051654279260448006}
+  floorLayer: 0
+  floorOrder: -9200
   shadowSettings:
     heightScale: 1
     width: 0.75
@@ -170,9 +264,7 @@ MonoBehaviour:
   useRendererBottom: 1
   groundContactOffset: 0
   floorLayer: 0
-  floorOrder: -42
-  baseOrder: 2000
-  unitsToOrder: 100
+  floorOrder: -9200
 --- !u!114 &7539205007970813521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,3 +283,22 @@ MonoBehaviour:
   windBend: 2
   response: 16
   recovery: 4
+--- !u!114 &9126938190755626251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5422797566595345631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0fe8c22029c64f7199db47bd57fac44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Actors.GroundContactShadow
+  shadow: {fileID: 3051654279260448006}
+  view: {fileID: 0}
+  heightSource: {fileID: 0}
+  size: {x: 0.9980489, y: 0.24951223}
+  footOffset: {x: -0.0024366598, y: -0.17292684}
+  dashScale: 0.86
+  opacity: 0.26

@@ -11,7 +11,7 @@ namespace LinhThu.Client.Environment
         public SpriteRenderer castShadow;
         public SpriteRenderer contactShadow;
         public bool floorLayer;
-        public int floorOrder = -40;
+        public int floorOrder = LinhThu.Client.World.WorldRenderOrder.Surface;
         public SunShadowSettings shadowSettings = SunShadowSettings.Default;
         private SunShadowMesh groundShadow;
         private MaterialPropertyBlock shadowProperties;
@@ -73,11 +73,11 @@ namespace LinhThu.Client.Environment
             GetComponent<LinhThu.Client.World.YSortRenderer>()?.Refresh();
             // Cast shadows stay on the terrain, including when a character passes underneath a canopy.
             if (castShadow != null)
-                castShadow.sortingOrder = -30;
+                castShadow.sortingOrder = LinhThu.Client.World.WorldRenderOrder.CastShadow;
             if (groundShadow != null)
-                groundShadow.Renderer.sortingOrder = -30;
+                groundShadow.Renderer.sortingOrder = LinhThu.Client.World.WorldRenderOrder.CastShadow;
             if (contactShadow != null)
-                contactShadow.sortingOrder = floorLayer ? floorOrder - 1 : -28;
+                contactShadow.sortingOrder = LinhThu.Client.World.WorldRenderOrder.ContactShadow;
         }
     }
 }

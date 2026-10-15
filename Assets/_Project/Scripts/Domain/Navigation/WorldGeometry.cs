@@ -220,20 +220,23 @@ namespace LinhThu.Domain.Navigation
     /// <summary>Circle movement with bounded substeps and wall sliding, and contour footprints.</summary>
     public sealed class WorldGeometry
     {
-        public WorldPoint HalfSize { get; }
+        public WorldBounds Bounds { get; }
+        public WorldPoint HalfSize => Bounds.HalfSize;
 
         private readonly WorldObstacle[] obstacles;
         public WorldGeometry(WorldPoint halfSize, IEnumerable<WorldObstacle> obstacles)
+            : this(new WorldBounds(halfSize), obstacles) { }
+        public WorldGeometry(WorldBounds bounds, IEnumerable<WorldObstacle> obstacles)
         {
-            if (!GeometryRules.Range(halfSize.X, 1, 1000) || !GeometryRules.Range(halfSize.Y, 1, 1000) || obstacles == null)
+            if (bounds.HalfSize.X < 1 || bounds.HalfSize.Y < 1 || obstacles == null)
                 throw new ArgumentException("Invalid arena.");
-            HalfSize = halfSize;
+            Bounds = bounds;
             this.obstacles = new List<WorldObstacle>(obstacles).ToArray();
         }
 
         public bool CanStand(WorldPoint p, float radius)
         {
-            if (!GeometryRules.Range(radius, .01f, 10) || !p.Finite || Math.Abs(p.X) > HalfSize.X - radius || Math.Abs(p.Y) > HalfSize.Y - radius)
+            if (!GeometryRules.Range(radius, .01f, 10) || !Bounds.Contains(p, radius))
                 return false;
             foreach (var obstacle in obstacles)
                 if (obstacle.Overlaps(p, radius))
@@ -293,8 +296,7 @@ namespace LinhThu.Domain.Navigation
             var origin = point;
             for (int pass = 0; pass < 32; pass++)
             {
-                point = new WorldPoint(Math.Max(-HalfSize.X + radius, Math.Min(HalfSize.X - radius, point.X)),
-                    Math.Max(-HalfSize.Y + radius, Math.Min(HalfSize.Y - radius, point.Y)));
+                point = Bounds.Clamp(point, radius);
                 foreach (var obstacle in obstacles)
                     point += obstacle.PushOut(point, radius, .02f);
                 if (CanStand(point, radius)) return point;

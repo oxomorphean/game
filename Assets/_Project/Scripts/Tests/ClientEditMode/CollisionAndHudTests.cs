@@ -146,9 +146,9 @@ namespace LinhThu.Tests.ClientEditMode
             foreach (var kind in new[] { WorldNodeKind.SpiritEggNode, WorldNodeKind.TeleportPortal })
             {
                 var node = game.sceneNodes.Single(n => n.config.kind == kind);
-                var mesh = node.additionalVisuals.Select(r => r.GetComponent<MeshFilter>()).First(m => m != null).sharedMesh;
-                Assert.That(mesh.vertexCount, Is.GreaterThan(800));
-                Assert.That(node.additionalVisuals[0].sharedMaterial.shader.name, Is.EqualTo("LinhThu/Daylight Sprite"));
+                Assert.That(node.visual.sprite.texture.width, Is.GreaterThanOrEqualTo(512));
+                Assert.That(node.visual.sprite.texture.filterMode, Is.Not.EqualTo(FilterMode.Point));
+                Assert.That(node.visual.sharedMaterial.shader.name, Is.EqualTo("LinhThu/Daylight Sprite"));
                 Assert.That(node.config.displayName, Is.Not.Empty);
             }
         }
@@ -157,8 +157,7 @@ namespace LinhThu.Tests.ClientEditMode
         public void EffectsAndOverheadStayAboveWorldAndCompactPromptRemainsClickable()
         {
             Assert.That(game.hud.interactButton.targetGraphic.raycastTarget, Is.True);
-            int highestWorldOrder = scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<YSortRenderer>())
-                .Where(s => !s.floorLayer).Max(s => s.baseOrder + Mathf.CeilToInt(game.map.size.y * .5f * s.unitsToOrder));
+            int highestWorldOrder = WorldRenderOrder.EntityMaximum;
             var dummy = game.sceneActors.Single(v => v.config.Id == "training-dummy");
             Assert.That(dummy.overhead.GetComponentInChildren<Canvas>(true).sortingOrder, Is.GreaterThan(highestWorldOrder));
             game.CastFromHud(2);

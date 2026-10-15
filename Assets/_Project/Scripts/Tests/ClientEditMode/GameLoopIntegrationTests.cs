@@ -418,7 +418,7 @@ namespace LinhThu.Tests.ClientEditMode
         public void FieldClearsTheRoadAndCampClearsCherryCanopies()
         {
             var field = game.sceneNodes.Single(n => n.config.kind == WorldNodeKind.SpiritFieldPlot);
-            var fieldBounds = field.GetComponentInChildren<MeshRenderer>().bounds;
+            var fieldBounds = field.visual.bounds;
             var path = game.map.GetComponentInChildren<LinhThu.Client.Environment.MeadowTerrainPath>();
             for (int segment = 0; segment < path.knots.Length - 1; segment++)
                 for (int step = 0; step <= 32; step++)

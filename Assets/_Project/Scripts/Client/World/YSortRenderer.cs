@@ -12,14 +12,13 @@ namespace LinhThu.Client.World
         public bool useRendererBottom;
         public float groundContactOffset;
         public bool floorLayer;
-        public int floorOrder = -40, baseOrder = 2000;
-        public float unitsToOrder = 100;
+        public int floorOrder = WorldRenderOrder.Surface;
         public float GroundY => useRendererBottom && targetRenderer != null
             ? targetRenderer.bounds.min.y + groundContactOffset
             : foot != null ? foot.position.y : transform.position.y;
         public void Refresh()
         {
-            int order = floorLayer ? floorOrder : baseOrder - Mathf.RoundToInt(GroundY * unitsToOrder);
+            int order = floorLayer ? Mathf.Clamp(floorOrder, WorldRenderOrder.Road, -9000) : WorldRenderOrder.AtGround(GroundY);
             if (group != null)
                 group.sortingOrder = order;
             else if (targetRenderer != null)

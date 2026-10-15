@@ -4,6 +4,15 @@ using LinhThu.Domain.Navigation;
 
 namespace LinhThu.Domain.Core
 {
+    public readonly struct AbilityStartedEvent
+    {
+        public EntityId CasterId { get; }
+        public string TechniqueId { get; }
+        public WorldPoint Direction { get; }
+        public AbilityStartedEvent(EntityId casterId, string techniqueId, WorldPoint direction)
+        { CasterId = casterId; TechniqueId = techniqueId; Direction = direction; }
+    }
+
     public readonly struct ActorDamagedEvent
     {
         public EntityId TargetId { get; }

@@ -54,7 +54,7 @@ namespace LinhThu.Client.Combat
             line.endWidth = .03f;
             line.startColor = color;
             line.endColor = color;
-            line.sortingOrder = 4000;
+            line.sortingOrder = World.WorldRenderOrder.Effects;
             line.numCapVertices = 3;
             return line;
         }

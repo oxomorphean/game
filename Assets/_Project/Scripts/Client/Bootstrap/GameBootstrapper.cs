@@ -44,7 +44,7 @@ namespace LinhThu.Client.Bootstrap
         private readonly Dictionary<EntityId, WorldNodeView> nodeViews = new Dictionary<EntityId, WorldNodeView>();
         private WorldSaveStore saveStore;
         private double accumulator;
-        private IDisposable damageSubscription;
+        private IDisposable damageSubscription, castSubscription;
         private void Start() => Initialize();
         public void Initialize()
         {
@@ -54,7 +54,8 @@ namespace LinhThu.Client.Bootstrap
                 throw new InvalidOperationException("MainGame is missing composition references.");
             if (map.transform.position != Vector3.zero || map.transform.lossyScale != Vector3.one)
                 throw new InvalidOperationException("World map must have origin zero and unit scale.");
-            var geometry = new WorldGeometry(new WorldPoint(map.size.x / 2, map.size.y / 2), gameObject.scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<ObstacleAuthoring>()).Select(o => o.Definition()));
+            map.SynchronizeGroundBounds();
+            var geometry = new WorldGeometry(map.WorldBounds, gameObject.scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<ObstacleAuthoring>()).Where(o => o.isActiveAndEnabled).Select(o => o.Definition()));
             var initial = new WorldInitialState(registry.player.Id, registry.startingRealm.Id, registry.mapDefinitionId, Point(playerView.transform.position), registry.inventoryCapacity, registry.CreateRules(), registry.CreateRelations(), sceneNodes.Select(n => new NodeSpawn(n.config.Id, Point(n.transform.position), n.initiallyReady)), registry.CreateBeastSeeds());
             var world = WorldFactory.Create(registry.BuildContent(), geometry, new SeededRandomSource(registry.randomSeed), new DomainEventBus(), initial);
             Require(world.Player.Inventory.TryAddAll(registry.startingItems.Select(i => new ItemStack(i.item.Id, i.count)).ToArray()));
@@ -241,16 +242,22 @@ namespace LinhThu.Client.Bootstrap
         {
             damageSubscription?.Dispose();
             damageSubscription = World.Events.Subscribe<ActorDamagedEvent>(e => actorViews.FirstOrDefault(v => v.Entity?.Id == e.TargetId)?.HitFlash());
+            castSubscription?.Dispose();
+            castSubscription = World.Events.Subscribe<AbilityStartedEvent>(e => actorViews.FirstOrDefault(v => v.Entity?.Id == e.CasterId)?.actionFeedback?.OnCast(e.Direction));
         }
 
         private void BindFoliage()
         {
             foreach (var root in gameObject.scene.GetRootGameObjects())
+            {
                 foreach (var foliage in root.GetComponentsInChildren<InteractiveFoliage>(true))
                     foliage.Bind(World);
+                foreach (var occlusion in root.GetComponentsInChildren<CanopyOcclusionFade>(true))
+                    occlusion.Bind(playerView);
+            }
         }
 
-        private void OnDestroy() => damageSubscription?.Dispose();
+        private void OnDestroy() { damageSubscription?.Dispose(); castSubscription?.Dispose(); }
 
         private DomainResult Submit(WorldCommand command, string success = null)
         {

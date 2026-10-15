@@ -125,15 +125,12 @@ namespace LinhThu.Client.Environment
             trackRect.anchorMax = new Vector2(1, 0);
             trackRect.pivot = new Vector2(.5f, 0);
             trackRect.anchoredPosition = Vector2.zero;
-            trackRect.sizeDelta = new Vector2(-28, 18);
-            var handle = new GameObject("Nút kéo thời gian", typeof(RectTransform), typeof(Image));
+            trackRect.sizeDelta = new Vector2(-28, 19);
+            var handle = new GameObject("TimeSliderAnchor", typeof(RectTransform));
             handle.transform.SetParent(track.transform, false);
             var handleRect = (RectTransform)handle.transform;
             handleRect.anchorMin = handleRect.anchorMax = new Vector2(0, .5f);
-            handleRect.sizeDelta = new Vector2(8, -6);
-            var handleImage = handle.GetComponent<Image>();
-            handleImage.color = new Color(.96f, .98f, .97f);
-            handleImage.raycastTarget = false;
+            handleRect.sizeDelta = Vector2.zero; // Slider input anchor; Sky draws the antialiased round knob at this centre.
             timeSlider = node.AddComponent<Slider>();
             timeSlider.minValue = 6;
             timeSlider.maxValue = 18;

@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2572814669442980886, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: view
+      value: 
+      objectReference: {fileID: 2052687017317610830}
     - target: {fileID: 2738132293664663415, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
       propertyPath: view
       value: 
@@ -74,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5629724290724857085, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
       propertyPath: m_SortingOrder
-      value: 2000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5830038531208792276, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
       propertyPath: m_LocalScale.x
@@ -137,11 +141,24 @@ MonoBehaviour:
   rosterCompanion: 0
   actorAnimator: {fileID: 6787424821407146993}
   equipment: {fileID: 2654926717544195617}
+  trainingDummy: {fileID: 0}
   singleSpriteVisual: {fileID: 0}
   footsteps: {fileID: 8254201637282178086}
   actionPose: {fileID: 1013622427631819522}
   tools: {fileID: 456922591798716448}
   overhead: {fileID: 4234296602486731817}
+  actionFeedback: {fileID: 601980026705240163}
+--- !u!114 &601980026705240163 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2572814669442980886, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+  m_PrefabInstance: {fileID: 3165697293285686389}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479966938519056238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb090e021af654bc89988d70e54ae478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Actors.ActorActionFeedback
 --- !u!114 &1013622427631819522 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2738132293664663415, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}

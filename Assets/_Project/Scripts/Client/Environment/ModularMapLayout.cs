@@ -9,8 +9,19 @@ namespace LinhThu.Client.Environment
         public SpriteRenderer ground;
         public Material ambientMaterial;
         public Vector2 size = new Vector2(20, 11.25f);
+        public LinhThu.Domain.Navigation.WorldBounds WorldBounds => new LinhThu.Domain.Navigation.WorldBounds(
+            new LinhThu.Domain.Navigation.WorldPoint(size.x * .5f, size.y * .5f));
+        public void SynchronizeGroundBounds()
+        {
+            // Grass is sampled in world metres by MeadowTerrain.shader; growing X changes coverage only.
+            foreach (var surface in GetComponentsInChildren<MeadowGroundSurface>())
+            { surface.size = size; surface.Rebuild(); }
+            foreach (var path in GetComponentsInChildren<MeadowTerrainPath>())
+            { path.mapSize = size; path.Rebuild(); }
+        }
         private void Awake()
         {
+            SynchronizeGroundBounds();
             if (GetComponent<DaylightPresentation>() == null)
                 throw new System.InvalidOperationException("Map requires authored daylight presentation.");
             if (ambientMaterial == null)

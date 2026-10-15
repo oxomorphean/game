@@ -48,8 +48,8 @@ namespace LinhThu.Tests.ClientEditMode
                     Assert.That(blob, Is.Not.Null, view.name);
                     Assert.That(blob.shadow.sharedMaterial.shader.name, Is.EqualTo("LinhThu/Ground Contact Shadow"));
                     Assert.That(blob.shadow.transform.parent, Is.EqualTo(view.transform));
-                    Assert.That(view.GetComponentsInChildren<MeshRenderer>().Count(r => r.sharedMaterial.shader.name.Contains("Shadow")), Is.EqualTo(1));
-                    Assert.That(view.GetComponentsInChildren<SpriteRenderer>().Any(r => r.sharedMaterial.shader.name.Contains("Shadow")), Is.False);
+                    Assert.That(view.GetComponentsInChildren<MeshRenderer>().Count(r => r.sharedMaterial.shader.name.Contains("Shadow")), Is.Zero);
+                    Assert.That(view.GetComponentsInChildren<SpriteRenderer>().Count(r => r.sharedMaterial.shader.name.Contains("Shadow")), Is.EqualTo(1));
                 }
                 foreach (var prop in scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<ModularMapProp>()))
                     if (prop.castShadow != null)
@@ -88,7 +88,7 @@ namespace LinhThu.Tests.ClientEditMode
                 }
                 var dummy = game.sceneActors.Single(a => a.config.Id == "training-dummy");
                 Assert.That(dummy.equipment == null && dummy.actorAnimator == null, Is.True);
-                Assert.That(dummy.GetComponentsInChildren<SpriteRenderer>().Length, Is.Zero, "Pillar must not retain a face, hair or body sprites.");
+                Assert.That(dummy.GetComponentsInChildren<SpriteRenderer>().All(r => r == dummy.GetComponent<GroundContactShadow>().shadow), Is.True, "Pillar must not retain a face, hair or body sprites.");
                 Assert.That(dummy.singleSpriteVisual.GetComponent<MeshFilter>().sharedMesh.name, Is.EqualTo("TrainingPillar"));
                 Assert.That(dummy.singleSpriteVisual.GetComponent<MeshFilter>().sharedMesh.vertexCount, Is.GreaterThan(500));
                 var playerSlot = game.playerView.equipment.slots.First(s => s.renderer.sprite != null).renderer;

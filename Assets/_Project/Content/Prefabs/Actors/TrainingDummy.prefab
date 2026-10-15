@@ -101,7 +101,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2000
+  m_SortingOrder: 0
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
 --- !u!1001 &6105608788192078644
@@ -305,6 +305,22 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: d9ee41ead386948f7959937c009e5479, type: 3}
+    - target: {fileID: 2572814669442980886, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: chest
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2572814669442980886, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: forearm
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2572814669442980886, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: upperArm
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2572814669442980886, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: spiritSword
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2738132293664663415, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
       propertyPath: view
       value: 
@@ -317,6 +333,14 @@ PrefabInstance:
       propertyPath: view
       value: 
       objectReference: {fileID: 7844706464530731937}
+    - target: {fileID: 4542455068924416681, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542455068924416681, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 4696333098839386113, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
       propertyPath: referenceHeight
       value: 1.625
@@ -432,6 +456,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3262857420319839003, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1478384919875522487}
+    - targetCorrespondingSourceObject: {fileID: 3262857420319839003, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6705318498813705367}
   m_SourcePrefab: {fileID: 100100000, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
 --- !u!1 &6903219662168610131 stripped
 GameObject:
@@ -462,6 +489,7 @@ MonoBehaviour:
   actionPose: {fileID: 0}
   tools: {fileID: 0}
   overhead: {fileID: 3822866319150203298}
+  actionFeedback: {fileID: 0}
 --- !u!114 &1478384919875522487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,6 +503,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Actors.TrainingDummyRenderer
   visual: {fileID: 3676701234334537315}
+--- !u!114 &6705318498813705367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6903219662168610131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4325d72dd0433489a9a6b2fc7190b1bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.World.ObstacleAuthoring
+  box: 1
+  offset: {x: 0, y: 0.36}
+  halfSize: {x: 0.35, y: 0.16}
+  polygon: []
 --- !u!4 &8491986700849637607 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 527852258564501167, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}

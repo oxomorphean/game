@@ -76,6 +76,7 @@ namespace LinhThu.Domain.Combat
             caster.Abilities.Cast = new CastState(spec, aim);
             caster.Transform.CurrentVelocity = default;
             caster.State = ActorActionState.Casting;
+            events.Publish(new AbilityStartedEvent(caster.Id, techniqueId, aim.Direction));
             if (spec.CastDuration == 0)
                 AdvanceCast(world, caster, 0);
             return DomainResult.Ok();

@@ -19,7 +19,24 @@ namespace LinhThu.Client.Actors
         public ActionPoseController actionPose;
         public CharacterToolAttachmentPresenter tools;
         public UI.ActorOverheadPresenter overhead;
+        public ActorActionFeedback actionFeedback;
         public ActorEntity Entity { get; private set; }
+
+        public Bounds VisualBounds
+        {
+            get
+            {
+                var bounds = new Bounds(transform.position, Vector3.zero);
+                if (equipment != null)
+                    foreach (var slot in equipment.slots)
+                        if (slot.renderer != null && slot.renderer.enabled && slot.renderer.sprite != null)
+                            bounds.Encapsulate(slot.renderer.bounds);
+                if (singleSpriteVisual != null)
+                    foreach (var renderer in singleSpriteVisual.GetComponentsInChildren<Renderer>())
+                        if (renderer.enabled) bounds.Encapsulate(renderer.bounds);
+                return bounds;
+            }
+        }
 
         public Vector3 OverheadPosition
         {
@@ -55,6 +72,7 @@ namespace LinhThu.Client.Actors
             actionPose?.ResetPose();
             tools?.ResetPresentation();
             footsteps?.ResetMotion();
+            actionFeedback?.ResetPresentation();
             Sync();
         }
 
@@ -63,6 +81,7 @@ namespace LinhThu.Client.Actors
             actionPose?.ResetPose();
             tools?.ResetPresentation();
             footsteps?.ResetMotion();
+            actionFeedback?.ResetPresentation();
             Entity = null;
         }
         public void Sync()
@@ -82,6 +101,7 @@ namespace LinhThu.Client.Actors
 
             actorAnimator?.Present(Entity);
             footsteps?.Present(Entity);
+            actionFeedback?.ObserveState();
             overhead?.Refresh();
         }
     }

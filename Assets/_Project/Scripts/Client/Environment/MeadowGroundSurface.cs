@@ -36,7 +36,7 @@ namespace LinhThu.Client.Environment
             ownedMesh.RecalculateBounds();
             GetComponent<MeshFilter>().sharedMesh = ownedMesh;
             var view = GetComponent<MeshRenderer>();
-            view.sortingOrder = -60;
+            view.sortingOrder = LinhThu.Client.World.WorldRenderOrder.Grass;
             view.shadowCastingMode = ShadowCastingMode.Off;
             view.receiveShadows = false;
             var properties = new MaterialPropertyBlock();
