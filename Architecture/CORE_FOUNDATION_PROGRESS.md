@@ -191,3 +191,31 @@ Giới hạn: thông số pose là hiệu chỉnh triển khai; chủ dự án v
 - Hygiene: 0 meta mồ côi/thiếu, 0 thư mục Assets rỗng; meta tài nguyên giữ lại nguyên byte. Backup bền vững `~/dev/nguthu-backups/core-foundation-backup/20261014T205801-soft-shadows-uniform-rig/`: 279 file trong recovery.tar.gz + 2 file ảnh/meta trong unused-field-recovery.tar.gz; đã đọc lại từng entry và đối chiếu SHA-256, 0 sai lệch. MainGame trở về Edit Mode, không dirty, runInBackground=false. Chỉ giữ thay đổi thuộc task; chưa commit/push bộ sửa này.
 
 Retrospective: kiểm dependency và test trên toàn scene đã bắt được bản sao prop độc lập với prefab gốc. Xem cận ảnh thật bổ sung bằng chứng cho shader/MPB, trong khi kiểm component hay tên outfit riêng lẻ không đủ kết luận hiển thị.
+
+## Tiếp đất, cây/HUD và mở rộng ngang — 15/10/2026
+
+Đã triển khai theo chỉ thị sửa lỗi toàn diện sau ảnh 07:05. Mốc này thay các mô tả lịch sử phía trên về bỏ bóng cỏ, actor shadow dạng quad và dải Y-sort cũ.
+
+| Yêu cầu | Implementation và bằng chứng |
+| --- | --- |
+| Khôi phục toàn bộ bóng | `WorldRenderOrder`: cỏ −10000, đường −9500, mặt ruộng/hồ −9200, cast −8400, contact −8200, entity −5000..5000. 82 SpriteRenderer contact shadow ở MainGame; actor #07120E/0.38, cây/lều 0.33, đá/bụi/cỏ 0.26, radial fade về 0. Actor shadow ngoài SortingGroup. Đã xem ảnh cận người/thú, Mộc Nhân, lều, cả ba cây, đá/bụi; kiểm sáng/trưa/chiều. |
+| Đi/lướt và thứ tự cây | Bootstrap lấy ObstacleAuthoring từ toàn scene, gồm Mộc Nhân, hồ và đài. Ba cây có gốc circle .55 local (.517 khi scale .94), không collider tán. Tests đi/Dash từ tám hướng cho từng cây, kiểm từng simulation step không tunnel; kiểm recover/slide mọi vật cản. Play bàn phím W/D/Space đã xác nhận bị chặn/trượt tại cây phía bắc. |
+| Mờ khi bị che | `CanopyOcclusionFade` xét chân ở sau GroundY cùng bounds giao nhau, MoveTowards về .42 rồi trở lại 1. Tests đủ ba cây và lều, trước/sau/ngoài bounds, không đổi footprint; đã quan sát tán mờ khi đi ra sau cây trong Game view. |
+| HUD | Cả năm ô ẩn tên/detail trong cooldown, số giây riêng giữa overlay; badge #F2D98D luôn trên overlay. Play Space đã thấy ô số 4 chỉ còn `0.8s`, không chồng Thân Pháp; tests kiểm cả năm ô ở `1.0s` và lúc hết cooldown. Thanh giờ là fill mảnh/chấm tròn giữa đường. |
+| Bố cục và prop | Đá lát 07/10 sang cỏ, test lấy mẫu toàn spline xác nhận footprint tách lòng đường. Hồ sang trái 1.35, camera size 5.2 giữ trọn hồ ở khung 16:9; quặng sang (2.8, −2) để mở bờ phía tây. Bộ test câu cá từ 60 điểm bờ/cạnh/góc vẫn đạt. Linh Điền có viền đất bo mềm/luống/mầm; trứng và đài hai cột là sprite high-PPU có mipmap/anti-alias. |
+| Phản hồi hành động | Phi kiếm bob phía sau rig; AbilityStartedEvent chỉ phát khi cast được chấp nhận, arm/chest phản hồi ngay; Dash lean và ba snapshot tàn ảnh ngọc fade 0.28s. Tests cả ba công pháp, reject không animate, tàn ảnh giữ nguyên world vertices rồi hết hạn. Mộc Nhân rung/chớp visual sau damage, root/footprint không bị dịch. Tàn ảnh và phi kiếm đã thấy trong Play. |
+| Mở rộng ngang | WorldBounds dùng chung geometry/map/camera; nền dùng world UV nên không kéo giãn vân. Tests tăng rộng 20→60, giữ texture/GrassScale, bước camera nội suy và clamp cả hai mép ở 16:9/21:9; Domain kiểm biên world có offset và depenetration cả bốn cạnh. |
+
+Kiểm chứng cuối:
+
+- Unity compile **0 lỗi**; full EditMode **178/178 passed** (**123 Domain + 55 Client**), **0 failed/skipped/inconclusive**, 4.15 giây. Chạy không filter qua Unity Test Framework/Pipeline; kết quả native JSON `editmode-tests.json`, compile `compile.json` tại `/private/tmp/nguthu-core-foundation/20261015-grounding-final/`.
+- Lượt Play cuối: console ground truth lúc **2026-10-15 01:55:50Z** có **0 error/0 warning**, compilationFailed=false. Buffer Pipeline còn các lỗi lịch sử của những lượt trước; không dùng tổng buffer để suy ra lỗi hiện hành.
+- So sánh từng contact renderer bật/tắt trong Play lúc 07:05: 81/82 tạo chênh lệch pixel trực tiếp; bóng `Cluster 5/grass-tuft` bị đế Mộc Nhân che hoàn toàn theo đúng sorting, khi tạm ẩn vật che có **2,175 pixel** thay đổi. Tất cả renderer được khôi phục ngay sau phép đo. `contact-shadow-pixels.json` và `occluded-shadow-check.json` lưu số đo thật; các bóng runtime chỉ có order −8400/−8200.
+- Ảnh Unity camera thật: `main-world-425.png` (07:05), `main-world-690.png` (11:30), `main-world-1070.png` (17:50), cận ba cây/actor/lều/đá; `main-hud-final.png` là Game view có Overlay HUD. Cùng thư mục ngoài repo ở trên, không WebGL/headless. Kiểm tra lỗi hiển thị này không thay quyền duyệt mỹ thuật của chủ dự án.
+- Xem cận ảnh phát hiện PNG có padding alpha dưới chân khiến bóng đá/bụi/cỏ bị rời. Đã đo mép alpha qua Unity, chỉnh prefab/map/scene bằng API và thêm `ContactShadowsStayAtVisibleFeetDespiteTransparentSpritePadding`; lượt 178 tests chạy sau thay đổi này. Không tăng opacity để che lỗi đặt anchor.
+- Xóa ba mesh không còn dependency `Shapes/SpiritEgg.asset`, `SpiritField.asset`, `Portal.asset` cùng meta. Backup bền vững trước task: `~/dev/nguthu-backups/core-foundation-backup/20261014T153902Z-grounding-expansion/` (archive và manifest SHA-256). **403 meta còn tồn tại trong manifest giữ nguyên byte**; quét Assets **0 orphan meta, 0 missing meta, 0 thư mục rỗng**. `git diff --check` đạt khi bỏ qua blank-at-eol do Unity serializer; log/ảnh không vào working tree.
+- AGENTS, GAME_DESIGN, CODE_ARCHITECTURE và STYLE_GUIDE đã đồng bộ. Checkpoint `7c82c60` đã push `oxomorphean/game` theo lệnh tức thời của chủ dự án; các hiệu chỉnh anchor, camera/quặng, regression tests, xóa mesh và tài liệu sau checkpoint hiện còn local, chưa commit/push bổ sung.
+
+Giới hạn tương thích: bố cục node đổi; save khác layout bị từ chối trước khi thay world. Không migrate hoặc ghi đè save người dùng. MainGame vẫn được giữ mở để chủ dự án thử; không lưu trạng thái Play vào scene.
+
+Retrospective: quét dependency và giữ meta bảo toàn tài nguyên; NUnit kiểm luật và wiring, còn ảnh cận chân phát hiện lỗi padding không lộ qua component check. Regression test chân nhìn thấy và quy tắc bù alpha trong AGENTS giúp tránh lặp lại lỗi tiếp đất.

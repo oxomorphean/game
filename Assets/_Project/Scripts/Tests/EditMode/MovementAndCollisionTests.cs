@@ -10,6 +10,23 @@ namespace LinhThu.Tests.EditMode
     {
         static WorldPoint P(float x, float y = 0) => new WorldPoint(x, y);
         [Test]
+        public void ExpandedOffsetWorldClampsMovementAndRecoversAgainstAllFourBounds()
+        {
+            var bounds = new WorldBounds(P(20, -3), P(30, 6));
+            var geometry = new WorldGeometry(bounds, Array.Empty<WorldObstacle>());
+            Assert.That(geometry.CanStand(P(45, -3), .2f), Is.True);
+            Assert.That(geometry.CanStand(P(-11, -3), .2f), Is.False);
+            foreach (var point in new[] { P(-20, -3), P(70, -3), P(20, -20), P(20, 15) })
+            {
+                var resolved = geometry.ResolvePenetration(point, .2f);
+                Assert.That(bounds.Contains(resolved, .2f), Is.True);
+                Assert.That(geometry.ResolvePenetration(resolved, .2f), Is.EqualTo(resolved));
+            }
+            Assert.That(geometry.Move(P(20, -3), P(100), .2f).X, Is.EqualTo(49.8f).Within(.1f));
+            Assert.Throws<ArgumentException>(() => new WorldBounds(P(float.NaN), P(30, 6)));
+            Assert.Throws<ArgumentException>(() => new WorldBounds(P(0), P(0, 6)));
+        }
+        [Test]
         public void DiagonalInputIsNormalizedAndZeroKeepsFacing()
         {
             var motor = new MovementMotor(new WorldGeometry(P(10, 10), Array.Empty<WorldObstacle>()));

@@ -15,6 +15,24 @@ namespace LinhThu.Tests.EditMode
     public sealed class CombatAndStatusTests
     {
         [Test]
+        public void CastFeedbackEventIsEmittedOnceOnlyAfterACommandIsCommitted()
+        {
+            var world = Fixture.World(); var actor = world.PlayerActor;
+            var events = new System.Collections.Generic.List<AbilityStartedEvent>();
+            using (world.Events.Subscribe<AbilityStartedEvent>(e => events.Add(e)))
+            {
+                Assert.That(world.Combat.TryCast(world, actor.Id, "unknown", new AimRequest(new WorldPoint(1, 0))).Succeeded, Is.False);
+                world.Events.Flush(); Assert.That(events, Is.Empty);
+                float qi = actor.Vitals.CurrentQi;
+                Assert.That(world.Combat.TryCast(world, actor.Id, "strike", new AimRequest(new WorldPoint(1, 0))).Succeeded, Is.True);
+                world.Events.Flush(); Assert.That(events.Count, Is.EqualTo(1));
+                Assert.That(events[0].CasterId, Is.EqualTo(actor.Id)); Assert.That(events[0].TechniqueId, Is.EqualTo("strike"));
+                Assert.That(actor.Vitals.CurrentQi, Is.LessThan(qi));
+                Assert.That(world.Combat.TryCast(world, actor.Id, "strike", new AimRequest(new WorldPoint(1, 0))).Succeeded, Is.False);
+                world.Events.Flush(); Assert.That(events.Count, Is.EqualTo(1));
+            }
+        }
+        [Test]
         public void FiveAffinitiesDriveOffenseAndResistanceAndPhysicalBypassesThem()
         {
             var w = Fixture.World();

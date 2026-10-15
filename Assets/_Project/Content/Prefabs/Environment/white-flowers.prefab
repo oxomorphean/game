@@ -77,7 +77,7 @@ MonoBehaviour:
   group: {fileID: 0}
   targetRenderer: {fileID: 4337705121310373939}
   useRendererBottom: 1
-  groundContactOffset: 0
+  groundContactOffset: 0.1946892
   floorLayer: 0
   floorOrder: -9200
 --- !u!114 &7763807766894069669
@@ -95,8 +95,8 @@ MonoBehaviour:
   shadow: {fileID: 2071052568425824368}
   view: {fileID: 0}
   heightSource: {fileID: 0}
-  size: {x: 1.172995, y: 0.29324874}
-  footOffset: {x: -0.00047730384, y: -0.1396892}
+  size: {x: 0.607403, y: 0.13883497}
+  footOffset: {x: -0.0004772991, y: 0.02}
   dashScale: 0.86
   opacity: 0.26
 --- !u!1 &1406641717347980912
@@ -178,7 +178,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 17
+  m_SortingOrder: -2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 96a163d2a016d4f9995bb2e717e2b605, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -217,8 +217,8 @@ Transform:
   m_GameObject: {fileID: 5468086235704073082}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00047730384, y: -0.1396892, z: 0}
-  m_LocalScale: {x: 1.172995, y: 0.29324874, z: 1}
+  m_LocalPosition: {x: -0.0004772998, y: 0.02, z: 0}
+  m_LocalScale: {x: 0.607403, y: 0.13883497, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3440311009753219810}
@@ -273,7 +273,7 @@ SpriteRenderer:
   m_SortingOrder: -8200
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5102196166332090522, guid: 4d653639850b940f78fb877195c5ebea, type: 2}
-  m_Color: {r: 0.02745098, g: 0.07058824, b: 0.05490196, a: 0.2392}
+  m_Color: {r: 0.02745098, g: 0.07058824, b: 0.05490196, a: 0.26}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

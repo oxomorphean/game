@@ -35,7 +35,7 @@ namespace LinhThu.Tests.ClientEditMode
                         var head = visual.Find("root/pelvis/chest/head");
                         Assert.That(head.localScale.x, Is.EqualTo(.78f).Within(.0001f));
                         Assert.That(head.localScale.y, Is.EqualTo(.78f).Within(.0001f));
-                        foreach (var bone in visual.GetComponentsInChildren<Transform>())
+                        foreach (var bone in visual.Find("root").GetComponentsInChildren<Transform>())
                         {
                             Assert.That(Mathf.Abs(bone.localScale.x), Is.EqualTo(Mathf.Abs(bone.localScale.y)).Within(.0001f), bone.name + " must not shear during rotation.");
                             if (bone != visual && bone != head)

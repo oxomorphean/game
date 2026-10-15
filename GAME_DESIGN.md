@@ -10,6 +10,8 @@ Chỉ thị này thay chế độ chỉ xem mỹ thuật ngày 12/10 và pipelin
 
 ### Tinh chỉnh tương tác và hiển thị — chỉ thị 14/10/2026
 
+- Chỉ thị tiếp đất và mở rộng ngang: khóa dải nền/bóng/thực thể; toàn bộ người/thú/đá/cây/bụi/lều có bóng mềm bám chân. Ba gốc anh đào chặn đi và Dash; đi phía sau cây/lều làm vật thể mờ về 0.42, Y-sort vẫn theo chân. Năm ô kỹ năng chỉ hiện số giây trong lúc cooldown, badge vàng sáng và thanh giờ có chấm tròn. Dời hai đá lớn khỏi đường, hồ sang trái 1.35 đơn vị; ruộng có luống/mầm, trứng và trận pháp dùng sprite chống răng cưa. Phi kiếm, vung tay, tàn ảnh và rung Mộc Nhân là phản hồi presentation. WorldBounds/nền/camera hỗ trợ mở rộng ngang mà không kéo giãn cỏ; không mở rộng luật combat hoặc migration save.
+
 - Chỉ thị bóng/tỷ lệ: người/thú dùng bóng elip mềm; bóng chiếu chỉ ở prop lớn, ngắn và mờ biên. Mọi xương thân/tay/chân scale 1; đầu giảm đồng đều 78%. Tab chỉ đổi classic/jade, basic là lớp lót; Mộc Nhân là trụ gỗ có đế đá và bia luyện kiếm theo chỉ thị sửa va chạm/HUD mới. Linh Điền đặt thẳng ở bãi cỏ cạnh lều, thanh phím tắt có nền mờ trên hotbar.
 
 - Phản hồi nghiệm thu: bỏ dáng co chân khi chạy; giữ hông gần độ cao Idle và gối không cuộn lên thân. Nhãn tương tác giữ nguyên tên Linh dược, Trứng… và nằm trên từng vật thể. Hồ hiện “Thả câu” phía trên hồ khi người chơi ở gần; cho phép câu quanh toàn bộ bờ hồ có thể đứng được, không giới hạn một điểm. Chữ trạng thái/sát thương gắn nhân vật hiện tại/về sau nằm trên đầu để không che animation.

@@ -230,8 +230,11 @@ namespace LinhThu.Tests.ClientEditMode
             Assert.That(game.World.Geometry.CanStand(new WorldPoint(ore.transform.position.x, ore.transform.position.y + .8f), .22f), Is.True);
             foreach (var prop in game.map.GetComponentsInChildren<LinhThu.Client.Environment.ModularMapProp>().Where(p => p.visual != null && (p.visual.sprite.name == "grass-tuft" || p.visual.sprite.name == "white-flowers")))
             {
-                Assert.That(prop.floorLayer, Is.True, prop.name);
-                Assert.That(prop.castShadow == null && prop.contactShadow == null, Is.True, "Ground accents must not retain old shadow sprites: " + prop.name);
+                Assert.That(prop.floorLayer, Is.False, prop.name);
+                Assert.That(prop.castShadow, Is.Null, "Small foliage uses a contact blob only: " + prop.name);
+                Assert.That(prop.contactShadow, Is.Not.Null, prop.name);
+                Assert.That(prop.contactShadow.sortingOrder, Is.InRange(-8500, -8000));
+                Assert.That(prop.contactShadow.color.a, Is.LessThanOrEqualTo(.26f));
             }
         }
 
@@ -252,7 +255,7 @@ namespace LinhThu.Tests.ClientEditMode
             Assert.That(prompt.label.text, Is.EqualTo("[E] Trứng Huyền Quy"));
             var eggView = game.sceneNodes.Single(n => n.Entity.Id == egg.Id);
             Assert.That(prompt.AnchorPosition, Is.EqualTo(eggView.LabelPosition));
-            Assert.That(prompt.AnchorPosition.y, Is.GreaterThan(eggView.additionalVisuals.Max(r => r.bounds.max.y)));
+            Assert.That(prompt.AnchorPosition.y, Is.GreaterThan(eggView.visual.bounds.max.y));
             Assert.That(prompt.AnchorPosition, Is.Not.EqualTo(game.playerView.OverheadPosition));
             Assert.That(game.hud.interactButtonLabel.text, Does.Contain("Trứng Huyền Quy"));
             // Overlay canvas size/scale are zero in PreviewScene; pixel anchoring is checked in Editor Play.
@@ -408,6 +411,11 @@ namespace LinhThu.Tests.ClientEditMode
                 var front = node.Position + new WorldPoint(0, -.4f);
                 Assert.That(game.World.Geometry.CanStand(front, radius), Is.True);
                 Assert.That(game.World.Geometry.ClearLine(front, node.Position), Is.True);
+                // Test each resource's front approach independently; Displace is collision-aware,
+                // not a path finder between resources on opposite sides of the meadow.
+                var approachStart = node.Position + new WorldPoint(0, -1.8f);
+                Assert.That(game.World.Geometry.CanStand(approachStart, radius), Is.True);
+                typeof(Transform2D).GetProperty(nameof(Transform2D.Position)).SetValue(game.World.PlayerActor.Transform, approachStart);
                 Approach(node);
                 Assert.That(game.FocusedNodeId, Is.EqualTo(node.Id));
                 Assert.That(game.InteractFocused().Succeeded, Is.True);
