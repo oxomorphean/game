@@ -14,6 +14,76 @@ namespace LinhThu.Tests.ClientEditMode
 {
     public sealed class EnvironmentFeelTests
     {
+        [Test]
+        public void DaylightSpriteRendersWithoutGlobalTintAndPreservesInitializedLighting()
+        {
+            var scene = EditorSceneManager.NewPreviewScene();
+            var previousTint = Shader.GetGlobalColor("_DaylightTint");
+            var previousSun = Shader.GetGlobalVector("_DaylightSun");
+            var previousTarget = RenderTexture.active;
+            var target = new RenderTexture(16, 16, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear);
+            var pixels = new Texture2D(16, 16, TextureFormat.RGBA32, false, true);
+            var shader = AssetDatabase.LoadAssetAtPath<Shader>("Assets/_Project/Shaders/DaylightSprite.shader");
+            var material = new Material(shader);
+            var sprite = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, 1, 1), new Vector2(.5f, .5f), 1);
+            try
+            {
+                Assert.That(shader.isSupported, Is.True);
+                Assert.That(ShaderUtil.ShaderHasError(shader), Is.False);
+                var root = new GameObject("Daylight sprite fixture");
+                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(root, scene);
+                var renderer = root.AddComponent<SpriteRenderer>();
+                renderer.sprite = sprite;
+                renderer.sharedMaterial = material;
+                var cameraRoot = new GameObject("Daylight camera fixture");
+                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(cameraRoot, scene);
+                var camera = cameraRoot.AddComponent<Camera>();
+                camera.enabled = false;
+                camera.scene = scene;
+                camera.transform.position = new Vector3(0, 0, -2);
+                camera.orthographic = true;
+                camera.orthographicSize = 1;
+                camera.clearFlags = CameraClearFlags.SolidColor;
+                camera.backgroundColor = Color.clear;
+                camera.targetTexture = target;
+                Shader.SetGlobalVector("_DaylightSun", Vector4.zero);
+
+                Color Render(Color tint)
+                {
+                    Shader.SetGlobalColor("_DaylightTint", tint);
+                    camera.Render();
+                    RenderTexture.active = target;
+                    pixels.ReadPixels(new Rect(0, 0, 16, 16), 0, 0);
+                    pixels.Apply();
+                    return pixels.GetPixel(8, 8);
+                }
+
+                var uninitialized = Render(Color.clear);
+                var neutral = Render(Color.white);
+                Assert.That(neutral.r, Is.GreaterThan(.95f));
+                Assert.That(uninitialized.r, Is.EqualTo(neutral.r).Within(.01f));
+                Assert.That(uninitialized.g, Is.EqualTo(neutral.g).Within(.01f));
+                Assert.That(uninitialized.b, Is.EqualTo(neutral.b).Within(.01f));
+                Assert.That(uninitialized.a, Is.GreaterThan(.95f));
+                var tinted = Render(new Color(.25f, .5f, .75f, 1));
+                Assert.That(tinted.r, Is.EqualTo(.25f).Within(.02f));
+                Assert.That(tinted.g, Is.EqualTo(.5f).Within(.02f));
+                Assert.That(tinted.b, Is.EqualTo(.75f).Within(.02f));
+            }
+            finally
+            {
+                Shader.SetGlobalColor("_DaylightTint", previousTint);
+                Shader.SetGlobalVector("_DaylightSun", previousSun);
+                RenderTexture.active = previousTarget;
+                EditorSceneManager.ClosePreviewScene(scene);
+                UnityEngine.Object.DestroyImmediate(sprite);
+                UnityEngine.Object.DestroyImmediate(material);
+                UnityEngine.Object.DestroyImmediate(pixels);
+                target.Release();
+                UnityEngine.Object.DestroyImmediate(target);
+            }
+        }
+
         private static WorldState World()
         {
             var registry = ContentIntegrationTests.Registry;

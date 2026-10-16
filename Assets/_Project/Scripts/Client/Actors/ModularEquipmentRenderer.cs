@@ -18,6 +18,8 @@ namespace LinhThu.Client.Actors
             public string id;
             public SpriteRenderer renderer;
             public bool optional;
+            [NonSerialized] private SpritePoseGeometry geometry;
+            public SpritePoseGeometry Geometry => geometry ?? (geometry = new SpritePoseGeometry(renderer));
         }
 
         public Animator animator;
@@ -83,6 +85,7 @@ namespace LinhThu.Client.Actors
                 var previous = slot.renderer.sprite;
                 if (previous != null && next != null && (previous.rect.size != next.rect.size || previous.pivot != next.pivot || !Mathf.Approximately(previous.pixelsPerUnit, next.pixelsPerUnit)))
                     throw new InvalidOperationException("Outfit changes bind coordinates: " + slot.id);
+                slot.Geometry.ValidateSwap(next, slot.id);
             }
 
             // Validate the complete snapshot before touching any renderer. Shared material stays intact.

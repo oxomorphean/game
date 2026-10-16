@@ -11,6 +11,7 @@ namespace LinhThu.Domain.Core
 {
     public interface IDomainContent
     {
+        bool TryGetWildBeast(string id, out WildBeastSpec spec);
         bool TryGetActor(string id, out ActorSpec spec);
         bool TryGetRealm(string id, out RealmSpec spec);
         bool TryGetTechnique(string id, out TechniqueSpec spec);
@@ -23,6 +24,9 @@ namespace LinhThu.Domain.Core
     /// <summary>Composition-time catalogue. Definitions are immutable and IDs cannot be replaced.</summary>
     public sealed class DomainContent : IDomainContent
     {
+        private readonly Dictionary<string, WildBeastSpec> wildBeasts = new Dictionary<string, WildBeastSpec>();
+        public void Add(WildBeastSpec x) => wildBeasts.Add(x.DefinitionId, x);
+        public bool TryGetWildBeast(string id, out WildBeastSpec spec) => Get(wildBeasts, id, out spec);
         private readonly Dictionary<string, ActorSpec> actors = new Dictionary<string, ActorSpec>();
         private readonly Dictionary<string, RealmSpec> realms = new Dictionary<string, RealmSpec>();
         private readonly Dictionary<string, TechniqueSpec> techniques = new Dictionary<string, TechniqueSpec>();

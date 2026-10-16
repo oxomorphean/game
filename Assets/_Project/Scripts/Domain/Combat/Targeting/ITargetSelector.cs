@@ -40,7 +40,12 @@ namespace LinhThu.Domain.Combat.Targeting
 
         internal static IReadOnlyList<EntityId> Select(WorldState world, ActorEntity caster, DeliverySpec d, Func<ActorEntity, bool> shape)
         {
-            return world.Actors.Values.Where(t => Matches(world, caster.Faction, caster.Id, t, d.TargetFilter) && shape(t) && world.Geometry.ClearLine(caster.Transform.Position, t.Transform.Position)).OrderBy(t => (t.Transform.Position - caster.Transform.Position).LengthSquared).ThenBy(t => t.Id).Take(d.MaxTargets).Select(t => t.Id).ToArray();
+            return world.SpatialGrid.QueryActors(caster.Transform.Position, d.Range + d.Radius)
+                .Where(t => Matches(world, caster.Faction, caster.Id, t, d.TargetFilter) && shape(t)
+                    && (d.Shape == DeliveryShape.Projectile
+                        ? world.Geometry.ClearProjectileLine(caster.Transform.Position, t.Transform.Position)
+                        : world.Geometry.ClearLine(caster.Transform.Position, t.Transform.Position)))
+                .OrderBy(t => (t.Transform.Position - caster.Transform.Position).LengthSquared).ThenBy(t => t.Id).Take(d.MaxTargets).Select(t => t.Id).ToArray();
         }
 
         internal static float SegmentDistance(WorldPoint p, WorldPoint from, WorldPoint to)

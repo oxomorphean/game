@@ -6,7 +6,18 @@ namespace LinhThu.Domain.Actors
 {
     public sealed class Transform2D
     {
-        public WorldPoint Position { get; internal set; }
+        private WorldPoint position;
+        internal event Action PositionChanged;
+        public WorldPoint Position
+        {
+            get => position;
+            internal set
+            {
+                if (!value.Finite) throw new ArgumentException("Invalid position.");
+                position = value;
+                PositionChanged?.Invoke();
+            }
+        }
 
         public WorldPoint FacingDirection { get; internal set; }
 

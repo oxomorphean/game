@@ -56,9 +56,186 @@ namespace LinhThu.Tests.ClientEditMode
         }
 
         [Test]
+        public void InitialPlayerSpawnInsideANodeFootprintIsRejected()
+        {
+            var isolated = EditorSceneManager.OpenPreviewScene(ScenePath);
+            try
+            {
+                var bootstrap = isolated.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<GameBootstrapper>()).Single();
+                var eggId = game.sceneNodes.Single(n => n.Entity.Spec.Kind == WorldNodeKind.SpiritEggNode).config.Id;
+                var egg = bootstrap.sceneNodes.Single(n => n.config.Id == eggId);
+                var foot = egg.GetComponent<LinhThu.Client.World.ObstacleAuthoring>().Definition().Center;
+                bootstrap.playerView.transform.position = new Vector3(foot.X, foot.Y, 0);
+                Assert.That(Assert.Throws<InvalidOperationException>(() => bootstrap.Initialize()).Message,
+                    Is.EqualTo("Player spawn overlaps a resource node."));
+                Assert.That(bootstrap.World, Is.Null, "Invalid authored content must not publish a partially initialized world.");
+            }
+            finally { EditorSceneManager.ClosePreviewScene(isolated); }
+        }
+
+        [Test]
+        public void ActorBoundsFollowVisiblePartsInsteadOfTransparentCanvas()
+        {
+            var view = game.playerView;
+            foreach (var outfit in view.equipment.outfits)
+            {
+                view.equipment.ApplyOutfit(outfit);
+                foreach (float facing in new[] { -1f, 1f })
+                {
+                    view.equipment.SetFacing(facing);
+                    foreach (float phase in new[] { 0f, .2f, .4f, .6f, .8f })
+                    {
+                        var clip = view.equipment.animator.runtimeAnimatorController.animationClips.First(c => c.name == "Run");
+                        clip.SampleAnimation(view.equipment.animator.gameObject, phase * clip.length);
+                        var visible = view.VisualBounds;
+                        Assert.That(visible.size.x, Is.LessThan(1.7f), "Padded hand canvases must not count as the actor silhouette.");
+                        Assert.That(visible.max.y - view.transform.position.y, Is.InRange(1.4f, 2.1f));
+                        Assert.That(view.OverheadPosition.y - visible.max.y, Is.EqualTo(.14f).Within(.001f));
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public void DepletedEggDisappearsAndRebindingReadyStateRestoresItsVisual()
+        {
+            var egg = game.sceneNodes.Single(n => n.Entity.Spec.Kind == WorldNodeKind.SpiritEggNode);
+            var foot = egg.GetComponent<LinhThu.Client.World.ObstacleAuthoring>().Definition().Center;
+            Assert.That(game.World.Geometry.CanStand(foot, game.World.PlayerActor.Transform.CollisionRadius), Is.False);
+            Approach(egg.Entity);
+            Assert.That(game.World.Execute(new HarvestCommand(game.World.Player.ActorId, egg.Entity.Id)).Succeeded, Is.True);
+            egg.Sync();
+            Assert.That(egg.visual.enabled, Is.False);
+            Assert.That(game.World.Geometry.CanStand(foot, game.World.PlayerActor.Transform.CollisionRadius), Is.True);
+            Assert.That(egg.GetComponent<LinhThu.Client.Actors.GroundContactShadow>().shadow.enabled, Is.False);
+            egg.Bind(new WorldNodeEntity(egg.Entity.Id, egg.Entity.Spec, egg.Entity.Position));
+            Assert.That(egg.visual.enabled, Is.True);
+            Assert.That(egg.GetComponent<LinhThu.Client.Actors.GroundContactShadow>().shadow.enabled, Is.True);
+        }
+
+        [Test]
+        public void PointerOnVisibleDummyBodyAimsAtItsGroundHitbox()
+        {
+            game.ToggleBeast();
+            var target = game.sceneActors.Single(v => v.faction == ActorFaction.HostileMonster);
+            var screen = game.gameCamera.WorldToScreenPoint(target.VisualBounds.center);
+            float hp = target.Entity.Vitals.CurrentHp;
+            Assert.That(game.CastFromPointer(0, new Vector2(screen.x, screen.y)).Succeeded, Is.True);
+            Tick(.6f);
+            Assert.That(target.Entity.Vitals.CurrentHp, Is.LessThan(hp));
+        }
+
+        [TestCase(3f, 0f, 5.6f)]
+        [TestCase(-3f, 1f, 2.8f)]
+        [TestCase(0f, -3f, 5.6f)]
+        [TestCase(2f, 3f, 2.8f)]
+        public void RenderedProjectileRayPassesThroughExactPointer(float x, float y, float zoom)
+        {
+            game.ToggleBeast();
+            game.gameCamera.orthographicSize = zoom;
+            var origin = game.playerView.transform.position + Vector3.up * .45f;
+            var click = origin + new Vector3(x, y, 0);
+            var screen = game.gameCamera.WorldToScreenPoint(click);
+            Assert.That(game.CastFromPointer(0, new Vector2(screen.x, screen.y)).Succeeded, Is.True);
+            typeof(LinhThu.Client.Combat.TechniqueVfxPresenter).GetMethod("LateUpdate", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(game.effects, null);
+            var line = game.effects.GetComponentsInChildren<LineRenderer>().Single();
+            var direction = (line.GetPosition(0) - line.GetPosition(1)).normalized;
+            Assert.That(Vector3.Cross(direction, click - line.GetPosition(0)).magnitude, Is.LessThan(.001f));
+            Assert.That(Vector3.Dot(direction, click - origin), Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void ProjectilePointerDoesNotSnapToHostileCenter()
+        {
+            game.ToggleBeast();
+            var target = game.sceneActors.Single(v => v.faction == ActorFaction.HostileMonster);
+            var click = target.VisualBounds.center + Vector3.up * target.VisualBounds.size.y * .2f;
+            var screen = game.gameCamera.WorldToScreenPoint(click);
+            Assert.That(game.CastFromPointer(0, new Vector2(screen.x, screen.y)).Succeeded, Is.True);
+            var p = game.World.Combat.Projectiles.Single();
+            var origin = game.playerView.transform.position + Vector3.up * .45f;
+            var expected = (click - origin).normalized;
+            Assert.That(p.Direction.X, Is.EqualTo(expected.x).Within(.0001f));
+            Assert.That(p.Direction.Y, Is.EqualTo(expected.y).Within(.0001f));
+        }
+
+        [Test]
+        public void MainGameSceneryBlocksFeetButLetsProjectilesCrossItsFootprint()
+        {
+            var footprints = game.map.GetComponentsInChildren<LinhThu.Client.World.ObstacleAuthoring>()
+                .Select(o => o.Definition()).ToArray();
+            Assert.That(footprints.Length, Is.GreaterThan(10));
+            foreach (var footprint in footprints)
+            {
+                var c = footprint.Center;
+                var geometry = new WorldGeometry(new WorldPoint(100, 100), new[] { footprint });
+                Assert.That(geometry.CanStand(c, .2f), Is.False);
+                var from = new WorldPoint(c.X - footprint.HalfSize.X - .5f, c.Y);
+                var initial = new WorldInitialState(game.registry.player.Id, game.registry.startingRealm.Id,
+                    game.registry.mapDefinitionId, from, game.registry.inventoryCapacity, game.registry.CreateRules(),
+                    game.registry.CreateRelations(), Array.Empty<NodeSpawn>(), game.registry.CreateBeastSeeds());
+                var world = WorldFactory.Create(game.registry.BuildContent(), geometry, new SeededRandomSource(2), new DomainEventBus(), initial);
+                Assert.That(world.Execute(new CastCommand(world.Player.ActorId, game.registry.hotbar[0].Id, new AimRequest(new WorldPoint(1, 0)))).Succeeded, Is.True);
+                float distance = Math.Min(footprint.HalfSize.X * 2 + .6f, 5);
+                for (int i = 0; i < Mathf.CeilToInt(distance / 10 / .01f); i++) world.Tick(.01f);
+                Assert.That(world.Combat.Projectiles.Count, Is.EqualTo(1), "Scenery must not consume a projectile at " + c);
+                Assert.That(world.Combat.Projectiles.Single().Position.X, Is.GreaterThan(from.X + distance - .01f));
+            }
+        }
+
+        [Test]
+        public void ClickingStatusPanelCannotCastOrInterruptMeditation()
+        {
+            var canvas = game.hud.GetComponent<Canvas>(); canvas.renderMode = RenderMode.WorldSpace;
+            var root = (RectTransform)canvas.transform; root.localScale = Vector3.one;
+            root.sizeDelta = new Vector2(game.gameCamera.pixelWidth, game.gameCamera.pixelHeight);
+            root.position = Vector2.Scale(root.sizeDelta, root.pivot);
+            game.ToggleBeast();
+            Assert.That(game.ToggleMeditate().Succeeded, Is.True);
+            Canvas.ForceUpdateCanvases();
+            float qi = game.World.PlayerActor.Vitals.CurrentQi;
+            foreach (string panel in new[] { "CultivatorStatus", "BeastStatus", "Inventory" })
+            {
+                var rect = (RectTransform)game.hud.transform.Find(panel);
+                Assert.That(rect.lossyScale.x * rect.rect.width, Is.GreaterThan(100));
+                var screen = RectTransformUtility.WorldToScreenPoint(null, rect.TransformPoint(rect.rect.center));
+                Assert.That(game.HandlePointerClick(screen).ErrorCode, Is.EqualTo(DomainError.NoEffect), panel);
+            }
+            Assert.That(game.World.PlayerActor.State, Is.EqualTo(ActorActionState.Meditating));
+            Assert.That(game.World.PlayerActor.Vitals.CurrentQi, Is.EqualTo(qi));
+            Assert.That(game.World.PlayerActor.Abilities.GetCooldownRemaining(game.registry.hotbar[0].Id), Is.Zero);
+        }
+
+        [Test]
+        public void ConcurrentDamageLabelsOccupySeparateLanesAndFollowTheirActor()
+        {
+            var target = game.sceneActors.Single(v => v.faction == ActorFaction.HostileMonster);
+            game.World.DealDamage(target.Entity, game.World.Player.ActorId, 11);
+            game.World.DealDamage(target.Entity, game.World.Player.ActorId, 22);
+            game.World.Events.Flush();
+            var texts = game.effects.GetComponentsInChildren<LinhThu.Client.Combat.FloatingTextPresenter>().ToArray();
+            Assert.That(texts.Length, Is.EqualTo(2));
+            foreach (var text in texts) text.label.ForceMeshUpdate();
+            float Bottom(LinhThu.Client.Combat.FloatingTextPresenter text) => text.label.transform.TransformPoint(text.label.bounds.min).y;
+            float Top(LinhThu.Client.Combat.FloatingTextPresenter text) => text.label.transform.TransformPoint(text.label.bounds.max).y;
+            var sorted = texts.OrderBy(Bottom).ToArray();
+            Assert.That(Bottom(sorted[1]), Is.GreaterThan(Top(sorted[0]) + .02f));
+            var information = (RectTransform)target.overhead.panel.transform;
+            float InformationTop() => information.TransformPoint(new Vector3(0, information.rect.yMax, 0)).y;
+            Assert.That(Bottom(sorted[0]), Is.GreaterThan(InformationTop() + .04f), "Damage must also clear the actor name, HP and status panel.");
+            target.transform.position += new Vector3(1, 1, 0);
+            target.overhead.Refresh();
+            foreach (var text in texts)
+                typeof(LinhThu.Client.Combat.FloatingTextPresenter).GetMethod("LateUpdate", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(text, null);
+            Assert.That(Bottom(sorted[1]), Is.GreaterThan(Top(sorted[0]) + .02f));
+            Assert.That(Bottom(sorted[0]), Is.GreaterThan(InformationTop() + .04f));
+            Assert.That(Bottom(sorted[0]), Is.GreaterThanOrEqualTo(target.OverheadPosition.y - .001f));
+        }
+
+        [Test]
         public void SceneBootsWithSinglePlayerCompanionHudAndBuildEntry()
         {
-            Assert.That(game.World.Actors.Count, Is.EqualTo(3));
+            Assert.That(game.World.Actors.Count, Is.EqualTo(3 + game.wildBeastSpawns.Length));
             Assert.That(game.World.Nodes.Count, Is.EqualTo(6));
             Assert.That(game.World.Player.Beasts.All.Single().State, Is.EqualTo(BeastState.SummonedActive));
             Assert.That(scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<UnityEngine.EventSystems.EventSystem>()).Count(), Is.EqualTo(1));
@@ -142,10 +319,10 @@ namespace LinhThu.Tests.ClientEditMode
             float defense = game.World.PlayerActor.Stats.Get(StatId.Defense);
             var outfit = game.playerView.equipment.CurrentOutfit;
             game.hud.beastButton.onClick.Invoke();
-            Assert.That(game.World.Actors.Count, Is.EqualTo(2));
+            Assert.That(game.World.Actors.Count, Is.EqualTo(2 + game.wildBeastSpawns.Length));
             Assert.That(game.sceneActors.Single(v => v.rosterCompanion).gameObject.activeSelf, Is.False);
             game.hud.beastButton.onClick.Invoke();
-            Assert.That(game.World.Actors.Count, Is.EqualTo(3));
+            Assert.That(game.World.Actors.Count, Is.EqualTo(3 + game.wildBeastSpawns.Length));
             Assert.That(game.World.PlayerActor.Stats.Get(StatId.Attack), Is.EqualTo(attack));
             game.hud.outfitButton.onClick.Invoke();
             Assert.That(game.playerView.equipment.CurrentOutfit, Is.Not.SameAs(outfit));
@@ -198,7 +375,7 @@ namespace LinhThu.Tests.ClientEditMode
                 var previous = game.World;
                 game.hud.loadButton.onClick.Invoke();
                 Assert.That(game.World, Is.Not.SameAs(previous));
-                Assert.That(game.World.Actors.Count, Is.EqualTo(3));
+                Assert.That(game.World.Actors.Count, Is.EqualTo(3 + game.wildBeastSpawns.Length));
                 Assert.That(game.playerView.Entity, Is.SameAs(game.World.PlayerActor));
                 Assert.That(game.playerView.equipment.CurrentOutfit, Is.SameAs(outfit));
                 Assert.That(game.World.PlayerActor.Stats.Get(StatId.Attack), Is.EqualTo(attack));

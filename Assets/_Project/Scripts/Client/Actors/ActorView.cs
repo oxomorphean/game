@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using LinhThu.Client.Configs;
 using LinhThu.Domain.Actors;
 using UnityEngine;
@@ -20,7 +21,35 @@ namespace LinhThu.Client.Actors
         public CharacterToolAttachmentPresenter tools;
         public UI.ActorOverheadPresenter overhead;
         public ActorActionFeedback actionFeedback;
+        public FacialExpressionPresenter face;
         public ActorEntity Entity { get; private set; }
+        private static readonly Dictionary<Sprite, Vector2[]> visibleOutlines = new Dictionary<Sprite, Vector2[]>();
+
+        // Unity's generated sprite outline follows alpha without requiring readable textures.
+        // It is presentation geometry only; Domain footprints remain independently authored.
+        private static Bounds VisibleBounds(Renderer renderer)
+        {
+            if (!(renderer is SpriteRenderer spriteRenderer) || spriteRenderer.sprite == null)
+                return renderer.bounds;
+            var sprite = spriteRenderer.sprite;
+            if (!visibleOutlines.TryGetValue(sprite, out var outline))
+            {
+                var points = new List<Vector2>(); var shape = new List<Vector2>();
+                for (int i = 0; i < sprite.GetPhysicsShapeCount(); i++)
+                {
+                    sprite.GetPhysicsShape(i, shape);
+                    points.AddRange(shape);
+                }
+                outline = points.Count > 0 ? points.ToArray() : sprite.vertices;
+                visibleOutlines.Add(sprite, outline);
+            }
+            if (outline.Length == 0) return renderer.bounds;
+            Vector3 TransformPoint(Vector2 p) => renderer.transform.TransformPoint(new Vector3(
+                spriteRenderer.flipX ? -p.x : p.x, spriteRenderer.flipY ? -p.y : p.y, 0));
+            var bounds = new Bounds(TransformPoint(outline[0]), Vector3.zero);
+            for (int i = 1; i < outline.Length; i++) bounds.Encapsulate(TransformPoint(outline[i]));
+            return bounds;
+        }
 
         public Bounds VisualBounds
         {
@@ -30,10 +59,10 @@ namespace LinhThu.Client.Actors
                 if (equipment != null)
                     foreach (var slot in equipment.slots)
                         if (slot.renderer != null && slot.renderer.enabled && slot.renderer.sprite != null)
-                            bounds.Encapsulate(slot.renderer.bounds);
+                            bounds.Encapsulate(slot.Geometry.IsSkinned ? slot.Geometry.WorldBounds : VisibleBounds(slot.renderer));
                 if (singleSpriteVisual != null)
                     foreach (var renderer in singleSpriteVisual.GetComponentsInChildren<Renderer>())
-                        if (renderer.enabled) bounds.Encapsulate(renderer.bounds);
+                        if (renderer.enabled) bounds.Encapsulate(VisibleBounds(renderer));
                 return bounds;
             }
         }
@@ -42,19 +71,7 @@ namespace LinhThu.Client.Actors
         {
             get
             {
-                float top = transform.position.y;
-                if (equipment != null)
-                {
-                    foreach (var slot in equipment.slots)
-                        if (slot.renderer != null && slot.renderer.sprite != null && slot.renderer.enabled)
-                            top = Mathf.Max(top, slot.renderer.bounds.max.y);
-                }
-                else if (singleSpriteVisual != null)
-                {
-                    foreach (var renderer in singleSpriteVisual.GetComponentsInChildren<Renderer>())
-                        top = Mathf.Max(top, renderer.bounds.max.y);
-                }
-                return new Vector3(transform.position.x, top + .14f, transform.position.z);
+                return new Vector3(transform.position.x, VisualBounds.max.y + .14f, transform.position.z);
             }
         }
 
@@ -73,6 +90,7 @@ namespace LinhThu.Client.Actors
             tools?.ResetPresentation();
             footsteps?.ResetMotion();
             actionFeedback?.ResetPresentation();
+            face?.ResetPresentation();
             Sync();
         }
 
@@ -82,6 +100,7 @@ namespace LinhThu.Client.Actors
             tools?.ResetPresentation();
             footsteps?.ResetMotion();
             actionFeedback?.ResetPresentation();
+            face?.ResetPresentation();
             Entity = null;
         }
         public void Sync()

@@ -219,3 +219,101 @@ Kiểm chứng cuối:
 Giới hạn tương thích: bố cục node đổi; save khác layout bị từ chối trước khi thay world. Không migrate hoặc ghi đè save người dùng. MainGame vẫn được giữ mở để chủ dự án thử; không lưu trạng thái Play vào scene.
 
 Retrospective: quét dependency và giữ meta bảo toàn tài nguyên; NUnit kiểm luật và wiring, còn ảnh cận chân phát hiện lỗi padding không lộ qua component check. Regression test chân nhìn thấy và quy tắc bù alpha trong AGENTS giúp tránh lặp lại lỗi tiếp đất.
+
+## Sửa biên lệch tâm và ánh sáng Prefab Mode — 15/10/2026
+
+- `WorldState`, `CombatResolver` và `GameSaveMapper` dùng `WorldBounds.Contains(..., 0)` cho node/projectile. Giữ biên bao gồm mép, từ chối tọa độ không hữu hạn; không đổi DTO hoặc schema save.
+- `DaylightSprite.shader` dùng tint trắng khi global `_DaylightTint.rgb` chưa được khởi tạo, giữ nguyên màu ánh sáng đã thiết lập.
+- Thêm 8 ca Domain kiểm cả bốn mép của world có tâm `(3, -3)`: khởi tạo/lưu/đọc node và projectile hợp lệ tại mép, từ chối save ngoài mép, xóa projectile sau khi vượt biên. Thêm 1 ca Client render SpriteRenderer trong preview scene và đọc pixel để kiểm fallback cùng tint đã khởi tạo.
+- Unity compile **0 lỗi**; full EditMode **187/187 passed** (**131 Domain + 56 Client**), **0 failed/skipped/inconclusive**, 7.6 giây. Shader supported, không có shader error/warning. Bằng chứng: `/private/tmp/nguthu-core-foundation/20261015-offset-bounds-daylight/` (`compile-status.json`, `editmode-tests.json`, `shader-status.json`).
+- MainGame trở về Edit Mode, scene không dirty. Quét Assets: **0 orphan meta, 0 missing meta, 0 thư mục tài nguyên rỗng**. Không sửa scene/prefab hay test hiện có; chỉ thêm regression tests vào fixture hiện hành.
+
+## Sửa vị trí Contact Shadow và Sun Shadow — 15/10/2026
+
+- `GroundContactShadow` đổi điểm chân từ local sang world trước khi cộng độ lệch nắng. Giữ nguyên `footOffset` đã author trong prefab; prop lật X, scale hoặc xoay không làm đảo hướng/co giãn độ lệch nắng. Thêm tooltip xác định hệ tọa độ của offset.
+- `ModularMapProp` cập nhật điểm neo và chiều cao tham chiếu Sun Shadow trong cả Edit Mode và Play. Đã tái hiện lỗi trước sửa: sau OnValidate ban đầu, di chuyển prop từ `(0,0)` tới `(3,2)` vẫn giữ `_GroundOrigin=(0,0)`.
+- Thêm 6 ca Client regression kiểm biến đổi transform của contact shadow và di chuyển/scale prefab đá, cây sau khởi tạo. Unity compile **0 lỗi**; full EditMode **193/193 passed** (**131 Domain + 62 Client**), **0 failed/skipped/inconclusive**, 20.21 giây.
+- MainGame Play: đo **82 contact shadows** và xem ảnh render tại **07:05, 11:30, 17:50**; sai số đặt tâm so với chân + hướng nắng world tối đa **0.00000044** đơn vị. Console **0 error/0 warning**; cả hai shader bóng supported, không có shader error. Bằng chứng tại `/private/tmp/nguthu-core-foundation/20261015-shadow-offset/`.
+- Kết thúc ở Edit Mode, MainGame không dirty. Không sửa scene/prefab, không đổi thông số bóng hoặc gameplay; bảo toàn các thay đổi Domain/shader của lượt trước. `git diff --check` đạt; Assets không có meta mồ côi/thiếu hoặc thư mục tài nguyên rỗng.
+
+## Sửa bóng vuông, đá lát và tốc độ trượt — 15/10/2026
+
+Phản hồi chủ dự án chỉ ra ba vấn đề đã bị bỏ sót trong lượt chơi thử. Tiếp tục trên working tree có sẵn; giữ các sửa WorldBounds/daylight/contact offset và sáu finding F01–F06 trong báo cáo chơi thử.
+
+- **Bóng cây:** `SunShadow.cginc` từng dùng alpha dưới 0.5 để nhận diện phần thân cây. Khi alpha của tán bị nhân với opacity 0.32, shader nhận nhầm cả tán là thân và tô kín quad. `SunShadowMesh` nay truyền marker thân qua UV3; opacity chỉ điều khiển độ trong suốt của cả thân và tán. Đã xem ảnh render MainGame lúc 07:05, 11:30 và 17:50: viền bóng theo tán, không còn mảng chữ nhật. Bóng người chơi hiện là elip mềm trong ảnh cận; chưa tái hiện được báo cáo bóng người thành hình vuông, không coi kiểm tra component là bằng chứng đã sửa trường hợp đó.
+- **Đá lát:** sửa `MeadowMainMap.prefab` qua Unity API, giữ GUID. 15 viên theo đường được căn theo tâm phần hình nhìn thấy và đường cong thực tế; hai đá lớn 07/10 giữ vị trí tránh đường đã được quy định trước. Cả 17 viên có footprint đa giác ở 45% phần dưới hình, đồng bộ điểm chân cho Y-sort và contact shadow. Loại các cạnh cực ngắn do giao điểm khi cắt polygon; không giảm validation Domain.
+- **Trượt vật cản:** `WorldGeometry` giữ quãng đường còn lại khi đổi sang hướng tiếp tuyến; `MovementMotor` điều chỉnh hướng đích trước gia tốc để không liên tục phanh vận tốc dọc bề mặt. Trong ca giữ phím sang phải qua vật cản vuông, tốc độ 2.8, 60 tick/s: thời gian thoát giảm **4.42 → 0.95 giây**. Kiểm 30/60/120 tick/s, không xuyên vật cản hoặc vượt ngân sách quãng đường; Dash và displacement giữ bộ regression hiện có.
+
+Kiểm chứng cuối:
+
+- Unity compile **0 lỗi** (`failed=false`, `compilationFailed=false`). Full EditMode **200/200 passed**, gồm **133 Domain + 67 Client**, **0 failed/skipped/inconclusive**, **7.91 giây**. Thêm 7 ca: render pixel bóng tiếp đất, render bóng tán khi opacity giảm ở ba giờ, bố cục/footprint 17 đá, tốc độ trượt vật cản tròn/vuông qua ba tần suất mô phỏng. Không bỏ hoặc nới assertion cũ.
+- Chơi MainGame bằng phím A/W: giữ W từ dưới đá lớn 07, nhân vật vòng sang phải để đi qua. Ghi 928 mẫu quan sát, **0 overlap** với footprint. Đây là một tuyến chơi thực tế; không suy ra đã thử mọi góc của mọi vật cản.
+- Console thực tế **0 error / 0 warning**; hai shader bóng supported, không có shader message. Đã khôi phục world và binding save trước kiểm thử, khôi phục đồng hồ chạy từ 15.38118; MainGame tiếp tục Play như ban đầu, scene không dirty. Không ghi save người dùng.
+- Quét Assets: **0 orphan meta, 0 missing meta, 0 thư mục tài nguyên rỗng**; không đổi file `.meta`. Diff qua kiểm tra whitespace với ngoại lệ dòng trống có dấu cách do Unity serialize; không sửa YAML bằng tay. Không commit/push.
+- Bằng chứng tạm: `/private/tmp/nguthu-core-foundation/20261015-shadow-stone-slide/`, gồm `tests-final.json`, `movement-before.json`, `movement-after.json`, `live-stone-walk.json`, ba ảnh `tree-*.png`, `player-after.png`, `restored-runtime.json`, `hygiene-final.json`.
+
+Retrospective: kiểm vị trí component và compile không phát hiện lỗi silhouette do opacity. Bổ sung test render pixel và kiểm tốc độ trượt qua nhiều tần suất mô phỏng để bắt hai lỗi này; vẫn cần xem cảnh thật khi nghiệm thu mỹ thuật. Sáu finding F01–F06 và hai luồng giao diện G01/G02 nằm ngoài lượt sửa này.
+
+### Tăng độ đậm bóng cây theo phản hồi — 15/10/2026
+
+- Tăng tint alpha cast shadow từ **0.32 lên 0.85** trong `cherry-tree.prefab` và ba cây của `MeadowMainMap.prefab` qua Unity API. Alpha tối đa sau ánh nắng tăng từ khoảng 0.064–0.083 lên 0.17–0.221; giữ silhouette, fade mép và bóng tiếp đất. Đã cập nhật STYLE_GUIDE theo phản hồi mới.
+- Đã đối chiếu ảnh trước/sau lúc 17:50 và xem lại 07:05/11:30: bóng cây rõ hơn, giữ viền tán. Áp dụng cả vào MainGame đang Play, trả đồng hồ về trạng thái trước kiểm tra, scene không dirty. Đây là chỉnh dữ liệu prefab, không đổi source/test và không chạy lại NUnit. Ảnh kiểm tra tại `/private/tmp/nguthu-core-foundation/20261015-darker-tree-shadows/`.
+
+### Sửa lại bố cục đá lát và tăng nhẹ bóng cây — 15/10/2026
+
+- Phản hồi mới xác nhận bố cục đá vẫn chưa đạt. Khảo sát cả prefab và scene cho thấy chúng khớp nhau: lỗi không phải cache. Lần sửa trước chỉ đưa tâm hình lên spline, chưa kiểm khoảng cách, chồng lấn, kích thước và phần hình vượt biên map; bề rộng đá trên đường chênh hơn 5 lần.
+- `MeadowMainMap.prefab`: dàn 15 đá theo chiều dài đường cong, bề rộng 0.52–0.64, khoảng cách tâm thông thường khoảng 1.17–1.30 đơn vị. Chừa khoảng mở khoảng 2.23 đơn vị tại tuyến linh điền–cổng. Toàn bộ silhouette nằm trong đường và map; đá giữ footprint phần dưới, Y-sort và bóng đúng chân. Hai tảng lớn 07/10 chuyển vào cụm đá bên trái và góc đông nam, vẫn ở ngoài đường. Dời riêng Bụi cây trái/Hoa trắng 1 khỏi dải lát để không che đá. Tất cả thao tác prefab qua Unity API, không đổi GUID.
+- Bóng cây tăng tint alpha **0.85 → 0.98**, thêm khoảng **15%**; alpha tối đa sau ánh nắng khoảng 0.196–0.255, giữ fade và silhouette. Áp dụng cho prefab cây và đủ ba cây MainGame. STYLE_GUIDE đã đồng bộ mức mới và tiêu chí bố cục đá.
+- Thêm một regression test kiểm toàn bộ outline nằm trong đường/map, cỡ đá, khoảng hở giữa đá, không bị cây/hoa/cỏ che và lối đi đủ bán kính chân. Test mới bắt được viên cuối làm hẹp lối đi; đã thu nhỏ riêng viên đó. Test tích hợp cũ phát hiện tuyến linh điền–cổng bị viên 06 cản; đã sửa bố cục để giữ khoảng mở, không sửa test tích hợp hoặc luật va chạm.
+- Kiểm chứng cuối: **compile 0 lỗi; 201/201 tests passed** (**133 Domain + 68 Client**), **0 failed/skipped/inconclusive**, **5.2 giây**. Một lần Test Runner bị ngắt do Unity đang Play; lỗi runner đã ghi riêng và chạy lại đầy đủ trong Edit Mode. Console cuối sau Play **0 error/0 warning**.
+- Đã xem render MainGame toàn cảnh ở **11:30 và 17:50**; dải đá có nhịp, cây/hoa không che đá và bóng tán rõ hơn. MainGame tiếp tục Play theo trạng thái người dùng đang thử, world/save binding được khôi phục, đồng hồ trả về 18:00 tạm dừng, scene không dirty. Không ghi save người dùng, không commit/push.
+- Bằng chứng: `/private/tmp/nguthu-core-foundation/20261015-road-layout/`, gồm `layout-before.json`, `tests-final.json`, `map-after-noon.png`, `map-after-evening.png`, `runtime-final.json`. `layout-after.json` là bước bố cục ban đầu trong lượt, trước khi thu nhỏ viên cuối/chừa giao cắt; không dùng nó thay cho trạng thái prefab cuối.
+
+Retrospective: kiểm tâm đá trên đường là điều kiện cần nhưng chưa đủ. Regression hiện kiểm cả silhouette, khoảng hở, cây che, biên map và bề rộng lối đi; tuyến giữa tài nguyên vẫn được bảo vệ bằng test tích hợp có sẵn. Không dùng test xanh thay cho việc xem toàn cảnh.
+
+## Sửa các lỗi sau rà soát — 15/10/2026
+
+Thực hiện theo mục tiêu “Sửa lần lượt từng lỗi”, trên working tree có sẵn. Giữ các sửa bóng/đá/va chạm trước đó; không commit/push, không sửa scene/prefab trong đợt này. G01/G02 (UI đột phá, dùng đồ/ấp trứng) là khoảng trống tính năng, không mở rộng trong đợt sửa lỗi.
+
+| Lỗi đã chốt | Thay đổi và bằng chứng hồi quy |
+|---|---|
+| Save thiếu collection vẫn tải và mất đồ | Collection DTO bắt buộc hiện diện/khác null; rỗng tường minh hợp lệ. Test thiếu/null Inventory, Equipment, Beasts; giữ LifeActivity optional cho save schema 2 cũ. |
+| Bán kính projectile đánh xuyên vách mỏng | Kiểm LOS từ điểm impact đến tâm target. Test mục tiêu sát mặt sau vách không mất HP, mục tiêu phía trước vẫn trúng. |
+| Status sinh giữa tick bị dư thời gian | Chia bước combat ở mốc cast/channel/impact/status. Test delayed cast, channel, projectile và periodic sinh status khác; so gộp/tách tick. |
+| Padding canvas làm bounds/overhead/canopy sai | Bounds dùng outline alpha của sprite và transform từng slot. Test ba outfit, hai hướng, năm pha Run; Play kiểm cả ba cây và lều: chỉ canvas giao nhau thì alpha 1, hình người thật phía sau thì 0.42. |
+| Cast vẫn nhìn theo hướng di chuyển cũ | Domain chỉ đổi FacingDirection khi cast được chấp nhận. Test lệnh hợp lệ/reject; click thật khi đang quay trái xác nhận scale Visual đổi −0.625 → +0.625 để bắn phải. |
+| Nhiều số damage chồng nhau | Xếp label theo mục tiêu, khoảng hở 0.08; đặt toàn cụm trên khung tên/HP/status. Test hai hit, actor di chuyển; ảnh Play `damage-final.png` cùng số đo bounds. |
+| F01: ngắm thân Mộc Nhân bị hụt | Client pick thân nhìn thấy rồi aim về chân Domain. Test tích hợp; click thật vào bia ghi đúng một damage event source player, HP lost 31.8000011. |
+| F02: click xuyên HUD | Panel chặn raycast; Bootstrap kiểm UI tại tọa độ click hiện tại trước CastCommand. Test panel chỉ số/thú/túi; phím X rồi click HP thật giữ Meditating, cooldown 0, projectile 0. |
+| F03: cắt người ở biên | Camera giữ toàn VisualBounds trong khung; nền trình bày có đệm, không nới biên gameplay/đường hoặc đổi mật độ texture. Tests 4:3/16:9/21:9 và các biên/góc; Play kiểm chín vị trí và ảnh mép bắc. |
+| F04: nhãn hồ/ruộng che người | Giữ neo/tên vật thể, tìm vị trí phía trên không giao người/HUD. Sửa cả screen-to-local để không phụ thuộc pivot Canvas. Test hai pivot × hồ/ruộng × ba vị trí; Play bờ bắc cả hai cho overlap=false. |
+| F05: túi che người đông bắc | Túi có +/−, tự thu về tiêu đề khi người đi vào vùng mở rộng; tiêu đề che người thì mờ còn 0.15. Tests 4/10/16 dòng và toggle; ảnh bờ bắc hồ thể hiện túi đã thu. |
+| F06: trứng cạn vẫn hiện | WorldNodeView ẩn hình/bóng; geometry quản lý footprint theo node và loại khi cạn vĩnh viễn. World sở hữu bản sao mask; tests harvest/save/load ready/depleted, load lỗi không sửa live world; test scene đặt player vào node bị từ chối trước khi publish world; Play canStand chuyển false → true ở chân trứng. |
+
+Sửa thêm đường render **Edit/Prefab Mode**: `ModularMapProp` tạo cùng SunShadowMesh như Play, mesh/node HideAndDontSave và dọn khi disable/destroy. SpriteRenderer gốc được suppress bằng MPB, giữ nguyên field enabled serialized. Ba ca render pixel ở **07:05, 11:30, 17:50** kiểm bóng có silhouette và vòng đời mesh; đã xem Game view lúc 17:50. `CODE_ARCHITECTURE.md` đồng bộ opacity cây 0.98, marker UV3, footprint 45%, bố cục 15+2 đá và các luồng vừa sửa.
+
+Kiểm chứng cuối:
+
+- **Unity compile 0 lỗi**, failed=false và compilationFailed=false. Full EditMode **228/228 passed**: **143 Domain + 85 Client**, **0 failed/skipped/inconclusive**, 7.07 giây. Toàn bộ **201 test của checkpoint trước vẫn có mặt**; thêm 27 ca. Assertion cũ về kích thước nền được cập nhật theo đệm presentation, đồng thời giữ assertion biên gameplay không đổi; không bỏ test để làm xanh.
+- Kiểm UI trong preview scene phải dùng Canvas có kích thước pixel thật: Overlay của preview có thể có scale 0, tạo phép đo suy biến. Fixture mới loại trường hợp đó; các ca quan trọng còn được đối chiếu với Overlay Canvas trong Play và native input.
+- Console cuối Play **0 errors/0 warnings**; shader Daylight Shadow, Daylight Sprite, Ground Contact Shadow supported, không có shader message. MainGame scene không dirty. Những truy vấn eval sai tên kiểu/property và giới hạn đường dẫn capture đã được sửa; đó là lỗi truy vấn kiểm chứng, không phải lỗi compile project.
+- World được khôi phục từ snapshot trước task; JSON trước/sau **DeepEquals=true**, binding save gốc giữ nguyên. Player về `(-3.37287021, -2.225534)`, Idle; Unity tiếp tục Play, đồng hồ 18:00 tạm dừng như trước. Không ghi save người dùng.
+- Assets: **0 orphan meta, 0 missing meta, 0 thư mục tài nguyên rỗng**. Ảnh tạm Pipeline tạo trong Assets đã được chuyển ra ngoài và xóa qua AssetDatabase; không để output kiểm thử trong source. `git diff --check` đạt với ngoại lệ blank-at-eol của YAML Unity có sẵn; `git status` được rà, giữ thay đổi có trước.
+- Bằng chứng ngoài repo: `/private/tmp/nguthu-core-foundation/20261015-audit-fixes/`, gồm `tests-final.json`, `compile-final.json`, `native-mouse-cast.json`, `native-hud-click.json`, `live-hud-prompts.json`, `live-combat-egg.json`, `live-camera-edges.json`, `live-canopy-bounds.json`, `live-damage-final.json`, các ảnh `pond-north.png`, `camera-north-final.png`, `damage-final.png`, `shadow-evening-final.png`, `console-final.json`, `runtime-restored.json`, `hygiene-final.json`.
+
+Giới hạn: số đo nhiều aspect nằm trong EditMode tests; native input/ảnh Play dùng cửa sổ hiện tại. Không có benchmark hiệu năng/crowd hoặc chứng nhận mọi lỗi trong game đã hết. Nghiệm thu hướng mỹ thuật vẫn thuộc chủ dự án.
+
+Retrospective: test vị trí component chưa đủ cho text/shadow. Bounds nhìn thấy, tọa độ Canvas không suy biến, render pixel và thao tác chuột thật đã bắt được lỗi chữ đè tên/HP còn sót sau lượt test đầu. Các regression này nằm trong suite hiện hành; không thêm framework QA hoặc quy tắc AGENTS dài hơn.
+
+
+## Spatial World, Multi-Player Domain và Beast Taming — 15/10/2026
+
+Đã tích hợp tuần tự A → B → C → D theo goal: chunk grid 16 units và Players theo owner; Meadow 48×48/bốn vùng với streaming prop; ba bãi Huyền Quy có windup/telegraph, leash, thu phục T, thưởng/respawn; HUD Tu vi/B/I và chọn linh thú. Save schema 3/path v3 riêng, giữ dữ liệu v1/v2. [Chi tiết bàn giao và evidence](SPATIAL_WORLD_AND_TAMING.md).
+
+Gate cuối: Unity compile **0 lỗi**; full EditMode **254/254 passed** (**162 Domain + 92 Client**, 0 failed/skipped/inconclusive, 73.31s). Assets **0 orphan/missing meta, 0 thư mục rỗng**, 416 meta cũ giữ nguyên. Kiểm bằng Unity API/NUnit; chủ dự án còn nghiệm thu Play, chưa có benchmark FPS/CCU. Không commit/push/deploy, không WebGL hay framework QA mới.
+
+## Thay mẫu nam từ Krita — 15/10/2026
+
+Theo ảnh gửi sau cùng và lựa chọn giữ cơ thể nền: HeroBase có 16 phần, pivot/Idle/Run/action pose đã đổi theo mẫu, Visual 0.625; chưa thêm tóc/mắt/đồ. Giữ ID outfit/palette và luật Domain. Gỡ 38 PNG cũ + meta sau kiểm dependency/backup; Mộc Nhân bỏ dữ liệu variant người dư. Master Krita và bản khôi phục ở ngoài checkout. [Bàn giao chi tiết](HERO_MALE_REFRESH.md).
+
+Kiểm chứng: compile **0 lỗi/0 cảnh báo**; EditMode **256/256 passed** (162 Domain + 94 Client, 21.60s); Play đã xem các pose Idle/Run/thiền/câu cá và flip, Console hiện tại **0 errors/0 warnings**. Assets **0 orphan/missing meta, 0 thư mục rỗng**; 394 GUID được giữ không đổi. Nghiệm thu mỹ thuật cuối vẫn thuộc chủ dự án, không suy từ tests.

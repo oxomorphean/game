@@ -28,6 +28,10 @@ namespace LinhThu.Domain.Cultivation
         }
 
         public long CurrentCultivationExp { get; private set; }
+        public long NextThreshold => SubStage < CultivationSubStage.Perfection
+            ? Realm.SubStageThresholds[(int)SubStage + 1] : Realm.BreakthroughCost;
+        public bool CanBreakthrough => Realm.NextRealmId != null && SubStage == CultivationSubStage.Perfection
+            && CurrentCultivationExp >= Realm.BreakthroughCost;
 
         public CultivationProgress(RealmSpec realm, long experience)
         {

@@ -14,6 +14,63 @@ namespace LinhThu.Tests.EditMode
     public sealed class InventoryAndNodeTests
     {
         [Test]
+        public void HarvestedNodeRemovesItsFootprintAndSaveRestoreKeepsWorldsIsolated()
+        {
+            var world = Fixture.World(nodes: new[] { new NodeSpawn("egg-node", new WorldPoint(.7f, 0)) });
+            var egg = world.Nodes.Values.Single();
+            var footprint = new WorldObstacle(new WorldPoint(.7f, .18f), new WorldPoint(.16f, .16f), false);
+            world.Geometry.RegisterNodeObstacles(egg.Id, new[] { footprint });
+            Assert.That(world.Geometry.CanStand(footprint.Center, .2f), Is.False);
+            var mapper = new GameSaveMapper();
+            var ready = mapper.Capture(world);
+            Assert.That(world.Execute(new HarvestCommand(world.Player.ActorId, egg.Id)).Succeeded, Is.True);
+            Assert.That(world.Geometry.CanStand(footprint.Center, .2f), Is.True);
+            world.Motor.Displace(world.PlayerActor.Transform, footprint.Center - world.PlayerActor.Transform.Position);
+            world.Events.Flush();
+            var harvested = mapper.Capture(world);
+            var restored = mapper.TryRestore(harvested, world.Content, world.Geometry, new SeededRandomSource(8), new DomainEventBus());
+            Assert.That(restored.Succeeded, Is.True, restored.Message);
+            Assert.That(restored.Value.Geometry.CanStand(footprint.Center, .2f), Is.True);
+            Assert.That((restored.Value.PlayerActor.Transform.Position - footprint.Center).Length, Is.LessThan(.00001f));
+            var restoredReady = mapper.TryRestore(ready, world.Content, world.Geometry, new SeededRandomSource(8), new DomainEventBus());
+            Assert.That(restoredReady.Succeeded, Is.True, restoredReady.Message);
+            Assert.That(restoredReady.Value.Geometry.CanStand(footprint.Center, .2f), Is.False);
+            Assert.That(world.Geometry.CanStand(footprint.Center, .2f), Is.True, "Loading must not change live collision state.");
+            ready.Nodes[0].GrowthTimer = -1;
+            Assert.That(mapper.TryRestore(ready, world.Content, world.Geometry, new SeededRandomSource(8), new DomainEventBus()).Succeeded, Is.False);
+            Assert.That(world.Geometry.CanStand(footprint.Center, .2f), Is.True);
+        }
+
+        [TestCase("Inventory")]
+        [TestCase("Equipment")]
+        [TestCase("Beasts")]
+        public void SaveMustDistinguishMissingCollectionsFromExplicitlyEmptyOnes(string field)
+        {
+            var world = Fixture.World();
+            world.Player.Inventory.TryAdd(new ItemStack("herb", 3));
+            world.Player.Inventory.TryAdd(new ItemStack("robe", 1));
+            world.Player.Equipment.TryEquip("body", "robe", world.Player.Inventory, world.PlayerActor);
+            world.Events.Flush();
+            var serializer = new SaveSerializer();
+            var json = Newtonsoft.Json.Linq.JObject.Parse(serializer.Serialize(new GameSaveMapper().Capture(world)));
+            var player = (Newtonsoft.Json.Linq.JObject)json["Players"][0];
+            player.Remove(field);
+            Assert.That(serializer.TryDeserialize(json.ToString()).ErrorCode, Is.EqualTo(DomainError.InvalidSave));
+            player[field] = Newtonsoft.Json.Linq.JValue.CreateNull();
+            Assert.That(serializer.TryDeserialize(json.ToString()).ErrorCode, Is.EqualTo(DomainError.InvalidSave));
+            Assert.That(world.Player.Inventory.Count("herb"), Is.EqualTo(3));
+            Assert.That(world.Player.Equipment.Slots["body"].ItemId, Is.EqualTo("robe"));
+
+            var empty = Fixture.World();
+            var emptyJson = Newtonsoft.Json.Linq.JObject.Parse(serializer.Serialize(new GameSaveMapper().Capture(empty)));
+            ((Newtonsoft.Json.Linq.JObject)emptyJson["Actors"][0]).Remove("LifeActivity");
+            var parsed = serializer.TryDeserialize(emptyJson.ToString());
+            Assert.That(parsed.Succeeded, Is.True, parsed.Message);
+            Assert.That(new GameSaveMapper().TryRestore(parsed.Value, empty.Content, empty.Geometry,
+                new SeededRandomSource(1), new DomainEventBus()).Succeeded, Is.True);
+        }
+
+        [Test]
         public void InventoryAddAllAndRemoveAreAtomic()
         {
             var bag = new InventoryContainer(1, Fixture.Content());

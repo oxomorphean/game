@@ -10,6 +10,8 @@ namespace LinhThu.Client.Environment
         readonly Mesh mesh;
         readonly GameObject node;
         readonly SpriteRenderer source;
+        readonly float originalSourceSuppression;
+        readonly MaterialPropertyBlock sourceProperties = new MaterialPropertyBlock();
         readonly MaterialPropertyBlock properties = new MaterialPropertyBlock();
         Sprite sprite;
         Vector2[] normalized;
@@ -22,9 +24,11 @@ namespace LinhThu.Client.Environment
         public SunShadowMesh(SpriteRenderer silhouette)
         {
             source = silhouette;
-            node = new GameObject("Bóng mặt trời · silhouette");
+            source.GetPropertyBlock(sourceProperties);
+            originalSourceSuppression = sourceProperties.GetFloat("_ShadowSourceHidden");
+            node = new GameObject("Bóng mặt trời · silhouette") { hideFlags = HideFlags.HideAndDontSave };
             node.transform.SetParent(source.transform, false);
-            mesh = new Mesh{name = "Sun shadow silhouette"};
+            mesh = new Mesh{name = "Sun shadow silhouette", hideFlags = HideFlags.HideAndDontSave};
             mesh.MarkDynamic();
             node.AddComponent<MeshFilter>().sharedMesh = mesh;
             Renderer = node.AddComponent<MeshRenderer>();
@@ -33,13 +37,15 @@ namespace LinhThu.Client.Environment
             Renderer.sortingOrder = source.sortingOrder;
             Renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             Renderer.receiveShadows = false;
-            source.enabled = false;
+            // Suppress the original quad without changing a serialized renderer field in Prefab Mode.
+            sourceProperties.SetFloat("_ShadowSourceHidden", 1);
+            source.SetPropertyBlock(sourceProperties);
         }
 
         public void Refresh(SunShadowSettings settings, Vector3 foot, float referenceHeight)
         {
             var next = source.sprite;
-            Renderer.enabled = next != null && source.gameObject.activeInHierarchy;
+            Renderer.enabled = next != null && source.enabled && source.gameObject.activeInHierarchy;
             if (next == null)
                 return;
             bool profileChanged = previousCanopy != settings.canopyBlueRatio || previousCenter != settings.center || previousContact != settings.contactHeight;
@@ -77,6 +83,7 @@ namespace LinhThu.Client.Environment
             var vertices = new Vector3[gridCount + (canopy ? 4 : 0)];
             normalized = new Vector2[vertices.Length];
             var colors = new Color32[vertices.Length];
+            var trunk = new Vector2[vertices.Length];
             for (int y = 0; y < ys.Count; y++)
                 for (int x = 0; x <= columns; x++)
                 {
@@ -112,8 +119,9 @@ namespace LinhThu.Client.Environment
                 normalized[gridCount + 1] = new Vector2(1, 0);
                 normalized[gridCount + 2] = new Vector2(0, 1);
                 normalized[gridCount + 3] = new Vector2(1, 1);
-                colors[gridCount] = colors[gridCount + 2] = new Color32(0, 0, 0, 0);
-                colors[gridCount + 1] = colors[gridCount + 3] = new Color32(255, 0, 0, 0);
+                colors[gridCount] = colors[gridCount + 2] = new Color32(0, 0, 0, 255);
+                colors[gridCount + 1] = colors[gridCount + 3] = new Color32(255, 0, 0, 255);
+                for (int i = gridCount; i < vertices.Length; i++) trunk[i] = Vector2.right;
                 triangles[t++] = gridCount;
                 triangles[t++] = gridCount + 2;
                 triangles[t++] = gridCount + 1;
@@ -126,6 +134,7 @@ namespace LinhThu.Client.Environment
             mesh.vertices = vertices;
             mesh.colors32 = colors;
             mesh.uv2 = normalized; // Local sprite UVs; border fade must also work for atlas sub-rects.
+            mesh.uv3 = trunk; // A stable trunk marker, independent of material/renderer tint alpha.
             mesh.triangles = triangles;
             mesh.bounds = new Bounds(Vector3.zero, Vector3.one * next.bounds.size.magnitude * 6);
             previousRect = next.rect;
@@ -138,6 +147,12 @@ namespace LinhThu.Client.Environment
 
         public void Dispose()
         {
+            if (source != null)
+            {
+                source.GetPropertyBlock(sourceProperties);
+                sourceProperties.SetFloat("_ShadowSourceHidden", originalSourceSuppression);
+                source.SetPropertyBlock(sourceProperties);
+            }
             if (Application.isPlaying)
             {
                 UnityEngine.Object.Destroy(node);

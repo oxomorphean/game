@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
 using LinhThu.Domain.Actors;
 using LinhThu.Domain.Stats;
 using LinhThu.Domain.Combat;
@@ -11,7 +13,7 @@ namespace LinhThu.Domain.Persistence
     public sealed class GameSaveDto
     {
         public string SchemaId = "linhthu.foundation";
-        public const int CurrentVersion = 2;
+        public const int CurrentVersion = 3;
         public int SchemaVersion = CurrentVersion;
         public string MapDefinitionId;
         public double SimulationSeconds;
@@ -19,11 +21,34 @@ namespace LinhThu.Domain.Persistence
         public long NextEntityId;
         public int NextSourceId;
         public RandomStateDto Random;
-        public PlayerSaveDto Player;
+        public long LocalPlayerId;
+        public float ChunkSize = ChunkCoord.Size;
+        public PointDto WorldCenter, WorldHalfSize;
+        [JsonProperty(Required = Required.Always)]
+        public List<PlayerSaveDto> Players = new List<PlayerSaveDto>();
+        [JsonIgnore] public PlayerSaveDto Player => Players?.FirstOrDefault(p => p != null && p.ActorId == LocalPlayerId);
         public RulesSaveDto Rules;
+        [JsonProperty(Required = Required.Always)]
+        public List<WildBeastSaveDto> WildBeasts = new List<WildBeastSaveDto>();
+        [JsonProperty(Required = Required.Always)]
         public List<ActorSaveDto> Actors = new List<ActorSaveDto>();
+        [JsonProperty(Required = Required.Always)]
         public List<WorldNodeSaveDto> Nodes = new List<WorldNodeSaveDto>();
+        [JsonProperty(Required = Required.Always)]
         public List<ProjectileSaveDto> Projectiles = new List<ProjectileSaveDto>();
+    }
+
+    public sealed class WildBeastSaveDto
+    {
+        public long Id;
+        public string DefinitionId;
+        public PointDto Home;
+        public long? ActorId, TargetId, RewardOwnerId;
+        public WildBeastAiState State;
+        public int PatrolStep;
+        public float IdleRemaining, PatrolRemaining, RespawnRemaining;
+        public long PendingExperience;
+        public bool PendingLoot;
     }
 
     public struct PointDto
@@ -47,7 +72,9 @@ namespace LinhThu.Domain.Persistence
     public sealed class RulesSaveDto
     {
         public float DefenseScale, OffenseScale, ResistanceScale, CooldownReductionCap;
+        [JsonProperty(Required = Required.Always)]
         public List<ElementSaveDto> Elements = new List<ElementSaveDto>();
+        [JsonProperty(Required = Required.Always)]
         public List<FactionSaveDto> Hostilities = new List<FactionSaveDto>();
     }
 
@@ -70,8 +97,11 @@ namespace LinhThu.Domain.Persistence
         public long CultivationExp;
         public int SubStage;
         public int InventoryCapacity;
+        [JsonProperty(Required = Required.Always)]
         public List<ItemSaveDto> Inventory = new List<ItemSaveDto>();
+        [JsonProperty(Required = Required.Always)]
         public List<EquipmentSaveDto> Equipment = new List<EquipmentSaveDto>();
+        [JsonProperty(Required = Required.Always)]
         public List<BeastSaveDto> Beasts = new List<BeastSaveDto>();
     }
 
@@ -108,14 +138,18 @@ namespace LinhThu.Domain.Persistence
         public float MovementSpeedFactor = 1;
         public DashSaveDto Dash;
         public AppearanceSaveDto Appearance;
-        // Additive schema-2 data: older idle/moving saves default to no activity.
+        // Explicit idle state is retained on actors without a life activity.
         public LifeActivitySaveDto LifeActivity = new LifeActivitySaveDto();
+        [JsonProperty(Required = Required.Always)]
         public Dictionary<StatId, float> BaseStats = new Dictionary<StatId, float>();
         public float Hp, Qi, Shield;
         public ActorActionState State;
+        [JsonProperty(Required = Required.Always)]
         public List<ModifierSaveDto> ManualModifiers = new List<ModifierSaveDto>();
+        [JsonProperty(Required = Required.Always)]
         public Dictionary<string, float> Cooldowns = new Dictionary<string, float>();
         public CastSaveDto Cast;
+        [JsonProperty(Required = Required.Always)]
         public List<StatusSaveDto> Statuses = new List<StatusSaveDto>();
     }
 
@@ -151,6 +185,7 @@ namespace LinhThu.Domain.Persistence
     {
         public string TechniqueId;
         public PointDto Direction;
+        public PointDto? LockedPoint;
         public long? TargetId;
         public float WindupRemaining, ChannelRemaining, UntilPulse;
         public bool Started;
@@ -158,8 +193,10 @@ namespace LinhThu.Domain.Persistence
 
     public sealed class SourceSaveDto
     {
+        public long? RewardOwnerId;
         public long ActorId;
         public ActorFaction Faction;
+        [JsonProperty(Required = Required.Always)]
         public Dictionary<StatId, float> Stats = new Dictionary<StatId, float>();
     }
 
@@ -190,6 +227,7 @@ namespace LinhThu.Domain.Persistence
         public SourceSaveDto Source;
         public PointDto Position, Direction;
         public float RemainingLifetime;
+        [JsonProperty(Required = Required.Always)]
         public List<long> HitTargets = new List<long>();
     }
 }

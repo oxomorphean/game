@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e440519bb734575be533528b70e342, type: 3}
+  m_Name: wild-huyen-quy
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Configs.WildBeastConfigSO
+  definitionId: wild-huyen-quy
+  displayName: "B\xE3i Huy\u1EC1n Quy"
+  description: 
+  actor: {fileID: 11400000, guid: 5c080885018ed4ce8a598cef51f48f04, type: 2}
+  tameSpecies: {fileID: 11400000, guid: 088bc6c5d8b514aac867dbd3e38874c1, type: 2}
+  attack: {fileID: 11400000, guid: be9e1b8f5d0f7426bb33938971c11d45, type: 2}
+  faction: 2
+  aggroRadius: 5
+  leashRadius: 8
+  patrolRadius: 2
+  respawnSeconds: 15
+  tameHpRatio: 0.3
+  tameRange: 2
+  experience: 25
+  loot:
+  - item: {fileID: 11400000, guid: a50fdd74610fe44469abde575555880a, type: 2}
+    count: 2

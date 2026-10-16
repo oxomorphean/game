@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using LinhThu.Domain.Core;
 
 namespace LinhThu.Domain.Navigation
 {
@@ -33,20 +34,22 @@ namespace LinhThu.Domain.Navigation
     {
         public readonly WorldPoint Center, HalfSize;
         public readonly bool Box;
+        public readonly bool BlocksProjectiles;
         private readonly WorldPoint[] vertices;
         public int VertexCount => vertices == null ? 0 : vertices.Length;
         public WorldPoint Vertex(int index) => vertices[index];
-        public WorldObstacle(WorldPoint center, WorldPoint halfSize, bool box)
+        public WorldObstacle(WorldPoint center, WorldPoint halfSize, bool box, bool blocksProjectiles = true)
         {
             if (!center.Finite || !GeometryRules.Range(halfSize.X, .01f, 100) || !GeometryRules.Range(halfSize.Y, .01f, 100))
                 throw new ArgumentException("Invalid obstacle.");
             Center = center;
             HalfSize = box ? halfSize : new WorldPoint(halfSize.X, halfSize.X);
             Box = box;
+            BlocksProjectiles = blocksProjectiles;
             vertices = null;
         }
 
-        public WorldObstacle(IEnumerable<WorldPoint> polygon)
+        public WorldObstacle(IEnumerable<WorldPoint> polygon, bool blocksProjectiles = true)
         {
             if (polygon == null)
                 throw new ArgumentException("Missing footprint.");
@@ -78,6 +81,7 @@ namespace LinhThu.Domain.Navigation
             Center = new WorldPoint((minX + maxX) * .5f, (minY + maxY) * .5f);
             HalfSize = new WorldPoint((maxX - minX) * .5f, (maxY - minY) * .5f);
             Box = false;
+            BlocksProjectiles = blocksProjectiles;
         }
 
         private static float Cross(WorldPoint a, WorldPoint b) => a.X * b.Y - a.Y * b.X;
@@ -224,6 +228,29 @@ namespace LinhThu.Domain.Navigation
         public WorldPoint HalfSize => Bounds.HalfSize;
 
         private readonly WorldObstacle[] obstacles;
+        private readonly SortedDictionary<EntityId, WorldObstacle[]> nodeObstacles = new SortedDictionary<EntityId, WorldObstacle[]>();
+        private readonly HashSet<EntityId> depletedNodes = new HashSet<EntityId>();
+        public SpatialChunkGrid SpatialGrid { get; } = new SpatialChunkGrid();
+        private IEnumerable<WorldObstacle> Nearby(WorldPoint point, float radius) => SpatialGrid.QueryObstacles(point - new WorldPoint(radius, radius), point + new WorldPoint(radius, radius));
+        public void RegisterNodeObstacles(EntityId node, IEnumerable<WorldObstacle> footprints)
+        {
+            if (node.Value <= 0 || footprints == null) throw new ArgumentException("Invalid node footprint.");
+            var list = new List<WorldObstacle>(footprints).ToArray();
+            nodeObstacles.Add(node, list);
+            foreach (var obstacle in list) SpatialGrid.RegisterObstacle(obstacle, node);
+        }
+        internal void SetNodeDepleted(EntityId node, bool depleted)
+        {
+            if (depleted) depletedNodes.Add(node); else depletedNodes.Remove(node);
+            SpatialGrid.SetNodeDepleted(node, depleted);
+        }
+        internal WorldGeometry Copy(IEnumerable<EntityId> savedDepletedNodes = null)
+        {
+            var copy = new WorldGeometry(Bounds, obstacles);
+            foreach (var pair in nodeObstacles) copy.RegisterNodeObstacles(pair.Key, pair.Value);
+            foreach (var node in savedDepletedNodes ?? depletedNodes) copy.SetNodeDepleted(node, true);
+            return copy;
+        }
         public WorldGeometry(WorldPoint halfSize, IEnumerable<WorldObstacle> obstacles)
             : this(new WorldBounds(halfSize), obstacles) { }
         public WorldGeometry(WorldBounds bounds, IEnumerable<WorldObstacle> obstacles)
@@ -232,26 +259,41 @@ namespace LinhThu.Domain.Navigation
                 throw new ArgumentException("Invalid arena.");
             Bounds = bounds;
             this.obstacles = new List<WorldObstacle>(obstacles).ToArray();
+            foreach (var obstacle in this.obstacles) SpatialGrid.RegisterObstacle(obstacle);
         }
 
         public bool CanStand(WorldPoint p, float radius)
         {
             if (!GeometryRules.Range(radius, .01f, 10) || !Bounds.Contains(p, radius))
                 return false;
-            foreach (var obstacle in obstacles)
+            foreach (var obstacle in Nearby(p, radius))
                 if (obstacle.Overlaps(p, radius))
                     return false;
             return true;
         }
 
-        public bool ClearLine(WorldPoint a, WorldPoint b)
+        public bool ClearLine(WorldPoint a, WorldPoint b) => ClearLine(a, b, false);
+
+        public bool ClearProjectileLine(WorldPoint a, WorldPoint b) => ClearLine(a, b, true);
+
+        private bool ClearLine(WorldPoint a, WorldPoint b, bool projectilesOnly)
         {
             if (!a.Finite || !b.Finite)
                 throw new ArgumentException("Invalid line.");
-            foreach (var obstacle in obstacles)
-                if (obstacle.Crosses(a, b))
+            foreach (var obstacle in SpatialGrid.QueryObstacles(new WorldPoint(Math.Min(a.X, b.X), Math.Min(a.Y, b.Y)), new WorldPoint(Math.Max(a.X, b.X), Math.Max(a.Y, b.Y))))
+                if ((!projectilesOnly || obstacle.BlocksProjectiles) && obstacle.Crosses(a, b))
                     return false;
             return true;
+        }
+
+        // Steer intent before acceleration, so repeatedly pressing into a wall does not
+        // spend every tick braking the tangential velocity earned in the previous tick.
+        internal WorldPoint SteerAlongSurface(WorldPoint from, WorldPoint direction, float distance, float radius)
+        {
+            var delta = direction * distance;
+            if (delta.LengthSquared < .00000001f || CanStand(from + delta, radius)) return direction;
+            var moved = Move(from, delta, radius, true) - from;
+            return moved.LengthSquared > .00000001f ? moved.Normalized * direction.Length : direction;
         }
 
         /// <summary>Optional steering assists walking around a blocked surface.</summary>
@@ -297,7 +339,7 @@ namespace LinhThu.Domain.Navigation
             for (int pass = 0; pass < 32; pass++)
             {
                 point = Bounds.Clamp(point, radius);
-                foreach (var obstacle in obstacles)
+                foreach (var obstacle in Nearby(point, radius))
                     point += obstacle.PushOut(point, radius, .02f);
                 if (CanStand(point, radius)) return point;
             }
@@ -354,7 +396,7 @@ namespace LinhThu.Domain.Navigation
                 return contact;
             // Only a physical prop receives steering assistance; the map boundary remains a hard edge.
             var probe = contact + increment.Normalized * .002f;
-            foreach (var obstacle in obstacles)
+            foreach (var obstacle in Nearby(probe, radius))
             {
                 if (!obstacle.Overlaps(probe, radius))
                     continue;
@@ -369,8 +411,8 @@ namespace LinhThu.Domain.Navigation
                 }
                 else if (along < 0)
                     tangent *= -1;
-                float distance = Math.Max(Math.Abs(along), remaining.Length * .45f);
-                var slide = tangent * distance;
+                // Redirect the remaining travel budget instead of repeatedly shrinking it.
+                var slide = tangent * remaining.Length;
                 float available = FreeFraction(contact, slide, radius);
                 if (available < .01f && Math.Abs(along) < remaining.Length * .05f)
                 {

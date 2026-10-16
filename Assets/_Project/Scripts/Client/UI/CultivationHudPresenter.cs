@@ -12,11 +12,14 @@ using UnityEngine.UI;
 
 namespace LinhThu.Client.UI
 {
+    [DefaultExecutionOrder(105)]
     public sealed class CultivationHudPresenter : MonoBehaviour
     {
         public TMP_FontAsset font;
         [NonSerialized] public TMP_Text vitals, qiLabel, shieldLabel, secondaryStats, progression, inventory, beastState, message;
-        [NonSerialized] public Image hpFill, qiFill, shieldFill;
+        [NonSerialized] public Image hpFill, qiFill, shieldFill, experienceFill;
+        [NonSerialized] public TMP_Text experience, rosterTitle;
+        [NonSerialized] public Button breakthroughButton, sidePanelsButton, tameButton;
         [NonSerialized] public Button[] hotbar;
         [NonSerialized] public TMP_Text[] hotbarLabels;
         [NonSerialized] public HudSkillView[] skills;
@@ -29,6 +32,16 @@ namespace LinhThu.Client.UI
         private float messageUntil;
         private string inventorySignature;
         private static readonly string[] Stages = { "Sơ kỳ", "Trung kỳ", "Hậu kỳ", "Viên mãn" };
+        public bool BlocksPointer(Vector2 screenPoint)
+        {
+            var canvas = GetComponentInParent<Canvas>();
+            var camera = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
+            foreach (var graphic in GetComponentsInChildren<Graphic>())
+                if (graphic.raycastTarget && graphic.isActiveAndEnabled
+                    && RectTransformUtility.RectangleContainsScreenPoint(graphic.rectTransform, screenPoint, camera)
+                    && graphic.Raycast(screenPoint, camera)) return true;
+            return false;
+        }
         public void Bind(GameBootstrapper bootstrapper)
         {
             if (game != null) throw new InvalidOperationException("HUD already bound.");
@@ -36,6 +49,10 @@ namespace LinhThu.Client.UI
             game = bootstrapper;
             if (game.registry.hotbar.Length != 3) throw new InvalidOperationException("HUD requires three techniques.");
             skin = new HudFrameSkin(); Layout = new CultivationHudLayout(this, skin);
+            interactionPrompt.actor = game.playerView;
+            interactionPrompt.fixedHud = new[] { (RectTransform)transform.Find("CultivatorStatus"), (RectTransform)transform.Find("BeastStatus"),
+                Layout.InventoryPanel, Layout.BeastPanel, (RectTransform)sidePanelsButton.transform, (RectTransform)tameButton.transform,
+                (RectTransform)transform.Find("SaveActions"), (RectTransform)transform.Find("Skills"), Layout.MicroBar };
             for (int i = 0; i < hotbar.Length; i++)
             {
                 int slot = i;
@@ -50,8 +67,21 @@ namespace LinhThu.Client.UI
             hairButton.onClick.AddListener(() => game.CycleHair());
             eyeButton.onClick.AddListener(() => game.CycleEyes());
             saveButton.onClick.AddListener(game.SaveGame); loadButton.onClick.AddListener(game.LoadGame);
+            breakthroughButton.onClick.AddListener(() => game.Breakthrough());
+            sidePanelsButton.onClick.AddListener(ToggleSidePanels);
+            tameButton.onClick.AddListener(() => game.TameFocused());
         }
-        private void LateUpdate() => Layout?.FitScreen();
+        public void ToggleSidePanels() => Layout.ToggleSidePanels();
+        public void ToggleBeastAtIndex(int index)
+        {
+            var beasts = game.World.Player.Beasts.All;
+            if (index >= 0 && index < beasts.Count) game.ToggleBeast(beasts[index].Id);
+        }
+        private void LateUpdate()
+        {
+            Layout?.FitScreen();
+            if (game != null) Layout?.AvoidCoveringActor(game.playerView, game.gameCamera);
+        }
         private void OnDestroy() => skin?.Dispose();
         public void Refresh()
         {
@@ -64,7 +94,14 @@ namespace LinhThu.Client.UI
             qiLabel.text = $"Linh lực  {pool.CurrentQi:0} / {pool.Maximum(VitalType.Qi):0}";
             shieldLabel.text = $"Hộ thuẫn  {pool.CurrentShield:0}";
             secondaryStats.text = $"Công {actor.Stats.Get(StatId.Attack):0}  ·  Thủ {actor.Stats.Get(StatId.Defense):0}";
-            progression.text = game.registry.Realm(world.Player.Cultivation.CurrentRealmId).displayName + " · " + Stages[(int)world.Player.Cultivation.SubStage] + $" (Tu vi: {world.Player.Cultivation.CurrentCultivationExp})";
+            var cultivation = world.Player.Cultivation;
+            progression.text = game.registry.Realm(cultivation.CurrentRealmId).displayName + " · " + Stages[(int)cultivation.SubStage];
+            experience.text = $"Tu vi: {cultivation.CurrentCultivationExp} / {cultivation.NextThreshold}";
+            experienceFill.fillAmount = Mathf.Clamp01((float)cultivation.CurrentCultivationExp / cultivation.NextThreshold);
+            breakthroughButton.interactable = actor.CanAct && cultivation.CanBreakthrough;
+            breakthroughButton.GetComponent<Image>().color = cultivation.CanBreakthrough ? new Color32(242, 217, 141, 255) : Color.white;
+            breakthroughButton.GetComponentInChildren<TMP_Text>().color = cultivation.CanBreakthrough ? new Color32(7, 18, 14, 255) : new Color32(231, 234, 218, 255);
+            tameButton.interactable = world.Taming.Select(world, world.LocalPlayerId) != null;
             inventory.text = $"TÚI ĐỒ ({world.Player.Inventory.Slots.Count}/{world.Player.Inventory.Capacity})";
             var items = world.Player.Inventory.Slots.GroupBy(i => i.DefinitionId).Select(g => new { Id = g.Key, Count = g.Sum(i => i.Count) }).ToArray();
             string signature = string.Join("|", items.Select(i => i.Id + ":" + i.Count));
@@ -78,7 +115,16 @@ namespace LinhThu.Client.UI
                 }
                 inventorySignature = signature;
             }
-            var beast = world.Player.Beasts.All.FirstOrDefault();
+            var beasts = world.Player.Beasts.All;
+            Layout.FitBeasts(beasts.Count); rosterTitle.text = $"LINH THÚ ({beasts.Count})";
+            for (int i = 0; i < beasts.Count; i++)
+            {
+                var entry = beasts[i]; var button = Layout.BeastButtons[i];
+                string state = entry.State == BeastState.SummonedActive ? "Xuất chiến · bấm thu hồi" : entry.State == BeastState.Resting ? "Đang nghỉ · bấm triệu hồi" : entry.State == BeastState.InEgg ? "Trong trứng" : "Chăm linh điền";
+                button.GetComponentInChildren<TMP_Text>().text = game.registry.beasts.First(b => b.Id == entry.DefinitionId).displayName + " #" + entry.Id + "\n" + state;
+                button.interactable = actor.CanAct && (entry.State == BeastState.Resting || entry.State == BeastState.SummonedActive);
+            }
+            var beast = game.SelectedBeast;
             bool summoned = beast?.State == BeastState.SummonedActive;
             beastState.text = beast == null ? "Chưa có linh thú" : game.registry.beasts.First(b => b.Id == beast.DefinitionId).displayName + (summoned ? " · Xuất chiến" : " · Đang nghỉ");
             skills[4].Detail.text = summoned ? "Thu hồi" : "Triệu hồi";

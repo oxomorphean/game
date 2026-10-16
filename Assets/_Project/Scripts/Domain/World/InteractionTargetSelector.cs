@@ -1,21 +1,25 @@
 using System;
 using LinhThu.Domain.Core;
+using LinhThu.Domain.Stats;
 
 namespace LinhThu.Domain.World
 {
     /// <summary>Derived from live world state: no sticky selection or movement threshold.</summary>
     public sealed class InteractionTargetSelector
     {
-        public WorldNodeEntity Select(WorldState world)
+        public WorldNodeEntity Select(WorldState world) => Select(world, world.LocalPlayerId);
+
+        public WorldNodeEntity Select(WorldState world, EntityId playerId)
         {
             if (world == null)
                 throw new ArgumentNullException(nameof(world));
-            var actor = world.PlayerActor;
+            if (!world.Players.ContainsKey(playerId)) return null;
+            var actor = world.Actors[playerId];
             if (!actor.CanAct)
                 return null;
             WorldNodeEntity best = null;
             float bestDistance = float.PositiveInfinity, bestFacing = float.NegativeInfinity;
-            foreach (var node in world.Nodes.Values)
+            foreach (var node in world.SpatialGrid.QueryNodes(actor.Transform.Position, Math.Min(10000, Math.Max(0, actor.Stats.Get(StatId.PickupRadius)))))
             {
                 if (!world.Interactions.CanFocus(world, actor.Id, node.Id))
                     continue;

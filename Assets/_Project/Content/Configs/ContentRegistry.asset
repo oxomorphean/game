@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5545577a26b804d14ba9b6f248160a35, type: 3}
   m_Name: ContentRegistry
   m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Bootstrap.ContentRegistrySO
+  wildBeasts:
+  - {fileID: 11400000, guid: 5bee042c67c7f43f8a10215b41969742, type: 2}
   actors:
   - {fileID: 11400000, guid: 8a935a692bf044b89804dafaa78e983b, type: 2}
   - {fileID: 11400000, guid: 66008e50786794d54948b43c1d64e240, type: 2}
   - {fileID: 11400000, guid: 39921a17ab42444bab99eb2ae8a372e4, type: 2}
+  - {fileID: 11400000, guid: 5c080885018ed4ce8a598cef51f48f04, type: 2}
   realms:
   - {fileID: 11400000, guid: b10335cfb21d04277b50cebe7d8e1970, type: 2}
   - {fileID: 11400000, guid: 46890dd42f6e8428eafbfef060c01ec9, type: 2}
@@ -24,6 +27,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 146b38e69d09c4cf6988ba5999eb4956, type: 2}
   - {fileID: 11400000, guid: 78042881e958d460aa12b15c6d838293, type: 2}
   - {fileID: 11400000, guid: 29f07bc57a5224f878bff44d0700cf4e, type: 2}
+  - {fileID: 11400000, guid: be9e1b8f5d0f7426bb33938971c11d45, type: 2}
   statuses:
   - {fileID: 11400000, guid: d9dd35bf0278345f3b6bf8d614d9b95c, type: 2}
   - {fileID: 11400000, guid: 3797c55672cb340de800c67053d16103, type: 2}
@@ -102,4 +106,12 @@ MonoBehaviour:
   - from: 3
     to: 0
   - from: 3
+    to: 1
+  - from: 0
+    to: 2
+  - from: 1
+    to: 2
+  - from: 2
+    to: 0
+  - from: 2
     to: 1

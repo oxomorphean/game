@@ -69,8 +69,9 @@ namespace LinhThu.Domain.World
         public IReadOnlyList<NodeSpawn> Nodes { get; }
 
         public IReadOnlyList<BeastSeed> Beasts { get; }
+        public IReadOnlyList<WildBeastSeed> WildBeasts { get; }
 
-        public WorldInitialState(string playerDefinitionId, string realmDefinitionId, string mapDefinitionId, WorldPoint playerSpawn, int inventoryCapacity, CombatRules rules, FactionRelations relations, IEnumerable<NodeSpawn> nodes = null, IEnumerable<BeastSeed> beasts = null)
+        public WorldInitialState(string playerDefinitionId, string realmDefinitionId, string mapDefinitionId, WorldPoint playerSpawn, int inventoryCapacity, CombatRules rules, FactionRelations relations, IEnumerable<NodeSpawn> nodes = null, IEnumerable<BeastSeed> beasts = null, IEnumerable<WildBeastSeed> wildBeasts = null)
         {
             PlayerDefinitionId = Guard.Id(playerDefinitionId);
             RealmDefinitionId = Guard.Id(realmDefinitionId);
@@ -83,6 +84,7 @@ namespace LinhThu.Domain.World
             Relations = relations ?? throw new ArgumentNullException(nameof(relations));
             Nodes = Guard.Copy(nodes ?? Array.Empty<NodeSpawn>());
             Beasts = Guard.Copy(beasts ?? Array.Empty<BeastSeed>());
+            WildBeasts = Guard.Copy(wildBeasts ?? Array.Empty<WildBeastSeed>());
         }
     }
 

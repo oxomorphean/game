@@ -15,6 +15,67 @@ namespace LinhThu.Tests.EditMode
 {
     public sealed class WorldStateTests
     {
+        [TestCase(1, 0)]
+        [TestCase(-1, 0)]
+        [TestCase(0, 1)]
+        [TestCase(0, -1)]
+        public void NodesCanSpawnAndRestoreOnEveryOffsetBoundaryButNotBeyondIt(float x, float y)
+        {
+            var direction = new WorldPoint(x, y);
+            var bounds = new WorldBounds(new WorldPoint(3, -3), new WorldPoint(5, 5));
+            var geometry = new WorldGeometry(bounds, Array.Empty<WorldObstacle>());
+            var edge = bounds.Center + direction * 5;
+            var world = Fixture.World(geometry, nodes: new[] { new NodeSpawn("herb-node", edge) });
+            Assert.That(world.Nodes.Values.Single().Position, Is.EqualTo(edge));
+
+            var mapper = new GameSaveMapper();
+            var dto = mapper.Capture(world);
+            var restored = mapper.TryRestore(dto, world.Content, geometry, new SeededRandomSource(1), new DomainEventBus());
+            Assert.That(restored.Succeeded, Is.True, restored.Message);
+            Assert.That(restored.Value.Nodes.Values.Single().Position, Is.EqualTo(edge));
+
+            var outside = edge + direction * .01f;
+            Assert.Throws<ArgumentException>(() => Fixture.World(geometry, nodes: new[] { new NodeSpawn("herb-node", outside) }));
+            dto.Nodes.Single().Position = new PointDto(outside);
+            var rejected = mapper.TryRestore(dto, world.Content, geometry, new SeededRandomSource(1), new DomainEventBus());
+            Assert.That(rejected.Succeeded, Is.False);
+            Assert.That(rejected.Message, Is.EqualTo("Node outside map."));
+        }
+
+        [TestCase(1, 0)]
+        [TestCase(-1, 0)]
+        [TestCase(0, 1)]
+        [TestCase(0, -1)]
+        public void ProjectilesSurviveAndRestoreAtOffsetBoundariesThenExpireOutside(float x, float y)
+        {
+            var direction = new WorldPoint(x, y);
+            var bounds = new WorldBounds(new WorldPoint(3, -3), new WorldPoint(5, 5));
+            var geometry = new WorldGeometry(bounds, Array.Empty<WorldObstacle>());
+            var template = Fixture.World();
+            var world = WorldFactory.Create(template.Content, geometry, new SeededRandomSource(7), new DomainEventBus(),
+                new WorldInitialState("player", "qi", "meadow", bounds.Center + direction * 3, 16, template.Rules, template.Relations));
+            Assert.That(world.Execute(new CastCommand(world.Player.ActorId, "projectile", new AimRequest(direction))).Succeeded, Is.True);
+            world.Tick(.1f);
+            var edge = bounds.Center + direction * 5;
+            Assert.That(world.Combat.Projectiles.Single().Position, Is.EqualTo(edge));
+            Assert.That(world.Combat.Projectiles.Single().RemainingLifetime, Is.GreaterThan(.1f));
+
+            var mapper = new GameSaveMapper();
+            var dto = mapper.Capture(world);
+            var restored = mapper.TryRestore(dto, world.Content, geometry, new SeededRandomSource(1), new DomainEventBus());
+            Assert.That(restored.Succeeded, Is.True, restored.Message);
+            Assert.That(restored.Value.Combat.Projectiles.Single().Position, Is.EqualTo(edge));
+            dto.Projectiles.Single().Position = new PointDto(edge + direction * .01f);
+            var rejected = mapper.TryRestore(dto, world.Content, geometry, new SeededRandomSource(1), new DomainEventBus());
+            Assert.That(rejected.Succeeded, Is.False);
+            Assert.That(rejected.Message, Is.EqualTo("Invalid projectile transform."));
+
+            world.Tick(.01f);
+            restored.Value.Tick(.01f);
+            Assert.That(world.Combat.Projectiles, Is.Empty);
+            Assert.That(restored.Value.Combat.Projectiles, Is.Empty);
+        }
+
         [Test]
         public void InputMovesOncePerTickAndInvalidInputDoesNotAdvance()
         {

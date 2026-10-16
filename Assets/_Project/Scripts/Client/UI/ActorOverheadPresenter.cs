@@ -17,6 +17,16 @@ namespace LinhThu.Client.UI
         public Image hpFill;
         private ActorView view;
         private ContentRegistrySO registry;
+        private readonly Vector3[] corners = new Vector3[4];
+        public float HeightAboveAnchor
+        {
+            get
+            {
+                if (panel == null || !panel.activeInHierarchy) return 0;
+                ((RectTransform)panel.transform).GetWorldCorners(corners);
+                return Mathf.Max(0, corners.Max(p => p.y) - transform.position.y);
+            }
+        }
 
         public void Bind(ActorView actor, ContentRegistrySO content)
         {
@@ -27,14 +37,14 @@ namespace LinhThu.Client.UI
         public void Refresh()
         {
             var actor = view != null ? view.Entity : null;
-            bool visible = actor != null && actor.Faction == ActorFaction.HostileMonster && actor.Vitals.IsAlive;
+            bool visible = actor != null && (actor.Faction == ActorFaction.HostileMonster || actor.Faction == ActorFaction.WildBeast) && actor.Vitals.IsAlive;
             panel.SetActive(visible);
             if (!visible)
                 return;
             transform.position = view.OverheadPosition;
             actorName.text = view.config.displayName;
             hpFill.fillAmount = Mathf.Clamp01(actor.Vitals.CurrentHp / actor.Vitals.Maximum(VitalType.Hp));
-            statusText.text = string.Join(" · ", actor.StatusEffects.Active.Select(s =>
+            statusText.text = LinhThu.Domain.Beasts.BeastTamingService.IsWeakened(actor) ? "Suy yếu · [T] Thu phục" : string.Join(" · ", actor.StatusEffects.Active.Select(s =>
                 registry.statuses.First(c => c.Id == s.DefinitionId).displayName +
                 (s.StackCount > 1 ? " ×" + s.StackCount : "") + $" {s.RemainingDuration:0.0}s"));
         }

@@ -36,28 +36,44 @@ namespace LinhThu.Client.UI
         private readonly TMP_FontAsset font;
         public RectTransform InventoryPanel { get; private set; }
         public RectTransform InventoryContent { get; private set; }
+        public RectTransform BeastPanel { get; private set; }
+        public ScrollRect BeastScroll { get; private set; }
+        public bool SidePanelsVisible { get; private set; } = true;
+        public readonly List<Button> BeastButtons = new List<Button>();
         public RectTransform MicroBar { get; private set; }
         public ScrollRect InventoryScroll { get; private set; }
+        public bool InventoryCollapsed => manuallyCollapsed || actorOccludesInventory;
+        public Button InventoryToggle { get; private set; }
+        private int inventoryCount;
+        private bool manuallyCollapsed, actorOccludesInventory;
+        private CanvasGroup inventoryVisibility;
         public readonly List<HudInventoryRow> Rows = new List<HudInventoryRow>();
         private static readonly Color TextColor = new Color32(231, 234, 218, 255);
         private static readonly Color Gold = new Color32(225, 202, 144, 255);
         public CultivationHudLayout(CultivationHudPresenter presenter, HudFrameSkin frame)
         {
             hud = presenter; skin = frame; font = hud.font;
-            var status = Panel("CultivatorStatus", hud.transform, new Vector2(0, 1), new Vector2(16, -16), new Vector2(270, 140));
+            var status = Panel("CultivatorStatus", hud.transform, new Vector2(0, 1), new Vector2(16, -16), new Vector2(270, 190));
             hud.progression = Text("Realm", status, new Vector2(12, -8), new Vector2(246, 23), 13, Gold);
             hud.hpFill = Vital(status, "Hp", 39, new Color32(184, 59, 59, 255), out hud.vitals);
             hud.qiFill = Vital(status, "Qi", 63, new Color32(46, 119, 174, 255), out hud.qiLabel);
             hud.shieldFill = Vital(status, "Shield", 87, new Color32(122, 139, 153, 255), out hud.shieldLabel);
             hud.secondaryStats = Text("AttackAndDefense", status, new Vector2(12, -112), new Vector2(246, 18), 11, TextColor);
-            var beast = Panel("BeastStatus", hud.transform, new Vector2(0, 1), new Vector2(16, -161), new Vector2(270, 27));
+            hud.experienceFill = Vital(status, "Experience", 135, new Color32(150, 119, 53, 255), out hud.experience);
+            hud.breakthroughButton = Button("Breakthrough", status, new Vector2(0, 1), new Vector2(12, -159), new Vector2(246, 25), "[B] Đột Phá", 12);
+            var beast = Panel("BeastStatus", hud.transform, new Vector2(0, 1), new Vector2(16, -214), new Vector2(270, 27));
             hud.beastState = Text("Companion", beast, new Vector2(12, -3), new Vector2(246, 21), 11, Gold);
+            hud.tameButton = Button("Tame", hud.transform, new Vector2(0, 1), new Vector2(16, -249), new Vector2(270, 28), "[T] Thuần Thú Quyết", 11);
 
             var saves = Rect("SaveActions", hud.transform, new Vector2(1, 1), new Vector2(-16, -66), new Vector2(248, 28));
             hud.saveButton = Button("Save", saves, new Vector2(0, 1), Vector2.zero, new Vector2(120, 28), "[F5] Lưu", 11);
             hud.loadButton = Button("Load", saves, new Vector2(0, 1), new Vector2(128, 0), new Vector2(120, 28), "[F9] Đọc", 11);
-            InventoryPanel = Panel("Inventory", hud.transform, new Vector2(1, 1), new Vector2(-16, -102), new Vector2(248, 36));
-            hud.inventory = Text("InventoryTitle", InventoryPanel, new Vector2(12, -7), new Vector2(224, 22), 12, Gold);
+            hud.sidePanelsButton = Button("SidePanels", hud.transform, new Vector2(1, 1), new Vector2(-16, -102), new Vector2(248, 28), "[I] Túi đồ & Linh thú", 11);
+            InventoryPanel = Panel("Inventory", hud.transform, new Vector2(1, 1), new Vector2(-16, -138), new Vector2(248, 36));
+            hud.inventory = Text("InventoryTitle", InventoryPanel, new Vector2(12, -7), new Vector2(198, 22), 12, Gold);
+            inventoryVisibility = InventoryPanel.gameObject.AddComponent<CanvasGroup>();
+            InventoryToggle = Button("Toggle", InventoryPanel, new Vector2(1, 1), new Vector2(-5, -5), new Vector2(28, 26), "−", 15, false);
+            InventoryToggle.onClick.AddListener(() => { manuallyCollapsed = !manuallyCollapsed; FitInventory(inventoryCount); });
             var viewport = Rect("ItemsViewport", InventoryPanel, new Vector2(0, 1), new Vector2(8, -32), new Vector2(232, 24));
             viewport.gameObject.AddComponent<RectMask2D>();
             InventoryContent = Rect("Items", viewport, new Vector2(0, 1), Vector2.zero, new Vector2(232, 24));
@@ -65,6 +81,20 @@ namespace LinhThu.Client.UI
             InventoryScroll.viewport = viewport; InventoryScroll.content = InventoryContent; InventoryScroll.horizontal = false;
             InventoryScroll.movementType = ScrollRect.MovementType.Clamped; InventoryScroll.scrollSensitivity = 24;
             var hitArea = viewport.gameObject.AddComponent<Image>(); hitArea.color = Color.clear;
+
+            BeastPanel = Panel("BeastRoster", hud.transform, new Vector2(1, 1), new Vector2(-16, -182), new Vector2(248, 82));
+            hud.rosterTitle = Text("Title", BeastPanel, new Vector2(12, -7), new Vector2(224, 22), 12, Gold);
+            var scrollRoot = Rect("BeastsScroll", BeastPanel, new Vector2(0, 1), new Vector2(8, -32), new Vector2(232, 42));
+            BeastScroll = scrollRoot.gameObject.AddComponent<ScrollRect>();
+            var beastViewport = Rect("Viewport", scrollRoot, new Vector2(0, 1), Vector2.zero, scrollRoot.sizeDelta);
+            beastViewport.gameObject.AddComponent<Image>().color = Color.white;
+            beastViewport.gameObject.AddComponent<Mask>().showMaskGraphic = false;
+            var beastContent = Rect("Content", beastViewport, new Vector2(0, 1), Vector2.zero, new Vector2(232, 0));
+            var group = beastContent.gameObject.AddComponent<VerticalLayoutGroup>(); group.spacing = 4;
+            group.childControlWidth = group.childControlHeight = true; group.childForceExpandWidth = true; group.childForceExpandHeight = false;
+            beastContent.gameObject.AddComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            BeastScroll.content = beastContent; BeastScroll.viewport = beastViewport; BeastScroll.horizontal = false;
+            BeastScroll.movementType = ScrollRect.MovementType.Clamped; BeastScroll.scrollSensitivity = 42;
 
             var hotbar = Rect("Skills", hud.transform, new Vector2(.5f, 0), new Vector2(0, 16), new Vector2(472, 56));
             hud.skills = new HudSkillView[5]; hud.hotbar = new Button[3]; hud.hotbarLabels = new TMP_Text[3];
@@ -98,6 +128,7 @@ namespace LinhThu.Client.UI
             hud.eyeButton = Button("Eyes", MicroBar, new Vector2(0, 1), new Vector2(294, -2), new Vector2(57, 22), "[Y] Mắt", 10, false);
             for (int i = 0; i < 4; i++) { var dot = Text("Divider", MicroBar, new Vector2(new[] { 76, 157, 232, 290 }[i], -3), new Vector2(8, 20), 10, Gold); dot.text = "·"; }
             var notification = Panel("Notification", hud.transform, new Vector2(.5f, 0), new Vector2(0, 80), new Vector2(480, 28));
+            notification.GetComponent<Image>().raycastTarget = false;
             hud.message = Text("Message", notification, new Vector2(10, -3), new Vector2(460, 22), 11, TextColor); hud.message.alignment = TextAlignmentOptions.Center;
             notification.gameObject.SetActive(false);
             var prompt = Panel("WorldInteractionPrompt", hud.transform, new Vector2(.5f, .5f), Vector2.zero, new Vector2(204, 28));
@@ -110,12 +141,14 @@ namespace LinhThu.Client.UI
         }
         public void FitInventory(int count)
         {
-            int visible = Mathf.Clamp(count, 0, 10);
+            inventoryCount = count;
+            int visible = InventoryCollapsed ? 0 : Mathf.Clamp(count, 0, 10);
             InventoryPanel.sizeDelta = new Vector2(248, 40 + visible * 24);
             InventoryScroll.viewport.sizeDelta = new Vector2(232, visible * 24);
             InventoryContent.sizeDelta = new Vector2(232, Mathf.Max(count, 1) * 24);
             InventoryScroll.vertical = count > 10;
-            InventoryScroll.viewport.gameObject.SetActive(count > 0);
+            InventoryScroll.viewport.gameObject.SetActive(visible > 0);
+            InventoryToggle.GetComponentInChildren<TMP_Text>().text = InventoryCollapsed ? "+" : "−";
             if (count <= 10) { InventoryScroll.StopMovement(); InventoryContent.anchoredPosition = Vector2.zero; }
             while (Rows.Count < count)
             {
@@ -126,6 +159,46 @@ namespace LinhThu.Client.UI
                 Rows[i].Quantity.alignment = TextAlignmentOptions.Right;
             }
             for (int i = 0; i < Rows.Count; i++) Rows[i].Root.gameObject.SetActive(i < count);
+            PositionBeastPanel();
+        }
+        public void FitBeasts(int count)
+        {
+            while (BeastButtons.Count < count)
+            {
+                int index = BeastButtons.Count;
+                var button = Button("Beast" + index, BeastScroll.content, new Vector2(0, 1), Vector2.zero, new Vector2(232, 38), "", 11);
+                button.gameObject.AddComponent<LayoutElement>().preferredHeight = 38;
+                button.onClick.AddListener(() => hud.ToggleBeastAtIndex(index));
+                BeastButtons.Add(button);
+            }
+            for (int i = 0; i < BeastButtons.Count; i++) BeastButtons[i].gameObject.SetActive(i < count);
+            float height = Mathf.Clamp(count, 0, 4) * 42;
+            BeastPanel.sizeDelta = new Vector2(248, 40 + height);
+            ((RectTransform)BeastScroll.transform).sizeDelta = BeastScroll.viewport.sizeDelta = new Vector2(232, height);
+            BeastScroll.gameObject.SetActive(count > 0); BeastScroll.vertical = count > 4;
+            if (count <= 4) { BeastScroll.StopMovement(); BeastScroll.content.anchoredPosition = Vector2.zero; }
+            PositionBeastPanel();
+        }
+        private void PositionBeastPanel()
+        {
+            if (BeastPanel != null) BeastPanel.anchoredPosition = new Vector2(-16, InventoryPanel.anchoredPosition.y - InventoryPanel.sizeDelta.y - 8);
+        }
+        public void ToggleSidePanels()
+        {
+            SidePanelsVisible = !SidePanelsVisible;
+            InventoryPanel.gameObject.SetActive(SidePanelsVisible); BeastPanel.gameObject.SetActive(SidePanelsVisible);
+        }
+        public void AvoidCoveringActor(Actors.ActorView actor, UnityEngine.Camera camera)
+        {
+            var body = HudScreenGeometry.Expand(HudScreenGeometry.Project(actor.VisualBounds, camera), 8);
+            var panel = HudScreenGeometry.Project(InventoryPanel);
+            float scale = panel.width / InventoryPanel.rect.width;
+            var expanded = UnityEngine.Rect.MinMaxRect(panel.xMin, panel.yMax - (40 + Mathf.Min(inventoryCount, 10) * 24) * scale, panel.xMax, panel.yMax);
+            bool overlaps = expanded.Overlaps(body);
+            if (actorOccludesInventory != overlaps) { actorOccludesInventory = overlaps; FitInventory(inventoryCount); }
+            // At the extreme corner even the collapsed title can cover the actor.
+            // Fade that title while preserving its hit target for deliberate interaction.
+            inventoryVisibility.alpha = HudScreenGeometry.Project(InventoryPanel).Overlaps(body) ? .15f : 1;
         }
         public void FitScreen()
         {
@@ -144,7 +217,7 @@ namespace LinhThu.Client.UI
         }
         private RectTransform Panel(string name, Transform parent, Vector2 anchor, Vector2 position, Vector2 size)
         {
-            var rect = Rect(name, parent, anchor, position, size); var image = rect.gameObject.AddComponent<Image>(); skin.Apply(image); image.raycastTarget = false; return rect;
+            var rect = Rect(name, parent, anchor, position, size); var image = rect.gameObject.AddComponent<Image>(); skin.Apply(image); image.raycastTarget = true; return rect;
         }
         private Button Button(string name, Transform parent, Vector2 anchor, Vector2 position, Vector2 size, string caption, float fontSize, bool framed = true)
         {

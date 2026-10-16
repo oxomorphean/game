@@ -46,15 +46,26 @@ namespace LinhThu.Client.World
                 return;
             transform.position = new Vector3(Entity.Position.X, Entity.Position.Y, transform.position.z);
             bool full = Entity.IsReady || Entity.Spec.Kind == WorldNodeKind.TeleportPortal;
+            bool visible = !Entity.IsDepleted;
             var color = full ? readyColor : growingColor;
             if (visual != null)
+            {
+                visual.enabled = visible;
                 visual.color = color;
+            }
+            var contact = GetComponent<Actors.GroundContactShadow>();
+            if (contact != null)
+            {
+                contact.enabled = visible;
+                if (contact.shadow != null) contact.shadow.enabled = visible;
+            }
             if (additionalVisuals.Length > 0)
             {
                 if (properties == null)
                     properties = new MaterialPropertyBlock();
                 foreach (var renderer in additionalVisuals)
                 {
+                    renderer.enabled = visible;
                     renderer.GetPropertyBlock(properties);
                     properties.SetColor("_Color", color);
                     renderer.SetPropertyBlock(properties);

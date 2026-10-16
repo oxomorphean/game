@@ -8,14 +8,21 @@ namespace LinhThu.Client.Environment
     {
         public SpriteRenderer ground;
         public Material ambientMaterial;
+        public Vector2 worldCenter;
         public Vector2 size = new Vector2(20, 11.25f);
         public LinhThu.Domain.Navigation.WorldBounds WorldBounds => new LinhThu.Domain.Navigation.WorldBounds(
+            new LinhThu.Domain.Navigation.WorldPoint(worldCenter.x, worldCenter.y),
             new LinhThu.Domain.Navigation.WorldPoint(size.x * .5f, size.y * .5f));
+        // Decorative ground beyond the walkable edge lets the camera show a standing actor in full.
+        public Vector2 PresentationPadding => new Vector2(2, 3);
+        public LinhThu.Domain.Navigation.WorldBounds PresentationBounds => new LinhThu.Domain.Navigation.WorldBounds(
+            new LinhThu.Domain.Navigation.WorldPoint(worldCenter.x, worldCenter.y),
+            new LinhThu.Domain.Navigation.WorldPoint(size.x * .5f + PresentationPadding.x, size.y * .5f + PresentationPadding.y));
         public void SynchronizeGroundBounds()
         {
             // Grass is sampled in world metres by MeadowTerrain.shader; growing X changes coverage only.
             foreach (var surface in GetComponentsInChildren<MeadowGroundSurface>())
-            { surface.size = size; surface.Rebuild(); }
+            { surface.size = size + PresentationPadding * 2; surface.center = worldCenter; surface.Rebuild(); }
             foreach (var path in GetComponentsInChildren<MeadowTerrainPath>())
             { path.mapSize = size; path.Rebuild(); }
         }

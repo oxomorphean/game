@@ -19,6 +19,10 @@ namespace LinhThu.Domain.World
         internal readonly Dictionary<EntityId, ActorEntity> actors = new Dictionary<EntityId, ActorEntity>();
         internal readonly Dictionary<EntityId, WorldNodeEntity> nodes = new Dictionary<EntityId, WorldNodeEntity>();
         internal readonly Dictionary<EntityId, BeastAiController> ai = new Dictionary<EntityId, BeastAiController>();
+        internal readonly Dictionary<EntityId, PlayerState> players = new Dictionary<EntityId, PlayerState>();
+        internal readonly Dictionary<EntityId, WildBeastAiController> wildBeasts = new Dictionary<EntityId, WildBeastAiController>();
+        public IReadOnlyDictionary<EntityId, WildBeastAiController> WildBeasts { get; }
+        public BeastTamingService Taming { get; } = new BeastTamingService();
         private bool ticking;
         public bool IsTicking => ticking;
         public string MapDefinitionId { get; }
@@ -37,7 +41,11 @@ namespace LinhThu.Domain.World
 
         public SourceIdAllocator Sources { get; internal set; }
 
-        public PlayerState Player { get; internal set; }
+        public EntityId LocalPlayerId { get; internal set; }
+        public PlayerState LocalPlayer => players[LocalPlayerId];
+        public PlayerState Player => LocalPlayer;
+        public IReadOnlyDictionary<EntityId, PlayerState> Players { get; }
+        public SpatialChunkGrid SpatialGrid => Geometry.SpatialGrid;
 
         public ActorEntity PlayerActor => actors[Player.ActorId];
         public CombatRules Rules { get; }
@@ -69,7 +77,7 @@ namespace LinhThu.Domain.World
         public WorldState(IDomainContent content, WorldGeometry geometry, IRandomSource random, DomainEventBus events, WorldInitialState initialState, AbilityEffectRegistry effects, TargetSelectorRegistry targeting)
         {
             Content = content ?? throw new ArgumentNullException(nameof(content));
-            Geometry = geometry ?? throw new ArgumentNullException(nameof(geometry));
+            Geometry = geometry?.Copy() ?? throw new ArgumentNullException(nameof(geometry));
             Random = random ?? throw new ArgumentNullException(nameof(random));
             Events = events ?? throw new ArgumentNullException(nameof(events));
             if (initialState == null || effects == null || targeting == null)
@@ -80,9 +88,11 @@ namespace LinhThu.Domain.World
             Ids = new EntityIdAllocator();
             Sources = new SourceIdAllocator();
             Clock = new SimulationClock();
+            WildBeasts = new ReadOnlyDictionary<EntityId, WildBeastAiController>(wildBeasts);
+            Players = new ReadOnlyDictionary<EntityId, PlayerState>(players);
             Actors = new ReadOnlyDictionary<EntityId, ActorEntity>(actors);
             Nodes = new ReadOnlyDictionary<EntityId, WorldNodeEntity>(nodes);
-            Motor = new MovementMotor(geometry);
+            Motor = new MovementMotor(Geometry);
             Combat = new CombatResolver(content, Rules, effects, targeting, random, events);
             Cultivation = new CultivationService(content, events);
             Interactions = new WorldInteractionService();
@@ -95,7 +105,8 @@ namespace LinhThu.Domain.World
             if (!spawn.Succeeded)
                 throw new ArgumentException(spawn.Message + spawn.ErrorCode);
             int source = Sources.Allocate();
-            Player = new PlayerState(spawn.Value.Id, source, realm, initialState.InventoryCapacity, content, Sources);
+            LocalPlayerId = spawn.Value.Id;
+            players.Add(LocalPlayerId, new PlayerState(LocalPlayerId, source, realm, initialState.InventoryCapacity, content, Sources));
             PlayerActor.Stats.SetModifiersFromSource(source, realm.Modifiers.Select(m => m.FromSource(source)).ToArray());
             PlayerActor.Vitals.ClampToLimits();
             foreach (var node in initialState.Nodes)
@@ -105,10 +116,12 @@ namespace LinhThu.Domain.World
                 foreach (var reward in spec.Rewards)
                     if (!content.TryGetItem(reward.DefinitionId, out _))
                         throw new ArgumentException("Missing reward definition.");
-                if (!node.Position.Finite || Math.Abs(node.Position.X) > geometry.HalfSize.X || Math.Abs(node.Position.Y) > geometry.HalfSize.Y)
+                if (!geometry.Bounds.Contains(node.Position, 0))
                     throw new ArgumentException("Node outside map.");
                 var id = Ids.Allocate();
-                nodes.Add(id, new WorldNodeEntity(id, spec, node.Position, node.Ready));
+                var entity = new WorldNodeEntity(id, spec, node.Position, node.Ready);
+                nodes.Add(id, entity);
+                SpatialGrid.RegisterNode(entity);
             }
 
             foreach (var seed in initialState.Beasts)
@@ -119,6 +132,26 @@ namespace LinhThu.Domain.World
                 if (!result.Succeeded)
                     throw new ArgumentException("Invalid initial beast.");
             }
+            foreach (var seed in initialState.WildBeasts)
+            {
+                var result = TryAddWildBeast(seed);
+                if (!result.Succeeded) throw new ArgumentException("Invalid wild beast: " + result.ErrorCode);
+            }
+        }
+
+        public DomainResult<WildBeastAiController> TryAddWildBeast(WildBeastSeed seed)
+        {
+            if (!Content.TryGetWildBeast(seed.DefinitionId, out var spec) || !Content.TryGetActor(spec.ActorDefinitionId, out var actorSpec)
+                || !actorSpec.AbilityIds.Contains(spec.AttackId) || !Content.TryGetTechnique(spec.AttackId, out var attack)
+                || attack.CastDuration <= 0 || (spec.SpeciesId != null && !Content.TryGetBeast(spec.SpeciesId, out _))
+                || spec.Loot.Any(item => !Content.TryGetItem(item.DefinitionId, out _)))
+                return DomainResult<WildBeastAiController>.Fail(DomainError.MissingDefinition);
+            if (Ids.Next >= long.MaxValue - 1 || wildBeasts.Count >= 10000) return DomainResult<WildBeastAiController>.Fail(DomainError.CapacityExceeded);
+            var spawn = TrySpawnActor(spec.ActorDefinitionId, spec.Faction, seed.Home);
+            if (!spawn.Succeeded) return DomainResult<WildBeastAiController>.Fail(spawn.ErrorCode, spawn.Message);
+            var controller = new WildBeastAiController(Ids.Allocate(), spec, seed.Home) { ActorId = spawn.Value.Id };
+            spawn.Value.WildBeast = controller; wildBeasts.Add(controller.Id, controller);
+            return DomainResult<WildBeastAiController>.Ok(controller);
         }
 
         public bool TryGetActor(EntityId id, out ActorEntity actor) => actors.TryGetValue(id, out actor);
@@ -149,29 +182,32 @@ namespace LinhThu.Domain.World
 
             Ids.Allocate();
             actors.Add(actor.Id, actor);
+            SpatialGrid.RegisterActor(actor);
             return DomainResult<ActorEntity>.Ok(actor);
         }
 
         public DomainResult RemoveActor(EntityId id)
         {
-            if (Player != null && id == Player.ActorId)
+            if (players.ContainsKey(id))
                 return DomainResult.Fail(DomainError.InvalidState);
-            var beast = Player?.Beasts.All.FirstOrDefault(b => b.ActorId == id);
+            var beast = players.Values.SelectMany(p => p.Beasts.All).FirstOrDefault(b => b.ActorId == id);
             if (beast != null)
-                return Player.Beasts.TryRecall(beast.Id, this);
-            if (!actors.ContainsKey(id))
+                return players[beast.OwnerId].Beasts.TryRecall(beast.Id, this);
+            if (!actors.TryGetValue(id, out var actor))
                 return DomainResult.Fail(DomainError.NotFound);
-            RemoveActorInternal(id);
+            if (actor.WildBeast != null) actor.WildBeast.Deplete(this, null);
+            else RemoveActorInternal(id);
             return DomainResult.Ok();
         }
 
         internal void RemoveActorInternal(EntityId id)
         {
+            SpatialGrid.RemoveActor(id);
             actors.Remove(id);
             ai.Remove(id);
         }
 
-        public void DealDamage(ActorEntity target, EntityId source, float amount)
+        public void DealDamage(ActorEntity target, EntityId source, float amount, EntityId? rewardOwnerId = null)
         {
             if (target == null || !actors.TryGetValue(target.Id, out var actual) || !ReferenceEquals(target, actual))
                 throw new ArgumentException(nameof(target));
@@ -188,7 +224,40 @@ namespace LinhThu.Domain.World
                 target.Abilities.Cast = null;
                 target.StatusEffects.OnDeath();
                 Events.Publish(new ActorDiedEvent(target.Id, source));
+                var owner = rewardOwnerId ?? (players.ContainsKey(source) ? source : actors.TryGetValue(source, out var attacker) ? attacker.OwnerId : null);
+                target.WildBeast?.Deplete(this, owner.HasValue && players.ContainsKey(owner.Value) ? owner : null);
             }
+        }
+
+        /// <summary>Authenticated adapters supply the sender; a payload cannot choose another player.</summary>
+        public DomainResult ExecuteFor(EntityId playerId, WorldCommand command)
+        {
+            if (!players.ContainsKey(playerId) || command == null || command.ActorId != playerId)
+                return DomainResult.Fail(DomainError.WrongOwner);
+            return Execute(command);
+        }
+
+        public DomainResult<PlayerState> TryAddPlayer(string actorDefinitionId, string realmDefinitionId, WorldPoint position, int capacity = 24)
+        {
+            if (ticking || capacity < 1 || capacity > 10000) return DomainResult<PlayerState>.Fail(DomainError.InvalidInput);
+            if (!Content.TryGetRealm(realmDefinitionId, out var realm) || !Content.TryGetActor(actorDefinitionId, out var spec))
+                return DomainResult<PlayerState>.Fail(DomainError.MissingDefinition);
+            if (Sources.Next == int.MaxValue || players.Count >= 1000) return DomainResult<PlayerState>.Fail(DomainError.CapacityExceeded);
+            try
+            {
+                var probe = new StatSheet(spec.BaseStats);
+                probe.SetModifiersFromSource(Sources.Next, realm.Modifiers.Select(m => m.FromSource(Sources.Next)).ToArray());
+            }
+            catch (ArgumentException e) { return DomainResult<PlayerState>.Fail(DomainError.InvalidInput, e.Message); }
+            catch (OverflowException e) { return DomainResult<PlayerState>.Fail(DomainError.CapacityExceeded, e.Message); }
+            var spawn = TrySpawnActor(actorDefinitionId, ActorFaction.Player, position);
+            if (!spawn.Succeeded) return DomainResult<PlayerState>.Fail(spawn.ErrorCode, spawn.Message);
+            int source = Sources.Allocate();
+            var player = new PlayerState(spawn.Value.Id, source, realm, capacity, Content, Sources);
+            players.Add(player.ActorId, player);
+            spawn.Value.Stats.SetModifiersFromSource(source, realm.Modifiers.Select(m => m.FromSource(source)).ToArray());
+            spawn.Value.Vitals.ClampToLimits();
+            return DomainResult<PlayerState>.Ok(player);
         }
 
         public DomainResult Execute(WorldCommand command)
@@ -231,11 +300,12 @@ namespace LinhThu.Domain.World
                 actor.Dash.Cancel();
                 return;
             }
+            float speed = Math.Min(100, Math.Max(0, actor.Stats.Get(StatId.MoveSpeed)) * actor.MovementSpeedFactor);
             if (actor.Dash.Active)
             {
-                float distance = actor.Dash.Advance(deltaTime, out var duration);
-                float remainingRatio = actor.Dash.Remaining / actor.Dash.Duration;
-                Motor.Dash(actor.Transform, actor.Dash.Direction, distance, actor.Dash.PeakSpeed * remainingRatio * remainingRatio, duration);
+                float continuationSpeed = speed * Math.Min(1, actor.DesiredMovement.Length);
+                float distance = actor.Dash.Advance(deltaTime, continuationSpeed, out var duration, out var endSpeed);
+                Motor.Dash(actor.Transform, actor.Dash.Direction, distance, endSpeed, duration);
                 actor.Transform.FacingDirection = actor.Dash.Direction;
                 if (actor.Dash.Active)
                     return;
@@ -246,7 +316,6 @@ namespace LinhThu.Domain.World
                     return;
                 }
             }
-            float speed = Math.Min(100, Math.Max(0, actor.Stats.Get(StatId.MoveSpeed)) * actor.MovementSpeedFactor);
             Motor.Move(actor.Transform, actor.DesiredMovement, speed, deltaTime, MovementMode.Walk, actor.Spec.Movement);
             actor.State = actor.Transform.CurrentVelocity.LengthSquared > .0001f ? ActorActionState.Moving : ActorActionState.Idle;
         }
@@ -267,7 +336,6 @@ namespace LinhThu.Domain.World
                     actor.Dash.TickCooldown(deltaTime);
                     actor.Vitals.Regenerate(deltaTime, actor.State == ActorActionState.Meditating ? actor.Spec.LifeActivities.MeditationQiMultiplier : 1);
                     actor.Abilities.Tick(deltaTime);
-                    actor.StatusEffects.Tick(deltaTime, this);
                     if (!actor.Vitals.IsAlive && actor.State != ActorActionState.Dead)
                     {
                         actor.StopMotion();
@@ -275,14 +343,16 @@ namespace LinhThu.Domain.World
                         actor.Abilities.Cast = null;
                         actor.StatusEffects.OnDeath();
                         Events.Publish(new ActorDiedEvent(actor.Id, actor.LastDamagerId ?? actor.Id));
+                        actor.WildBeast?.Deplete(this, null);
                     }
                 }
 
-                Player.Beasts.Reconcile(this);
+                foreach (var player in players.Values) player.Beasts.Reconcile(this);
+                foreach (var controller in wildBeasts.Values.OrderBy(b => b.Id)) controller.Tick(this, deltaTime);
                 Combat.Tick(this, deltaTime);
                 LifeActivities.Tick(deltaTime);
-                Player.Beasts.Reconcile(this);
-                foreach (var beast in Player.Beasts.All.Where(b => b.State == BeastState.SummonedActive).OrderBy(b => b.Id).ToArray())
+                foreach (var player in players.Values) player.Beasts.Reconcile(this);
+                foreach (var beast in players.Values.SelectMany(p => p.Beasts.All).Where(b => b.State == BeastState.SummonedActive).OrderBy(b => b.Id).ToArray())
                 {
                     if (!ai.TryGetValue(beast.ActorId.Value, out var controller))
                     {
@@ -299,7 +369,7 @@ namespace LinhThu.Domain.World
 
                 foreach (var node in nodes.Values.OrderBy(n => n.Id))
                     node.Tick(deltaTime);
-                Player.Beasts.Reconcile(this);
+                foreach (var player in players.Values) player.Beasts.Reconcile(this);
             }
             finally
             {

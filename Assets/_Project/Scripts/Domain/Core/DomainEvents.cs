@@ -90,6 +90,16 @@ namespace LinhThu.Domain.Core
         }
     }
 
+    public readonly struct CombatRewardGrantedEvent
+    {
+        public EntityId PlayerId { get; }
+        public EntityId SpawnId { get; }
+        public long Experience { get; }
+        public bool LootGranted { get; }
+        public CombatRewardGrantedEvent(EntityId playerId, EntityId spawnId, long experience, bool lootGranted)
+        { PlayerId = playerId; SpawnId = spawnId; Experience = experience; LootGranted = lootGranted; }
+    }
+
     public readonly struct BeastTamedEvent
     {
         public EntityId OwnerId { get; }

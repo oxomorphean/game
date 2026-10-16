@@ -18,6 +18,7 @@ namespace LinhThu.Client.Actors
         private ActorEntity currentActor;
         private bool trackingStride;
         private int previousHalfStep;
+        private SpritePoseGeometry frontGeometry, backGeometry;
 
         public void ResetMotion()
         {
@@ -94,8 +95,9 @@ namespace LinhThu.Client.Actors
             for (int i = 0; i < count; i++)
             {
                 var boot = (front ?? i % 2 == 0) ? frontBoot : backBoot;
-                float x = boot != null ? boot.bounds.center.x : position.x + (i % 2 == 0 ? -.08f : .08f);
-                float y = boot != null ? boot.bounds.min.y + .015f : position.y + .015f;
+                var bounds = boot != null ? BootBounds(boot) : default;
+                float x = boot != null ? bounds.center.x : position.x + (i % 2 == 0 ? -.08f : .08f);
+                float y = boot != null ? bounds.min.y + .015f : position.y + .015f;
                 float spread = (i - (count - 1) * .5f) / count;
                 var emit = new ParticleSystem.EmitParams
                 {
@@ -108,6 +110,14 @@ namespace LinhThu.Client.Actors
                 };
                 particles.Emit(emit, 1);
             }
+        }
+
+        private Bounds BootBounds(SpriteRenderer boot)
+        {
+            var geometry = boot == frontBoot
+                ? frontGeometry ?? (frontGeometry = new SpritePoseGeometry(boot))
+                : backGeometry ?? (backGeometry = new SpritePoseGeometry(boot));
+            return geometry.IsSkinned ? geometry.WorldBounds : boot.bounds;
         }
 
         private void OnDisable() => ResetMotion();

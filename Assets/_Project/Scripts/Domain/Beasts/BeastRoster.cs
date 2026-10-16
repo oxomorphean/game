@@ -38,7 +38,7 @@ namespace LinhThu.Domain.Beasts
             beast = all.Find(b => b.Id == id);
             if (beast == null)
                 return DomainResult.Fail(DomainError.NotFound);
-            if (beast.OwnerId != world.Player.ActorId)
+            if (beast.OwnerId != ownerId || !world.Players.ContainsKey(ownerId))
                 return DomainResult.Fail(DomainError.WrongOwner);
             return DomainResult.Ok();
         }
@@ -48,7 +48,7 @@ namespace LinhThu.Domain.Beasts
             var r = Find(beastId, world, out var b);
             if (!r.Succeeded)
                 return r;
-            if (b.State != BeastState.InEgg || !world.PlayerActor.CanAct)
+            if (b.State != BeastState.InEgg || !world.Actors[ownerId].CanAct)
                 return DomainResult.Fail(DomainError.InvalidState);
             if (!world.Content.TryGetBeast(b.DefinitionId, out _))
                 return DomainResult.Fail(DomainError.MissingDefinition);
@@ -62,7 +62,7 @@ namespace LinhThu.Domain.Beasts
             var r = Find(beastId, world, out var b);
             if (!r.Succeeded)
                 return r;
-            var owner = world.PlayerActor;
+            var owner = world.Actors[ownerId];
             if (!owner.CanAct || b.State != BeastState.Resting)
                 return DomainResult.Fail(DomainError.InvalidState);
             if (all.Count(x => x.State == BeastState.SummonedActive) >= Math.Floor(Math.Max(0, owner.Stats.Get(StatId.BeastCommandCap))))
@@ -120,7 +120,7 @@ namespace LinhThu.Domain.Beasts
                 world.RemoveActorInternal(actor.Id);
             }
 
-            link.Remove(world.PlayerActor, b.BondSourceId);
+            link.Remove(world.Actors[ownerId], b.BondSourceId);
             b.ActorId = null;
             b.BondSourceId = 0;
             b.State = BeastState.Resting;
@@ -133,7 +133,7 @@ namespace LinhThu.Domain.Beasts
             var r = Find(beastId, world, out var b);
             if (!r.Succeeded)
                 return r;
-            if (!world.PlayerActor.CanAct || b.State != BeastState.Resting)
+            if (!world.Actors[ownerId].CanAct || b.State != BeastState.Resting)
                 return DomainResult.Fail(DomainError.InvalidState);
             if (!world.Nodes.TryGetValue(fieldId, out var field) || field.Spec.Kind != WorldNodeKind.SpiritFieldPlot)
                 return DomainResult.Fail(DomainError.NotFound);
@@ -165,21 +165,21 @@ namespace LinhThu.Domain.Beasts
         {
             foreach (var b in all.Where(b => b.State == BeastState.SummonedActive).ToArray())
             {
-                if (!world.PlayerActor.Vitals.IsAlive || !b.ActorId.HasValue || !world.TryGetActor(b.ActorId.Value, out var actor) || !actor.Vitals.IsAlive)
+                if (!world.Actors[ownerId].Vitals.IsAlive || !b.ActorId.HasValue || !world.TryGetActor(b.ActorId.Value, out var actor) || !actor.Vitals.IsAlive)
                     TryRecall(b.Id, world);
             }
 
-            int cap = (int)Math.Min(10000, Math.Floor(Math.Max(0, world.PlayerActor.Stats.Get(StatId.BeastCommandCap))));
+            int cap = (int)Math.Min(10000, Math.Floor(Math.Max(0, world.Actors[ownerId].Stats.Get(StatId.BeastCommandCap))));
             foreach (var b in all.Where(b => b.State == BeastState.SummonedActive).OrderByDescending(b => b.ActorId.Value).Take(Math.Max(0, all.Count(b => b.State == BeastState.SummonedActive) - cap)).ToArray())
                 TryRecall(b.Id, world);
             foreach (var b in all.Where(b => b.State == BeastState.SummonedActive))
             {
                 world.Content.TryGetBeast(b.DefinitionId, out var spec);
-                link.Refresh(world.PlayerActor, world.Actors[b.ActorId.Value], spec, b.BondSourceId);
+                link.Refresh(world.Actors[ownerId], world.Actors[b.ActorId.Value], spec, b.BondSourceId);
             }
 
             foreach (var b in all.Where(b => b.State == BeastState.AssignedToField).ToArray())
-                if (!world.PlayerActor.Vitals.IsAlive || !b.AssignedFieldId.HasValue || !world.Nodes.ContainsKey(b.AssignedFieldId.Value))
+                if (!world.Actors[ownerId].Vitals.IsAlive || !b.AssignedFieldId.HasValue || !world.Nodes.ContainsKey(b.AssignedFieldId.Value))
                     TryUnassignFromField(b.Id, world);
         }
     }

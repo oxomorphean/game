@@ -13,7 +13,7 @@ namespace LinhThu.Client.Actors
         [FormerlySerializedAs("authoredRunSpeed"), Min(.01f)] public float baseStrideSpeed = .9375f;
         [Min(.01f)] public float highSpeedSoftCap = 6;
         [Min(.01f)] public float softKneeWidth = 2;
-        public float runLean = 4, dashLean = 10;
+        public float dashLean = 10;
         private Quaternion restRotation;
         private bool hasRestRotation;
         public void Present(ActorEntity actor)
@@ -27,8 +27,9 @@ namespace LinhThu.Client.Actors
             if (visual == null) return;
             if (!hasRestRotation) { restRotation = visual.localRotation; hasRestRotation = true; }
             float horizontal = actor.Transform.CurrentVelocity.X / Mathf.Max(.01f, highSpeedSoftCap * .5f);
-            // Visual X is mirrored as a whole rig; rotation is in its parent's unmirrored space.
-            float target = -Mathf.Clamp(horizontal, -1, 1) * (actor.State == ActorActionState.Dashing ? dashLean : runLean);
+            // Run leans at the hips in the clip, keeping the planted feet level.
+            // Dash rotation is in the visual's unmirrored parent space.
+            float target = actor.State == ActorActionState.Dashing ? -Mathf.Clamp(horizontal, -1, 1) * dashLean : 0;
             visual.localRotation = Quaternion.Slerp(visual.localRotation, restRotation * Quaternion.Euler(0, 0, target), 1 - Mathf.Exp(-18 * Time.deltaTime));
         }
 

@@ -12,6 +12,7 @@ namespace LinhThu.Client.Actors
         public ActorView view;
         public Transform heightSource;
         public Vector2 size = new Vector2(.6f, .24f);
+        [Tooltip("Ground contact point in this component's local space. Sunlight displacement stays in world space.")]
         public Vector2 footOffset = new Vector2(0, .06f);
         [Range(.5f, 1)] public float dashScale = .86f;
         [Range(0, .38f)] public float opacity = .38f;
@@ -37,8 +38,8 @@ namespace LinhThu.Client.Actors
             float scale = 1 / (1 + lift * .5f);
             if (view != null && view.Entity != null && view.Entity.State == ActorActionState.Dashing) scale *= dashScale;
             Vector2 sun = DaylightPresentation.ShadowDirection * DaylightPresentation.ShadowLength;
-            Vector2 center = footOffset + sun * .06f;
-            shadow.transform.localPosition = new Vector3(center.x, center.y, 0);
+            Vector3 center = transform.TransformPoint(footOffset) + (Vector3)(sun * .06f);
+            shadow.transform.position = center;
             shadow.transform.localRotation = Quaternion.identity;
             shadow.transform.localScale = new Vector3(size.x * scale * (1 + Mathf.Abs(sun.x) * .12f), size.y * scale, 1);
         }

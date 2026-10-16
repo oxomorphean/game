@@ -106,6 +106,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3262857420319839003, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2052687017317610830}
+    - targetCorrespondingSourceObject: {fileID: 3262857420319839003, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 34912028070443341}
   m_SourcePrefab: {fileID: 100100000, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}
 --- !u!114 &456922591798716448 stripped
 MonoBehaviour:
@@ -148,6 +151,20 @@ MonoBehaviour:
   tools: {fileID: 456922591798716448}
   overhead: {fileID: 4234296602486731817}
   actionFeedback: {fileID: 601980026705240163}
+  face: {fileID: 34912028070443341}
+--- !u!114 &34912028070443341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479966938519056238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6551f270dda7c40278554789bb3c7231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Actors.FacialExpressionPresenter
+  view: {fileID: 2052687017317610830}
 --- !u!114 &601980026705240163 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2572814669442980886, guid: e0e74b82e281342fab20f561aafe33ed, type: 3}

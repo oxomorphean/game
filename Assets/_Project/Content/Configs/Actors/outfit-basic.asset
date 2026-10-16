@@ -21,25 +21,37 @@ MonoBehaviour:
   defaultEyeId: jade
   hairVariants:
   - id: ink
-    front: {fileID: 21300000, guid: f4657e45b89014af4bd2432c25a49b68, type: 3}
-    back: {fileID: 21300000, guid: e4d6f796e9c534ac496a6b1c917c8502, type: 3}
-    ornament: {fileID: 21300000, guid: e00d9536526b64893b3c6f4d91aa8f01, type: 3}
+    hidden: 1
+    front: {fileID: 0}
+    back: {fileID: 0}
+    ornament: {fileID: 0}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - id: silver
-    front: {fileID: 21300000, guid: 14b38f8c7be72459fb7084796ebf1b49, type: 3}
-    back: {fileID: 21300000, guid: 76a8fd1cd35244ee285132c9bb2455d0, type: 3}
-    ornament: {fileID: 21300000, guid: b78ad3902874f44baad950499ec70e56, type: 3}
+    hidden: 1
+    front: {fileID: 0}
+    back: {fileID: 0}
+    ornament: {fileID: 0}
     tint: {r: 1, g: 1, b: 1, a: 1}
   eyeVariants:
   - id: amber
-    sprite: {fileID: 21300000, guid: fb505f71f490a43e5b5b6aef713c8d15, type: 3}
+    hidden: 1
+    sprite: {fileID: 0}
+    closedSprite: {fileID: 0}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - id: jade
-    sprite: {fileID: 21300000, guid: dbf5c026d1d724baeaa0acfa516c042c, type: 3}
+    hidden: 1
+    sprite: {fileID: 0}
+    closedSprite: {fileID: 0}
     tint: {r: 1, g: 1, b: 1, a: 1}
+  face:
+    enabled: 0
+    callingMouth: {fileID: 0}
+    blinkInterval: 3.2
+    blinkDuration: 0.14
+    browAngle: 12
   slots:
   - slotId: hair-back
-    sprite: {fileID: 21300000, guid: 76a8fd1cd35244ee285132c9bb2455d0, type: 3}
+    sprite: {fileID: 0}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: thigh-back
     sprite: {fileID: 21300000, guid: 33071cd5c2f874423b9064fb95b50aae, type: 3}
@@ -54,19 +66,19 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: e83661c76a16c4141a5f24b3ec66ede5, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: boot-back
-    sprite: {fileID: 21300000, guid: 95303b12276a74274ac3152b51e4fb75, type: 3}
+    sprite: {fileID: 21300000, guid: 276af823069ce4ab59d84c896ca8249e, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: boot-front
-    sprite: {fileID: 21300000, guid: 90592a4a9c5ac4697a1969d69c481ffe, type: 3}
+    sprite: {fileID: 21300000, guid: eb922b29bab7f4fe6822015167335108, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: shorts
-    sprite: {fileID: 21300000, guid: 6b6f7c9399c8f4d7ab9d8456d6f45a93, type: 3}
+    sprite: {fileID: 21300000, guid: 5ba26b16e2e584bdcb1e8ef8ff6e0726, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: neck
     sprite: {fileID: 21300000, guid: e5078b2463fb048cfa6dcdad6cb5befd, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: torso
-    sprite: {fileID: 21300000, guid: 3929bf60a02b64617acf75897fbb3591, type: 3}
+    sprite: {fileID: 21300000, guid: a7e91cde1e49c4b939a67175a3e9fdb4, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: upper-back
     sprite: {fileID: 21300000, guid: 7f43a3393613643e99bb9e6c091f5eaf, type: 3}
@@ -102,14 +114,23 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 130e258e82fbd408fb419fb7895e5c75, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: eyes
-    sprite: {fileID: 21300000, guid: dbf5c026d1d724baeaa0acfa516c042c, type: 3}
+    sprite: {fileID: 0}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: mouth
-    sprite: {fileID: 21300000, guid: e090b0048c4ef42b99d63ffd6d84d92e, type: 3}
+    sprite: {fileID: 0}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: hair-front
-    sprite: {fileID: 21300000, guid: 14b38f8c7be72459fb7084796ebf1b49, type: 3}
+    sprite: {fileID: 0}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - slotId: hair-ornament
-    sprite: {fileID: 21300000, guid: b78ad3902874f44baad950499ec70e56, type: 3}
+    sprite: {fileID: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - slotId: eyebrow-front
+    sprite: {fileID: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - slotId: eyebrow-back
+    sprite: {fileID: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - slotId: face-mark
+    sprite: {fileID: 0}
     tint: {r: 1, g: 1, b: 1, a: 1}

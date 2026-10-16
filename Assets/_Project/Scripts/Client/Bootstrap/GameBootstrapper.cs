@@ -28,12 +28,19 @@ namespace LinhThu.Client.Bootstrap
         public ContentRegistrySO registry;
         public ModularMapLayout map;
         public ActorView playerView;
+        public WildBeastSpawnAuthoring[] wildBeastSpawns = Array.Empty<WildBeastSpawnAuthoring>();
         public ActorView[] sceneActors = Array.Empty<ActorView>();
         public WorldNodeView[] sceneNodes = Array.Empty<WorldNodeView>();
         public UnityEngine.Camera gameCamera;
         public CultivationHudPresenter hud;
         public TechniqueVfxPresenter effects;
+        public AttackTelegraphPresenter telegraphs;
         public WorldState World { get; private set; }
+        public WorldChunkStreamer chunkStreamer;
+        public EntityId? SelectedBeastId { get; private set; }
+        public BeastInstance SelectedBeast => World?.Player.Beasts.All.FirstOrDefault(b => b.Id == SelectedBeastId)
+            ?? World?.Player.Beasts.All.FirstOrDefault(b => b.State == BeastState.SummonedActive)
+            ?? World?.Player.Beasts.All.FirstOrDefault();
 
         public EntityId? FocusedNodeId => World?.FocusedNodeId;
 
@@ -50,14 +57,21 @@ namespace LinhThu.Client.Bootstrap
         {
             if (World != null)
                 return;
-            if (registry == null || map == null || playerView == null || gameCamera == null || hud == null || effects == null)
+            if (registry == null || map == null || playerView == null || gameCamera == null || hud == null || effects == null || telegraphs == null || chunkStreamer == null)
                 throw new InvalidOperationException("MainGame is missing composition references.");
             if (map.transform.position != Vector3.zero || map.transform.lossyScale != Vector3.one)
                 throw new InvalidOperationException("World map must have origin zero and unit scale.");
             map.SynchronizeGroundBounds();
-            var geometry = new WorldGeometry(map.WorldBounds, gameObject.scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<ObstacleAuthoring>()).Where(o => o.isActiveAndEnabled).Select(o => o.Definition()));
+            var geometry = new WorldGeometry(map.WorldBounds, gameObject.scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<ObstacleAuthoring>())
+                .Where(o => o.isActiveAndEnabled && o.GetComponentInParent<WorldNodeView>() == null).Select(o => o.Definition()));
             var initial = new WorldInitialState(registry.player.Id, registry.startingRealm.Id, registry.mapDefinitionId, Point(playerView.transform.position), registry.inventoryCapacity, registry.CreateRules(), registry.CreateRelations(), sceneNodes.Select(n => new NodeSpawn(n.config.Id, Point(n.transform.position), n.initiallyReady)), registry.CreateBeastSeeds());
             var world = WorldFactory.Create(registry.BuildContent(), geometry, new SeededRandomSource(registry.randomSeed), new DomainEventBus(), initial);
+            var nodes = world.Nodes.Values.OrderBy(n => n.Id).ToArray();
+            for (int i = 0; i < nodes.Length; i++)
+                world.Geometry.RegisterNodeObstacles(nodes[i].Id, sceneNodes[i].GetComponentsInChildren<ObstacleAuthoring>()
+                    .Where(o => o.isActiveAndEnabled).Select(o => o.Definition()));
+            if (!world.Geometry.CanStand(world.PlayerActor.Transform.Position, world.PlayerActor.Transform.CollisionRadius))
+                throw new InvalidOperationException("Player spawn overlaps a resource node.");
             Require(world.Player.Inventory.TryAddAll(registry.startingItems.Select(i => new ItemStack(i.item.Id, i.count)).ToArray()));
             Require(world.Execute(new EquipCommand(world.Player.ActorId, registry.startingOutfit.equipmentSlot, registry.startingOutfit.Id)));
             foreach (var view in sceneActors.Where(v => !v.rosterCompanion))
@@ -70,7 +84,11 @@ namespace LinhThu.Client.Bootstrap
 
             foreach (var beast in world.Player.Beasts.All)
                 Require(world.Execute(new SummonCommand(world.Player.ActorId, beast.Id)));
-            var nodes = world.Nodes.Values.OrderBy(n => n.Id).ToArray();
+            foreach (var spawn in wildBeastSpawns)
+            {
+                var result = world.TryAddWildBeast(spawn.ToSeed());
+                if (!result.Succeeded) throw new InvalidOperationException("Invalid wild spawn: " + result.ErrorCode);
+            }
             for (int i = 0; i < nodes.Length; i++)
             {
                 nodeViews.Add(nodes[i].Id, sceneNodes[i]);
@@ -82,11 +100,14 @@ namespace LinhThu.Client.Bootstrap
             World = world;
             BindFoliage();
             playerView.Bind(World.PlayerActor);
-            saveStore = new WorldSaveStore(Path.Combine(Application.persistentDataPath, "linhthu.foundation", "v2", "save.json"));
+            saveStore = new WorldSaveStore(Path.Combine(Application.persistentDataPath, "linhthu.foundation", "v3", "save.json"));
             effects.Bind(World, registry, actorViews);
+            telegraphs?.Bind(World);
             BindDamageFeedback();
             hud.Bind(this);
             SyncViews();
+            if (chunkStreamer != null)
+                chunkStreamer.Bind(map.GetComponentsInChildren<ModularMapProp>(true).Select(p => p.gameObject), playerView, gameCamera);
         }
 
         private static void Require(DomainResult result)
@@ -109,11 +130,14 @@ namespace LinhThu.Client.Bootstrap
                 if (keyboard.spaceKey.wasPressedThisFrame || keyboard.leftShiftKey.wasPressedThisFrame)
                     Dash(new WorldPoint(movement.x, movement.y));
                 if (keyboard.digit1Key.wasPressedThisFrame)
-                    Cast(0, PointerDirection());
+                    CastFromPointer(0, Mouse.current?.position.ReadValue());
                 if (keyboard.digit2Key.wasPressedThisFrame)
-                    Cast(1, PointerDirection());
+                    CastFromPointer(1, Mouse.current?.position.ReadValue());
                 if (keyboard.digit3Key.wasPressedThisFrame)
-                    Cast(2, PointerDirection());
+                    CastFromPointer(2, Mouse.current?.position.ReadValue());
+                if (keyboard.tKey.wasPressedThisFrame) TameFocused();
+                if (keyboard.bKey.wasPressedThisFrame) Breakthrough();
+                if (keyboard.iKey.wasPressedThisFrame) hud.ToggleSidePanels();
                 if (keyboard.eKey.wasPressedThisFrame)
                     InteractFocused();
                 if (keyboard.xKey.wasPressedThisFrame)
@@ -134,8 +158,8 @@ namespace LinhThu.Client.Bootstrap
                     LoadGame();
             }
 
-            if (Application.isFocused && Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame && (EventSystem.current == null || !EventSystem.current.IsPointerOverGameObject()))
-                Cast(0, PointerDirection());
+            if (Application.isFocused && Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+                HandlePointerClick(Mouse.current.position.ReadValue());
             accumulator += Time.deltaTime;
             while (accumulator >= StepSeconds)
             {
@@ -147,14 +171,44 @@ namespace LinhThu.Client.Bootstrap
             SyncViews();
         }
 
-        private WorldPoint PointerDirection()
+        public DomainResult HandlePointerClick(Vector2 screenPoint)
         {
-            if (Mouse.current == null)
-                return World.PlayerActor.Transform.FacingDirection;
-            var mouse = Mouse.current.position.ReadValue();
-            var target = gameCamera.ScreenToWorldPoint(new Vector3(mouse.x, mouse.y, -gameCamera.transform.position.z));
+            if (hud.BlocksPointer(screenPoint)) return DomainResult.Fail(DomainError.NoEffect);
+            var system = EventSystem.current;
+            if (system != null)
+            {
+                var hits = new List<RaycastResult>();
+                system.RaycastAll(new PointerEventData(system) { position = screenPoint }, hits);
+                if (hits.Any(h => h.module is UnityEngine.UI.GraphicRaycaster))
+                    return DomainResult.Fail(DomainError.NoEffect);
+            }
+            return CastFromPointer(0, screenPoint);
+        }
+
+        public DomainResult CastFromPointer(int slot, Vector2? screenPoint)
+        {
+            if (!screenPoint.HasValue) return Cast(slot, World.PlayerActor.Transform.FacingDirection);
+            if (slot < 0 || slot >= registry.hotbar.Length) return DomainResult.Fail(DomainError.InvalidInput);
+            var screen = screenPoint.Value;
+            var target = gameCamera.ScreenToWorldPoint(new Vector3(screen.x, screen.y, -gameCamera.transform.position.z));
+            if (registry.hotbar[slot].shape == DeliveryShape.Projectile)
+            {
+                // Invert the presentation offset so the visible ray passes through the cursor.
+                // Projectile aiming is free aim; never snap a pointer click to an actor center.
+                target.y -= TechniqueVfxPresenter.ProjectileHeight;
+                var aim = Point(target) - World.PlayerActor.Transform.Position;
+                return Cast(slot, aim.LengthSquared > .000001f ? aim.Normalized : World.PlayerActor.Transform.FacingDirection);
+            }
+            // Picking uses the visible body; the accepted aim still targets Domain ground geometry.
+            var picked = actorViews.Where(v => v.gameObject.activeInHierarchy && v.Entity != null && v.Entity.Vitals.IsAlive
+                && World.Relations.IsHostile(World.PlayerActor.Faction, v.Entity.Faction))
+                .Where(v => { var b = v.VisualBounds; return target.x >= b.min.x && target.x <= b.max.x && target.y >= b.min.y && target.y <= b.max.y; })
+                .OrderBy(v => v.Entity.Transform.Position.Y).ThenBy(v => v.Entity.Id).FirstOrDefault();
+            if (picked != null)
+                return Submit(new CastCommand(World.Player.ActorId, registry.hotbar[slot].Id,
+                    new AimRequest((picked.Entity.Transform.Position - World.PlayerActor.Transform.Position).Normalized, picked.Entity.Id)));
             var delta = Point(target) - World.PlayerActor.Transform.Position;
-            return delta.LengthSquared > .001f ? delta.Normalized : World.PlayerActor.Transform.FacingDirection;
+            return Cast(slot, delta.LengthSquared > .001f ? delta.Normalized : World.PlayerActor.Transform.FacingDirection);
         }
 
         public DomainResult Cast(int slot, WorldPoint direction)
@@ -184,14 +238,24 @@ namespace LinhThu.Client.Bootstrap
                 node.Spec.Kind == WorldNodeKind.TeleportPortal ? "Đã dịch chuyển." : planting ? "Đã gieo linh thảo." : "Đã thu hoạch.");
         }
 
-        public DomainResult ToggleBeast()
+        public DomainResult ToggleBeast(EntityId? selectedId = null)
         {
-            var beast = World.Player.Beasts.All.FirstOrDefault();
+            if (selectedId.HasValue) SelectedBeastId = selectedId;
+            var beast = SelectedBeast;
             if (beast == null)
                 return DomainResult.Fail(DomainError.NotFound);
             bool recall = beast.State == BeastState.SummonedActive;
             string name = registry.beasts.First(b => b.Id == beast.DefinitionId).displayName;
             return Submit(recall ? (WorldCommand)new RecallCommand(World.Player.ActorId, beast.Id) : new SummonCommand(World.Player.ActorId, beast.Id), name + (recall ? " đã nghỉ." : " xuất chiến."));
+        }
+
+        public DomainResult Breakthrough() => Submit(new BreakthroughCommand(World.LocalPlayerId), "Đột phá thành công!");
+
+        public DomainResult TameFocused()
+        {
+            var target = World.Taming.Select(World, World.LocalPlayerId);
+            if (target == null) { hud.Notify("Đến gần yêu thú còn tối đa 30% sinh lực để thu phục."); return DomainResult.Fail(DomainError.NotFound); }
+            return Submit(new TryTameBeastCommand(World.LocalPlayerId, target.Id), "Thu phục thành công · Linh thú đã về danh sách.");
         }
 
         public DomainResult ToggleMeditate() => Submit(new ToggleMeditateCommand(World.Player.ActorId),
@@ -261,7 +325,7 @@ namespace LinhThu.Client.Bootstrap
 
         private DomainResult Submit(WorldCommand command, string success = null)
         {
-            var result = World.Execute(command);
+            var result = World.ExecuteFor(World.LocalPlayerId, command);
             if (!result.Succeeded)
                 hud.Notify(CultivationHudPresenter.ErrorText(result.ErrorCode));
             else if (success != null)
@@ -286,7 +350,7 @@ namespace LinhThu.Client.Bootstrap
                     view = actorViews.FirstOrDefault(v => v.Entity == null && v.config.Id == actor.DefinitionId && v.faction == actor.Faction);
                     if (view == null)
                     {
-                        view = Instantiate(registry.Actor(actor.DefinitionId).prefab);
+                        view = Instantiate(registry.Actor(actor.DefinitionId).prefab, transform);
                         actorViews.Add(view);
                     }
 
@@ -357,6 +421,7 @@ namespace LinhThu.Client.Bootstrap
             foreach (var node in World.Nodes)
                 nodeViews[node.Key].Bind(node.Value);
             effects.Bind(World, registry, actorViews);
+            telegraphs?.Bind(World);
             BindDamageFeedback();
             SyncViews();
             hud.Notify("Đã đọc hành trình (F9).");

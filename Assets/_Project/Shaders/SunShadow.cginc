@@ -3,7 +3,7 @@
 #include "UnitySprites.cginc"
 
 float4 _SunShadow, _DaylightShade, _GroundOrigin, _ShadowVolume, _ShadowContact;
-float _SunOverhead;
+float _SunOverhead, _ShadowSourceHidden;
 float4 _MainTex_TexelSize;
 
 fixed FoliageCoverage(float2 uv)
@@ -19,6 +19,7 @@ struct SunShadowVaryings
     float2 uv : TEXCOORD0;
     float height : TEXCOORD1;
     float2 borderUV : TEXCOORD2;
+    float trunk : TEXCOORD3;
     fixed4 color : COLOR;
     UNITY_VERTEX_OUTPUT_STEREO
 };
@@ -29,6 +30,7 @@ struct SunShadowInput
     float4 color : COLOR;
     float2 texcoord : TEXCOORD0;
     float2 borderUV : TEXCOORD1;
+    float2 trunk : TEXCOORD2;
     UNITY_VERTEX_INPUT_INSTANCE_ID
 };
 
@@ -50,7 +52,8 @@ SunShadowVaryings SunShadowVert(SunShadowInput input)
     float thickness = sqrt(saturate(1 - across * across));
     float groundY = lerp(offset.y, (offset.y - referenceHeight * _ShadowVolume.w * _SunOverhead) * _ShadowVolume.z * thickness, contact);
     float canopy = step(.001, _ShadowContact.z);
-    float trunk = canopy * (1 - step(.5, input.color.a));
+    // Geometry identity must not depend on the renderer's opacity.
+    float trunk = canopy * step(.5, input.trunk.x);
     // Elevated foliage keeps an affine silhouette; a tapered trunk volume joins it to the foot.
     float foliageY = (offset.y - referenceHeight * _ShadowVolume.w * _SunOverhead) * _ShadowVolume.z;
     float trunkY = offset.y * _ShadowVolume.z * (1 - _SunOverhead) + (input.color.r - .5) * referenceHeight * _ShadowContact.x * .35;
@@ -61,15 +64,17 @@ SunShadowVaryings SunShadowVert(SunShadowInput input)
     output.uv = input.texcoord;
     output.borderUV = input.borderUV;
     output.height = offset.y / referenceHeight;
+    output.trunk = trunk;
     output.color = input.color * _Color * _RendererColor;
     return output;
 }
 
 fixed4 SunShadowFrag(SunShadowVaryings input) : SV_Target
 {
+    clip(.5 - _ShadowSourceHidden);
     float cutoff = _ShadowContact.y;
     float canopy = step(.001, _ShadowContact.z);
-    float trunk = canopy * (1 - step(.5, input.color.a));
+    float trunk = input.trunk;
     fixed alpha = SampleSpriteTexture(input.uv).a * input.color.a;
     if (canopy > .5 && trunk < .5)
     {
@@ -81,7 +86,7 @@ fixed4 SunShadowFrag(SunShadowVaryings input) : SV_Target
         coverage = max(coverage, FoliageCoverage(input.uv - float2(0, radius.y)));
         alpha = coverage * input.color.a;
     }
-    alpha = lerp(alpha, 1, trunk);
+    alpha = lerp(alpha, input.color.a, trunk);
     float2 border = smoothstep(0, .08, input.borderUV) * (1 - smoothstep(.92, 1, input.borderUV));
     float heightFade = 1 - smoothstep(.72, 1, input.borderUV.y);
     float baseFade = lerp(smoothstep(cutoff, cutoff + .08, input.height), 1, trunk);

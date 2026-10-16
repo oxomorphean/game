@@ -8,6 +8,7 @@ namespace LinhThu.Domain.Actors
 {
     public sealed class ActorEntity
     {
+        public LinhThu.Domain.Beasts.WildBeastAiController WildBeast { get; internal set; }
         public EntityId Id { get; }
 
         public string DefinitionId => Spec.DefinitionId;

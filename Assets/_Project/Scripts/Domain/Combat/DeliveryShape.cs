@@ -55,11 +55,13 @@ namespace LinhThu.Domain.Combat
         public WorldPoint Direction { get; }
 
         public EntityId? TargetId { get; }
+        public WorldPoint? LockedPoint { get; }
 
-        public AimRequest(WorldPoint direction, EntityId? targetId = null)
+        public AimRequest(WorldPoint direction, EntityId? targetId = null, WorldPoint? lockedPoint = null)
         {
             Direction = direction;
             TargetId = targetId;
+            LockedPoint = lockedPoint;
         }
     }
 }

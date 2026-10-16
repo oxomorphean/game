@@ -51,10 +51,20 @@ namespace LinhThu.Domain.Combat
                     return DomainResult.Fail(DomainError.InvalidInput);
                 if ((target.Transform.Position - caster.Transform.Position).Length > spec.Delivery.Range + target.Transform.CollisionRadius)
                     return DomainResult.Fail(DomainError.OutOfRange);
-                if (!world.Geometry.ClearLine(caster.Transform.Position, target.Transform.Position))
+                bool clear = spec.Delivery.Shape == DeliveryShape.Projectile
+                    ? world.Geometry.ClearProjectileLine(caster.Transform.Position, target.Transform.Position)
+                    : world.Geometry.ClearLine(caster.Transform.Position, target.Transform.Position);
+                if (!clear)
                     return DomainResult.Fail(DomainError.Blocked);
             }
 
+            // Circle windups lock their ground target at acceptance; moving away must evade them.
+            if (spec.Delivery.Shape == DeliveryShape.CircleAoE)
+            {
+                var center = aim.TargetId.HasValue && world.TryGetActor(aim.TargetId.Value, out var aimed) ? aimed.Transform.Position : caster.Transform.Position;
+                aim = new AimRequest(aim.Direction, aim.TargetId, center);
+            }
+            else aim = new AimRequest(aim.Direction, aim.TargetId);
             var source = EffectSourceSnapshot.Capture(caster);
             var ctx = new AbilityExecutionContext(world, caster, null, aim.Direction, source);
             var validation = ValidateEffects(spec.Effects, ctx, new HashSet<string>());
@@ -75,6 +85,7 @@ namespace LinhThu.Domain.Combat
             caster.Abilities.StartCooldown(techniqueId, spec.Cooldown * (1 - Math.Max(0, Math.Min(rules.CooldownReductionCap, caster.Stats.Get(StatId.CooldownReduction)))));
             caster.Abilities.Cast = new CastState(spec, aim);
             caster.Transform.CurrentVelocity = default;
+            caster.Transform.FacingDirection = aim.Direction.Normalized;
             caster.State = ActorActionState.Casting;
             events.Publish(new AbilityStartedEvent(caster.Id, techniqueId, aim.Direction));
             if (spec.CastDuration == 0)
@@ -137,6 +148,53 @@ namespace LinhThu.Domain.Combat
         public void Tick(WorldState world, float deltaTime)
         {
             Guard.Delta(deltaTime);
+            // Advance to combat boundaries, then commit the effects at that instant.
+            // A newly applied/refreshed status is aged only by the time after its hit.
+            float remaining = deltaTime;
+            while (remaining > 0)
+            {
+                float step = Math.Min(remaining, Math.Max(.000001f, TimeToNextEvent(world, remaining)));
+                foreach (var actor in world.Actors.Values.OrderBy(a => a.Id).ToArray())
+                    actor.StatusEffects.Tick(step, world);
+                TickStep(world, step);
+                remaining = Math.Max(0, remaining - step);
+            }
+        }
+
+        private float TimeToNextEvent(WorldState world, float limit)
+        {
+            foreach (var actor in world.Actors.Values)
+            {
+                limit = actor.StatusEffects.TimeToNextEvent(limit);
+                var cast = actor.Abilities.Cast;
+                if (cast != null && actor.CanAct)
+                    limit = Math.Min(limit, cast.Started ? Math.Min(cast.UntilPulse, cast.ChannelRemaining) : cast.WindupRemaining);
+            }
+            foreach (var projectile in projectiles)
+            {
+                content.TryGetTechnique(projectile.TechniqueId, out var spec);
+                limit = Math.Min(limit, projectile.RemainingLifetime);
+                var to = projectile.Position + projectile.Direction * (limit * spec.Delivery.ProjectileSpeed);
+                float travelTime = limit;
+                foreach (var target in world.SpatialGrid.QueryActorsAlong(projectile.Position, to, spec.Delivery.Radius))
+                {
+                    if (projectile.hits.Contains(target.Id) || !TargetRules.Matches(world, projectile.Source.Faction,
+                        projectile.Source.ActorId, target, spec.Delivery.TargetFilter) || target.Id == projectile.Source.ActorId)
+                        continue;
+                    if (SweepCircle(projectile.Position, to, target.Transform.Position,
+                        spec.Delivery.Radius + target.Transform.CollisionRadius, out float fraction))
+                    {
+                        var contact = projectile.Position + (to - projectile.Position) * fraction;
+                        if (world.Geometry.ClearProjectileLine(projectile.Position, contact) && world.Geometry.ClearProjectileLine(contact, target.Transform.Position))
+                            limit = Math.Min(limit, travelTime * fraction);
+                    }
+                }
+            }
+            return limit;
+        }
+
+        private void TickStep(WorldState world, float deltaTime)
+        {
             if (deltaTime == 0)
                 return;
             var spawnedTimes = new Dictionary<EntityId, float>();
@@ -153,7 +211,7 @@ namespace LinhThu.Domain.Combat
                 var from = p.Position;
                 var to = from + p.Direction * (time * d.ProjectileSpeed);
                 var impacts = new List<(ActorEntity actor, float fraction)>();
-                foreach (var target in world.Actors.Values)
+                foreach (var target in world.SpatialGrid.QueryActorsAlong(from, to, d.Radius))
                 {
                     if (p.hits.Contains(target.Id) || target.Id == p.Source.ActorId || !TargetRules.Matches(world, p.Source.Faction, p.Source.ActorId, target, d.TargetFilter))
                         continue;
@@ -164,8 +222,12 @@ namespace LinhThu.Domain.Combat
                 foreach (var hit in impacts.OrderBy(h => h.fraction).ThenBy(h => h.actor.Id))
                 {
                     var point = from + (to - from) * hit.fraction;
-                    if (!world.Geometry.ClearLine(from, point))
+                    if (!world.Geometry.ClearProjectileLine(from, point))
                         break;
+                    // The swept radii can touch before the projectile reaches a thin wall.
+                    // A contact on this side must not damage an actor on the other side.
+                    if (!world.Geometry.ClearProjectileLine(point, hit.actor.Transform.Position))
+                        continue;
                     world.TryGetActor(p.Source.ActorId, out var caster);
                     ApplyEffects(spec.Effects, new AbilityExecutionContext(world, caster, hit.actor, p.Direction, p.Source));
                     p.hits.Add(hit.actor.Id);
@@ -175,7 +237,7 @@ namespace LinhThu.Domain.Combat
 
                 p.RemainingLifetime -= time;
                 p.Position = to;
-                if (p.RemainingLifetime <= .000001f || p.hits.Count >= d.MaxTargets || !world.Geometry.ClearLine(from, to) || Math.Abs(to.X) > world.Geometry.HalfSize.X || Math.Abs(to.Y) > world.Geometry.HalfSize.Y)
+                if (p.RemainingLifetime <= .000001f || p.hits.Count >= d.MaxTargets || !world.Geometry.ClearProjectileLine(from, to) || !world.Geometry.Bounds.Contains(to, 0))
                     projectiles.Remove(p);
             }
         }

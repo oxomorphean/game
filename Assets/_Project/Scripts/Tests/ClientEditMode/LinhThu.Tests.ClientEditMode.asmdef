@@ -1,7 +1,7 @@
 {
   "name": "LinhThu.Tests.ClientEditMode",
   "rootNamespace": "LinhThu.Tests.ClientEditMode",
-  "references": ["LinhThu.Domain", "LinhThu.Client", "UnityEngine.UI", "Unity.TextMeshPro"],
+  "references": ["LinhThu.Domain", "LinhThu.Client", "UnityEngine.UI", "Unity.TextMeshPro", "Unity.2D.Animation.Runtime", "Unity.Collections"],
   "includePlatforms": ["Editor"],
   "optionalUnityReferences": ["TestAssemblies"],
   "autoReferenced": false

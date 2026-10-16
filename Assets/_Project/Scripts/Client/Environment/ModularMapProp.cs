@@ -30,28 +30,14 @@ namespace LinhThu.Client.Environment
                 visual.SetPropertyBlock(surfaceProperties);
             }
 
-            if (!floorLayer && castShadow != null && visual != null && visual.sprite != null)
-            {
-                if (shadowProperties == null)
-                    shadowProperties = new MaterialPropertyBlock();
-                castShadow.GetPropertyBlock(shadowProperties);
-                shadowSettings.Apply(shadowProperties, transform.position, ReferenceHeight);
-                castShadow.SetPropertyBlock(shadowProperties);
-            }
-
+            RefreshShadow();
             UpdateDepth();
             if (castShadow != null && castShadow.sprite != null)
                 castShadow.localBounds = new Bounds(Vector3.zero, Vector3.one * castShadow.sprite.bounds.size.magnitude * 4);
         }
 
         private float ReferenceHeight => visual.sprite.rect.height / visual.sprite.pixelsPerUnit * Mathf.Abs(visual.transform.lossyScale.y);
-        private void Start()
-        {
-            if (!Application.isPlaying || floorLayer || castShadow == null || visual == null || visual.sprite == null)
-                return;
-            groundShadow = new SunShadowMesh(castShadow);
-            groundShadow.Refresh(shadowSettings, transform.position, ReferenceHeight);
-        }
+        private void Start() => RefreshShadow();
 
         private void OnValidate() => refreshProperties = true;
         private void LateUpdate()
@@ -63,11 +49,27 @@ namespace LinhThu.Client.Environment
             }
 
             UpdateDepth();
-            if (groundShadow != null)
-                groundShadow.Refresh(shadowSettings, transform.position, ReferenceHeight);
+            RefreshShadow();
         }
 
-        private void OnDestroy() => groundShadow?.Dispose();
+        private void RefreshShadow()
+        {
+            if (floorLayer || castShadow == null || visual == null || visual.sprite == null)
+            {
+                ReleaseShadow();
+                return;
+            }
+            if (shadowProperties == null) shadowProperties = new MaterialPropertyBlock();
+            castShadow.GetPropertyBlock(shadowProperties);
+            shadowSettings.Apply(shadowProperties, transform.position, ReferenceHeight);
+            castShadow.SetPropertyBlock(shadowProperties);
+            if (groundShadow == null && gameObject.scene.IsValid()) groundShadow = new SunShadowMesh(castShadow);
+            groundShadow?.Refresh(shadowSettings, transform.position, ReferenceHeight);
+        }
+
+        private void ReleaseShadow() { groundShadow?.Dispose(); groundShadow = null; }
+        private void OnDisable() => ReleaseShadow();
+        private void OnDestroy() => ReleaseShadow();
         private void UpdateDepth()
         {
             GetComponent<LinhThu.Client.World.YSortRenderer>()?.Refresh();

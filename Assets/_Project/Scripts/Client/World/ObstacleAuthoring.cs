@@ -18,6 +18,8 @@ namespace LinhThu.Client.World
         [Tooltip("Convex ground footprint in this object's local space; empty keeps the legacy box/circle.")]
         [SerializeField]
         private Vector2[] polygon = Array.Empty<Vector2>();
+        [Tooltip("Ground props block feet. Enable only for barriers that also stop projectiles.")]
+        [SerializeField] private bool blocksProjectiles;
         public WorldObstacle Definition()
         {
             if (polygon.Length > 0)
@@ -25,10 +27,10 @@ namespace LinhThu.Client.World
                 {
                     var world = transform.TransformPoint(p);
                     return new WorldPoint(world.x, world.y);
-                }));
+                }), blocksProjectiles);
             var center = transform.TransformPoint(offset);
             var scale = transform.lossyScale;
-            return new WorldObstacle(new WorldPoint(center.x, center.y), new WorldPoint(halfSize.x * Mathf.Abs(scale.x), halfSize.y * Mathf.Abs(scale.y)), box);
+            return new WorldObstacle(new WorldPoint(center.x, center.y), new WorldPoint(halfSize.x * Mathf.Abs(scale.x), halfSize.y * Mathf.Abs(scale.y)), box, blocksProjectiles);
         }
 
         private void OnDrawGizmosSelected()

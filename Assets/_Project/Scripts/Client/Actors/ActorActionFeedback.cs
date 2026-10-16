@@ -4,7 +4,6 @@ using LinhThu.Client.World;
 using LinhThu.Domain.Navigation;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.U2D.Animation;
 
 namespace LinhThu.Client.Actors
 {
@@ -24,6 +23,7 @@ namespace LinhThu.Client.Actors
         private bool captured;
         private readonly Dictionary<Transform, Quaternion> animated = new Dictionary<Transform, Quaternion>();
         private readonly List<Ghost> ghosts = new List<Ghost>();
+        private readonly List<Vector3> ghostVertices = new List<Vector3>();
         private sealed class Ghost
         {
             public GameObject root;
@@ -115,11 +115,9 @@ namespace LinhThu.Client.Actors
                 var source = slots[i].renderer; var sprite = source.sprite; var part = ghost.parts[i];
                 part.enabled = source.enabled && sprite != null;
                 if (!part.enabled) continue;
-                var skin = source.GetComponent<SpriteSkin>();
-                var local = skin != null && skin.HasCurrentDeformedVertices()
-                    ? skin.GetDeformedVertexPositionData().ToArray() : sprite.vertices.Select(p => (Vector3)p).ToArray();
                 var mesh = ghost.meshes[i]; mesh.Clear();
-                mesh.vertices = local.Select(p => source.transform.TransformPoint(p)).ToArray();
+                slots[i].Geometry.CopyWorldVertices(ghostVertices);
+                mesh.SetVertices(ghostVertices);
                 mesh.uv = sprite.uv; mesh.triangles = sprite.triangles.Select(t => (int)t).ToArray(); mesh.RecalculateBounds();
                 part.sortingOrder = source.sortingOrder;
                 var block = new MaterialPropertyBlock(); block.SetTexture("_MainTex", sprite.texture);

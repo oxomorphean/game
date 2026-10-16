@@ -134,6 +134,117 @@ namespace LinhThu.Tests.ClientEditMode
         }
 
         [Test]
+        public void BasicMaleBaseKeepsAllBodyPartsAndExplicitBlankAppearance()
+        {
+            var scene = EditorSceneManager.NewPreviewScene();
+            try
+            {
+                var root = (GameObject)PrefabUtility.InstantiatePrefab(Registry.player.prefab.gameObject, scene);
+                var rig = root.GetComponent<ModularEquipmentRenderer>();
+                var body = new[] { "head", "neck", "torso", "shorts", "upper-front", "fore-front", "hand-front",
+                    "upper-back", "fore-back", "hand-back", "thigh-front", "shin-front", "boot-front", "thigh-back", "shin-back", "boot-back" };
+                var outfit = Registry.outfits.Single(o => o.appearanceId == "basic");
+                rig.ApplyOutfit(outfit);
+                CollectionAssert.AreEquivalent(body, rig.slots.Where(s => s.renderer.sprite != null).Select(s => s.id));
+                Assert.That(rig.slots.Where(s => s.renderer.sprite != null).Select(s => s.renderer.sprite).Distinct().Count(), Is.EqualTo(16));
+                foreach (var slot in rig.slots.Where(s => body.Contains(s.id)))
+                {
+                    Assert.That(slot.optional, Is.False, slot.id + " must not silently lose a body part.");
+                    Assert.That(slot.renderer.sprite.rect.size, Is.EqualTo(new Vector2(1087, 1446)));
+                    Assert.That(slot.renderer.sprite.pixelsPerUnit, Is.EqualTo(500));
+                }
+                Assert.That(outfit.hairVariants.All(h => h.hidden && h.front == null && h.back == null && h.ornament == null), Is.True);
+                Assert.That(outfit.eyeVariants.All(e => e.hidden && e.sprite == null && e.closedSprite == null), Is.True);
+                Assert.That(outfit.face.enabled, Is.False);
+            }
+            finally { EditorSceneManager.ClosePreviewScene(scene); }
+        }
+
+        [Test]
+        public void WardrobeUsesDistinctGarmentsOnTheApprovedBodyCoordinates()
+        {
+            var body = Registry.outfits.Single(o => o.appearanceId == "basic");
+            var classic = Registry.outfits.Single(o => o.appearanceId == "classic");
+            var jade = Registry.outfits.Single(o => o.appearanceId == "jade");
+            var garments = new[] { "neck", "torso", "shorts", "upper-front", "fore-front", "upper-back", "fore-back",
+                "thigh-front", "shin-front", "boot-front", "thigh-back", "shin-back", "boot-back" };
+            foreach (var outfit in new[] { classic, jade })
+            {
+                Assert.DoesNotThrow(outfit.ValidateSlots);
+                Assert.That(outfit.includeInRobeCycle, Is.True);
+                foreach (var slotId in garments)
+                {
+                    var original = body.slots.Single(s => s.slotId == slotId).sprite;
+                    var garment = outfit.slots.Single(s => s.slotId == slotId).sprite;
+                    Assert.That(garment, Is.Not.Null, outfit.appearanceId + ": " + slotId);
+                    Assert.That(garment, Is.Not.SameAs(original));
+                    Assert.That(garment.rect.size, Is.EqualTo(original.rect.size));
+                    Assert.That(garment.pivot, Is.EqualTo(original.pivot));
+                    Assert.That(garment.pixelsPerUnit, Is.EqualTo(original.pixelsPerUnit));
+                }
+                foreach (var slotId in new[] { "head", "hand-front", "hand-back" })
+                    Assert.That(outfit.slots.Single(s => s.slotId == slotId).sprite,
+                        Is.SameAs(body.slots.Single(s => s.slotId == slotId).sprite), slotId);
+                Assert.That(outfit.eyeVariants.All(e => !e.hidden && e.sprite != null && e.closedSprite != null), Is.True);
+                Assert.That(outfit.face.enabled, Is.True);
+            }
+            foreach (var slotId in garments)
+                Assert.That(classic.slots.Single(s => s.slotId == slotId).sprite,
+                    Is.Not.SameAs(jade.slots.Single(s => s.slotId == slotId).sprite), slotId);
+        }
+
+        [Test]
+        public void BothHairstylesAreSharedByBothOutfitsAndMatchHeadBinding()
+        {
+            var classic = Registry.outfits.Single(o => o.appearanceId == "classic");
+            var jade = Registry.outfits.Single(o => o.appearanceId == "jade");
+            var head = classic.slots.Single(s => s.slotId == "head").sprite;
+            CollectionAssert.AreEquivalent(new[] { "ink", "silver" }, classic.hairVariants.Select(h => h.id));
+            CollectionAssert.AreEquivalent(new[] { "ink", "silver" }, jade.hairVariants.Select(h => h.id));
+            foreach (var hair in classic.hairVariants)
+            {
+                var other = jade.hairVariants.Single(h => h.id == hair.id);
+                Assert.That(hair.hidden || other.hidden, Is.False);
+                var sprites = new[] { hair.front, hair.back, hair.ornament };
+                CollectionAssert.AreEqual(sprites, new[] { other.front, other.back, other.ornament });
+                foreach (var sprite in sprites)
+                {
+                    Assert.That(sprite, Is.Not.Null, hair.id);
+                    Assert.That(sprite.rect.size, Is.EqualTo(head.rect.size));
+                    Assert.That(sprite.pivot, Is.EqualTo(head.pivot));
+                    Assert.That(sprite.pixelsPerUnit, Is.EqualTo(head.pixelsPerUnit));
+                }
+            }
+            Assert.That(classic.hairVariants.SelectMany(h => new[] { h.front, h.back, h.ornament }).Distinct().Count(), Is.EqualTo(6));
+            var rig = Registry.player.prefab.GetComponent<ModularEquipmentRenderer>();
+            foreach (var side in new[] { "front", "back" })
+                Assert.That(rig.slots.Single(s => s.id == "fore-" + side).renderer.sortingOrder,
+                    Is.GreaterThan(rig.slots.Single(s => s.id == "hand-" + side).renderer.sortingOrder), "Cuff must cover the hand joint cap.");
+        }
+
+        [Test]
+        public void BlankAppearanceMustBeExplicitAndCannotHideBrokenSpriteReferences()
+        {
+            var config = UnityEngine.Object.Instantiate(Registry.outfits.Single(o => o.appearanceId == "basic"));
+            try
+            {
+                Assert.DoesNotThrow(config.ValidateSlots);
+                config.hairVariants[0].hidden = false;
+                Assert.Throws<InvalidOperationException>(config.ValidateSlots);
+                config.hairVariants[0].hidden = true;
+                config.eyeVariants[0].hidden = false;
+                Assert.Throws<InvalidOperationException>(config.ValidateSlots);
+                config.eyeVariants[0].hidden = true;
+                config.hairVariants[0].front = config.slots.First(s => s.sprite != null).sprite;
+                Assert.Throws<InvalidOperationException>(config.ValidateSlots);
+                config.hairVariants[0].front = null;
+                config.eyeVariants[0].sprite = config.slots.First(s => s.sprite != null).sprite;
+                Assert.Throws<InvalidOperationException>(config.ValidateSlots);
+            }
+            finally { UnityEngine.Object.DestroyImmediate(config); }
+        }
+
+        [Test]
         public void FullAppearancePaletteAndPropertyBlocksPreserveSharedMaterialsAndPose()
         {
             var scene = EditorSceneManager.NewPreviewScene();

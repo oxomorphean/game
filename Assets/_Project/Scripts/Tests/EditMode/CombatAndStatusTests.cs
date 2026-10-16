@@ -14,6 +14,87 @@ namespace LinhThu.Tests.EditMode
 {
     public sealed class CombatAndStatusTests
     {
+        [TestCase(false, false)]
+        [TestCase(true, false)]
+        [TestCase(false, true)]
+        public void MidTickStatusUsesOnlyElapsedTimeAfterCastOrProjectileHit(bool projectile, bool channel)
+        {
+            var content = Fixture.Content();
+            content.Add(new TechniqueSpec("timed-status", new DeliverySpec(projectile ? DeliveryShape.Projectile : DeliveryShape.Self,
+                10, .1f, projectileSpeed: 20), new AbilityEffectSpec[] { new ApplyStatusEffectSpec("quick") },
+                castDuration: .025f, channelDuration: channel ? .06f : 0, channelInterval: channel ? .02f : 0));
+            var combined = Fixture.World(content: content);
+            var split = Fixture.World(content: content);
+            ActorEntity Prepare(WorldState world)
+            {
+                var target = projectile ? world.TrySpawnActor("target", ActorFaction.HostileMonster, new WorldPoint(.7f, 0)).Value : world.PlayerActor;
+                world.PlayerActor.Abilities.Learn("timed-status", content);
+                Assert.That(world.Execute(new CastCommand(world.Player.ActorId, "timed-status", new AimRequest(new WorldPoint(1, 0)))).Succeeded, Is.True);
+                return target;
+            }
+            var a = Prepare(combined); var b = Prepare(split);
+            combined.Tick(.1f);
+            for (int i = 0; i < 10; i++) split.Tick(.01f);
+            Assert.That(a.Vitals.CurrentHp, Is.EqualTo(b.Vitals.CurrentHp).Within(.0001));
+            Assert.That(a.Vitals.CurrentHp, Is.EqualTo(channel ? 197 : projectile ? 198 : 197).Within(.0001));
+            Assert.That(a.StatusEffects.Active.Count, Is.EqualTo(b.StatusEffects.Active.Count));
+            if (a.StatusEffects.Active.Count > 0)
+            {
+                Assert.That(a.StatusEffects.Active[0].RemainingDuration, Is.EqualTo(b.StatusEffects.Active[0].RemainingDuration).Within(.00001));
+                Assert.That(a.StatusEffects.Active[0].UntilNextTick, Is.EqualTo(b.StatusEffects.Active[0].UntilNextTick).Within(.00001));
+            }
+        }
+
+        [Test]
+        public void PeriodicStatusCanApplyAnotherStatusWithoutLosingTheRemainingTick()
+        {
+            var content = Fixture.Content();
+            content.Add(new StatusEffectSpec("delayed-status", .025f, .025f, 1, StatusStackPolicy.RefreshDuration,
+                Array.Empty<StatModifierSpec>(), new AbilityEffectSpec[] { new ApplyStatusEffectSpec("quick") }));
+            var a = Fixture.World(content: content); var b = Fixture.World(content: content);
+            content.TryGetStatus("delayed-status", out var spec);
+            foreach (var world in new[] { a, b })
+                world.PlayerActor.StatusEffects.Apply(spec, world.Player.ActorId, EffectSourceSnapshot.Capture(world.PlayerActor));
+            a.Tick(.1f);
+            for (int i = 0; i < 10; i++) b.Tick(.01f);
+            Assert.That(a.PlayerActor.Vitals.CurrentHp, Is.EqualTo(197));
+            Assert.That(b.PlayerActor.Vitals.CurrentHp, Is.EqualTo(197));
+            Assert.That(a.PlayerActor.StatusEffects.Active, Is.Empty);
+            Assert.That(b.PlayerActor.StatusEffects.Active, Is.Empty);
+        }
+
+        [Test]
+        public void OnlyAcceptedCastTurnsTheActorTowardItsAim()
+        {
+            var world = Fixture.World();
+            var actor = world.PlayerActor;
+            world.Execute(new MoveCommand(actor.Id, new WorldPoint(-1, 0)));
+            world.Tick(.1f);
+            world.Execute(new MoveCommand(actor.Id, default));
+            Assert.That(actor.Transform.FacingDirection.X, Is.LessThan(0));
+            Assert.That(world.Execute(new CastCommand(actor.Id, "unknown", new AimRequest(new WorldPoint(1, 0)))).Succeeded, Is.False);
+            Assert.That(actor.Transform.FacingDirection.X, Is.LessThan(0));
+            Assert.That(world.Execute(new CastCommand(actor.Id, "strike", new AimRequest(new WorldPoint(3, 4)))).Succeeded, Is.True);
+            Assert.That(actor.Transform.FacingDirection.X, Is.EqualTo(.6f).Within(.00001));
+            Assert.That(actor.Transform.FacingDirection.Y, Is.EqualTo(.8f).Within(.00001));
+        }
+
+        [Test]
+        public void ProjectileContactRadiusCannotReachThroughAThinWall()
+        {
+            var geometry = new WorldGeometry(new WorldPoint(20, 20), new[] {
+                new WorldObstacle(new WorldPoint(1, 0), new WorldPoint(.01f, 4), true) });
+            var world = Fixture.World(geometry);
+            var near = world.TrySpawnActor("target", ActorFaction.HostileMonster, new WorldPoint(.6f, 0)).Value;
+            var behind = world.TrySpawnActor("target", ActorFaction.HostileMonster, new WorldPoint(1.22f, 0)).Value;
+            Assert.That(behind, Is.Not.Null);
+            Assert.That(world.Execute(new CastCommand(world.Player.ActorId, "projectile", new AimRequest(new WorldPoint(1, 0)))).Succeeded, Is.True);
+            world.Tick(.1f);
+            Assert.That(near.Vitals.CurrentHp, Is.LessThan(200), "A target before the wall still receives its hit.");
+            Assert.That(behind.Vitals.CurrentHp, Is.EqualTo(200), "The expanded hit circle must not bypass the wall.");
+            Assert.That(world.Combat.Projectiles, Is.Empty);
+        }
+
         [Test]
         public void CastFeedbackEventIsEmittedOnceOnlyAfterACommandIsCommitted()
         {
@@ -253,6 +334,39 @@ namespace LinhThu.Tests.EditMode
             w.Tick(.1f);
             Assert.That(enemy.Vitals.CurrentHp, Is.EqualTo(200));
             Assert.That(w.Combat.Projectiles, Is.Empty);
+        }
+
+        [TestCase(0, false)] [TestCase(1, false)] [TestCase(2, false)]
+        [TestCase(0, true)] [TestCase(1, true)] [TestCase(2, true)]
+        public void ProjectileCollisionPolicyIsIndependentOfFeetAndSurvivesRestore(int shape, bool blocks)
+        {
+            var center = new WorldPoint(1, 0);
+            var obstacle = shape == 2
+                ? new WorldObstacle(new[] { new WorldPoint(.9f,-1), new WorldPoint(1.1f,-1), new WorldPoint(1.1f,1), new WorldPoint(.9f,1) }, blocks)
+                : new WorldObstacle(center, new WorldPoint(.1f,1), shape == 0, blocks);
+            var geometry = new WorldGeometry(new WorldPoint(20,20), new[] { obstacle });
+            Assert.That(geometry.CanStand(center,.2f), Is.False);
+            Assert.That(geometry.ClearLine(default,new WorldPoint(2,0)), Is.False);
+            Assert.That(geometry.ClearProjectileLine(default,new WorldPoint(2,0)), Is.EqualTo(!blocks));
+            var world = Fixture.World(geometry);
+            var target = world.TrySpawnActor("target",ActorFaction.HostileMonster,new WorldPoint(2,0)).Value;
+            var result = world.Execute(new CastCommand(world.Player.ActorId,"projectile",new AimRequest(new WorldPoint(1,0),target.Id)));
+            Assert.That(result.Succeeded, Is.EqualTo(!blocks));
+            if (blocks)
+            {
+                Assert.That(result.ErrorCode, Is.EqualTo(DomainError.Blocked));
+                world.Execute(new CastCommand(world.Player.ActorId,"projectile",new AimRequest(new WorldPoint(1,0))));
+            }
+            var mapper = new LinhThu.Domain.Persistence.GameSaveMapper();
+            var restored = mapper.TryRestore(mapper.Capture(world),world.Content,geometry,new SeededRandomSource(2),new DomainEventBus());
+            Assert.That(restored.Succeeded, Is.True,restored.Message);
+            foreach (var w in new[] { world,restored.Value })
+            {
+                w.Tick(.1f);
+                if (blocks) Assert.That(w.Actors[target.Id].Vitals.CurrentHp, Is.EqualTo(200));
+                else Assert.That(w.Actors[target.Id].Vitals.CurrentHp, Is.LessThan(200));
+                Assert.That(w.Geometry.CanStand(center,.2f), Is.False);
+            }
         }
 
         [Test]

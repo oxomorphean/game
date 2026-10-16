@@ -18,11 +18,11 @@ namespace LinhThu.Domain.World
 
         public DomainResult TryInteractFocused(WorldState world, EntityId actorId, string cropId)
         {
-            if (actorId != world.Player.ActorId)
+            if (!world.Players.ContainsKey(actorId))
                 return DomainResult.Fail(DomainError.WrongOwner);
-            if (!world.PlayerActor.CanAct)
+            if (!world.Actors[actorId].CanAct)
                 return DomainResult.Fail(DomainError.InvalidState);
-            var node = world.FocusedNode;
+            var node = world.InteractionTargets.Select(world, actorId);
             if (node == null)
                 return DomainResult.Fail(DomainError.NotFound);
             if (node.Spec.Kind == WorldNodeKind.FishingSpot)
@@ -38,7 +38,7 @@ namespace LinhThu.Domain.World
         {
             actor = null;
             node = null;
-            if (actorId != world.Player.ActorId)
+            if (!world.Players.ContainsKey(actorId))
                 return DomainResult.Fail(DomainError.WrongOwner);
             if (!world.TryGetActor(actorId, out actor) || !world.Nodes.TryGetValue(nodeId, out node))
                 return DomainResult.Fail(DomainError.NotFound);
@@ -65,7 +65,7 @@ namespace LinhThu.Domain.World
                 return DomainResult.Fail(DomainError.MissingDefinition);
             if (spec.Rewards.Count == 0)
                 return DomainResult.Fail(DomainError.NoEffect);
-            var add = world.Player.Inventory.TryAddAll(spec.Rewards);
+            var add = world.Players[actorId].Inventory.TryAddAll(spec.Rewards);
             if (!add.Succeeded)
                 return add;
             if (node.Spec.Kind == WorldNodeKind.SpiritFieldPlot)
@@ -77,6 +77,7 @@ namespace LinhThu.Domain.World
             {
                 node.GrowthTimer = spec.RespawnSeconds;
                 node.IsDepleted = spec.RespawnSeconds == 0;
+                world.Geometry.SetNodeDepleted(node.Id, node.IsDepleted);
             }
 
             world.Events.Publish(new NodeHarvestedEvent(actorId, node.Id, spec.Rewards));
@@ -95,7 +96,7 @@ namespace LinhThu.Domain.World
             foreach (var reward in crop.Rewards)
                 if (!world.Content.TryGetItem(reward.DefinitionId, out _))
                     return DomainResult.Fail(DomainError.MissingDefinition);
-            var remove = world.Player.Inventory.TryRemove(crop.SeedItemId, 1);
+            var remove = world.Players[actorId].Inventory.TryRemove(crop.SeedItemId, 1);
             if (!remove.Succeeded)
                 return remove;
             field.CropDefinitionId = cropId;

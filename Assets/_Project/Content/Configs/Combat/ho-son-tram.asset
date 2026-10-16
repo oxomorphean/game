@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac4d0372958a490b84fe197bafc7aca, type: 3}
+  m_Name: ho-son-tram
+  m_EditorClassIdentifier: LinhThu.Client::LinhThu.Client.Configs.TechniqueConfigSO
+  definitionId: ho-son-tram
+  displayName: "H\u1ED9 S\u01A1n Tr\u1EA3m"
+  description: "\u0110\xF2n qu\u1EA1t kh\xF3a h\u01B0\u1EDBng, b\xE1o tr\u01B0\u1EDBc 0.65 gi\xE2y."
+  shape: 1
+  targetFilter: 0
+  range: 2
+  radius: 0
+  angleDegrees: 90
+  projectileSpeed: 8
+  maxTargets: 4
+  qiCost: 0
+  cooldown: 1.8
+  castDuration: 0.65
+  channelDuration: 0
+  channelInterval: 0
+  effects:
+  - rid: 7548894217835642937
+  effectColor: {r: 0.95, g: 0.35, b: 0.2, a: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 7548894217835642937
+      type: {class: DamageEffectData, ns: LinhThu.Client.Configs, asm: LinhThu.Client}
+      data:
+        scalingStat: 7
+        coefficient: 1
+        flatDamage: 0
+        element: 0

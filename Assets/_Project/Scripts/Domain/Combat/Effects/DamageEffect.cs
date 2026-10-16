@@ -32,7 +32,7 @@ namespace LinhThu.Domain.Combat.Effects
             if (context.Target == null || !context.Target.Vitals.IsAlive)
                 return;
             var result = context.World.Combat.CalculateDamage(context.Source, context.Target, (DamageEffectSpec)spec);
-            context.World.DealDamage(context.Target, context.Source.ActorId, result.Amount * context.Stacks);
+            context.World.DealDamage(context.Target, context.Source.ActorId, result.Amount * context.Stacks, context.Source.RewardOwnerId);
         }
     }
 }

@@ -15,8 +15,37 @@ namespace LinhThu.Tests.ClientEditMode
 {
     public sealed class StrideAndLifePresentationTests
     {
+        [TestCase(-1)]
+        [TestCase(1)]
+        public void RunKeepsChestAheadOfHipsWithoutTiltingThePlantedFeet(int facing)
+        {
+            var scene = EditorSceneManager.NewPreviewScene();
+            try
+            {
+                var root = (GameObject)PrefabUtility.InstantiatePrefab(ContentIntegrationTests.Registry.player.prefab.gameObject, scene);
+                var rig = root.GetComponent<ModularEquipmentRenderer>();
+                rig.SetFacing(facing);
+                var visual = rig.animator.transform;
+                var run = rig.animator.runtimeAnimatorController.animationClips.Single(c => c.name == "Run");
+                var pelvis = visual.Find("root/pelvis");
+                var chest = pelvis.Find("chest");
+                for (int i = 0; i <= 32; i++)
+                {
+                    run.SampleAnimation(visual.gameObject, run.length * i / 32);
+                    var torso = (chest.position - pelvis.position).normalized;
+                    Assert.That(torso.x * facing, Is.InRange(.13f, .3f), "The running torso must lean toward travel, mirrored with the rig.");
+                    foreach (string side in new[] { "front", "back" })
+                    {
+                        var foot = pelvis.Find("thigh_" + side + "/shin_" + side + "/foot_" + side);
+                        Assert.That(Mathf.Abs(foot.TransformVector(Vector3.up).normalized.x), Is.LessThan(.01f), "Lean the torso at the hip instead of tipping the grounded foot.");
+                    }
+                }
+            }
+            finally { EditorSceneManager.ClosePreviewScene(scene); }
+        }
+
         [Test]
-        public void ProportionsAndStartingRobeArePreservedAcrossAllAppearancesAndClips()
+        public void ApprovedMaleProportionsAndEquipmentIdsArePreservedAcrossAllAppearancesAndClips()
         {
             var scene = EditorSceneManager.NewPreviewScene();
             try
@@ -33,8 +62,8 @@ namespace LinhThu.Tests.ClientEditMode
                     {
                         clip.SampleAnimation(visual.gameObject, clip.length * .3f);
                         var head = visual.Find("root/pelvis/chest/head");
-                        Assert.That(head.localScale.x, Is.EqualTo(.78f).Within(.0001f));
-                        Assert.That(head.localScale.y, Is.EqualTo(.78f).Within(.0001f));
+                        Assert.That(head.localScale.x, Is.EqualTo(1).Within(.0001f), "The new approved source already contains the intended head proportion.");
+                        Assert.That(head.localScale.y, Is.EqualTo(1).Within(.0001f));
                         foreach (var bone in visual.Find("root").GetComponentsInChildren<Transform>())
                         {
                             Assert.That(Mathf.Abs(bone.localScale.x), Is.EqualTo(Mathf.Abs(bone.localScale.y)).Within(.0001f), bone.name + " must not shear during rotation.");

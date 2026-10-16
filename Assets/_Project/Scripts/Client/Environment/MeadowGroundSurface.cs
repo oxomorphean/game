@@ -8,6 +8,7 @@ namespace LinhThu.Client.Environment
     [UnityEngine.Scripting.APIUpdating.MovedFrom(true, "LinhThu.Prototype", "LinhThu.Prototype", "MeadowGroundSurface")]
     public sealed class MeadowGroundSurface : MonoBehaviour
     {
+        public Vector2 center;
         public Vector2 size = new Vector2(20, 11.25f);
         [Tooltip("Local centre and radii of the softly shaded, cooler grass by the water.")]
         public Vector4 coolShorePatch = new Vector4(7.25f, -.4f, 3, 2);
@@ -31,7 +32,7 @@ namespace LinhThu.Client.Environment
                 ownedMesh = new Mesh{name = "Editable meadow floor", hideFlags = HideFlags.DontSave};
             var half = size * .5f;
             ownedMesh.Clear();
-            ownedMesh.vertices = new[]{new Vector3(-half.x, -half.y), new Vector3(half.x, -half.y), new Vector3(half.x, half.y), new Vector3(-half.x, half.y)};
+            ownedMesh.vertices = new[]{new Vector3(center.x - half.x, center.y - half.y), new Vector3(center.x + half.x, center.y - half.y), new Vector3(center.x + half.x, center.y + half.y), new Vector3(center.x - half.x, center.y + half.y)};
             ownedMesh.triangles = new[]{0, 2, 1, 0, 3, 2};
             ownedMesh.RecalculateBounds();
             GetComponent<MeshFilter>().sharedMesh = ownedMesh;

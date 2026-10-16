@@ -15,6 +15,12 @@ namespace LinhThu.Domain.World
         }
     }
 
+    public sealed class TryTameBeastCommand : WorldCommand
+    {
+        public EntityId TargetId { get; }
+        public TryTameBeastCommand(EntityId playerId, EntityId targetId) : base(playerId) => TargetId = targetId;
+    }
+
     public sealed class MoveCommand : WorldCommand
     {
         public WorldPoint Direction { get; }

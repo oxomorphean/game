@@ -25,7 +25,9 @@ namespace LinhThu.Tests.ClientEditMode
         [SetUp] public void Open()
         {
             scene = EditorSceneManager.OpenPreviewScene("Assets/_Project/Content/Scenes/MainGame.unity");
-            game = scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<GameBootstrapper>()).Single(); game.Initialize();
+            game = scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<GameBootstrapper>()).Single();
+            // These long motor/HUD fixtures do not simulate combat; hunting has its own integration tests.
+            game.wildBeastSpawns = Array.Empty<WildBeastSpawnAuthoring>(); game.Initialize();
         }
         [TearDown] public void Close() { if (scene.IsValid()) EditorSceneManager.ClosePreviewScene(scene); }
         private static WorldPoint P(Vector3 p) => new WorldPoint(p.x, p.y);
@@ -33,6 +35,70 @@ namespace LinhThu.Tests.ClientEditMode
         {
             typeof(Transform2D).GetProperty(nameof(Transform2D.Position)).SetValue(game.World.PlayerActor.Transform, point);
             typeof(Transform2D).GetProperty(nameof(Transform2D.CurrentVelocity)).SetValue(game.World.PlayerActor.Transform, default(WorldPoint));
+        }
+
+        [TestCase(4)]
+        [TestCase(10)]
+        [TestCase(16)]
+        public void InventoryCollapsesWhenItCoversThePlayerAndCanBeToggled(int rows)
+        {
+            ArrangeHudPixels();
+            var layout = game.hud.Layout;
+            layout.FitInventory(rows); Canvas.ForceUpdateCanvases();
+            var corners = new Vector3[4]; layout.InventoryPanel.GetWorldCorners(corners);
+            var screen = RectTransformUtility.WorldToScreenPoint(null, (corners[0] + corners[2]) * .5f);
+            var world = game.gameCamera.ScreenToWorldPoint(new Vector3(screen.x, screen.y, -game.gameCamera.transform.position.z));
+            var center = game.playerView.VisualBounds.center;
+            game.playerView.transform.position += world - center;
+            layout.AvoidCoveringActor(game.playerView, game.gameCamera);
+            Assert.That(layout.InventoryCollapsed, Is.True);
+            Assert.That(layout.InventoryScroll.viewport.gameObject.activeSelf, Is.False);
+            game.playerView.transform.position = Vector3.zero;
+            layout.AvoidCoveringActor(game.playerView, game.gameCamera);
+            Assert.That(layout.InventoryCollapsed, Is.False);
+            layout.InventoryToggle.onClick.Invoke();
+            Assert.That(layout.InventoryCollapsed, Is.True);
+            layout.InventoryToggle.onClick.Invoke();
+            Assert.That(layout.InventoryCollapsed, Is.False);
+        }
+
+        [TestCase(0f)]
+        [TestCase(.5f)]
+        public void PondAndFieldPromptsStayAboveTheObjectAndClearOfPlayerSilhouette(float canvasPivot)
+        {
+            ArrangeHudPixels(canvasPivot);
+            foreach (var kind in new[] { WorldNodeKind.FishingSpot, WorldNodeKind.SpiritFieldPlot })
+            {
+                var node = game.sceneNodes.Single(n => n.Entity.Spec.Kind == kind);
+                var prompt = game.hud.interactionPrompt;
+                foreach (float x in new[] { -.7f, 0, .7f })
+                {
+                    game.playerView.transform.position = node.LabelPosition + new Vector3(x, -.2f, 0);
+                    prompt.SetTarget(node, game.gameCamera, "[E] " + (kind == WorldNodeKind.FishingSpot ? "Thả câu" : "Linh điền"));
+                    Canvas.ForceUpdateCanvases(); prompt.RefreshPosition();
+                    Assert.That(prompt.IsVisible, Is.True, kind + " at " + x);
+                    var corners = new Vector3[4]; prompt.bubble.GetWorldCorners(corners);
+                    var min = RectTransformUtility.WorldToScreenPoint(null, corners[0]);
+                    var max = RectTransformUtility.WorldToScreenPoint(null, corners[2]);
+                    var rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+                    var a = game.gameCamera.WorldToScreenPoint(game.playerView.VisualBounds.min);
+                    var b = game.gameCamera.WorldToScreenPoint(game.playerView.VisualBounds.max);
+                    Assert.That(rect.Overlaps(Rect.MinMaxRect(a.x, a.y, b.x, b.y)), Is.False);
+                    Assert.That(min.y, Is.GreaterThan(game.gameCamera.WorldToScreenPoint(node.LabelPosition).y));
+                    Assert.That(prompt.AnchorPosition, Is.EqualTo(node.LabelPosition));
+                }
+            }
+        }
+        private void ArrangeHudPixels(float pivot = .5f)
+        {
+            // Preview scenes do not drive ScreenSpaceOverlay native sizing (its scale is zero).
+            // Use a pixel-sized canvas so these assertions exercise real, nondegenerate rectangles.
+            var canvas = game.hud.GetComponent<Canvas>(); canvas.renderMode = RenderMode.WorldSpace;
+            var rect = (RectTransform)canvas.transform;
+            rect.pivot = Vector2.one * pivot;
+            rect.localScale = Vector3.one;
+            rect.sizeDelta = new Vector2(game.gameCamera.pixelWidth, game.gameCamera.pixelHeight);
+            rect.position = Vector2.Scale(rect.sizeDelta, rect.pivot);
         }
         [Test]
         public void EveryMainGameObstacleRecoversEmbeddedPlayerAndAllowsEscape()
@@ -124,7 +190,7 @@ namespace LinhThu.Tests.ClientEditMode
             foreach (var skill in hud.skills) { Assert.That(((RectTransform)skill.Button.transform).sizeDelta, Is.EqualTo(new Vector2(88, 56))); Assert.That(skill.Cooldown.type, Is.EqualTo(Image.Type.Filled)); }
             foreach (var bar in new[] { hud.hpFill, hud.qiFill, hud.shieldFill }) Assert.That(((RectTransform)bar.transform.parent).sizeDelta.y, Is.EqualTo(18));
             Assert.That(hud.vitals.text, Does.Contain("240 / 240")); Assert.That(hud.qiLabel.text, Is.EqualTo($"Linh lực  {game.World.PlayerActor.Vitals.CurrentQi:0} / {game.World.PlayerActor.Vitals.Maximum(LinhThu.Domain.Stats.VitalType.Qi):0}"));
-            Assert.That(hud.progression.text, Does.Contain("Tu vi:"));
+            Assert.That(hud.experience.text, Does.Contain("Tu vi:"));
             Assert.That(((RectTransform)hud.saveButton.transform).sizeDelta.y, Is.EqualTo(28));
             Assert.That(hud.Layout.MicroBar.sizeDelta.y, Is.EqualTo(26));
             Assert.That(hud.transform.Find("Actions") == null && hud.transform.Find("Controls") == null, Is.True);

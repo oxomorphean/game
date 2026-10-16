@@ -14,6 +14,7 @@ namespace LinhThu.Client.Combat
     /// <summary>Reads committed events/projectiles. Never applies gameplay effects.</summary>
     public sealed class TechniqueVfxPresenter : MonoBehaviour
     {
+        public const float ProjectileHeight = .45f;
         public Material lineMaterial;
         public FloatingTextPresenter floatingTextPrefab;
         private WorldState world;
@@ -76,7 +77,11 @@ namespace LinhThu.Client.Combat
                 }
             }
 
-            label.Show("−" + (e.HpLost + e.ShieldLost).ToString("0"), view, new Color(1, .88f, .45f));
+            float offset = 0;
+            foreach (var active in texts)
+                if (active != label && active.gameObject.activeSelf && active.Owner == view)
+                    offset = Mathf.Max(offset, active.TopOffset + .08f);
+            label.Show("−" + (e.HpLost + e.ShieldLost).ToString("0"), view, new Color(1, .88f, .45f), offset);
         }
 
         private void OnAbility(AbilityExecutedEvent e)
@@ -114,8 +119,8 @@ namespace LinhThu.Client.Combat
                     projectiles.Add(p.Id, line);
                 }
 
-                line.SetPosition(0, new Vector3(p.Position.X, p.Position.Y + .45f, 0));
-                line.SetPosition(1, new Vector3(p.Position.X - p.Direction.X * .35f, p.Position.Y + .45f - p.Direction.Y * .35f, 0));
+                line.SetPosition(0, new Vector3(p.Position.X, p.Position.Y + ProjectileHeight, 0));
+                line.SetPosition(1, new Vector3(p.Position.X - p.Direction.X * .35f, p.Position.Y + ProjectileHeight - p.Direction.Y * .35f, 0));
             }
 
             for (int i = pulses.Count - 1; i >= 0; i--)

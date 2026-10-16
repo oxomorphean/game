@@ -11,9 +11,13 @@ namespace LinhThu.Client.Combat
         public float duration = .8f;
         private float remaining;
         private ActorView actor;
-        public void Show(string value, ActorView owner, Color color)
+        private float stackOffset;
+        public ActorView Owner => actor;
+        public float TopOffset => stackOffset + (1 - remaining / duration) * .6f + label.bounds.size.y * label.transform.lossyScale.y;
+        public void Show(string value, ActorView owner, Color color, float heightOffset = 0)
         {
             actor = owner != null ? owner : throw new System.ArgumentNullException(nameof(owner));
+            stackOffset = heightOffset;
             label.text = value;
             label.color = color;
             remaining = duration;
@@ -41,7 +45,9 @@ namespace LinhThu.Client.Combat
 
         private void PositionAboveHead(float progress)
         {
-            var bottom = actor.OverheadPosition + Vector3.up * progress * .6f;
+            float informationHeight = actor.overhead != null ? actor.overhead.HeightAboveAnchor : 0;
+            var bottom = actor.OverheadPosition + Vector3.up * (informationHeight + (informationHeight > 0 ? .08f : 0)
+                + stackOffset + progress * .6f);
             transform.position = bottom;
             // TMP bounds are local to the label, unlike SpriteRenderer.bounds.
             transform.position += Vector3.up * (bottom.y - label.transform.TransformPoint(label.bounds.min).y);

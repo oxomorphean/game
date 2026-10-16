@@ -47,7 +47,8 @@ Shader "LinhThu/Daylight Sprite"
                     color.rgb *= 1 + water * sin(uv.y * 32 + sin(uv.x * 18) - _Time.y * .55) * .035;
                     color.rgb = lerp(color.rgb, reflectedSun, glint * lerp(.34, .58, _DaylightSun.z));
                 }
-                color.rgb *= _DaylightTint.rgb;
+                float3 daylight = lerp(float3(1, 1, 1), _DaylightTint.rgb, step(.001, dot(_DaylightTint.rgb, float3(1, 1, 1))));
+                color.rgb *= daylight;
                 color.rgb *= color.a;
                 return color;
             }

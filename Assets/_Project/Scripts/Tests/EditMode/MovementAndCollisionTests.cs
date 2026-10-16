@@ -9,6 +9,35 @@ namespace LinhThu.Tests.EditMode
     public sealed class MovementAndCollisionTests
     {
         static WorldPoint P(float x, float y = 0) => new WorldPoint(x, y);
+        [TestCase(false)]
+        [TestCase(true)]
+        public void HoldingIntoAPropKeepsSlideSpeedAndClearsItAtDifferentTickRates(bool box)
+        {
+            float fastest = float.MaxValue, slowest = 0;
+            foreach (float delta in new[] { 1f / 30, 1f / 60, 1f / 120 })
+            {
+                var obstacle = new WorldObstacle(P(0), P(.6f, .6f), box);
+                var geometry = new WorldGeometry(P(20, 20), new[] { obstacle });
+                var actor = new Transform2D(P(-1, .1f), P(1), .1375f);
+                var motor = new MovementMotor(geometry);
+                float elapsed = 0, slowestSlide = float.MaxValue;
+                while (elapsed < 2 && actor.Position.X < .8f)
+                {
+                    var from = actor.Position;
+                    motor.Move(actor, P(1), 2.8f, delta, MovementMode.Walk);
+                    elapsed += delta;
+                    Assert.That(geometry.CanStand(actor.Position, actor.CollisionRadius), Is.True);
+                    Assert.That(obstacle.Crosses(from, actor.Position), Is.False);
+                    Assert.That((actor.Position - from).Length, Is.LessThanOrEqualTo(2.8f * delta + .0001f));
+                    if (elapsed > .3f) slowestSlide = Math.Min(slowestSlide, actor.CurrentVelocity.Length);
+                }
+                Assert.That(actor.Position.X, Is.GreaterThanOrEqualTo(.8f), "Holding one direction must get around the prop.");
+                Assert.That(slowestSlide, Is.GreaterThan(1.8f), "Sliding must not collapse to a crawl.");
+                fastest = Math.Min(fastest, elapsed); slowest = Math.Max(slowest, elapsed);
+            }
+            Assert.That(slowest - fastest, Is.LessThan(.15f), "Steering must not get slower as the simulation tick gets smaller.");
+        }
+
         [Test]
         public void ExpandedOffsetWorldClampsMovementAndRecoversAgainstAllFourBounds()
         {

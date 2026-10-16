@@ -26,6 +26,7 @@ namespace LinhThu.Client.Bootstrap
     [CreateAssetMenu(menuName = "Linh Thu/Content Registry")]
     public sealed class ContentRegistrySO : ScriptableObject
     {
+        public WildBeastConfigSO[] wildBeasts = Array.Empty<WildBeastConfigSO>();
         public ActorBaseConfigSO[] actors = Array.Empty<ActorBaseConfigSO>();
         public RealmConfigSO[] realms = Array.Empty<RealmConfigSO>();
         public TechniqueConfigSO[] techniques = Array.Empty<TechniqueConfigSO>();
@@ -52,7 +53,7 @@ namespace LinhThu.Client.Bootstrap
         public IReadOnlyList<BeastSeed> CreateBeastSeeds() => startingBeast == null ? Array.Empty<BeastSeed>() : new[]{new BeastSeed(startingBeast.Id, startingBeast.initialQualityId, startingBeast.initialBloodlineId, startingBeast.initialBond)};
         public DomainContent BuildContent()
         {
-            var all = actors.Cast<ContentConfigSO>().Concat(realms).Concat(techniques).Concat(statuses).Concat(beasts).Concat(items).Concat(nodes).Concat(outfits).ToArray();
+            var all = actors.Cast<ContentConfigSO>().Concat(realms).Concat(techniques).Concat(statuses).Concat(beasts).Concat(items).Concat(nodes).Concat(outfits).Concat(wildBeasts).ToArray();
             if (all.Any(c => c == null) || all.Select(c => c.Id).Distinct(StringComparer.Ordinal).Count() != all.Length)
                 throw new InvalidOperationException("Registry contains missing configs or duplicate IDs.");
             var included = new HashSet<ContentConfigSO>(all);
@@ -130,6 +131,13 @@ namespace LinhThu.Client.Bootstrap
                     Reference(n.seedItem, "crop seed");
             }
 
+            foreach (var wild in wildBeasts)
+            {
+                Reference(wild.actor, "wild actor"); Reference(wild.attack, "wild attack");
+                if (!wild.actor.abilities.Contains(wild.attack) || wild.attack.castDuration <= 0) throw new InvalidOperationException("Wild beasts require a known telegraphed attack.");
+                if (wild.tameSpecies != null) Reference(wild.tameSpecies, "tame species");
+                foreach (var loot in wild.loot) Reference(loot.item, "wild loot");
+            }
             foreach (var i in startingItems)
                 Reference(i.item, "starting inventory");
             foreach (var o in outfits)
@@ -149,6 +157,7 @@ namespace LinhThu.Client.Bootstrap
                 content.Add(i.ToSpec());
             foreach (var n in nodes)
                 content.Add(n.ToSpec());
+            foreach (var wild in wildBeasts) content.Add(wild.ToSpec());
             return content;
         }
 

@@ -12,15 +12,15 @@ namespace LinhThu.Domain.Inventory
     {
         public DomainResult TryUse(WorldState world, EntityId ownerId, string itemId)
         {
-            if (ownerId != world.Player.ActorId)
+            if (!world.Players.ContainsKey(ownerId))
                 return DomainResult.Fail(DomainError.WrongOwner);
-            if (!world.PlayerActor.CanAct)
+            if (!world.Actors[ownerId].CanAct)
                 return DomainResult.Fail(DomainError.InvalidState);
             if (!world.Content.TryGetItem(itemId, out var item))
                 return DomainResult.Fail(DomainError.MissingDefinition);
-            if (world.Player.Inventory.Count(itemId) < 1)
+            if (world.Players[ownerId].Inventory.Count(itemId) < 1)
                 return DomainResult.Fail(DomainError.InsufficientResource);
-            var actor = world.PlayerActor;
+            var actor = world.Actors[ownerId];
             if (item.Category == ItemCategory.TechniqueScroll)
             {
                 var learned = actor.Abilities.Learn(item.TechniqueId, world.Content);
@@ -34,7 +34,7 @@ namespace LinhThu.Domain.Inventory
                 if (world.Ids.Next == long.MaxValue)
                     return DomainResult.Fail(DomainError.CapacityExceeded);
                 var beast = new BeastInstance(world.Ids.Allocate(), ownerId, item.BeastSpeciesId, "common", "default", 0);
-                var added = world.Player.Beasts.Add(beast);
+                var added = world.Players[ownerId].Beasts.Add(beast);
                 if (!added.Succeeded)
                     return added;
             }
@@ -50,7 +50,7 @@ namespace LinhThu.Domain.Inventory
             }
             else
                 return DomainResult.Fail(DomainError.InvalidState);
-            world.Player.Inventory.TryRemove(itemId, 1);
+            world.Players[ownerId].Inventory.TryRemove(itemId, 1);
             return DomainResult.Ok();
         }
     }

@@ -43,7 +43,11 @@ namespace LinhThu.Domain.Navigation
             if (direction.LengthSquared > 1)
                 direction = direction.Normalized;
             tuning = tuning ?? MovementSpec.Default;
-            var target = direction * speed;
+            RecoverOverlap(transform);
+            var travelDirection = mode == MovementMode.Walk
+                ? geometry.SteerAlongSurface(transform.Position, direction, speed * deltaTime, transform.CollisionRadius)
+                : direction;
+            var target = travelDirection * speed;
             var velocity = transform.CurrentVelocity;
             WorldPoint next, displacement;
             if (mode == MovementMode.Displacement)

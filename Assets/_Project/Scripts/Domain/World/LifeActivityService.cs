@@ -15,8 +15,8 @@ namespace LinhThu.Domain.World
 
         public DomainResult ToggleMeditate(EntityId actorId)
         {
-            if (actorId != world.Player.ActorId) return DomainResult.Fail(DomainError.WrongOwner);
-            var actor = world.PlayerActor;
+            if (!world.Players.ContainsKey(actorId)) return DomainResult.Fail(DomainError.WrongOwner);
+            var actor = world.Actors[actorId];
             if (!CanStart(actor)) return DomainResult.Fail(DomainError.InvalidState);
             if (actor.State == ActorActionState.Meditating) actor.CancelLifeActivity();
             else
@@ -29,12 +29,12 @@ namespace LinhThu.Domain.World
 
         public DomainResult Fish(EntityId actorId, EntityId? requestedNode)
         {
-            if (actorId != world.Player.ActorId) return DomainResult.Fail(DomainError.WrongOwner);
-            var actor = world.PlayerActor;
+            if (!world.Players.ContainsKey(actorId)) return DomainResult.Fail(DomainError.WrongOwner);
+            var actor = world.Actors[actorId];
             if (!CanStart(actor)) return DomainResult.Fail(DomainError.InvalidState);
             var nodeId = requestedNode ?? actor.LifeActivity.FishingNodeId;
             if (!nodeId.HasValue)
-                nodeId = world.Nodes.Values.Where(n => n.Spec.Kind == WorldNodeKind.FishingSpot && world.Interactions.CanFocus(world, actorId, n.Id))
+                nodeId = world.SpatialGrid.QueryNodes(actor.Transform.Position, Math.Min(10000, Math.Max(0, actor.Stats.Get(LinhThu.Domain.Stats.StatId.PickupRadius)))).Where(n => n.Spec.Kind == WorldNodeKind.FishingSpot && world.Interactions.CanFocus(world, actorId, n.Id))
                     .OrderBy(n => (n.InteractionPosition(actor.Transform.Position) - actor.Transform.Position).LengthSquared).ThenBy(n => n.Id).FirstOrDefault()?.Id;
             if (!nodeId.HasValue) return DomainResult.Fail(DomainError.OutOfRange);
             var check = world.Interactions.Check(world, actorId, nodeId.Value, out _, out var node);
@@ -48,10 +48,11 @@ namespace LinhThu.Domain.World
                     return DomainResult.Ok();
                 }
                 // Capacity is checked before ending the cast or consuming the fishing spot.
-                var award = world.Player.Inventory.TryAddAll(node.Spec.Rewards);
+                var award = world.Players[actorId].Inventory.TryAddAll(node.Spec.Rewards);
                 if (!award.Succeeded) return award;
                 node.GrowthTimer = node.Spec.RespawnSeconds;
                 node.IsDepleted = node.Spec.RespawnSeconds == 0;
+                world.Geometry.SetNodeDepleted(node.Id, node.IsDepleted);
                 actor.CancelLifeActivity();
                 world.Events.Publish(new NodeHarvestedEvent(actorId, node.Id, node.Spec.Rewards));
                 return DomainResult.Ok();
@@ -70,7 +71,11 @@ namespace LinhThu.Domain.World
 
         internal void Tick(float deltaTime)
         {
-            var actor = world.PlayerActor;
+            foreach (var player in world.Players.Values) TickPlayer(player, deltaTime);
+        }
+        private void TickPlayer(PlayerState player, float deltaTime)
+        {
+            var actor = world.Actors[player.ActorId];
             var state = actor.LifeActivity;
             if (actor.State == ActorActionState.Meditating)
             {
@@ -78,7 +83,7 @@ namespace LinhThu.Domain.World
                 state.MeditationElapsed += deltaTime;
                 while (state.MeditationElapsed + .000001f >= spec.MeditationTickSeconds)
                 {
-                    var add = world.Player.Cultivation.AddExperience(spec.MeditationExperience);
+                    var add = player.Cultivation.AddExperience(spec.MeditationExperience);
                     if (!add.Succeeded) { actor.CancelLifeActivity(); break; }
                     state.MeditationElapsed = Math.Max(0, state.MeditationElapsed - spec.MeditationTickSeconds);
                 }

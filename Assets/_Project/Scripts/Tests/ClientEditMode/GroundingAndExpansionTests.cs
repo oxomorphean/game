@@ -24,7 +24,9 @@ namespace LinhThu.Tests.ClientEditMode
         [SetUp] public void Open()
         {
             scene = EditorSceneManager.OpenPreviewScene("Assets/_Project/Content/Scenes/MainGame.unity");
-            game = All<GameBootstrapper>().Single(); game.Initialize();
+            game = All<GameBootstrapper>().Single();
+            // Geometry fixtures simulate many minutes at every obstacle; combat is covered separately.
+            game.wildBeastSpawns = Array.Empty<WildBeastSpawnAuthoring>(); game.Initialize();
         }
         [TearDown] public void Close()
         {
@@ -65,7 +67,7 @@ namespace LinhThu.Tests.ClientEditMode
         public void EveryActorAndRaisedPropHasVisibleContactShadowInItsOwnBand()
         {
             DaylightPresentation.ApplyLighting(12);
-            Assert.That(Trees.Length, Is.EqualTo(3));
+            Assert.That(Trees.Length, Is.EqualTo(8));
             Assert.That(All<MeadowGroundSurface>().Single().GetComponent<Renderer>().sortingOrder, Is.EqualTo(-10000));
             Assert.That(All<MeadowTerrainPath>().Single().GetComponent<Renderer>().sortingOrder, Is.EqualTo(-9500));
             foreach (var view in All<ActorView>())
@@ -133,7 +135,7 @@ namespace LinhThu.Tests.ClientEditMode
         [Test]
         public void CanopiesAndTentFadeOnlyBehindAndRestoreWithoutChangingFootprints()
         {
-            var fades = All<CanopyOcclusionFade>(); Assert.That(fades.Length, Is.EqualTo(4));
+            var fades = All<CanopyOcclusionFade>(); Assert.That(fades.Length, Is.EqualTo(9));
             var playerSort = game.playerView.GetComponent<YSortRenderer>();
             foreach (var fade in fades)
             {
@@ -236,7 +238,8 @@ namespace LinhThu.Tests.ClientEditMode
             var material = ground.GetComponent<Renderer>().sharedMaterial;
             float scale = material.GetFloat("_GrassScale"); var texture = material.GetTexture("_GrassTex");
             game.map.size = new Vector2(60, game.map.size.y); game.map.SynchronizeGroundBounds();
-            Assert.That(ground.GetComponent<MeshFilter>().sharedMesh.bounds.size.x, Is.EqualTo(60));
+            Assert.That(game.map.WorldBounds.HalfSize.X * 2, Is.EqualTo(60), "Decorative camera padding must not expand gameplay bounds.");
+            Assert.That(ground.GetComponent<MeshFilter>().sharedMesh.bounds.size.x, Is.EqualTo(60 + game.map.PresentationPadding.x * 2));
             Assert.That(material.GetFloat("_GrassScale"), Is.EqualTo(scale)); Assert.That(material.GetTexture("_GrassTex"), Is.SameAs(texture));
             var geometry = new WorldGeometry(game.map.WorldBounds, All<ObstacleAuthoring>().Select(o => o.Definition()));
             Assert.That(geometry.CanStand(new WorldPoint(25, 0), .2f), Is.True);
@@ -246,16 +249,85 @@ namespace LinhThu.Tests.ClientEditMode
                 follow.viewCamera.aspect = aspect;
                 foreach (float side in new[] { -1f, 1f })
                 {
-                    follow.transform.position = new Vector3(0, 0, -10);
-                    game.playerView.transform.position = new Vector3(side * 29, 0, 0);
+                    follow.transform.position = new Vector3(game.map.worldCenter.x, game.map.worldCenter.y, -10);
+                    game.playerView.transform.position = new Vector3(game.map.worldCenter.x + side * 29, game.map.worldCenter.y, 0);
                     follow.Follow(.01f);
-                    Assert.That(Mathf.Abs(follow.transform.position.x), Is.InRange(.01f, 5), "Follow must interpolate, not snap.");
+                    Assert.That(Mathf.Abs(follow.transform.position.x - game.map.worldCenter.x), Is.InRange(.01f, 5), "Follow must interpolate, not snap.");
                     for (int i = 0; i < 120; i++) follow.Follow(1f / 60);
                     float halfView = follow.viewCamera.orthographicSize * aspect;
-                    Assert.That(Mathf.Abs(follow.transform.position.x), Is.EqualTo(30 - halfView).Within(.01f));
-                    Assert.That(Mathf.Abs(follow.transform.position.x) + halfView, Is.LessThanOrEqualTo(30.0001f));
+                    Assert.That(Mathf.Abs(follow.transform.position.x - game.map.worldCenter.x), Is.EqualTo(30 - halfView).Within(.01f));
+                    Assert.That(Mathf.Abs(follow.transform.position.x - game.map.worldCenter.x) + halfView, Is.LessThanOrEqualTo(30.0001f));
                 }
             }
+        }
+
+        [TestCase(16f / 9)]
+        [TestCase(21f / 9)]
+        [TestCase(4f / 3)]
+        public void CameraKeepsWholePlayerVisibleAtEveryMapEdge(float aspect)
+        {
+            var follow = All<TopDownCameraController>().Single();
+            follow.viewCamera.aspect = aspect;
+            var bounds = game.map.WorldBounds;
+            var start = game.playerView.transform.position;
+            foreach (float x in new[] { -1f, 0, 1f })
+                foreach (float y in new[] { -1f, 0, 1f })
+                {
+                    game.playerView.transform.position = new Vector3(bounds.Center.X + x * (bounds.HalfSize.X - .14f), bounds.Center.Y + y * (bounds.HalfSize.Y - .14f));
+                    for (int i = 0; i < 120; i++) follow.Follow(1f / 60);
+                    var body = game.playerView.VisualBounds;
+                    var min = game.gameCamera.WorldToViewportPoint(body.min);
+                    var max = game.gameCamera.WorldToViewportPoint(body.max);
+                    Assert.That(min.x, Is.GreaterThanOrEqualTo(.01f - .00001f));
+                    Assert.That(min.y, Is.GreaterThanOrEqualTo(.01f - .00001f));
+                    Assert.That(max.x, Is.LessThanOrEqualTo(.99f + .00001f));
+                    Assert.That(max.y, Is.LessThanOrEqualTo(.99f + .00001f));
+                }
+            game.playerView.transform.position = start;
+        }
+
+        [Test]
+        public void PavingIsHiddenAndItsCollisionStaysAbsentAcrossStreaming()
+        {
+            var stones = game.map.GetComponentsInChildren<ModularMapProp>(true)
+                .Where(p => p.visual != null && p.visual.sprite.name.StartsWith("SteppingStone")).ToArray();
+            Assert.That(stones.Length, Is.EqualTo(17), "Temporary removal retains authored placement for later use.");
+            void CheckHidden()
+            {
+                foreach (var stone in stones)
+                {
+                    Assert.That(stone.gameObject.activeInHierarchy, Is.False, stone.name);
+                    var footprint = stone.GetComponent<ObstacleAuthoring>().Definition();
+                    Assert.That(game.World.Geometry.CanStand(footprint.Center, game.World.PlayerActor.Transform.CollisionRadius), Is.True, stone.name);
+                }
+            }
+            CheckHidden();
+            game.playerView.transform.position = new Vector3(30,30,0);
+            game.gameCamera.transform.position = new Vector3(30,30,-10); game.chunkStreamer.Refresh();
+            game.playerView.transform.position = new Vector3(-8,-6,0);
+            game.gameCamera.transform.position = new Vector3(-8,-6,-10); game.chunkStreamer.Refresh();
+            typeof(WorldChunkStreamer).GetMethod("OnDisable", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).Invoke(game.chunkStreamer,null);
+            CheckHidden();
+        }
+
+        [Test]
+        public void UnpavedRoadRetainsAnOpenWalkingLane()
+        {
+            var path = game.map.GetComponentInChildren<MeadowTerrainPath>();
+            float radius = game.World.PlayerActor.Transform.CollisionRadius;
+            for (int segment = 0; segment < path.knots.Length - 1; segment++)
+                for (int sample = 1; sample < 64; sample++)
+                {
+                    float t = sample / 64f;
+                    var point = (Vector2)path.transform.TransformPoint(path.Evaluate(segment,t));
+                    var tangent = (path.Evaluate(segment,t+.001f)-path.Evaluate(segment,t-.001f)).normalized;
+                    var normal = new Vector2(-tangent.y,tangent.x);
+                    float width = Mathf.Lerp(path.knots[segment].halfWidth,path.knots[segment+1].halfWidth,Mathf.SmoothStep(0,1,t));
+                    var left = point + normal * (width-radius-.025f);
+                    var right = point - normal * (width-radius-.025f);
+                    Assert.That(game.World.Geometry.CanStand(new WorldPoint(left.x,left.y),radius)
+                        || game.World.Geometry.CanStand(new WorldPoint(right.x,right.y),radius), Is.True);
+                }
         }
 
         [Test]
@@ -264,7 +336,8 @@ namespace LinhThu.Tests.ClientEditMode
             var path = game.map.GetComponentInChildren<MeadowTerrainPath>();
             foreach (string name in new[] { "Đá lát 07", "Đá lát 10" })
             {
-                var rock = All<ModularMapProp>().Single(p => p.name == name);
+                var rock = game.map.GetComponentsInChildren<ModularMapProp>(true).Single(p => p.name == name);
+                Assert.That(rock.gameObject.activeSelf, Is.False, "The authored placement remains available, but paving is temporarily hidden.");
                 var footprint = rock.GetComponent<ObstacleAuthoring>().Definition();
                 for (int segment = 0; segment < path.knots.Length - 1; segment++)
                     for (int sample = 0; sample <= 32; sample++)

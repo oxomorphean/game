@@ -80,6 +80,95 @@ namespace LinhThu.Tests.EditMode
             Assert.That(world.Execute(new DashCommand(actor.Id, P(1))).Succeeded, Is.True);
         }
 
+        [TestCase(30)]
+        [TestCase(60)]
+        [TestCase(144)]
+        public void HoldingMovementThroughDashNeverDropsBelowRunningSpeed(int ticksPerSecond)
+        {
+            var world = Fixture.World();
+            var actor = world.PlayerActor;
+            world.Execute(new MoveCommand(actor.Id, P(1)));
+            Fixture.Tick(world, .3f);
+            Assert.That(actor.Transform.CurrentVelocity.X, Is.EqualTo(4).Within(.001f));
+            world.Execute(new DashCommand(actor.Id, P(1)));
+            float delta = 1f / ticksPerSecond;
+            for (int i = 0; i < Math.Ceiling(.35f / delta); i++)
+            {
+                var before = actor.Transform.Position;
+                world.Tick(delta);
+                Assert.That(actor.Transform.CurrentVelocity.X, Is.GreaterThanOrEqualTo(3.999f), "Held movement must not brake and accelerate again at the dash tail.");
+                Assert.That(actor.Transform.Position.X - before.X, Is.GreaterThanOrEqualTo(4 * delta - .0001f));
+                Assert.That(actor.State, Is.Not.EqualTo(ActorActionState.Idle));
+            }
+            Assert.That(actor.Dash.Active, Is.False);
+            Assert.That(actor.State, Is.EqualTo(ActorActionState.Moving));
+            Assert.That(actor.Transform.CurrentVelocity.X, Is.EqualTo(4).Within(.001f));
+        }
+
+        [Test]
+        public void BufferedTurnAfterDashKeepsMomentumAndThenUsesNormalSteering()
+        {
+            var world = Fixture.World();
+            var actor = world.PlayerActor;
+            world.Execute(new MoveCommand(actor.Id, P(1)));
+            Fixture.Tick(world, .3f);
+            world.Execute(new DashCommand(actor.Id, P(1)));
+            world.Tick(.1f);
+            world.Execute(new MoveCommand(actor.Id, P(0, 1)));
+            world.Tick(.1f);
+            Assert.That(actor.Transform.Position.Y, Is.Zero, "Dash direction stays locked until the dash ends.");
+            Assert.That(actor.Transform.CurrentVelocity.X, Is.EqualTo(4).Within(.001f));
+            Assert.That(actor.State, Is.EqualTo(ActorActionState.Moving));
+            world.Tick(.02f);
+            Assert.That(actor.Transform.CurrentVelocity.Y, Is.GreaterThan(0));
+            Assert.That(actor.Transform.CurrentVelocity.Length, Is.InRange(2.5f, 4.001f));
+            Fixture.Tick(world, .3f);
+            Assert.That(actor.Transform.CurrentVelocity.X, Is.Zero.Within(.001f));
+            Assert.That(actor.Transform.CurrentVelocity.Y, Is.EqualTo(4).Within(.001f));
+        }
+
+        [Test]
+        public void ReleasingMovementDuringDashStillStopsAtTheDashEnd()
+        {
+            var world = Fixture.World();
+            var actor = world.PlayerActor;
+            world.Execute(new MoveCommand(actor.Id, P(1)));
+            world.Execute(new DashCommand(actor.Id, P(1)));
+            world.Tick(.08f);
+            world.Execute(new MoveCommand(actor.Id, default));
+            world.Tick(.1f); world.Tick(.02f);
+            Assert.That(actor.Dash.Active, Is.False);
+            Assert.That(actor.Transform.CurrentVelocity.Length, Is.Zero.Within(.0001f));
+            Assert.That(actor.State, Is.EqualTo(ActorActionState.Idle));
+            Assert.That(actor.Dash.CooldownRemaining, Is.GreaterThan(0));
+            var stopped = actor.Transform.Position;
+            world.Tick(.05f);
+            Assert.That(actor.Transform.Position, Is.EqualTo(stopped));
+        }
+
+        [Test]
+        public void StandingDashRetainsItsDistanceAndHeldMovementCannotPushThroughAWall()
+        {
+            var world = Fixture.World();
+            world.Execute(new DashCommand(world.Player.ActorId, P(1)));
+            Fixture.Tick(world, .2f);
+            Assert.That(world.PlayerActor.Transform.Position.X, Is.EqualTo(1.0666667f).Within(.0001f));
+            Assert.That(world.PlayerActor.Transform.CurrentVelocity.Length, Is.Zero);
+
+            var geometry = new WorldGeometry(P(20, 20), new[] { new WorldObstacle(P(.7f), P(.01f, 10), true) });
+            world = Fixture.World(geometry);
+            world.Execute(new MoveCommand(world.Player.ActorId, P(1)));
+            world.Execute(new DashCommand(world.Player.ActorId, P(1)));
+            for (int i = 0; i < 20; i++)
+            {
+                world.Tick(.02f);
+                Assert.That(world.PlayerActor.Transform.Position.X, Is.LessThan(.5f));
+                Assert.That(geometry.CanStand(world.PlayerActor.Transform.Position, world.PlayerActor.Transform.CollisionRadius), Is.True);
+            }
+            Assert.That(Math.Abs(world.PlayerActor.Transform.CurrentVelocity.X), Is.LessThan(.01f), "Surface steering may continue along the wall, but cannot move into it.");
+            Assert.That(world.PlayerActor.Transform.CurrentVelocity.Length, Is.LessThanOrEqualTo(4.001f));
+        }
+
         [Test]
         public void DashCannotTunnelThroughThinWallAndUsesResolvedVelocity()
         {
@@ -114,10 +203,12 @@ namespace LinhThu.Tests.EditMode
             Assert.That(actor.Dash.CooldownRemaining, Is.GreaterThan(0));
         }
 
-        [Test]
-        public void SaveMidDashRestoresVelocityDirectionTimeAndCooldown()
+        [TestCase(false)]
+        [TestCase(true)]
+        public void SaveMidDashRestoresVelocityDirectionTimeAndCooldown(bool holdMovement)
         {
             var world = Fixture.World();
+            if (holdMovement) world.Execute(new MoveCommand(world.Player.ActorId, P(1, 1)));
             world.Execute(new DashCommand(world.Player.ActorId, P(1, 1)));
             world.Tick(.04f);
             var mapper = new GameSaveMapper();

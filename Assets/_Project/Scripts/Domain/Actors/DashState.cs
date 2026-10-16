@@ -24,15 +24,21 @@ namespace LinhThu.Domain.Actors
         internal void Cancel() => Remaining = 0;
         internal void TickCooldown(float delta) => CooldownRemaining = Math.Max(0, CooldownRemaining - delta);
 
-        // Integral of v(t) = peak * (1 - t/duration)^2: ease-out cubic position.
-        internal float Advance(float delta, out float elapsed)
+        // Integrate the ease-out velocity with a running-speed floor while movement is held.
+        // Splitting at the crossover keeps distance independent of the simulation step.
+        internal float Advance(float delta, float minimumSpeed, out float elapsed, out float endSpeed)
         {
+            minimumSpeed = Math.Min(PeakSpeed, Math.Max(0, minimumSpeed));
             elapsed = Math.Min(delta, Remaining);
             float from = Remaining / Duration;
             Remaining = Math.Max(0, Remaining - elapsed);
             if (Remaining < .000001f) Remaining = 0;
             float to = Remaining / Duration;
-            return PeakSpeed * Duration * (from * from * from - to * to * to) / 3;
+            float crossover = (float)Math.Sqrt(minimumSpeed / PeakSpeed);
+            float curvedTo = Math.Min(from, Math.Max(to, crossover));
+            endSpeed = Math.Max(minimumSpeed, PeakSpeed * to * to);
+            return PeakSpeed * Duration * (from * from * from - curvedTo * curvedTo * curvedTo) / 3
+                + minimumSpeed * Duration * (curvedTo - to);
         }
 
         internal void Validate(MovementSpec spec)

@@ -45,7 +45,7 @@ namespace LinhThu.Domain.Beasts
                 distance = (owner.Transform.Position - point).Length;
             }
 
-            var target = world.Actors.Values.Where(a => a.Id != beast.Id && a.Vitals.IsAlive && world.Relations.IsHostile(beast.Faction, a.Faction) && (a.Transform.Position - owner.Transform.Position).Length <= spec.SearchRadius && (a.Transform.Position - beast.Transform.Position).Length <= spec.LeashDistance && world.Geometry.ClearLine(beast.Transform.Position, a.Transform.Position)).OrderBy(a => owner.LastDamagerId.HasValue && a.Id == owner.LastDamagerId.Value ? 0 : 1).ThenBy(a => (a.Transform.Position - owner.Transform.Position).LengthSquared).ThenBy(a => a.Id).FirstOrDefault();
+            var target = world.SpatialGrid.QueryActors(owner.Transform.Position, spec.SearchRadius).Where(a => a.Id != beast.Id && a.Vitals.IsAlive && world.Relations.IsHostile(beast.Faction, a.Faction) && (a.Transform.Position - owner.Transform.Position).Length <= spec.SearchRadius && (a.Transform.Position - beast.Transform.Position).Length <= spec.LeashDistance && world.Geometry.ClearLine(beast.Transform.Position, a.Transform.Position)).OrderBy(a => owner.LastDamagerId.HasValue && a.Id == owner.LastDamagerId.Value ? 0 : 1).ThenBy(a => (a.Transform.Position - owner.Transform.Position).LengthSquared).ThenBy(a => a.Id).FirstOrDefault();
             if (target != null)
             {
                 State = BeastAiState.CombatAssist;

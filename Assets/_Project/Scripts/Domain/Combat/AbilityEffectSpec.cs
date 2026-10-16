@@ -17,14 +17,16 @@ namespace LinhThu.Domain.Combat
         public EntityId ActorId { get; }
 
         public ActorFaction Faction { get; }
+        public EntityId? RewardOwnerId { get; }
 
         public IReadOnlyDictionary<StatId, float> Stats { get; }
 
-        public EffectSourceSnapshot(EntityId actorId, ActorFaction faction, IReadOnlyDictionary<StatId, float> stats)
+        public EffectSourceSnapshot(EntityId actorId, ActorFaction faction, IReadOnlyDictionary<StatId, float> stats, EntityId? rewardOwnerId = null)
         {
             if (actorId.Value <= 0 || stats == null)
                 throw new ArgumentException(nameof(actorId));
             ActorId = actorId;
+            RewardOwnerId = rewardOwnerId;
             Faction = Guard.EnumValue(faction);
             var copy = new Dictionary<StatId, float>();
             foreach (var stat in stats)
@@ -38,7 +40,7 @@ namespace LinhThu.Domain.Combat
             var stats = new Dictionary<StatId, float>();
             foreach (StatId stat in Enum.GetValues(typeof(StatId)))
                 stats.Add(stat, actor.Stats.Get(stat));
-            return new EffectSourceSnapshot(actor.Id, actor.Faction, stats);
+            return new EffectSourceSnapshot(actor.Id, actor.Faction, stats, actor.Faction == ActorFaction.Player ? actor.Id : actor.OwnerId);
         }
     }
 

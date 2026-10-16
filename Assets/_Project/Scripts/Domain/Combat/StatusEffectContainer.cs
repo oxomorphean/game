@@ -128,6 +128,17 @@ namespace LinhThu.Domain.Combat
                 Remove(s.SourceId);
         }
 
+        internal float TimeToNextEvent(float limit)
+        {
+            foreach (var status in active)
+            {
+                limit = Math.Min(limit, status.RemainingDuration);
+                if (status.Spec.TickInterval > 0)
+                    limit = Math.Min(limit, status.UntilNextTick);
+            }
+            return limit;
+        }
+
         public void Tick(float deltaTime, WorldState world)
         {
             Guard.Delta(deltaTime);
